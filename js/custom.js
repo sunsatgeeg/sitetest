@@ -7,11 +7,11 @@ $.ajax({
     success:function(json) {
         var dropdownMenu = $('.dropdown-menu');
         db_time = String(json['db_refresh_time']);
+
         for (let i = 0; i < json['items'].length; i++) {
             dropdownMenu.append('<li><a href="#" id="item">' + json['items'][i] + '</a></li>')
         }
 
-        console.log($.cookie('indata'))
         am5.ready(function() {
             if(!($.cookie('indata') == ""  || $.cookie('indata') == undefined)){
                 var cookietoast = Toastify({
@@ -336,7 +336,5 @@ $.ajax({
             // https://www.amcharts.com/docs/v5/concepts/animations/
             chart.appear(1000, 100);
         });
-
-
     }
 });
