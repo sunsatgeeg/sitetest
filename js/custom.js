@@ -249,7 +249,7 @@ $.ajax({
             });
     
             db_year = db_time.slice(0,4);
-            db_mon = String(Number(db_time.slice(4,6))-1);
+            db_mon = db_time.slice(4,6);
             db_day = db_time.slice(6,8);
             db_hour = db_time.slice(8,10);
             db_min = db_time.slice(10,12);
