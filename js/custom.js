@@ -12,7 +12,6 @@ $.ajax({
         }
 
         am5.ready(function() {
-            console.log($.cookie('indata'));
             if($.cookie('indata') != ""  || $.cookie('indata') != undefined){
                 var cookietoast = Toastify({
                     text: "최근 추가한 아이템(들) 불러오는 중...",
