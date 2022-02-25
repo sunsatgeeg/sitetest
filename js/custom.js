@@ -11,8 +11,9 @@ $.ajax({
             dropdownMenu.append('<li><a href="#" id="item">' + json['items'][i] + '</a></li>')
         }
 
+        console.log($.cookie('indata'))
         am5.ready(function() {
-            if($.cookie('indata') != ""  || $.cookie('indata') != undefined){
+            if(!($.cookie('indata') == ""  || $.cookie('indata') == undefined)){
                 var cookietoast = Toastify({
                     text: "최근 추가한 아이템(들) 불러오는 중...",
                     position: "center",
