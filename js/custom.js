@@ -175,7 +175,7 @@ $.ajax({
                             data:{'item':$(this).text()},
                             url: url,
                             success:function(json) {
-                                var series = chart.series.push(am5xy.LineSeries.new(root, {
+                                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
                                     name: json['item'],
                                     xAxis: xAxis,
                                     yAxis: yAxis,
@@ -185,7 +185,7 @@ $.ajax({
                                     legendValueText: "[bold {fill}]{value}[/]",
                                     tooltip: am5.Tooltip.new(root, {
                                         pointerOrientation: "horizontal",
-                                        labelText: "[[{valueX.formatDate('yy-MM-dd hh:mm')}]]\n{name} : [bold]{valueY}[/]"
+                                        labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
                                     })
                                 }));
                 
@@ -289,7 +289,7 @@ $.ajax({
                                 legendValueText: "[bold {fill}]{value}[/]",
                                 tooltip: am5.Tooltip.new(root, {
                                     pointerOrientation: "horizontal",
-                                    labelText: "[[{valueX.formatDate('yy-MM-dd hh:mm')}]]\n{name} : [bold]{valueY}[/]"
+                                    labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
                                 })
                             }));
                             series.data.setAll(generateChartData(json['data'],i));
@@ -305,7 +305,7 @@ $.ajax({
                                 legendValueText: "[bold {fill}]{value}[/]",
                                 tooltip: am5.Tooltip.new(root, {
                                     pointerOrientation: "horizontal",
-                                    labelText: "[[{valueX.formatDate('yy-MM-dd hh:mm')}]]\n{name} : [bold]{valueY}[/]"
+                                    labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
                                 })
                             }));
                             series.data.setAll(generateChartData(json['data'],i));
