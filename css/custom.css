@@ -4,6 +4,10 @@ html{
     overflow-x: hidden;
 }
 
+#ADsense{
+    background-color: rgb(0, 0, 0);
+}
+
 #myInput {
     padding: 20px;
     margin-top: -6px;
