@@ -1,4 +1,12 @@
-var url = "https://loamarketjson.herokuapp.com/";
+local = true
+if(local){
+    var cookie = '';
+    var url = "http://192.168.219.101:5000/";
+}else{
+    var cookie = $.cookie('indata');
+    var url = "https://loamarketjson.herokuapp.com/";
+}
+
 $(function(){
     Toastify({
         text: "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때마다 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　　닫기",
@@ -8,7 +16,6 @@ $(function(){
         close: true
     }).showToast();
 });
-
 
 $.ajax({
     type: 'GET',
@@ -62,7 +69,7 @@ $.ajax({
                 maxDeviation: 0.2,
                 baseInterval: {
                     timeUnit: "minute",
-                    count: 1
+                    count: 5
                 },
                 renderer: am5xy.AxisRendererX.new(root, {})
                 //, tooltip: am5.Tooltip.new(root,{})
@@ -123,37 +130,74 @@ $.ajax({
             legend.valueLabels.template.setAll({
                 textAlign: "left"
             });
-    
-            var indata = [];
-    
-            function generateChartData(data, len) {
-                if(len == undefined){
-                    len = 1;
+            
+            db_year = db_time.slice(0,4);
+            db_mon = db_time.slice(4,6);
+            db_day = db_time.slice(6,8);
+            db_hour = db_time.slice(8,10);
+            db_min = db_time.slice(10,12);
+            chart.children.unshift(am5.Label.new(root, {
+                text: "서버 데이터 갱신 시간 : " + db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min,
+                fontSize: 15,
+                x: 55,
+                y: am5.percent(99),
+                fill: am5.color(0xffffff)
+            }));
+            
+            function generateChartData(data) {
+                chartData = [];
+                for (var i = 0; i < data.length; i++) {
+                    tempdict = {}
+                    for (var j = 1; j < data[i].length; j++) {
+                        if(data[i][j] == null){
+                            continue;
+                        }
+                        if(Object.keys(tempdict).length == 0){
+                            var time = String(data[i][0]);
+                            year = time.slice(0,4);
+                            month = Number(time.slice(4,6))-1;
+                            day = time.slice(6,8);
+                            hour = time.slice(8,10);
+                            minute = time.slice(10,12);
+                            var newDate = new Date(year, month, day, hour, minute).getTime();
+                            tempdict['date'] = newDate;
+                        }
+                        tempdict[j] = data[i][j];
+                    }
+                    if(Object.keys(tempdict).length != 0){
+                        chartData.push(tempdict);
+                    }
                 }
-                var chartData = [];
-                data.forEach(function(element){
-                    var price=element[len];
-                    var time=String(element[0]);
-                    year=time.slice(0,4);
-                    month=Number(time.slice(4,6))-1;
-                    day=time.slice(6,8);
-                    hour=time.slice(8,10);
-                    minute=time.slice(10,12);
-    
-                    var newDate = new Date(year, month, day, hour, minute).getTime();
-    
-                    chartData.push({
-                        date: newDate,
-                        value: price
-                    });
-                })
-                return chartData;
+            }
+
+            function makeSeries(name, field){
+                name = name.replace("null,", "");
+                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
+                    name: name.trim(),
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    valueYField: field,
+                    valueXField: "date",
+                    locationX: 0,
+                    connect: false,
+                    legendLabelText: "[{fill}]{name}[/]",
+                    legendValueText: "[bold {fill}]{valueY}[/]",
+                    tooltip: am5.Tooltip.new(root, {
+                        pointerOrientation: "horizontal",
+                        labelText: "[[{valueX.formatDate('yy-MM-dd')}({valueX.formatDate('EEE')}) {valueX.formatDate('HH:mm')}]]\n{name} : [bold]{valueY}[/]"
+                    })
+                }));
+                series.strokes.template.setAll({
+                    strokeWidth: 3
+                });
+                series.data.setAll(chartData);
+                legend.data.push(series);
             }
     
             $(".dropdown-toggle").on("click", function(){
                 setTimeout(function(){ 
                     $("#myInput").focus(); 
-                }, 50 );
+                }, 50);
             });
 
             $("#myInput").on("keyup", function() {
@@ -163,6 +207,7 @@ $.ajax({
                 });
             });
 
+            var indata = [];
             $(".dropdown-menu li").filter(function() {
                 $(this).on("click", function(){
                     $("#myInput").val("");
@@ -185,40 +230,10 @@ $.ajax({
                             data:{'item':$(this).text()},
                             url: url,
                             success:function(json) {
-                                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
-                                    name: json['item'],
-                                    xAxis: xAxis,
-                                    yAxis: yAxis,
-                                    valueYField: "value",
-                                    valueXField: "date",
-                                    legendLabelText: "[{fill}]{name}[/]",
-                                    legendValueText: "[bold {fill}]{value}[/]",
-                                    tooltip: am5.Tooltip.new(root, {
-                                        pointerOrientation: "horizontal",
-                                        labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
-                                    })
-                                }));
-                
-                                series.data.setAll(generateChartData(json['data']));
-                                legend.data.setAll(chart.series.values);
-                                                    
-                                var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
-                                    behavior: "none"
-                                }));
-                                cursor.lineX.setAll({
-                                    stroke: am5.color(0xffffff)
-                                });
-                                cursor.lineY.setAll({
-                                    stroke: am5.color(0xffffff)
-                                });
-                
-                                chart.series.each(function(chartSeries) {
-                                    chartSeries.strokes.template.setAll({
-                                        strokeWidth: 3
-                                    })
-                                });
-                                
-                                indata.push(json['item']);
+                                generateChartData(json['data']);
+                                makeSeries(json['item'], 1);
+
+                                indata.push(json['item'].replace("null,",""));
                                 $.cookie('indata', indata, { expires: 30});
 
                                 toast.hideToast();
@@ -226,56 +241,24 @@ $.ajax({
                         });
                     } else {
                         for (var i = 0; i < chart.series.values.length; i++) {
-                            if( chart.series.values[i]._settings['name'] == $(this).text() ) {
+                            if(chart.series.values[i]._settings['name'] == $(this).text()) {
                                 chart.series.removeIndex(i);
                                 legend.data.setAll(chart.series.values);
                                 
                                 for (var i = 0; i < indata.length; i++) {
-                                    if ( indata[i] == $(this).text() ){
+                                    if(indata[i] == $(this).text()){
                                         indata.splice(i, 1);
                                         break;
                                     }
                                 }
-                                
                                 $.cookie('indata', indata, { expires:  30});
-    
-                                var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
-                                    behavior: "none"
-                                }));
-                                cursor.lineX.setAll({
-                                    stroke: am5.color(0xffffff)
-                                });
-                                cursor.lineY.setAll({
-                                    stroke: am5.color(0xffffff)
-                                });
-                                
-                                chart.yAxes.push(am5xy.ValueAxis.new(root, {
-                                    renderer: am5xy.AxisRendererY.new(root, {})
-                                }));
                             }                   
                         }
                     }
                 });
             });
-    
-            db_year = db_time.slice(0,4);
-            db_mon = db_time.slice(4,6);
-            db_day = db_time.slice(6,8);
-            db_hour = db_time.slice(8,10);
-            db_min = db_time.slice(10,12);
-
-            chart.children.unshift(am5.Label.new(root, {
-                text: "서버 데이터 갱신 시간 : " + db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min,
-                fontSize: 15,
-                x: 55,
-                y: am5.percent(99),
-                fill: am5.color(0xffffff)
-            }));
-    
             
             if($.cookie('indata') != ""){
-                //var cookie = '빛나는 신호탄';
-                var cookie = $.cookie('indata');
                 if(cookie == undefined){
                     return;
                 }
@@ -288,55 +271,12 @@ $.ajax({
                     url: url,
                     success:function(json) {
                         var array = json['item'].split(",");
-                        if (array.length == 1){
-                            var series = chart.series.push(am5xy.LineSeries.new(root, {
-                                name: array[0],
-                                xAxis: xAxis,
-                                yAxis: yAxis,
-                                valueYField: "value",
-                                valueXField: "date",
-                                legendLabelText: "[{fill}]{name}[/]",
-                                legendValueText: "[bold {fill}]{value}[/]",
-                                tooltip: am5.Tooltip.new(root, {
-                                    pointerOrientation: "horizontal",
-                                    labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
-                                })
-                            }));
-                            series.data.setAll(generateChartData(json['data'],i));
-                        }
+                        generateChartData(json['data']);
+
                         for (var i = 1; i < array.length; i++) {
-                            var series = chart.series.push(am5xy.LineSeries.new(root, {
-                                name: array[i],
-                                xAxis: xAxis,
-                                yAxis: yAxis,
-                                valueYField: "value",
-                                valueXField: "date",
-                                legendLabelText: "[{fill}]{name}[/]",
-                                legendValueText: "[bold {fill}]{value}[/]",
-                                tooltip: am5.Tooltip.new(root, {
-                                    pointerOrientation: "horizontal",
-                                    labelText: "[[{valueX.formatDate('yy-MM-dd HH:mm')}]]\n{name} : [bold]{valueY}[/]"
-                                })
-                            }));
-                            series.data.setAll(generateChartData(json['data'],i));
+                            makeSeries(array[i], i);
                         }
-                        legend.data.setAll(chart.series.values);
-                                                
-                        var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
-                            behavior: "none"
-                        }));
-                        cursor.lineX.setAll({
-                            stroke: am5.color(0xffffff)
-                        });
-                        cursor.lineY.setAll({
-                            stroke: am5.color(0xffffff)
-                        });
-    
-                        chart.series.each(function(chartSeries) {
-                            chartSeries.strokes.template.setAll({
-                                strokeWidth: 3
-                            })
-                        });
+
                         cookietoast.hideToast();
                     }
                 });
