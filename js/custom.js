@@ -26,7 +26,7 @@ $.ajax({
         db_time = String(json['db_refresh_time']);
 
         for (let i = 0; i < json['items'].length; i++) {
-            dropdownMenu.append('<li><a href="#" id="item">' + json['items'][i] + '</a></li>')
+            dropdownMenu.append('<li><a id="item">' + json['items'][i] + '</a></li>');
         }
 
         am5.ready(function() {
@@ -117,13 +117,7 @@ $.ajax({
             // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
             var legend = chart.rightAxesContainer.children.push(am5.Legend.new(root, {
                 width: 325,
-                paddingLeft: 15,
-                centerY: am5.percent(50),
-                y: am5.percent(50),
-                height: am5.percent(100),
-                verticalScrollbar: am5.Scrollbar.new(root, {
-                orientation: "vertical"
-                })
+                paddingLeft: 15
             }));
     
             legend.itemContainers.template.set("width", am5.p100);
@@ -193,7 +187,7 @@ $.ajax({
                 series.data.setAll(chartData);
                 legend.data.push(series);
             }
-    
+
             $(".dropdown-toggle").on("click", function(){
                 setTimeout(function(){ 
                     $("#myInput").focus(); 
@@ -205,6 +199,10 @@ $.ajax({
                 $(".dropdown-menu li").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
+            });
+
+            $(".dropdown-menu li").on("mouseover", function(){
+                $(this).css("cursor", "pointer");
             });
 
             var indata = [];
