@@ -213,7 +213,6 @@ $.ajax({
                     $(".dropdown-menu").scrollTop(0);
                     
                     if(!(indata.includes($(this).text()))){
-                        
                         var toast = Toastify({
                             text: $(this).text() + " 불러오는 중...",
                             position: "center",
