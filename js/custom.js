@@ -242,6 +242,10 @@ $.ajax({
                                 chart.series.removeIndex(i);
                                 legend.data.setAll(chart.series.values);
                                 
+                                chart.yAxes.push(am5xy.ValueAxis.new(root, {
+                                    renderer: am5xy.AxisRendererY.new(root, {})
+                                }));
+
                                 for (var i = 0; i < indata.length; i++) {
                                     if(indata[i] == $(this).text()){
                                         indata.splice(i, 1);
