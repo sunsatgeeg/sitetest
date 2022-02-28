@@ -238,7 +238,7 @@ $.ajax({
                         });
                     } else {
                         for (var i = 0; i < chart.series.values.length; i++) {
-                            if(chart.series.values[i]._settings['name'] == $(this).text()) {
+                            if(chart.series.values[i]._settings['name'] == $(this).text().trim().replace("[","[[").replace("]","]]")) {
                                 chart.series.removeIndex(i);
                                 legend.data.setAll(chart.series.values);
                                 
