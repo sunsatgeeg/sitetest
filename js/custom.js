@@ -1,4 +1,4 @@
-local = true
+local = false
 if(local){
     var cookie = '';
     var url = "http://192.168.219.101:5000/";
