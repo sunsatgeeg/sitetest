@@ -167,7 +167,7 @@ $.ajax({
             function makeSeries(name, field){
                 name = name.replace("null,", "");
                 var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
-                    name: name.trim(),
+                    name: name.trim().replace("[","[[").replace("]","]]"),
                     xAxis: xAxis,
                     yAxis: yAxis,
                     valueYField: field,
