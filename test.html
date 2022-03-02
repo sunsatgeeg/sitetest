@@ -22,7 +22,7 @@
   <!-- Spectrum -->
   <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
-
+  
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/custom.css">
   <script src="js/custom.js"></script>
@@ -49,13 +49,12 @@
 
   <!-- Chart Tools -->
   <div class="chartTools">
-    <div class="left">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">
-        이동평균선
-      </button>
+    <div class="float-start">
+      <button type="button" class="ma btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
     </div>
 
-    <div class="right">
+    <div class="float-end">
+      <button type="button" class="btn btn-primary">초기화</button>
     </div>
   </div>
 
@@ -74,26 +73,37 @@
   </div>
   <!-- Modal -->
   <div>
-    <div class="modal fade" id="MA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="MALabel">이동평균선</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">길이</span>
-              <input type="number" class="form-control" placeholder=0~999··· aria-label="Length" aria-describedby="basic-addon1"/>
+    <div class="maModal">
+      <div class="modal fade" id="MA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="MALabel">이동평균선</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <hr>
-            <input id="color-picker" value='#00ff00' />
-            <!-- var t = $("#element").spectrum("get");
-            t.toHex() -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-body">
+              <div class="btn-group w-100 mb-3 indata">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+                <ul class="dropdown-menu w-100">
+                </ul>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">길이</span>
+                <input type="number" class="form-control" placeholder=0 aria-label="Length" aria-describedby="Length"/>
+              </div>
+              <hr>
+              <div class="input-group mb-3">
+                <span class="input-group-text">선</span>
+                <input type="number" class="form-control" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
+                <input id="color-picker"/>
+              </div>
+              <!-- var t = $("#element").spectrum("get");
+              t.toHex() -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary cancel" data-bs-toggle="modal" data-bs-target="#MA">취소</button>
+              <button type="button" class="btn btn-primary make" data-bs-dismiss="modal">만들기</button>
+            </div>
           </div>
         </div>
       </div>
