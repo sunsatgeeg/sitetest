@@ -332,6 +332,42 @@ $.ajax({
                 // put your default event here
             });
 
+            /*
+            var toolData = [];
+            $(this).on("click", function(){
+                series = chart.children._container.series;
+                if(series.length == 1){
+                    maLength = parseInt($(this).text());
+                    chartValueYField = series._values[0]._settings.valueYField;
+                    values = series._values[0]._data._values;
+                    tempValueArray = [];
+                    toolData = [];
+                    for (var i = 0; i < values.length; i++) {
+                        tempValueArray.push(values[i][chartValueYField]);
+                        console.log(i+1);
+                        console.log(maLength);
+                        if(i+1 >= maLength){
+                            maDate = values[i]['date'];
+                            maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
+                            toolData.push({maField : maValue, date : maDate});
+                            tempValueArray.shift();
+                        }
+                    }
+                    makeToolSeries(String(maLength)+"MA", "maField");
+                    console.log(toolData)
+                    
+                } else {
+                    Toastify({
+                        text: "아이템 차트가 2개 이상 또는 없습니다.",
+                        position: "center",
+                        gravity: "bottom",
+                        duration: 4000
+                    }).showToast();
+                }
+                //legendTool.data.push(series);
+            });
+            */
+
             if($.cookie('indata') != ""){
                 if(cookie == undefined){
                     return;
