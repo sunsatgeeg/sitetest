@@ -1,20 +1,38 @@
 local = true
 if(local){
-    var cookie = '';
+    var cookie = '들꽃';
     var url = "http://192.168.219.101:5000/";
+    var notice = "";
 }else{
     var cookie = $.cookie('indata');
     var url = "https://loamarketjson.herokuapp.com/";
+    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　　닫기";
 }
 
 $(function(){
     Toastify({
-        text: "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　　닫기",
+        text: notice,
         position: "center",
         gravity: "bottom",
         duration: -1,
         close: true
     }).showToast();
+
+    $('#color-picker').spectrum({
+        preferredFormat: "hex",
+        showAlpha: false,
+        color: '#',
+        palette: [
+            ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+            ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+            ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+            ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+            ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+            ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+            ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+            ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+        ]
+    });
 });
 
 $.ajax({
@@ -22,11 +40,11 @@ $.ajax({
     dataType: 'jsonp',
     url: url+'other',
     success:function(json) {
-        var dropdownMenu = $('.dropdown-menu');
+        var dropdownMenu = $('.itemList .dropdown-menu');
         db_time = String(json['db_refresh_time']);
 
-        for (let i = 0; i < json['items'].length; i++) {
-            dropdownMenu.append('<li><a id="item">' + json['items'][i] + '</a></li>');
+        for (var i = 0; i < json['items'].length; i++) {
+            dropdownMenu.append('<li><a class="dropdown-item">' + json['items'][i] + '</a></li>');
         }
 
         am5.ready(function() {
@@ -116,10 +134,13 @@ $.ajax({
             // Add legend
             // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
             var legend = chart.rightAxesContainer.children.push(am5.Legend.new(root, {
-                width: 325,
+                width: 335,
                 paddingLeft: 15
             }));
     
+            var legendTool = chart.plotContainer.children.push(am5.Legend.new(root, {
+            }));
+
             legend.itemContainers.template.set("width", am5.p100);
             legend.valueLabels.template.setAll({
                 textAlign: "left"
@@ -163,10 +184,11 @@ $.ajax({
                     }
                 }
             }
-
+            //SmoothedXLineSeries
+            //LineSeries
             function makeSeries(name, field){
                 name = name.replace("null,", "");
-                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
+                var series = chart.series.push(am5xy.LineSeries.new(root, {
                     name: name.trim().replace("[","[[").replace("]","]]"),
                     xAxis: xAxis,
                     yAxis: yAxis,
@@ -181,39 +203,64 @@ $.ajax({
                         labelText: "[[{valueX.formatDate('yy-MM-dd')}({valueX.formatDate('EEE')}) {valueX.formatDate('HH:mm')}]]\n{name} : [bold]{valueY}[/]"
                     })
                 }));
+
                 series.strokes.template.setAll({
                     strokeWidth: 3
                 });
+
                 series.data.setAll(chartData);
                 legend.data.push(series);
             }
 
-            $(".dropdown-toggle").on("click", function(){
+            function makeToolSeries(name, field){
+                name = name.replace("null,", "");
+                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
+                    name: name.trim().replace("[","[[").replace("]","]]"),
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    valueYField: field,
+                    valueXField: "date",
+                    fill: am5.color(0xff0000),
+                    stroke: am5.color(0xff0000),
+                    locationX: 0,
+                    connect: false,
+                    legendLabelText: "[{fill}]{name}[/]",
+                    legendValueText: "[bold {fill}]{valueY}[/]"
+                }));
+
+                series.strokes.template.setAll({
+                    strokeWidth: 1
+                });
+
+                series.data.setAll(toolData);
+                legendTool.data.push(series);
+            }
+
+            $(".itemList .dropdown-toggle").on("click", function(){
                 setTimeout(function(){ 
                     $("#myInput").focus(); 
                 }, 50);
             });
 
-            $("#myInput").on("keyup", function() {
+            $(".itemList #myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
                 $(".dropdown-menu li").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
 
-            $(".dropdown-menu li").on("mouseover", function(){
+            $(".itemList .dropdown-menu li").on("mouseover", function(){
                 $(this).css("cursor", "pointer");
             });
 
             var indata = [];
-            $(".dropdown-menu li").filter(function() {
+            $(".itemList .dropdown-menu li").filter(function() {
                 $(this).on("click", function(){
                     $("#myInput").val("");
                     $(".dropdown-menu li").css('display', '');
                     $(".dropdown-menu").scrollTop(0);
                     
                     if(!(indata.includes($(this).text()))){
-                        
                         var toast = Toastify({
                             text: $(this).text() + " 불러오는 중...",
                             position: "center",
@@ -239,10 +286,14 @@ $.ajax({
                         });
                     } else {
                         for (var i = 0; i < chart.series.values.length; i++) {
-                            if(chart.series.values[i]._settings['name'] == $(this).text()) {
+                            if(chart.series.values[i]._settings['name'] == $(this).text().trim().replace("[","[[").replace("]","]]")) {
                                 chart.series.removeIndex(i);
                                 legend.data.setAll(chart.series.values);
                                 
+                                chart.yAxes.push(am5xy.ValueAxis.new(root, {
+                                    renderer: am5xy.AxisRendererY.new(root, {})
+                                }));
+
                                 for (var i = 0; i < indata.length; i++) {
                                     if(indata[i] == $(this).text()){
                                         indata.splice(i, 1);
@@ -255,7 +306,44 @@ $.ajax({
                     }
                 });
             });
-            
+
+            var toolData = [];
+            $('.chartTools .dropdown-menu li').filter(function() {
+                $(this).on("click", function(){
+                    series = chart.children._container.series;
+                    if(series.length == 1){
+                        maLength = parseInt($(this).text());
+                        chartValueYField = series._values[0]._settings.valueYField;
+                        values = series._values[0]._data._values;
+                        tempValueArray = [];
+                        toolData = [];
+                        for (var i = 0; i < values.length; i++) {
+                            tempValueArray.push(values[i][chartValueYField]);
+                            console.log(i+1);
+                            console.log(maLength);
+                            if(i+1 >= maLength){
+                                maDate = values[i]['date'];
+                                maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
+                                toolData.push({maField : maValue, date : maDate});
+                                tempValueArray.shift();
+                            }
+                        }
+                        makeToolSeries(String(maLength)+"MA", "maField");
+                        console.log(toolData)
+                        
+                    } else {
+                        Toastify({
+                            text: "아이템 차트가 2개 이상 또는 없습니다.",
+                            position: "center",
+                            gravity: "bottom",
+                            duration: 4000
+                        }).showToast();
+                    }
+                    //legendTool.data.push(series);
+
+                });
+            });
+
             if($.cookie('indata') != ""){
                 if(cookie == undefined){
                     return;
