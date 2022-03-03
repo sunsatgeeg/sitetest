@@ -398,10 +398,7 @@ $.ajax({
                     values = series._values[0]._data._values;
 
                 }else {
-                    console.log(series.length)
-                    console.log(targetSeries)
                     for (var i = 0; i < series.length; i++) {
-                        console.log(series._values[i]._settings.name)
                         if(series._values[i]._settings.name == targetSeries){
                             chartValueYField = series._values[i]._settings.valueYField;
                             values = series._values[i]._data._values;
@@ -409,8 +406,6 @@ $.ajax({
                         }
                     }
                 }
-                console.log(chartValueYField)
-                console.log(values)
 
                 for (var i = 0; i < values.length; i++) {
                     tempValueArray.push(values[i][chartValueYField]);
