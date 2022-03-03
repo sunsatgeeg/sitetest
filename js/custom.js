@@ -447,7 +447,7 @@ $.ajax({
 
             $('#reset').on("click", function(){
                 $.removeCookie('indata', { path: '/' });
-                $(location).attr('href', 'http://example.com');
+                window.location.replace('https://sunsatgeeg.github.io/');
             });
             
             // Make stuff animate on load
