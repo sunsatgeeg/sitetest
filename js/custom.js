@@ -10,12 +10,24 @@ if(local){
 }
 
 $(function(){
-    Toastify({
+    var detailNotice = Toastify({
         text: notice,
         position: "center",
         gravity: "bottom",
         duration: -1,
         close: true
+    })
+
+    var shrotNotice = Toastify({
+        text: "공지사항(클릭)　　　　　닫기 >>> ",
+        position: "center",
+        gravity: "bottom",
+        duration: -1,
+        close: true,
+        onClick: function(){
+            shrotNotice.hideToast();
+            detailNotice.showToast();
+        }
     }).showToast();
 
     $('#color-picker').spectrum({
