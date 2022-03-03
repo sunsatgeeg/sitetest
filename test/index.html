@@ -24,8 +24,8 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
   
   <!-- custom -->
-  <link rel="stylesheet" type="text/css" href="css/test.css">
-  <script src="js/test.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <script src="js/custom.js"></script>
 
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
@@ -33,6 +33,15 @@
 </head>
 
 <body>
+  <!-- 구글 애드센스 광고 승인 될때까지 임시 광고 
+  <div class="kakao_ad">
+    <ins class="kakao_ad_area" style="display:none;" 
+    data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
+    data-ad-width   = "728" 
+    data-ad-height  = "90"></ins> 
+    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+  </div>
+-->
   <!-- chart -->
   <div>
     <!-- dropdown -->
@@ -44,7 +53,7 @@
       </ul>
     </div>
     <!-- amchart -->
-    <div id="chartdiv"></div>
+    <div class="mb-3" id="chartdiv"></div>
   </div>
 
   <!-- Chart Tools -->
@@ -54,7 +63,7 @@
     </div>
 
     <div class="float-end">
-      <button type="button" class="btn btn-primary">초기화</button>
+      <button type="button" class="btn btn-primary" id="reset">초기화</button>
     </div>
   </div>
 
@@ -75,34 +84,32 @@
   <div>
     <div class="maModal">
       <div class="modal fade" id="MA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="MALabel">이동평균선</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="btn-group w-100 mb-3 indata">
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+              <div class="btn-group w-100">
+                <button type="button" class="btn btn-outline-primary" id="series" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
                 <ul class="dropdown-menu w-100">
                 </ul>
               </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text">길이</span>
-                <input type="number" class="form-control" placeholder=0 aria-label="Length" aria-describedby="Length"/>
-              </div>
               <hr>
               <div class="input-group mb-3">
-                <span class="input-group-text">선</span>
-                <input type="number" class="form-control" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
+                <span class="input-group-text">단위</span>
+                <input type="number" class="form-control" id="length" min="1" placeholder=0 aria-label="Length" aria-describedby="Length"/>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">선 굵기</span>
+                <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
                 <input id="color-picker"/>
               </div>
-              <!-- var t = $("#element").spectrum("get");
-              t.toHex() -->
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel" data-bs-toggle="modal" data-bs-target="#MA">취소</button>
-              <button type="button" class="btn btn-primary make" data-bs-dismiss="modal">만들기</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" id="make">만들기</button>
             </div>
           </div>
         </div>

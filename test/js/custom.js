@@ -1,4 +1,4 @@
-local = true
+local = false
 if(local){
     var cookie = '들꽃';
     var url = "http://127.0.0.1:5000/";
@@ -6,7 +6,7 @@ if(local){
 }else{
     var cookie = $.cookie('indata');
     var url = "https://loamarketjson.herokuapp.com/";
-    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　　닫기";
+    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　닫기 >>> ";
 }
 
 $(function(){
@@ -21,7 +21,8 @@ $(function(){
     $('#color-picker').spectrum({
         preferredFormat: "hex",
         showAlpha: false,
-        color: '#',
+        color: '#00ff00',
+        hideAfterPaletteSelect: true,
         palette: [
             ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
             ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
@@ -33,7 +34,11 @@ $(function(){
             ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
         ]
     });
-
+    
+    $('.sp-colorize').on("click", function(){
+        $('#color-picker').spectrum("toggle");
+        return false;
+    });
     
 });
 
@@ -214,7 +219,7 @@ $.ajax({
                 legend.data.push(series);
             }
 
-            function makeToolSeries(name, field){
+            function makeToolSeries(name, field, color, width){
                 name = name.replace("null,", "");
                 var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
                     name: name.trim().replace("[","[[").replace("]","]]"),
@@ -222,8 +227,8 @@ $.ajax({
                     yAxis: yAxis,
                     valueYField: field,
                     valueXField: "date",
-                    fill: am5.color(0xff0000),
-                    stroke: am5.color(0xff0000),
+                    fill: am5.color(color),
+                    stroke: am5.color(color),
                     locationX: 0,
                     connect: false,
                     legendLabelText: "[{fill}]{name}[/]",
@@ -231,7 +236,7 @@ $.ajax({
                 }));
 
                 series.strokes.template.setAll({
-                    strokeWidth: 1
+                    strokeWidth: width
                 });
 
                 series.data.setAll(toolData);
@@ -310,64 +315,80 @@ $.ajax({
             });
 
             $('.chartTools .ma').on("click", function(){
-                var dropdownMenu = $('.maModal .dropdown-menu');
-                $('.maModal .dropdown-menu li').remove();
-                $('.btn-outline-primary').text('선택');
+                var dropdownMenu = $('#MA .dropdown-menu');
+                $('#MA li').remove();
+                $('#MA #series').text('선택');
+                $('#MA #length').val("2");
+                $('#MA #width').val("1");
 
                 for (var i = 0; i < indata.length; i++) {
                     dropdownMenu.append('<li><a class="dropdown-item">' + indata[i] + '</a></li>');
                     dropdownMenu.css("cursor", "pointer");
                 }
 
-                $(".maModal .dropdown-menu li").filter(function() {
+                $("#MA li").filter(function() {
                     $(this).on("click", function(){
                         selectSeriesName = $(this).text();
-                        $('.btn-outline-primary').text(selectSeriesName);
+                        $('#MA #series').text(selectSeriesName);
                     });
                 });
             });
 
-            $(".maModal").on("hidden.bs.modal", function () {
-                console.log('asdasd');
-                // put your default event here
-            });
+            $("#MA #make").on("click", function(e){
+                var targetSeries = $('#MA #series').text();
+                if(targetSeries == "선택"){
+                    alert('대상을 선택하세요');
+                    return;
+                }
+                var maLength = $('#MA #length').val();
+                if(301 > maLength < 1 ){
+                    alert('단위 최솟값은 2 이상, 최댓값은 300 이하입니다.');
+                    $('#MA #length').val("2");
+                    return;
+                }
+                var maWidth = $('#MA #width').val();
+                if(maWidth <= 0){
+                    alert('굵기 최솟값은 1 이상입니다.');
+                    $('#MA #width').val("1");
+                    return;
+                }
+                var maColor = $('#MA #color-picker').val();
+                if(maColor.length < 7){
+                    alert('선 색깔을 다시 확인해주세요.');
+                    return;
+                }
 
-            /*
-            var toolData = [];
-            $(this).on("click", function(){
                 series = chart.children._container.series;
+                tempValueArray = [];
+                toolData = [];
                 if(series.length == 1){
-                    maLength = parseInt($(this).text());
                     chartValueYField = series._values[0]._settings.valueYField;
                     values = series._values[0]._data._values;
-                    tempValueArray = [];
-                    toolData = [];
-                    for (var i = 0; i < values.length; i++) {
-                        tempValueArray.push(values[i][chartValueYField]);
-                        console.log(i+1);
-                        console.log(maLength);
-                        if(i+1 >= maLength){
-                            maDate = values[i]['date'];
-                            maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
-                            toolData.push({maField : maValue, date : maDate});
-                            tempValueArray.shift();
+
+                }else {
+                    for (var i = 0; i < series.length; i++) {
+                        if(series._values[i]._settings.name == targetSeries){
+                            chartValueYField = series._values[i]._settings.valueYField;
+                            values = series._values[i]._data._values;
+                            break;
                         }
                     }
-                    makeToolSeries(String(maLength)+"MA", "maField");
-                    console.log(toolData)
-                    
-                } else {
-                    Toastify({
-                        text: "아이템 차트가 2개 이상 또는 없습니다.",
-                        position: "center",
-                        gravity: "bottom",
-                        duration: 4000
-                    }).showToast();
                 }
-                //legendTool.data.push(series);
-            });
-            */
 
+                for (var i = 0; i < values.length; i++) {
+                    tempValueArray.push(values[i][chartValueYField]);
+                    if(i+1 >= maLength){
+                        maDate = values[i]['date'];
+                        maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
+                        toolData.push({maField : maValue, date : maDate});
+                        tempValueArray.shift();
+                    }
+                }
+                makeToolSeries(String(maLength)+"MA"+"("+ targetSeries +")", "maField", maColor, maWidth);
+
+                $("#MA").modal('hide');
+            });
+            
             if($.cookie('indata') != ""){
                 if(cookie == undefined){
                     return;
@@ -391,6 +412,11 @@ $.ajax({
                     }
                 });
             } 
+
+            $('#reset').on("click", function(){
+                $.removeCookie('indata', { path: '/' });
+                location.reload();
+            });
             
             // Make stuff animate on load
             // https://www.amcharts.com/docs/v5/concepts/animations/
