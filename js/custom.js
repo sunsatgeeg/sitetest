@@ -240,7 +240,7 @@ $.ajax({
                 var series;
                 var dashharry;
                 seriesDict = {
-                    name: name.trim().replace("[","[[").replace("]","]]"),
+                    name: name.trim(),
                     xAxis: xAxis,
                     yAxis: yAxis,
                     valueYField: field,
@@ -366,7 +366,7 @@ $.ajax({
             });
 
             $("#MA #make").on("click", function(e){
-                var targetSeries = $('#MA #series').text();
+                var targetSeries = $('#MA #series').text().replace("[","[[").replace("]","]]");
                 if(targetSeries == "선택"){
                     alert('대상을 선택하세요');
                     return;
@@ -398,7 +398,10 @@ $.ajax({
                     values = series._values[0]._data._values;
 
                 }else {
+                    console.log(series.length)
+                    console.log(targetSeries)
                     for (var i = 0; i < series.length; i++) {
+                        console.log(series._values[i]._settings.name)
                         if(series._values[i]._settings.name == targetSeries){
                             chartValueYField = series._values[i]._settings.valueYField;
                             values = series._values[i]._data._values;
@@ -406,6 +409,8 @@ $.ajax({
                         }
                     }
                 }
+                console.log(chartValueYField)
+                console.log(values)
 
                 for (var i = 0; i < values.length; i++) {
                     tempValueArray.push(values[i][chartValueYField]);
