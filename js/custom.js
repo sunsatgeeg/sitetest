@@ -447,7 +447,7 @@ $.ajax({
 
             $('#reset').on("click", function(){
                 $.removeCookie('indata', { path: '/' });
-                location.reload();
+                $(location).attr('href', 'http://example.com');
             });
             
             // Make stuff animate on load
