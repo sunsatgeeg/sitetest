@@ -56,6 +56,10 @@ $(function(){
         return false;
     });
     
+    $('#reset').on("click", function(){
+        $.removeCookie('indata', { path: '/' });
+        location.reload();
+    });
 });
 
 $.ajax({
@@ -445,11 +449,6 @@ $.ajax({
                 });
             } 
 
-            $('#reset').on("click", function(){
-                $.removeCookie('indata', { path: '/' });
-                window.location.replace('https://sunsatgeeg.github.io/');
-            });
-            
             // Make stuff animate on load
             // https://www.amcharts.com/docs/v5/concepts/animations/
             chart.appear(1000, 100);
