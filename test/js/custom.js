@@ -6,16 +6,28 @@ if(local){
 }else{
     var cookie = $.cookie('indata');
     var url = "https://loamarketjson.herokuapp.com/";
-    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　닫기 >>> ";
+    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.\n닫기 >>> ";
 }
 
 $(function(){
-    Toastify({
+    var detailNotice = Toastify({
         text: notice,
         position: "center",
         gravity: "bottom",
         duration: -1,
         close: true
+    })
+
+    var shrotNotice = Toastify({
+        text: "공지사항(클릭)　　　　　닫기 >>> ",
+        position: "center",
+        gravity: "bottom",
+        duration: -1,
+        close: true,
+        onClick: function(){
+            shrotNotice.hideToast();
+            detailNotice.showToast();
+        }
     }).showToast();
 
     $('#color-picker').spectrum({
@@ -35,11 +47,30 @@ $(function(){
         ]
     });
     
+    $('li').filter(function(){
+        $(this).css("cursor", "pointer");
+    });
+
     $('.sp-colorize').on("click", function(){
         $('#color-picker').spectrum("toggle");
         return false;
     });
     
+    $('#wideview').on("click", function(){
+        if($(this).text() == '넓게보기'){
+            $('.cover-container').css('max-width','100vw');
+            $(this).text('되돌리기')
+        }else{
+            $('.cover-container').css('max-width','75em');
+            $(this).text('넓게보기')
+        }
+
+    });
+
+    $('#reset').on("click", function(){
+        $.removeCookie('indata', { path: '/' });
+        location.reload();
+    });
 });
 
 $.ajax({
@@ -219,22 +250,38 @@ $.ajax({
                 legend.data.push(series);
             }
 
-            function makeToolSeries(name, field, color, width){
-                name = name.replace("null,", "");
-                var series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, {
-                    name: name.trim().replace("[","[[").replace("]","]]"),
+            function makeToolSeries(name, field, color, width, line){
+                var name = name.replace("null,", "");
+                var series;
+                var dashharry;
+                seriesDict = {
+                    name: name.trim(),
                     xAxis: xAxis,
                     yAxis: yAxis,
                     valueYField: field,
                     valueXField: "date",
-                    fill: am5.color(color),
                     stroke: am5.color(color),
+                    fill: am5.color(color),
                     locationX: 0,
                     connect: false,
                     legendLabelText: "[{fill}]{name}[/]",
                     legendValueText: "[bold {fill}]{valueY}[/]"
-                }));
+                }
 
+                series = chart.series.push(am5xy.LineSeries.new(root, seriesDict));
+                if(line == "곡선 그래프"){
+                    series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, seriesDict));
+                }else if(line == "점선 그래프"){
+                    series = chart.series.push(am5xy.SmoothedXLineSeries.new(root, seriesDict));
+                    dashharry = [width, width];
+                }
+                
+                series.strokes.template.setAll({
+                    strokeDasharray: dashharry,
+                    strokeWidth: width
+
+                });
+                
                 series.strokes.template.setAll({
                     strokeWidth: width
                 });
@@ -314,9 +361,9 @@ $.ajax({
                 });
             });
 
-            $('.chartTools .ma').on("click", function(){
-                var dropdownMenu = $('#MA .dropdown-menu');
-                $('#MA li').remove();
+            $('.chartTools #maBtn').on("click", function(){
+                var dropdownMenu = $('#MA #seriesUl');
+                $('#MA #seriesUl li').remove();
                 $('#MA #series').text('선택');
                 $('#MA #length').val("2");
                 $('#MA #width').val("1");
@@ -328,14 +375,13 @@ $.ajax({
 
                 $("#MA li").filter(function() {
                     $(this).on("click", function(){
-                        selectSeriesName = $(this).text();
-                        $('#MA #series').text(selectSeriesName);
+                        $(this).parent().parent().find(".btn").text($(this).text());
                     });
                 });
             });
 
             $("#MA #make").on("click", function(e){
-                var targetSeries = $('#MA #series').text();
+                var targetSeries = $('#MA #series').text().replace("[","[[").replace("]","]]");
                 if(targetSeries == "선택"){
                     alert('대상을 선택하세요');
                     return;
@@ -357,6 +403,7 @@ $.ajax({
                     alert('선 색깔을 다시 확인해주세요.');
                     return;
                 }
+                var seriesLine = $('#MA #line').text();
 
                 series = chart.children._container.series;
                 tempValueArray = [];
@@ -384,7 +431,7 @@ $.ajax({
                         tempValueArray.shift();
                     }
                 }
-                makeToolSeries(String(maLength)+"MA"+"("+ targetSeries +")", "maField", maColor, maWidth);
+                makeToolSeries(String(maLength)+"MA"+"("+ targetSeries +")", "maField", maColor, maWidth, seriesLine);
 
                 $("#MA").modal('hide');
             });
@@ -413,11 +460,6 @@ $.ajax({
                 });
             } 
 
-            $('#reset').on("click", function(){
-                $.removeCookie('indata', { path: '/' });
-                location.reload();
-            });
-            
             // Make stuff animate on load
             // https://www.amcharts.com/docs/v5/concepts/animations/
             chart.appear(1000, 100);

@@ -33,7 +33,7 @@
 </head>
 
 <body>
-  <!-- 구글 애드센스 광고 승인 될때까지 임시 광고 
+  <!-- 구글 애드센스 광고 승인 될때까지 임시 광고 -->
   <div class="kakao_ad">
     <ins class="kakao_ad_area" style="display:none;" 
     data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
@@ -41,7 +41,7 @@
     data-ad-height  = "90"></ins> 
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
   </div>
--->
+  
   <!-- chart -->
   <div>
     <!-- dropdown -->
@@ -59,7 +59,7 @@
   <!-- Chart Tools -->
   <div class="chartTools">
     <div class="float-start">
-      <button type="button" class="ma btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
+      <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
     </div>
 
     <div class="float-end">
@@ -93,7 +93,7 @@
             <div class="modal-body">
               <div class="btn-group w-100">
                 <button type="button" class="btn btn-outline-primary" id="series" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-                <ul class="dropdown-menu w-100">
+                <ul class="dropdown-menu w-100" id="seriesUl">
                 </ul>
               </div>
               <hr>
@@ -106,6 +106,14 @@
                 <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
                 <input id="color-picker"/>
               </div>
+              <div class="btn-group w-50">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="line" data-bs-toggle="dropdown" aria-expanded="false">곡선 그래프</button>
+                <ul class="dropdown-menu w-100" id="lineUl">
+                  <li><a class="dropdown-item">곡선 그래프</a></li>
+                  <li><a class="dropdown-item">점선 그래프</a></li>
+                  <li><a class="dropdown-item">꺾은선 그래프</a></li>
+                </ul>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -116,6 +124,5 @@
       </div>
     </div>
   </div>
-
 </body>
 </html>
