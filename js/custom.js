@@ -2,14 +2,13 @@ local = false
 if(local){
     var cookie = '들꽃';
     var url = "http://127.0.0.1:5000/";
-    var notice = "";
 }else{
     var cookie = $.cookie('indata');
     var url = "https://loamarketjson.herokuapp.com/";
-    var notice = "무료로 서버 빌려서 돌리는거라 데이터 통신 속도가 많이 느립니다\n\n그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야하는데\n1년 데이터 불러오면 대충 아이템 1개 불러올때마다 20초?\n\n그래서 나중에는 못쓸정도로 생각해 광고 넣어서 빠른시간안에 더 좋은 서버 구할예정이여서 양해바랍니다...\n\n그리고 아직 무료서버라 트래픽 많이 몰리고, 만든지 얼마안되서\n개선할때 잠깐 상태 안좋아질 수 있습니다.　　　　　　　　　　　　　　　　　　　　　　　닫기 >>> ";
 }
 
 $(function(){
+    /*
     var detailNotice = Toastify({
         text: notice,
         position: "center",
@@ -29,6 +28,8 @@ $(function(){
             detailNotice.showToast();
         }
     }).showToast();
+    */
+   
 
     $('#color-picker').spectrum({
         preferredFormat: "hex",
@@ -56,6 +57,19 @@ $(function(){
         return false;
     });
     
+    $('#wideview').on("click", function(){
+        if($(this).text() == '넓게보기'){
+            $('#chartdiv').parent().css('width','100vw');
+            $('#chartdiv').parent().css('margin-left','calc(-50vw + 50%)');
+            $(this).text('되돌리기')
+        }else{
+            $('#chartdiv').parent().css('width','100%');
+            $('#chartdiv').parent().css('margin-left','');
+            $(this).text('넓게보기')
+        }   
+
+    });
+
     $('#reset').on("click", function(){
         $.removeCookie('indata', { path: '/' });
         location.reload();
