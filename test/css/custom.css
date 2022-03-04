@@ -1,14 +1,12 @@
 html{
     overflow-x: hidden;
-    height: 1300px;
 }
 
-body{
-    background-color: rgb(0, 0, 0);
-}
-
-.kakao_ad{
-    text-align: center;
+.ad .ad_left{
+    position:   fixed;
+    left:       0;
+    bottom:     0;
+    width:      100%;
 }
 
 .itemList.dropdown{
@@ -36,7 +34,7 @@ body{
 
 #chartdiv {
     width: 100%;
-    height: 90vh;
+    height: 94vh;
 }
 
 .modal-open{
@@ -57,3 +55,6 @@ body{
     border-bottom-left-radius: 0!important;
     border-left: 0!important;
 }
+#ads-left{position:fixed;left:50%;margin-left:-950px;overflow:hidden}
+#ads-right{position:fixed;right:50%;margin-right:-950px;overflow:hidden}
+#ads-left.sticky,#ads-right.sticky{position:fixed;top:20px!important}

@@ -46,7 +46,7 @@ body {
   margin-left: 1rem;
 }
 
-.nav-masthead .active {
+.nav-masthead .active:not(.modal-open) {
   color: #fff;
   border-bottom-color: #fff;
 }
