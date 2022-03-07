@@ -2,7 +2,7 @@ local = false
 if(local){
     var url = "http://127.0.0.1:5000/secretmap";
 }else{
-    var url = "https://loamarketjson.herokuapp.com/";
+    var url = "https://loamarketjson.herokuapp.com/secretmap";
 }
 
 $(function(){
