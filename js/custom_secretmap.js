@@ -42,7 +42,7 @@ $(function(){
             $('#tax').attr('data-bs-original-title', taxtooltip);
             var distribution = parseInt((totalgain-tax) / 30);
             $('#distribution').text("- " + distribution);
-            $('#distribution').attr('data-bs-original-title', "(" + String(totalgain) + " - " + String(tax) + ") = " + String(totalgain - tax) + " ÷ 30");
+            $('#distribution').attr('data-bs-original-title', "" + String(totalgain) + " - " + String(tax) + " = " + String(totalgain - tax) + " ÷ 30");
             var breakpoint = totalgain - tax - distribution;
             $('#breakpoint').text(breakpoint);
             $('#breakpoint').attr('data-bs-original-title', String(totalgain) + " - " + String(tax) + " - " + String(distribution));
