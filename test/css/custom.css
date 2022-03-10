@@ -32,10 +32,6 @@ html{
     overflow: overlay;
 }
 
-#chartdiv {
-    width: 100%;
-    height: 94vh;
-}
 
 .modal-open{
     padding-right: 0px !important;
