@@ -49,6 +49,9 @@ $(function(){
             var fairprice = parseInt(breakpoint*100/(110));
             $('#fairprice').text(fairprice);
             $('#fairprice').attr('data-bs-original-title', String(breakpoint) + " ÷ 1.1");
+            var giveme = parseInt(fairprice*100/(110));
+            $('#giveme').text(giveme);
+            $('#giveme').attr('data-bs-original-title', String(fairprice) + " ÷ 1.1");
 
             datatime = callback['date'];
             db_year = datatime.slice(0,4);
