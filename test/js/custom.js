@@ -18,14 +18,13 @@ $(function(){
 
     // Create root element
     // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-    var root = am5.Root.new("chartdiv");
+    var root = am5.Root.new("candlechartdiv");
 
     // Set themes
     // https://www.amcharts.com/docs/v5/concepts/themes/
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-
 
     // Create chart
     // https://www.amcharts.com/docs/v5/charts/xy-chart/
@@ -34,7 +33,11 @@ $(function(){
       panY: false,
       wheelX: "panX",
       wheelY: "zoomX",
-      layout: root.verticalLayout
+      layout: root.verticalLayout,
+      background: am5.Rectangle.new(root, {
+          fill: root.interfaceColors.get("alternativeBackground"),
+          fillOpacity: 1
+      })
     }));
 
     chart.get("colors").set("step", 2);
@@ -48,6 +51,7 @@ $(function(){
       }),
       height: am5.percent(70)
     }));
+    
 
     valueAxis.get("renderer").labels.template.setAll({
       centerY: am5.percent(100),
@@ -60,6 +64,14 @@ $(function(){
       paddingBottom: 5,
       paddingTop: 5
     }));
+    var yRenderer = valueAxis.get("renderer");
+            yRenderer.labels.template.setAll({
+                fill: am5.color(0xffffff),
+                fillOpacity: 0.5
+            });
+            yRenderer.grid.template.setAll({
+                stroke: am5.color(0xffffff)
+            });
 
     var dateAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
       maxDeviation: 1,
@@ -71,6 +83,14 @@ $(function(){
     dateAxis.get("renderer").labels.template.setAll({
       minPosition: 0.01,
       maxPosition: 0.99
+    });
+    var xRenderer = dateAxis.get("renderer");
+      xRenderer.labels.template.setAll({
+        fill: am5.color(0xffffff),
+        fillOpacity: 0.5
+    });
+    xRenderer.grid.template.setAll({
+        stroke: am5.color(0xffffff)
     });
 
     var color = root.interfaceColors.get("background");
@@ -129,7 +149,13 @@ $(function(){
 
     // Add cursor
     // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-    chart.set("cursor", am5xy.XYCursor.new(root, {}))
+    var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}))
+    cursor.lineX.setAll({
+      stroke: am5.color(0xffffff)
+    });
+    cursor.lineY.setAll({
+        stroke: am5.color(0xffffff)
+    });
 
 
     // Add scrollbar
@@ -154,7 +180,6 @@ $(function(){
     );
 
     var sbSeries = scrollbar.chart.series.push(am5xy.LineSeries.new(root, {
-
       valueYField: "close",
       valueXField: "date",
       xAxis: sbDateAxis,
@@ -170,7 +195,7 @@ $(function(){
     // =========================================================
     // Data loading
     // =========================================================
-
+    
     // actual data loading and handling when it is loaded
     function loadData(unit, min, max, side) {
 
@@ -194,7 +219,7 @@ $(function(){
 
         // Process data (convert dates and values)
         var processor = am5.DataProcessor.new(root, {
-          numericFields: ["date", "open", "high", "low", "close", "volume"]
+          numericFields: ["date", "open", "high", "low", "close"]
         });
         processor.processMany(data);
 
@@ -264,6 +289,7 @@ $(function(){
               sbSeries.data.push(data[i]);
             }
           }
+          
           // update axis max
           max = Math.min(max, absoluteMax);
           dateAxis.set("max", max);
@@ -325,10 +351,10 @@ $(function(){
 
     function setActiveButton(button) {
       if (activeButton) {
-        activeButton.removeClass = "active";
+        $(activeButton).removeClass("active");
       }
       activeButton = button;
-      button.addClass = "active";
+      $(button).addClass("active");
     }
 
     var currentDate = new Date();
