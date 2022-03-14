@@ -26,13 +26,14 @@
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/custom.css">
   <script src="js/custom.js"></script>
+  <script src="js/custom_candle.js"></script>
 
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
      crossorigin="anonymous"></script>
 
-  <!-- temp ADfit -->
-  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+  <!-- temp ADfit 
+  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>-->
 
   <style>
     .bd-placeholder-img {
@@ -69,7 +70,7 @@
     <main class="pt-5 pb-5 px-3">
       <div class="text-center">
 
-      <!-- temp ad -->
+      <!-- temp ad 
       <div class="ad mb-5">
         <div>
           <div class="text-center">
@@ -95,7 +96,7 @@
             data-ad-height  = "600"></ins> 
           </div>
         </div>
-      </div>
+      </div>-->
       
       <!-- chart -->
       <div>
@@ -123,33 +124,45 @@
         </div>
       </div>
 
-      <div>
-        <pre>
-무료로 서버 빌려서 돌리는 거라 데이터 통신 속도가 많이 느립니다
+      <!-- chart -->
+      <div class="clearfix">
+        <pre>미완</pre>
+        <input id="selectItem" value="에스더의 기운" hidden>
+      </div>
 
-그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야 하는데
-1년 데이터 불러오면 대충 아이템 1개 불러올 때마다 20초?
+      <!-- amchart -->
+      <div class="mb-3" id="candlechartdiv"></div>
 
-그래서 그전까지 코드 개선하거나 다른 방법 찾아보던지 아니면 광고 넣어서 더 좋은 서버 빌리기 전까진 양해 바랍니다...
+      <!-- Chart Tools -->
+      <div class="candleChartTools mb-3 clearfix">
+        <div class="float-start">
+          <button type="button" class="btn btn-primary mx-1" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
+        </div>
+        <div class="float-start candleBtn" id="candleBtn">
+          <button type="button" class="btn btn-primary" id="30m">30분</button>
+          <button type="button" class="btn btn-primary" id="1h">1시</button>
+          <button type="button" class="btn btn-primary" id="3h">3시</button>
+          <button type="button" class="btn btn-primary" id="6h">6시</button>
+          <button type="button" class="btn btn-primary" id="12h">12시</button>
+          <button type="button" class="btn btn-primary" id="1d">1일</button>
+          <button type="button" class="btn btn-primary" id="1w">1주</button>
+          <button type="button" class="btn btn-primary" id="1M">1달</button>
+        </div>
 
-그리고 아직 무료 서버라 트래픽 많이 몰리고, 만든지 얼마 안 돼서
-개선할 때 잠깐 상태 안 좋아질 수 있습니다.
-
-+++
-
-30분봉, 1시간봉, ··· 도 추후에 추가하겠습니다.
-        </pre>
+        <div class="float-end">
+          <button type="button" class="btn btn-primary" id="candlewideview">넓게보기</button>
+        </div>
       </div>
     </main>
 
-    <!-- tempAd -->
+    <!-- tempAd
     <footer class="mt-5 text-white-50">
       <div class="p-0 m-0 mb-2 text-center">
         <ins class="kakao_ad_area" style="display:none;" 
         data-ad-unit    = "DAN-wTnO0MIIPOzE9w0o" 
         data-ad-width   = "728" 
         data-ad-height  = "90"></ins> 
-      </div>
+      </div> -->
       
       <!-- AdSense -->
       <div class="ADsense">
@@ -193,6 +206,50 @@
                 <span class="input-group-text">선 굵기</span>
                 <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
                 <input id="color-picker"/>
+              </div>
+              <div class="btn-group w-50">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="line" data-bs-toggle="dropdown" aria-expanded="false">곡선 그래프</button>
+                <ul class="dropdown-menu w-100" id="lineUl">
+                  <li><a class="dropdown-item">곡선 그래프</a></li>
+                  <li><a class="dropdown-item">점선 그래프</a></li>
+                  <li><a class="dropdown-item">꺾은선 그래프</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" id="make">만들기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="candleMA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="MALabel">이동평균선</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="btn-group w-100">
+                <button type="button" class="btn btn-outline-primary" id="series" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+                <ul class="dropdown-menu w-100" id="seriesUl">
+                  <li><a class="dropdown-item">시가</a></li>
+                  <li><a class="dropdown-item">종가</a></li>
+                  <li><a class="dropdown-item">저가</a></li>
+                  <li><a class="dropdown-item">고가</a></li>
+                </ul>
+              </div>
+              <hr>
+              <div class="input-group mb-3">
+                <span class="input-group-text">단위</span>
+                <input type="number" class="form-control" id="length" min="1" placeholder=0 aria-label="Length" aria-describedby="Length"/>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">선 굵기</span>
+                <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
+                <input id="candle-color-picker"/>
               </div>
               <div class="btn-group w-50">
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" id="line" data-bs-toggle="dropdown" aria-expanded="false">곡선 그래프</button>

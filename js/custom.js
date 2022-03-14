@@ -29,7 +29,6 @@ $(function(){
         }
     }).showToast();
     */
-   
 
     $('#color-picker').spectrum({
         preferredFormat: "hex",

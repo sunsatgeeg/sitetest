@@ -42,12 +42,11 @@ $(function(){
 
     chart.get("colors").set("step", 2);
 
-
     // Create axes
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var valueAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
       renderer: am5xy.AxisRendererY.new(root, {
-        inside: true
+        fill: am5.color(0x000000)
       }),
       height: am5.percent(70)
     }));
@@ -59,23 +58,24 @@ $(function(){
     });
 
     valueAxis.axisHeader.children.push(am5.Label.new(root, {
-      text: "Value",
+      text: "거래소 최저가",
       fontWeight: "bold",
       paddingBottom: 5,
       paddingTop: 5
     }));
     var yRenderer = valueAxis.get("renderer");
-            yRenderer.labels.template.setAll({
-                fill: am5.color(0xffffff),
-                fillOpacity: 0.5
-            });
-            yRenderer.grid.template.setAll({
-                stroke: am5.color(0xffffff)
-            });
+    yRenderer.labels.template.setAll({
+        fill: am5.color(0xffffff),
+        fillOpacity: 0.5
+    });
+    yRenderer.grid.template.setAll({
+        stroke: am5.color(0xffffff)
+    });
 
     var dateAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
+      groupData: true,
       maxDeviation: 1,
-      baseInterval: { timeUnit: "day", count: 1 },
+      baseInterval: { timeUnit: "minute", count: 30 },
       renderer: am5xy.AxisRendererX.new(root, {}),
       tooltip: am5.Tooltip.new(root, {})
     }));
@@ -103,7 +103,7 @@ $(function(){
         clustered: false,
         calculateAggregates: true,
         stroke: color,
-        name: "STCK",
+        name: "",
         xAxis: dateAxis,
         yAxis: valueAxis,
         valueYField: "close",
@@ -115,7 +115,7 @@ $(function(){
         highValueYGrouped: "high",
         openValueYGrouped: "open",
         valueYGrouped: "close",
-        legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}",
+        legendValueText: "시가: {openValueY}    저점: {lowValueY}    고점: {highValueY}    종가: {valueY}",
         legendRangeValueText: "{valueYClose}"
       })
     );
@@ -126,7 +126,7 @@ $(function(){
       getLabelFillFromSprite: true,
       autoTextColor: false,
       pointerOrientation: "horizontal",
-      labelText: "{name}: {valueY} {valueYChangePreviousPercent.formatNumber('[#00ff00]+#,###.##|[#ff0000]#,###.##|[#999999]0')}%"
+      labelText: "{valueY} {valueYChangePreviousPercent.formatNumber('[#009400]+#,###.##|[#820000]#,###.##|[#999999]0')}%"
     }));
     valueTooltip.get("background").set("fill", root.interfaceColors.get("background"));
 
@@ -197,157 +197,87 @@ $(function(){
     // =========================================================
     
     // actual data loading and handling when it is loaded
-    function loadData(unit, min, max, side) {
-
-      // round min so that selected unit would be included
-      min = am5.time.round(new Date(min), unit, 1).getTime();
-
+    function loadData(unit) {
       // Load external data
       // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Setting_data
-      var url = "https://www.amcharts.com/tools/data/?unit=" + unit + "&start=" + min + "&end=" + max;
+      console.log(unit);
+      item = $('#selectItem').val();
+      if(item == ""){
+        alert('아이템을 선택해주세요');
+      }
 
+      var toast = Toastify({
+        text: $(this).text() + ` 불러오는 중...`,
+        position: "center",
+        gravity: "bottom",
+        duration: -1,
+        close: false
+      }).showToast();
+      
+      var url = "http://127.0.0.1:5000/candle_date?item=" + item + "&unit=" + unit;
+      var unitCount = 0;
+      //15분, 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
+      if(unit == '30m'){
+        unit = "minute";
+        unitCount = 30;
+      }else if(unit == '1h'){
+        unit = "hour";
+        unitCount = 1;
+      }else if(unit == '3h'){
+        unit = "hour";
+        unitCount = 3;
+      }else if(unit == '6h'){
+        unit = "hour";
+        unitCount = 6;
+      }else if(unit == '12h'){
+        unit = "hour";
+        unitCount = 12;
+      }else if(unit == '1d'){
+        unit = "day";
+        unitCount = 1;
+      }else if(unit == '1w'){
+        unit = "day";
+        unitCount = 7;
+      }else if(unit == '1M'){
+        unit = "month";
+        unitCount = 1;
+      }
+      
       // Handle loaded data
-      am5.net.load(url).then(function(result) {
-
-        // Parse loaded data
-        var data = am5.CSVParser.parse(result.response, {
-          delimiter: ",",
-          reverse: false,
-          skipEmpty: true,
-          useColumnNames: true
-        });
-        console.log(data)
-
-        // Process data (convert dates and values)
-        var processor = am5.DataProcessor.new(root, {
-          numericFields: ["date", "open", "high", "low", "close"]
-        });
-        processor.processMany(data);
-
-        var start = dateAxis.get("start");
-        var end = dateAxis.get("end");
-
-        // will hold first/last dates of each series
-        var seriesFirst = {};
-        var seriesLast = {};
-
-        // Set data
-        if (side == "none") {
-          if (data.length > 0) {
-            // change base interval if it's different
-            if (dateAxis.get("baseInterval").timeUnit != unit) {
-              dateAxis.set("baseInterval", { timeUnit: unit, count: 1 });
-              sbDateAxis.set("baseInterval", { timeUnit: unit, count: 1 });
-            }
-
-            dateAxis.set("min", min);
-            dateAxis.set("max", max);
-            dateAxis.setPrivate("min", min);   // needed in order not to animate
-            dateAxis.setPrivate("max", max);   // needed in order not to animate     
-
-            valueSeries.data.setAll(data);
-            sbSeries.data.setAll(data);
-
-            dateAxis.zoom(0, 1, 0);
-          }
-        }
-        else if (side == "left") {
-          // save dates of first items so that duplicates would not be added
-          seriesFirst[valueSeries.uid] = valueSeries.data.getIndex(0).date;
-          seriesFirst[sbSeries.uid] = sbSeries.data.getIndex(0).date;
-
-          for (var i = data.length - 1; i >= 0; i--) {
-            var date = data[i].date;
-            // only add if first items date is bigger then newly added items date
-            if (seriesFirst[valueSeries.uid] > date) {
-              valueSeries.data.unshift(data[i]);
-            }
-            if (seriesFirst[sbSeries.uid] > date) {
-              sbSeries.data.unshift(data[i]);
-            }
-          }
-
-          // update axis min
-          min = Math.max(min, absoluteMin);
-          dateAxis.set("min", min);
-          dateAxis.setPrivate("min", min); // needed in order not to animate
-          // recalculate start and end so that the selection would remain
-          dateAxis.set("start", 0);
-          dateAxis.set("end", (end - start) / (1 - start));
-        }
-        else if (side == "right") {
-          // save dates of last items so that duplicates would not be added
-          seriesLast[valueSeries.uid] = valueSeries.data.getIndex(valueSeries.data.length - 1).date;
-          seriesLast[sbSeries.uid] = sbSeries.data.getIndex(sbSeries.data.length - 1).date;
-
-          for (var i = 0; i < data.length; i++) {
-            var date = data[i].date;
-            // only add if last items date is smaller then newly added items date
-            if (seriesLast[valueSeries.uid] < date) {
-              valueSeries.data.push(data[i]);
-            }
-            if (seriesLast[sbSeries.uid] < date) {
-              sbSeries.data.push(data[i]);
-            }
-          }
+      $.ajax({
+        type: 'GET',
+        dataType: 'jsonp',
+        url: url,
+        success:function(json) {
+          data = json['data'];
           
-          // update axis max
-          max = Math.min(max, absoluteMax);
-          dateAxis.set("max", max);
-          dateAxis.setPrivate("max", max); // needed in order not to animate
+          // change base interval if it's different
+          dateAxis.set("baseInterval", { timeUnit: unit, count: unitCount });
+          sbDateAxis.set("baseInterval", { timeUnit: unit, count: unitCount });
 
-          // recalculate start and end so that the selection would remain
-          dateAxis.set("start", start / end);
-          dateAxis.set("end", 1);
+          valueSeries.data.setAll(data);
+          sbSeries.data.setAll(data);
+
+          dateAxis.zoom(0, 1, 0);
+          toast.hideToast();
         }
       });
     }
 
-    function loadSomeData() {
-      var start = dateAxis.get("start");
-      var end = dateAxis.get("end");
-
-      var selectionMin = Math.max(dateAxis.getPrivate("selectionMin"), absoluteMin);
-      var selectionMax = Math.min(dateAxis.getPrivate("selectionMax"), absoluteMax);
-
-      var min = dateAxis.getPrivate("min");
-      var max = dateAxis.getPrivate("max");
-
-      // if start is less than 0, means we are panning to the right, need to load data to the left (earlier days)
-      if (start < 0) {
-        loadData(currentUnit, selectionMin, min, "left");
-      }
-      // if end is bigger than 1, means we are panning to the left, need to load data to the right (later days)
-      if (end > 1) {
-        loadData(currentUnit, max, selectionMax, "right");
-      }
-    }
-
     // Button handlers
-    var activeButton = $('#btn_d');
-    $('#btn_h').on("click", function() {
-      if (currentUnit != "hour") {
-        setActiveButton($(this));
-        currentUnit = "hour";
-        loadData("hour", dateAxis.getPrivate("selectionMin"), dateAxis.getPrivate("selectionMax"), "none");
-      }
+    var activeButton;
+    $("#candleBtn button").filter(function() {
+      $(this).on("click", function() {
+        btnid = $(this).attr('id');
+        if (currentUnit != btnid) {
+          setActiveButton($(this));
+          currentUnit = btnid;
+          loadData(btnid);
+        }
+      });
     });
 
-    $('#btn_d').on("click", function() {
-      if (currentUnit != "day") {
-        setActiveButton($(this));
-        currentUnit = "day";
-        loadData("day", dateAxis.getPrivate("selectionMin"), dateAxis.getPrivate("selectionMax"), "none");
-      }
-    });
-
-    $('#btn_m').on("click", function() {
-      if (currentUnit != "month") {
-        setActiveButton($(this));
-        currentUnit = "month";
-        loadData("month", dateAxis.getPrivate("selectionMin"), dateAxis.getPrivate("selectionMax"), "none");
-      }
-    });
+    var currentUnit = "";
 
     function setActiveButton(button) {
       if (activeButton) {
@@ -356,39 +286,6 @@ $(function(){
       activeButton = button;
       $(button).addClass("active");
     }
-
-    var currentDate = new Date();
-    var currentUnit = "day";
-
-    // initially load 50 days
-    var min = currentDate.getTime() - am5.time.getDuration("day", 50);
-    var max = currentDate.getTime();
-
-    // limit to the data's extremes
-    var absoluteMax = max;
-    var absoluteMin = new Date(2000,0,1,0,0,0,0);
-
-    // load data when panning ends
-    chart.events.on("panended", function() {
-      loadSomeData();
-    });
-
-
-    var wheelTimeout;
-    chart.events.on("wheelended", function() {
-      // load data with some delay when wheel ends, as this is event is fired a lot
-      // if we already set timeout for loading, dispose it
-      if (wheelTimeout) {
-        wheelTimeout.dispose();
-      }
-
-      wheelTimeout = chart.setTimeout(function() {
-        loadSomeData();  
-      }, 50);
-    });
-
-    // load some initial data
-    loadData("day", min, max, "none");
 
     // Make stuff animate on load
     // https://www.amcharts.com/docs/v5/concepts/animations/

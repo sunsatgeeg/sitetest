@@ -108,10 +108,19 @@
         <div class="float-start">
           <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
         </div>
+        <input id="selectItem" value="에스더의 기운" hidden>
         <div class="float-end">
-          <button type="button" class="btn btn-primary" value="1 hour" id="btn_h">시봉</button>
-          <button type="button" class="btn btn-primary active" value="1 day" id="btn_d">일봉</button>
-          <button type="button" class="btn btn-primary" value="1 month" id="btn_m">달봉</button>
+          <!-- 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달-->
+          <div id="candleBtn">
+            <button type="button" class="btn btn-primary" id="30m">30분</button>
+            <button type="button" class="btn btn-primary" id="1h">1시</button>
+            <button type="button" class="btn btn-primary" id="3h">3시</button>
+            <button type="button" class="btn btn-primary" id="6h">6시</button>
+            <button type="button" class="btn btn-primary" id="12h">12시</button>
+            <button type="button" class="btn btn-primary" id="1d">1일</button>
+            <button type="button" class="btn btn-primary" id="1w">1주</button>
+            <button type="button" class="btn btn-primary" id="1M">1달</button>
+          </div>
           <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
           <button type="button" class="btn btn-primary" id="reset">초기화</button>
         </div>
