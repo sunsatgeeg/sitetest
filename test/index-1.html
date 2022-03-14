@@ -25,7 +25,7 @@
   
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/custom.css">
-  <script src="js/custom.js"></script>
+  <script src="js/custom-1.js"></script>
 
   <!-- google ADSense 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
@@ -108,10 +108,13 @@
         <div class="float-start">
           <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
         </div>
+        <input id="selectItem" value="에스더의 기운" hidden>
         <div class="float-end">
-          <button type="button" class="btn btn-primary" value="1 hour" id="btn_h">시봉</button>
-          <button type="button" class="btn btn-primary active" value="1 day" id="btn_d">일봉</button>
-          <button type="button" class="btn btn-primary" value="1 month" id="btn_m">달봉</button>
+          <!-- 15분, 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달-->
+          <button type="button" class="btn btn-primary" value="btn_30m" id="btn_30m">30분</button>
+          <button type="button" class="btn btn-primary active" value="btn_1h" id="btn_1h">1시간</button>
+          <button type="button" class="btn btn-primary" value="btn_6h" id="btn_6h">6시간</button>
+          <button type="button" class="btn btn-primary" value="btn_1d" id="btn_1d">1일</button>
           <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
           <button type="button" class="btn btn-primary" id="reset">초기화</button>
         </div>
