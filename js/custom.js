@@ -66,7 +66,6 @@ $(function(){
             $('#chartdiv').parent().css('margin-left','');
             $(this).text('넓게보기')
         }   
-
     });
 
     $('#reset').on("click", function(){
@@ -80,11 +79,12 @@ $.ajax({
     dataType: 'jsonp',
     url: url+'other',
     success:function(json) {
-        var dropdownMenu = $('.itemList .dropdown-menu');
         db_time = String(json['db_refresh_time']);
 
         for (var i = 0; i < json['items'].length; i++) {
-            dropdownMenu.append('<li><a class="dropdown-item">' + json['items'][i] + '</a></li>');
+            $('.itemList .dropdown-menu').append('<li><a class="dropdown-item">' + json['items'][i] + '</a></li>');
+            $('#itemUl').append('<li ev><a class="dropdown-item">' + json['items'][i] + '</a></li>');
+            $('#itemUl').css("cursor", "pointer");
         }
 
         am5.ready(function() {
@@ -300,7 +300,7 @@ $.ajax({
 
             $(".itemList #myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $(".dropdown-menu li").filter(function() {
+                $(".itemList .dropdown-menu li").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -313,8 +313,8 @@ $.ajax({
             $(".itemList .dropdown-menu li").filter(function() {
                 $(this).on("click", function(){
                     $("#myInput").val("");
-                    $(".dropdown-menu li").css('display', '');
-                    $(".dropdown-menu").scrollTop(0);
+                    $(".itemList .dropdown-menu li").css('display', '');
+                    $(".itemList .dropdown-menu").scrollTop(0);
                     
                     if(!(indata.includes($(this).text()))){
                         var toast = Toastify({
@@ -369,7 +369,6 @@ $.ajax({
                 $('#MA #series').text('선택');
                 $('#MA #length').val("2");
                 $('#MA #width').val("1");
-
                 for (var i = 0; i < indata.length; i++) {
                     dropdownMenu.append('<li><a class="dropdown-item">' + indata[i] + '</a></li>');
                     dropdownMenu.css("cursor", "pointer");

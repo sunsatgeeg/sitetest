@@ -99,6 +99,7 @@
       </div>
       
       <!-- chart -->
+      <div class="tick_chart">- 틱 차트(5분)</div>
       <div>
         <!-- dropdown -->
         <div class="dropdown itemList">
@@ -124,29 +125,39 @@
         </div>
       </div>
 
+      <div class="candle_chart">- 캔들 차트</div>
+
       <!-- chart -->
       <div class="clearfix">
-        <pre>미완</pre>
+        
         <input id="selectItem" value="에스더의 기운" hidden>
       </div>
 
       <!-- amchart -->
-      <div class="mb-3" id="candlechartdiv"></div>
+      <div>
+        <div class="mb-3" id="candlechartdiv"></div>
+      </div>
 
       <!-- Chart Tools -->
       <div class="candleChartTools mb-3 clearfix">
         <div class="float-start">
-          <button type="button" class="btn btn-primary mx-1" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
+          <div class="btn-group dropup candleitemList">
+            <button type="button" class="btn dropdown-toggle btn-light" id="series" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+            <ul class="dropdown-menu w-100" id="itemUl">
+              <input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off">
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선(미완)</button>
         </div>
-        <div class="float-start candleBtn" id="candleBtn">
-          <button type="button" class="btn btn-primary" id="30m">30분</button>
-          <button type="button" class="btn btn-primary" id="1h">1시</button>
-          <button type="button" class="btn btn-primary" id="3h">3시</button>
-          <button type="button" class="btn btn-primary" id="6h">6시</button>
-          <button type="button" class="btn btn-primary" id="12h">12시</button>
-          <button type="button" class="btn btn-primary" id="1d">1일</button>
-          <button type="button" class="btn btn-primary" id="1w">1주</button>
-          <button type="button" class="btn btn-primary" id="1M">1달</button>
+        <div class="mx-2 float-start candleBtn" id="candleBtn">
+          <button type="button" class="btn btn-info" id="30m">30분</button>
+          <button type="button" class="btn btn-info" id="1h">1시</button>
+          <button type="button" class="btn btn-info" id="3h">3시</button>
+          <button type="button" class="btn btn-info" id="6h">6시</button>
+          <button type="button" class="btn btn-info" id="12h">12시</button>
+          <button type="button" class="btn btn-outline-info" id="1d">1일</button>
+          <button type="button" class="btn btn-info" id="1w">1주</button>
+          <button type="button" class="btn btn-info" id="1M">1달</button>
         </div>
 
         <div class="float-end">
@@ -228,7 +239,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="MALabel">이동평균선</h5>
+              <h5 class="modal-title" id="MALabel">이동평균선(미완)</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

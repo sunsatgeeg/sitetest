@@ -44,6 +44,18 @@ $(function(){
     $('#candle-color-picker').spectrum("toggle");
     return false;
   });
+
+  $(".candleitemList .dropdown-toggle").on("click", function(){
+    setTimeout(function(){ 
+        $("#candlemyInput").focus(); 
+    }, 50);
+  });
+  $(".candleitemList #candlemyInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".candleitemList .dropdown-menu li").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 });
 
 
@@ -158,7 +170,7 @@ am5.ready(function() {
     getLabelFillFromSprite: true,
     autoTextColor: false,
     pointerOrientation: "horizontal",
-    labelText: "{valueY} {valueYChangePreviousPercent.formatNumber('[#009400]+#,###.##|[#820000]#,###.##|[#999999]0')}%"
+    labelText: "[#000000]종가:[/]{valueY}　[#000000]전봉기준:[/]{valueYChangePreviousPercent.formatNumber('[#146e00]+#,###.##|[#820000]#,###.##|[#999999]0')}%"
   }));
   valueTooltip.get("background").set("fill", root.interfaceColors.get("background"));
 
@@ -229,14 +241,11 @@ am5.ready(function() {
   // =========================================================
   
   // actual data loading and handling when it is loaded
-  function loadData(unit) {
+  var nowname = "";
+  function loadData(unit, name) {
     // Load external data
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Setting_data
-    item = $('#selectItem').val();
-    if(item == ""){
-      alert('아이템을 선택해주세요');
-    }
-
+    
     var toast = Toastify({
       text: ` 불러오는 중...`,
       position: "center",
@@ -245,7 +254,7 @@ am5.ready(function() {
       close: false
     }).showToast();
     
-    candleurl = url + "candle_date?item=" + item + "&unit=" + unit;
+    candleurl = url + "candle_date?item=" + name + "&unit=" + unit;
     var unitCount = 0;
     //15분, 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
     if(unit == '30m'){
@@ -290,32 +299,40 @@ am5.ready(function() {
         sbSeries.data.setAll(data);
 
         dateAxis.zoom(0, 1, 0);
+        nowname = name;
         toast.hideToast();
       }
     });
   }
 
   // Button handlers
-  var activeButton;
+  var activeButton = $('#1d');;
   $("#candleBtn button").filter(function() {
     $(this).on("click", function() {
+      curitem = $('.candleitemList button').text();
+      if(curitem == "선택"){
+        alert('아이템을 선택해주세요');
+        return;
+      }
       btnid = $(this).attr('id');
       if (currentUnit != btnid) {
         setActiveButton($(this));
         currentUnit = btnid;
-        loadData(btnid);
       }
+      loadData(currentUnit, curitem);
     });
   });
 
-  var currentUnit = "";
+  var currentUnit = "1d";
 
   function setActiveButton(button) {
     if (activeButton) {
-      $(activeButton).removeClass("active");
+      $(activeButton).removeClass("btn-outline-info");
+      $(activeButton).addClass("btn-info");
     }
     activeButton = button;
-    $(button).addClass("active");
+    $(button).removeClass("btn-info");
+    $(button).addClass("btn-outline-info");
   }
 
   function makeToolSeries(name, field, color, width, line){
@@ -347,7 +364,6 @@ am5.ready(function() {
     series.strokes.template.setAll({
         strokeDasharray: dashharry,
         strokeWidth: width
-
     });
     
     series.strokes.template.setAll({
@@ -398,6 +414,24 @@ am5.ready(function() {
 
     $("#candleMA").modal('hide');
   });
+
+  //candleChart
+  $('.candleitemList').on('click', function(){
+    $('.candleitemList li').off('click');
+    $('.candleitemList li').on('click', function(){
+        $("#candlemyInput").val("");
+        $(".candleitemList .dropdown-menu li").css('display', '');
+        $(".candleitemList .dropdown-menu").scrollTop(0);
+
+        if($(this).text() == nowname){
+          return;
+        }
+
+        $(this).parent().parent().find(".btn").text($(this).text());
+        
+        loadData(currentUnit, $(this).text());
+  });
+});
 
   // Make stuff animate on load
   // https://www.amcharts.com/docs/v5/concepts/animations/
