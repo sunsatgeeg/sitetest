@@ -310,14 +310,13 @@ am5.ready(function() {
   $("#candleBtn button").filter(function() {
     $(this).on("click", function() {
       curitem = $('.candleitemList button').text();
-      if(curitem == "선택"){
-        alert('아이템을 선택해주세요');
-        return;
-      }
       btnid = $(this).attr('id');
       if (currentUnit != btnid) {
         setActiveButton($(this));
         currentUnit = btnid;
+      }
+      if(curitem == "선택"){
+        return;
       }
       loadData(currentUnit, curitem);
     });
