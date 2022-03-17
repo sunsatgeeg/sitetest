@@ -170,7 +170,7 @@ am5.ready(function() {
     getLabelFillFromSprite: true,
     autoTextColor: false,
     pointerOrientation: "horizontal",
-    labelText: "[#000000]종가:[/]{valueY}　[#000000]전봉기준:[/]{valueYChangePreviousPercent.formatNumber('[#146e00]+#,###.##|[#820000]#,###.##|[#999999]0')}%"
+    labelText: "[#000000][[{valueX.formatDate('yy-MM-dd')}({valueX.formatDate('EEE')}) {valueX.formatDate('HH:mm')}]][/]\n[#000000]종가:[/][bold]{valueY}[/]　[#000000]전봉기준:[/]{valueYChangePreviousPercent.formatNumber('[#146e00][bold]+#,###.##|[#820000][bold]#,###.##|[#999999][bold]0')}%[/]"
   }));
   valueTooltip.get("background").set("fill", root.interfaceColors.get("background"));
 
@@ -314,6 +314,8 @@ am5.ready(function() {
       if (currentUnit != btnid) {
         setActiveButton($(this));
         currentUnit = btnid;
+      }else{
+        return;
       }
       if(curitem == "선택"){
         return;
@@ -373,6 +375,20 @@ am5.ready(function() {
 }
 
   $("#candleMA #make").on("click", function(e){
+    var targetSeries = $('#candleMA #candleseries').text();
+    if(targetSeries == "선택"){
+      alert('대상을 선택하세요');
+      return;
+    }
+    if(targetSeries == "시가"){
+      targetSeries = "open";
+    }else if(targetSeries == "종가"){
+      targetSeries = "close";
+    }else if(targetSeries == "저가"){
+      targetSeries = "low";
+    }else if(targetSeries == "고가"){
+      targetSeries = "high";
+    }
     var maLength = $('#candleMA #length').val();
     if(301 > maLength < 1 ){
         alert('단위 최솟값은 2 이상, 최댓값은 300 이하입니다.');
@@ -401,13 +417,13 @@ am5.ready(function() {
     }
 
     for (var i = 0; i < values.length; i++) {
-        tempValueArray.push(values[i][chartValueYField]);
-        if(i+1 >= maLength){
-            maDate = values[i]['date'];
-            maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
-            toolData.push({maField : maValue, date : maDate});
-            tempValueArray.shift();
-        }
+      tempValueArray.push(values[i][targetSeries]);
+      if(i+1 >= maLength){
+          maDate = values[i]['date'];
+          maValue = tempValueArray.reduce((a,b) => (a+b)) / maLength;
+          toolData.push({maField : maValue, date : maDate});
+          tempValueArray.shift();
+      }
     }
     makeToolSeries(String(maLength)+"MA", "maField", maColor, maWidth, seriesLine);
 
