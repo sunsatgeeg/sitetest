@@ -260,6 +260,8 @@ am5.ready(function() {
     if(unit == '30m'){
       unit = "minute";
       unitCount = 30;
+      alert('너무 느려서 추후에 활성화')
+      return;
     }else if(unit == '1h'){
       unit = "hour";
       unitCount = 1;
