@@ -288,7 +288,7 @@ am5.ready(function() {
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
-      url: candleurl,
+      url: url + "candle_date",
       success:function(json) {
         data = json['data'];
         
