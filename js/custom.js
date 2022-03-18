@@ -100,6 +100,7 @@ $.ajax({
             // Create root element
             // https://www.amcharts.com/docs/v5/getting-started/#Root_element 
             var root = am5.Root.new("chartdiv");
+            root.locale = am5locales_ko_KR;
     
             // Set themes
             // https://www.amcharts.com/docs/v5/concepts/themes/ 
@@ -184,6 +185,21 @@ $.ajax({
             legend.itemContainers.template.set("width", am5.p100);
             legend.valueLabels.template.setAll({
                 textAlign: "left"
+            });
+
+            legend.itemContainers.template.events.on("click", function(e) {
+                var itemContainer = e.target;
+                var series = itemContainer.dataItem.dataContext;
+                var seriesopacity =  series.strokes.template._settings.strokeOpacity;
+                if(seriesopacity == undefined || seriesopacity == 1){
+                    series.strokes.template.setAll({
+                        strokeOpacity: 0
+                    });
+                }else{
+                    series.strokes.template.setAll({
+                        strokeOpacity: 1
+                    });
+                }
             });
             
             db_year = db_time.slice(0,4);

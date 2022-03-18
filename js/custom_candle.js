@@ -247,7 +247,7 @@ am5.ready(function() {
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Setting_data
     
     var toast = Toastify({
-      text: ` 불러오는 중...`,
+      text: `불러오는 중...`,
       position: "center",
       gravity: "bottom",
       duration: -1,
@@ -256,13 +256,11 @@ am5.ready(function() {
     
     candleurl = url + "candle_date?item=" + name + "&unit=" + unit;
     var unitCount = 0;
-    //15분, 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
-    if(unit == '30m'){
+    //30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
+    /*if(unit == '30m'){    너무 느려서 추후 활성화
       unit = "minute";
       unitCount = 30;
-      alert('너무 느려서 추후에 활성화')
-      return;
-    }else if(unit == '1h'){
+    }else */if(unit == '1h'){
       unit = "hour";
       unitCount = 1;
     }else if(unit == '3h'){
