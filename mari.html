@@ -47,6 +47,16 @@
         font-size: 3.5rem;
       }
     }
+    @media (max-width: 1400px) {
+      .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1140px;
+      }
+    }
+    @media (max-width: 1008px) {
+      .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 720px;
+      }
+    }
   </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
@@ -96,81 +106,20 @@
         </div>
       </div>
 
-      <div class="mx-auto w-100 pt-5 pb-5">
+      <div class="mx-auto w-100 pt-5 pb-5 table-responsive">
         <table class="table table-dark table-striped">
-          <thead>
+          <thead> 
             <tr>
-              <th colspan="3" id="lasttime"></th>
-              <th colspan="3" id="prevtime"></th>
-              <th colspan="3" id="newtime"></th>
+              <th id="lasttime" width="33.33%"></th>
+              <th id="prevtime" width="33.33%"></th>
+              <th id="newtime" width="33.33%"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
-            </tr>
-            <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
-            </tr>
-            <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
-            </tr>
-            <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
-            </tr>
-            <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
-            </tr>
-            <tr>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col">분배금</td>
-              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　"></td>
+              <td id="lasttimelist"></td>
+              <td id="prevtimelist"></td>
+              <td id="newtimelist"></td>
             </tr>
           </tbody>
         </table>

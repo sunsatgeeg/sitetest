@@ -97,3 +97,36 @@ html{
     width:335px;
     overflow: overlay;
 }
+.item-image {
+    width: 100px;
+}
+.item-name {
+    text-overflow:ellipsis;
+}
+.item-image[data-grade="3"] {
+    background: linear-gradient(135deg,#261331,#480d5d);
+}   
+.item-name[data-grade="3"] {
+    color: #eaa9ff;
+}
+
+.item-image[data-grade="2"] {
+    background: linear-gradient(135deg,#111f2c,#113d5d);
+}
+.item-name[data-grade="2"] {
+    color: #4eccff;
+}
+
+.item-image[data-grade="1"] {
+    background: linear-gradient(135deg,#18220b,#304911);
+}
+.item-name[data-grade="1"] {
+    color: #91fe02;
+}
+
+.item-image[data-grade="0"] {
+    background: linear-gradient(135deg,#232323,#575757);
+}
+.item-name[data-grade="0"] {
+    color: #fff;
+}

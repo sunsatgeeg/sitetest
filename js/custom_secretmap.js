@@ -9,6 +9,7 @@ $(function(){
             droplist = ['태양의 가호', '태양의 축복', '태양의 은총', '명예의 파편 주머니(대)', '3T 보석 1레벨'];
             droplistimages = {'태양의 가호' : '7_163', '태양의 축복' : '7_162', "태양의 은총" : '7_161', '명예의 파편 주머니(대)' : '8_227', "3T 보석 1레벨" : '9_46'};
             droplistqty = {'태양의 가호' : 4, '태양의 축복' : 8, "태양의 은총" : 12, '명예의 파편 주머니(대)' : 8, "3T 보석 1레벨" : 40};
+            droplistgrades = {'태양의 가호' : 3, '태양의 축복' : 2, "태양의 은총" : 1, '명예의 파편 주머니(대)' : 3, "3T 보석 1레벨" : 1};
             table = $('#droplist');
             var totalgain = 0;
             var tax = 0;
@@ -20,8 +21,8 @@ $(function(){
                 taxtooltip += "(" + String(callback[droplist[i]]) + " x 0.05) = " + String(Math.ceil(callback[droplist[i]] * 0.05)) + " x " + droplistqty[droplist[i]] + " = " + Math.ceil(callback[droplist[i]] * 0.05) * droplistqty[droplist[i]] + "<br>"
                 table.append(`
                     <tr>    
-                    <th scope="row"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_` + droplistimages[droplist[i]] + `.png"/></th>
-                    <td class="text-start">` + droplist[i] + `</td>
+                    <th scope="row"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_` + droplistimages[droplist[i]] + `.png" class="item-image" data-grade="` + droplistgrades[droplist[i]] + `"/></th>
+                    <td class="text-start item-name fw-bold" data-grade="` + droplistgrades[droplist[i]] + `">` + droplist[i] + `</td>
                     <td>` + callback[droplist[i]] + `</td>
                     <td>` + callback[droplist[i]] * droplistqty[droplist[i]] + `</td>
                     </tr>
