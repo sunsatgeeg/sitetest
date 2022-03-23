@@ -1,4 +1,28 @@
 $(function(){
+    function calc(){
+
+        exgold = parseInt(($('#itemamount') / (100 * 0.95)) * parseInt($('#crystalprice').val()));
+        totalgold = ($('#itemprice')*(($("#itemtradecount")*itemqty)/itemtradecount));
+        profit = totalgold-exgold;
+        profitper = ((profit/totalgold)*100).toFixed(1);
+
+        if(profit >= 0){
+            profitcolor = "00ff00";
+        }else if(profit < 0){
+            profitcolor = "ff6b6b";
+        }
+    }
+
+    $('#crystalprice').on('keyup', function(){
+        if($(this).val() == ""){
+          return;
+        }
+        price = parseInt($(this).val());
+        calc(price, personcount);
+    });
+});
+
+$(function(){
     $.ajax({
         type: 'GET',
         dataType: 'jsonp',
@@ -7,6 +31,9 @@ $(function(){
             var newtime = [];
             var prevtime = [];
             var lasttime = [];
+
+            var marketdata = json[json.length - 1];
+            json.pop()
 
             var temparr = [];
             for (var i = 0; i < json.length; i++) {
@@ -61,11 +88,15 @@ $(function(){
             var itemimage;
             var itemgrade;
             var itemtitle;
+            var itemoriginaltitle;
             var itemtradecount;
             var itempackcount;
             var itemamount;
             var itemqty;
+            var exgold;
             var totalgold;
+            var profit;
+            var profitcolor;
             function cardContent(item){
                 itemimage = item['image'];
                 itemgrade = item['grade'];
@@ -75,7 +106,19 @@ $(function(){
                 itemamount = item['amount'];
                 itemqty = item['qty'];
                 
-                totalgold = itemqty * itempackcount;
+                itemoriginaltitle = item['name'].replace(" 주머니 (귀속)","").replace(" (귀속)","");
+                itemoriginaltitle = itemoriginaltitle.slice(0, itemoriginaltitle.lastIndexOf(' ['));
+                
+                exgold = parseInt((itemamount / (100 * 0.95)) * parseInt($('#crystalprice').val()));
+                totalgold = (marketdata[itemoriginaltitle]*((itempackcount*itemqty)/itemtradecount));
+                profit = totalgold-exgold;
+                profitper = ((profit/totalgold)*100).toFixed(1);
+
+                if(profit >= 0){
+                    profitcolor = "00ff00";
+                }else if(profit < 0){
+                    profitcolor = "ff6b6b";
+                }
 
                 content = `
                     <div class="card bg-secondary mb-3">
@@ -88,60 +131,27 @@ $(function(){
                                 <div class="card-body px-1 py-1 text-white">
                                     <div class="float-start text-start">
                                         <p class="my-0">크리스탈(환산골드) : </p>
-                                        <p class="my-0">시세[${itemtradecount}개 단위] : </p>
+                                        <p class="my-0">시세[<span id="itemtradecount">${itemtradecount}</span>개 단위] : </p>
                                         <p class="my-0">합계 : </p>
                                         <p class="my-0">이익(%) : </p>
                                     </div>
                                     <div class="float-end text-end fw-bold">
+                                        <input hidden>
                                         <p class="my-0">
-                                        <span>${itemamount}<img src="img/crystal.png" class="ms-1 img-fluid"></span>
-                                        <span>(${totalgold}<img src="img/gold.png" class="ms-1 img-fluid">)</span>
+                                            <span class="float-start" id="itemamount">${itemamount}<img src="img/crystal.png" class="ms-1 img-fluid"></span>
+                                            <span id="exgold">(${exgold.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid">)</span>
                                         </p>
-                                        <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                        <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                        <p class="my-0" style="color: #00ff00">
-                                        <span>n<img src="img/gold.png" class="ms-1 img-fluid"></span>
-                                        <span>(n%)</span>
+                                        <p class="my-0" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></p>
+                                        <p class="my-0" id="totalgold">${totalgold.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></p>
+                                        <p class="my-0" style="color:#${profitcolor};">
+                                            <span id="profit">${profit.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></span>
+                                            <span id="profitper">(${profitper}%)</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>`;
-
-                `
-                <div class="card bg-secondary mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-3 my-auto">
-                      <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Shop_icon/Shop_icon_425.png" data-grade="3" class="img-fluid rounded-start item-image" alt="이미지">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold" data-grade="3">수호석 결정 주머니 (귀속) [2개]</div>
-                        <div class="card-body px-1 py-1 text-white">
-                              <div class="float-start text-start">
-                                <p class="my-0">크리스탈(환산골드) : </p>
-                                <p class="my-0">시세[n개 단위] : </p>
-                                <p class="my-0">합계 : </p>
-                                <p class="my-0">이익(%) : </p>
-                              </div>
-                              <div class="float-end text-end fw-bold">
-                                <p class="my-0">
-                                  <span>n<img src="img/crystal.png" class="ms-1 img-fluid"></span>
-                                  <span>(n<img src="img/gold.png" class="ms-1 img-fluid">)</span>
-                                </p>
-                                <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                <p class="my-0" style="color: #00ff00">
-                                  <span>n<img src="img/gold.png" class="ms-1 img-fluid"></span>
-                                  <span>(n%)</span>
-                                </p>
-                              </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                `
 
                 return content;
             }
