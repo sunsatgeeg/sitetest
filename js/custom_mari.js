@@ -77,34 +77,37 @@ $(function(){
                 
                 totalgold = itemqty * itempackcount;
 
-                content = `<div class="card bg-secondary mb-3">
-                    <div class="row g-0">
-                    <div class="col-md-3 my-auto">
-                    <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded-start item-image" alt="이미지">
-                    </div>
-                    <div class="col-md-9">
-                        <div class="float-start text-start">
-                                <p class="my-0">크리스탈(환산골드) : </p>
-                                <p class="my-0">시세[${itemtradecount}개 단위] : </p>
-                                <p class="my-0">합계 : </p>
-                                <p class="my-0">이익(%) : </p>
-                              </div>
-                              <div class="float-end text-end fw-bold">
-                                <p class="my-0">
-                                  <span>${itemamount}<img src="img/crystal.png" class="ms-1 img-fluid"></span>
-                                  <span>(${totalgold}<img src="img/gold.png" class="ms-1 img-fluid">)</span>
-                                </p>
-                                <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                <p class="my-0" style="color: #00ff00">
-                                  <span>n<img src="img/gold.png" class="ms-1 img-fluid"></span>
-                                  <span>(n%)</span>
-                                </p>
-                              </div>
+                content = `
+                    <div class="card bg-secondary mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-3 my-auto">
+                                <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded-start item-image" alt="이미지">
+                            </div>
+                        <div class="col-md-9">
+                            <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold" data-grade="${itemgrade}">${itemtitle}</div>
+                                <div class="card-body px-1 py-1 text-white">
+                                    <div class="float-start text-start">
+                                        <p class="my-0">크리스탈(환산골드) : </p>
+                                        <p class="my-0">시세[${itemtradecount}개 단위] : </p>
+                                        <p class="my-0">합계 : </p>
+                                        <p class="my-0">이익(%) : </p>
+                                    </div>
+                                    <div class="float-end text-end fw-bold">
+                                        <p class="my-0">
+                                        <span>${itemamount}<img src="img/crystal.png" class="ms-1 img-fluid"></span>
+                                        <span>(${totalgold}<img src="img/gold.png" class="ms-1 img-fluid">)</span>
+                                        </p>
+                                        <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
+                                        <p class="my-0">n<img src="img/gold.png" class="ms-1 img-fluid"></p>
+                                        <p class="my-0" style="color: #00ff00">
+                                        <span>n<img src="img/gold.png" class="ms-1 img-fluid"></span>
+                                        <span>(n%)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>`;
+                    </div>`;
 
                 `
                 <div class="card bg-secondary mb-3">
