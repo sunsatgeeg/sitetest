@@ -53,8 +53,13 @@
       }
     }
     @media (max-width: 1008px) {
-      .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 720px;
+      .item-name {
+        width:159px;
+      }
+    }
+    @media (max-width: 768px) {
+      .item-name {
+        width:153px;
       }
     }
   </style>
@@ -78,51 +83,46 @@
     <main class="pt-5 pb-5 px-3">
       <div class="text-center">
 
-      <!-- temp ad -->
-      <div class="ad mb-5">
-        <div>
-          <div class="text-center">
-            <ins class="kakao_ad_area" style="display:none;" 
-            data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
-            data-ad-width   = "728" 
-            data-ad-height  = "90"></ins>
-          </div>
-        </div>
-        <div id="ads-left">
+        <!-- temp ad -->
+        <div class="ad mb-5">
           <div>
-            <ins class="kakao_ad_area" style="display:none;" 
-            data-ad-unit    = "DAN-nsfEeS2PlFxohWoX" 
-            data-ad-width   = "160" 
-            data-ad-height  = "600"></ins> 
+            <div class="text-center">
+              <ins class="kakao_ad_area" style="display:none;" 
+              data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
+              data-ad-width   = "728" 
+              data-ad-height  = "90"></ins>
+            </div>
+          </div>
+          <div id="ads-left">
+            <div>
+              <ins class="kakao_ad_area" style="display:none;" 
+              data-ad-unit    = "DAN-nsfEeS2PlFxohWoX" 
+              data-ad-width   = "160" 
+              data-ad-height  = "600"></ins> 
+            </div>
+          </div>
+          <div id="ads-right">
+            <div>
+              <ins class="kakao_ad_area" style="display:none;" 
+              data-ad-unit    = "DAN-XoJlI1MzVRSxM5dr" 
+              data-ad-width   = "160" 
+              data-ad-height  = "600"></ins> 
+            </div>
           </div>
         </div>
-        <div id="ads-right">
-          <div>
-            <ins class="kakao_ad_area" style="display:none;" 
-            data-ad-unit    = "DAN-XoJlI1MzVRSxM5dr" 
-            data-ad-width   = "160" 
-            data-ad-height  = "600"></ins> 
-          </div>
-        </div>
-      </div>
 
-      <div class="mx-auto w-100 pt-5 pb-5 table-responsive">
-        <table class="table table-dark table-striped">
-          <thead> 
-            <tr>
-              <th id="lasttime" width="33.33%"></th>
-              <th id="prevtime" width="33.33%"></th>
-              <th id="newtime" width="33.33%"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="lasttimelist"></td>
-              <td id="prevtimelist"></td>
-              <td id="newtimelist"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="mx-auto w-100 pt-5 pb-5">
+          <table class="table table-dark table-striped maritable">
+            <thead> 
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
 

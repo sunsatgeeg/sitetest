@@ -101,7 +101,10 @@ html{
     width: 100px;
 }
 .item-name {
-    text-overflow:ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 .item-image[data-grade="3"] {
     background: linear-gradient(135deg,#261331,#480d5d);
