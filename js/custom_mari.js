@@ -127,7 +127,7 @@ $(function(){
                                 <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded-start item-image" alt="이미지">
                             </div>
                         <div class="col-md-9">
-                            <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold" data-grade="${itemgrade}">${itemtitle}</div>
+                            <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold"">${itemtitle}</div>
                                 <div class="card-body px-1 py-1 text-white">
                                     <div class="float-start text-start">
                                         <p class="my-0">크리스탈(환산골드) : </p>
