@@ -6,11 +6,6 @@ $(function(){
             profit = totalgold-exgold;
             profitper = ((profit/totalgold)*100).toFixed(1);
 
-            console.log($(this).find('#itemtradecount').text())
-            console.log(totalgold)
-            console.log(profit)
-            console.log(profitper)
-
             if(profit >= 0){
                 profitcolor = "00ff00";
             }else if(profit < 0){
@@ -21,13 +16,10 @@ $(function(){
             $(this).find('#totalgold').text(totalgold.toLocaleString());
             $(this).find('#profit').text(profit.toLocaleString());
             $(this).find('#profitper').text("(" + profitper + "%)");
-
-
-
         });
     }
 
-    $('#crystalprice').on('keyup', function(){
+    $('#crystalprice').on('keyup change', function(){
         if($(this).val() == ""){
           return;
         }
