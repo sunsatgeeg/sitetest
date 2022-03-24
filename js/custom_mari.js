@@ -1,16 +1,30 @@
 $(function(){
-    function calc(){
+    function calc(price){
+        $('.card').filter(function(){
+            exgold = parseInt(($(this).find('#itemamount').text() / (100 * 0.95)) * price);
+            totalgold = ($(this).find('#itemprice').text()*(($(this).find('#itempackcount').val()*$(this).find('#itemqty').val())/$(this).find('#itemtradecount').text()));
+            profit = totalgold-exgold;
+            profitper = ((profit/totalgold)*100).toFixed(1);
 
-        exgold = parseInt(($('#itemamount') / (100 * 0.95)) * parseInt($('#crystalprice').val()));
-        totalgold = ($('#itemprice')*(($("#itemtradecount")*itemqty)/itemtradecount));
-        profit = totalgold-exgold;
-        profitper = ((profit/totalgold)*100).toFixed(1);
+            console.log($(this).find('#itemtradecount').text())
+            console.log(totalgold)
+            console.log(profit)
+            console.log(profitper)
 
-        if(profit >= 0){
-            profitcolor = "00ff00";
-        }else if(profit < 0){
-            profitcolor = "ff6b6b";
-        }
+            if(profit >= 0){
+                profitcolor = "00ff00";
+            }else if(profit < 0){
+                profitcolor = "ff6b6b";
+            }
+
+            $(this).find('#exgold').text(exgold.toLocaleString());
+            $(this).find('#totalgold').text(totalgold.toLocaleString());
+            $(this).find('#profit').text(profit.toLocaleString());
+            $(this).find('#profitper').text("(" + profitper + "%)");
+
+
+
+        });
     }
 
     $('#crystalprice').on('keyup', function(){
@@ -18,7 +32,7 @@ $(function(){
           return;
         }
         price = parseInt($(this).val());
-        calc(price, personcount);
+        calc(price);
     });
 });
 
@@ -126,27 +140,49 @@ $(function(){
                             <div class="col-md-3 my-auto">
                                 <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded-start item-image" alt="이미지">
                             </div>
-                        <div class="col-md-9">
-                            <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold"">${itemtitle}</div>
-                                <div class="card-body px-1 py-1 text-white">
-                                    <div class="float-start text-start">
-                                        <p class="my-0">크리스탈(환산골드) : </p>
-                                        <p class="my-0">시세[<span id="itemtradecount">${itemtradecount}</span>개 단위] : </p>
-                                        <p class="my-0">합계 : </p>
-                                        <p class="my-0">이익(%) : </p>
-                                    </div>
-                                    <div class="float-end text-end fw-bold">
-                                        <input hidden>
-                                        <p class="my-0">
-                                            <span class="float-start" id="itemamount">${itemamount}<img src="img/crystal.png" class="ms-1 img-fluid"></span>
-                                            <span id="exgold">(${exgold.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid">)</span>
-                                        </p>
-                                        <p class="my-0" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                        <p class="my-0" id="totalgold">${totalgold.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></p>
-                                        <p class="my-0" style="color:#${profitcolor};">
-                                            <span id="profit">${profit.toLocaleString()}<img src="img/gold.png" class="ms-1 img-fluid"></span>
-                                            <span id="profitper">(${profitper}%)</span>
-                                        </p>
+                            <div class="col-md-9">
+                                <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold">${itemtitle}</div>
+                                    <div class="card-body px-1 py-1 text-white">
+                                        <input id="itemqty" value="${itemqty}" hidden>
+                                        <input id="itempackcount" value="${itempackcount}" hidden>
+                                        <div class="container">
+                                            <div class="row row-cols-2 g-0">
+                                                <div class="col-md-5 px-0 text-nowrap text-start">
+                                                    <p class="my-0">크리스탈(골드) : </p>
+                                                </div>
+                                                <div class="col-md-7 px-0 text-end fw-bold">
+                                                    <p class="my-0">
+                                                        <span id="itemamount">${itemamount}<img src="img/crystal.png" class="ms-1 img-crystal"></span>
+                                                        <span>(</span><span id="exgold">${exgold.toLocaleString()}</span><span><img src="img/gold.png" class="ms-1 img-gold">)</span>
+                                                        
+                                                    </p>
+                                                </div>
+
+                                                <div class="col-md-5 px-0 text-nowrap text-start">
+                                                    <p class="my-0">시세[<span id="itemtradecount">${itemtradecount}</span>개 단위] : </p>
+                                                </div>
+                                                <div class="col-md-7 px-0 text-end fw-bold">
+                                                    <p class="my-0" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}<img src="img/gold.png" class="ms-1 img-gold"></p>
+                                                </div>
+
+                                                <div class="col-md-5 px-0 text-nowrap text-start">
+                                                    <p class="my-0">합계 : </p>
+                                                </div>
+                                                <div class="col-md-7 px-0 text-end fw-bold">
+                                                    <span class="my-0" id="totalgold">${totalgold.toLocaleString()}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                                                </div>
+
+                                                <div class="col-md-5 px-0 text-nowrap text-start">
+                                                    <p class="my-0">이익(%) : </p>
+                                                </div>
+                                                <div class="col-md-7 px-0 text-end fw-bold">
+                                                    <p class="my-0" style="color:#${profitcolor};">
+                                                        <span id="profit">${profit.toLocaleString()}</span><img src="img/gold.png" class="ms-1 img-gold">
+                                                        <span id="profitper">(${profitper}%)</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -30,8 +30,8 @@
     gtag('config', 'G-XD44D79GLY');
   </script>  
 
-  <!-- temp ADfit 
-  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>-->
+  <!-- temp ADfit -->
+  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
   <style>
     .bd-placeholder-img {
@@ -47,21 +47,30 @@
         font-size: 3.5rem;
       }
     }
+
+    
     @media (max-width: 1400px) {
-      .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1140px;
+      .col-md-3 {
+        flex-shrink: 0 !important;
+        width: 100% !important;
+      }
+      .col-md-9 {
+        width: 100% !important;
       }
     }
+
     @media (max-width: 1008px) {
       .item-name {
-        width:159px;
+        width: 10em;
       }
     }
-    @media (max-width: 768px) {
-      .item-name {
-        width:153px;
+    @media (max-width: 992px) {
+      .container, .container-md, .container-sm {
+        max-width: 978px;
       }
     }
+    
+
   </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
@@ -74,7 +83,7 @@
         <a href="/"><h3 class="float-md-start mb-0 text-white">LoChart</h3></a>
         <nav class="nav nav-masthead justify-content-center float-md-end">
           <a class="nav-link" aria-current="page" href="/">차트</a>
-          <a class="nav-link active" aria-current="page" href="mari">마리샵(미완)</a>
+          <a class="nav-link active" aria-current="page" href="mari">마리샵</a>
           <a class="nav-link" aria-current="page" href="secretmap">비밀지도</a>
           <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
         </nav>
@@ -115,7 +124,7 @@
         <div class="mx-auto w-100 pt-5 pb-5">
           <div class="input-group w-50 mx-auto input-group-lg mb-3">
             <span class="input-group-text">환전소 크리스탈 구매가</span>
-            <input type="text" class="form-control text-center" id="crystalprice" value="2057">
+            <input type="text" class="form-control text-center" id="crystalprice" value="2000">
           </div>
           <table class="table table-dark table-striped maritable">
             <thead> 

@@ -1,3 +1,7 @@
+@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
+
 html{
     overflow-x: hidden;
 }
@@ -132,4 +136,11 @@ html{
 }
 .item-name[data-grade="0"] {
     color: #fff;
+}
+
+.img-gold{
+    padding-bottom: 4px !important;
+}
+.img-crystal{
+    padding-bottom: 3px !important;
 }
