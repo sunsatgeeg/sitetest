@@ -98,7 +98,7 @@
           <a class="nav-link" aria-current="page" href="mari">마리샵</a>
           <a class="nav-link" aria-current="page" href="secretmap">비밀지도</a>
           <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
-          <a class="nav-link active" aria-current="page" href="rewardcalc">더보기 계산기(미완)</a>
+          <a class="nav-link active" aria-current="page" href="rewardcalc">더보기 계산기</a>
         </nav>
       </div>
     </header>
@@ -135,6 +135,10 @@
       </div>
       
       <div class="mx-auto w-100 pt-5 pb-5">
+        <div class="clearfix">
+          <h6 class="float-start"><span>더보기 보상 기준 : 2022-03-16 패치이후</span></h6>
+          <h6 class="float-end"><span>아이템 값 기준 : </span><span id="date"></span></h6>
+        </div>
         <div class="accordion" id="bossaccordion">
 
         </div>
@@ -173,8 +177,8 @@
 
   <script src="js/custom.js"></script>
 
-  <!-- temp ADfit
-  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script> -->
+  <!-- temp ADfit -->
+  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script> 
   
 
   <script>
@@ -182,10 +186,11 @@
       var reward_bonus_array = [
                                   {
                                     "bossname":"아르고스",
+                                    "bossitem":"",
                                     "phase":3,
                                     "phaserewardgold":[700,400,500], 
                                     "phasebonusrewardgold":[0,0,500], 
-                                    "phaserewarditem":["","",""], 
+                                    "phaserewarditem":[0,0,0], 
                                     "phasebonusrewarditem":[
                                                               [],
                                                               [],
@@ -199,10 +204,11 @@
                                   },
                                   {
                                     "bossname":"발탄(노말)",
+                                    "bossitem":"마수의 뼈",
                                     "phase":2,
                                     "phaserewardgold":[500,2000],
                                     "phasebonusrewardgold":[500,800],
-                                    "phaserewarditem":["마수의 뼈 1개","마수의 뼈 2개"],
+                                    "phaserewarditem":[1,2],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호석 결정",480],
@@ -222,10 +228,11 @@
                                   },
                                   {
                                     "bossname":"발탄(하드)",
+                                    "bossitem":"마수의 뼈",
                                     "phase":2,
                                     "phaserewardgold":[1000,3500],
                                     "phasebonusrewardgold":[900,1200],
-                                    "phaserewarditem":["마수의 뼈 3개","마수의 뼈 3개"],
+                                    "phaserewarditem":[3,3],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호석 결정",720],
@@ -245,10 +252,11 @@
                                   },
                                   {
                                     "bossname":"비아키스(노말)",
+                                    "bossitem":"욕망의 날개",
                                     "phase":3,
                                     "phaserewardgold":[500,600,1400],
                                     "phasebonusrewardgold":[400,600,800],
-                                    "phaserewarditem":["욕망의 날개 1개","욕망의 날개 1개","욕망의 날개 1개"],
+                                    "phaserewarditem":[1,1,1],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호석 결정",300],
@@ -275,10 +283,11 @@
                                   },
                                   {
                                     "bossname":"비아키스(하드)",
+                                    "bossitem":"욕망의 날개",
                                     "phase":3,
                                     "phaserewardgold":[1000,1000,2500],
                                     "phasebonusrewardgold":[700,900,1200],
-                                    "phaserewarditem":["욕망의 날개 2개","욕망의 날개 2개","욕망의 날개 2개"],
+                                    "phaserewarditem":[2,2,2],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호석 결정",480],
@@ -305,10 +314,11 @@
                                   },
                                   {
                                     "bossname":"쿠크세이튼(노말)",
+                                    "bossitem":"광기의 나팔",
                                     "phase":3,
                                     "phaserewardgold":[1000,1000,2500],
                                     "phasebonusrewardgold":[800,1000,1300],
-                                    "phaserewarditem":["광기의 나팔 1개","광기의 나팔 2개","광기의 나팔 2개"],
+                                    "phaserewarditem":[1,2,2],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호석 결정",600],
@@ -335,10 +345,11 @@
                                   },
                                   {
                                     "bossname":"아브렐슈드(노말)",
+                                    "bossitem":"몽환의 뿔",
                                     "phase":6,
                                     "phaserewardgold":[2000,2500,700,800,1000,1500],
                                     "phasebonusrewardgold":[400,600,700,800,900,1100],
-                                    "phaserewarditem":["몽환의 뿔 3개","몽환의 뿔 4개","몽환의 뿔 3개","몽환의 뿔 4개","몽환의 뿔 3개","몽환의 뿔 5개"],
+                                    "phaserewarditem":[3,4,3,4,3,5],
                                     "phasebonusrewarditem":[
                                                               [
                                                                 ["수호강석",160],
@@ -386,10 +397,11 @@
                                   },
                                   {
                                     "bossname":"아브렐슈드(하드)",
+                                    "bossitem":"몽환의 사념",
                                     "phase":6,
                                     "phaserewardgold":[2500,3000,900,1100,1200,1800],
                                     "phasebonusrewardgold":[700,800,900,1100,1100,1400],
-                                    "phaserewarditem":["몽환의 사념 3개","몽환의 사념 4개","몽환의 사념 3개","몽환의 사념 4개","몽환의 사념 3개","몽환의 사념 5개"],
+                                    "phaserewarditem":[3,4,3,4,3,5],
                                     "phasebonusrewarditem":[
                                                             [
                                                               ["수호강석",240],
@@ -447,9 +459,27 @@
         url: url + 'rewardcalc',
         success: function(json) {
           marketdata = json[0];
-
           marketdata['명예의 파편'] = marketdata['명예의 파편 주머니(대)']/1500;
 
+          datatime = marketdata['date'];
+          db_year = datatime.slice(0,4);
+          db_mon = datatime.slice(4,6);
+          db_day = datatime.slice(6,8);
+          db_hour = datatime.slice(8,10);
+          db_min = datatime.slice(10,12);
+          $('#date').text(db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min);
+
+
+
+          var iteminfo = {"수호석 결정":10,
+                          "파괴석 결정":10,
+                          "명예의 파편":1,
+                          "위대한 명예의 돌파석":1,
+                          "수호강석":10,
+                          "파괴강석":10,
+                          "경이로운 명예의 돌파석":1
+                          };
+          var totalbonusrewardgold = 0;
           reward_bonus_array.forEach(function(boss, index){
             content = 
 `
@@ -470,7 +500,7 @@
             <th scope="col">기본 보상</th>
             <th scope="col">더보기 보상</th>
             <th scope="col">/</th>
-            <th scope="col">이득/손실</th>
+            <th scope="col">이익</th>
           </tr>
         </thead>
 `;
@@ -486,26 +516,66 @@
             <td>
               <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
             </td>
-            <td>${boss['phaserewarditem'][i]}</td>
+`;
+              if(boss['bossitem'] != ""){
+                content +=
+`
+            <td><span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span></td>
+`;
+              }else{
+                content +=
+`
+            <td></td>
+`;
+              }
+              content += 
+`
             <td>
 `;
               for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                content += `<p><span id="rewarditemname">` + boss['phasebonusrewarditem'][i][j][0] + `</span> × <span id="rewarditemqty">` + boss['phasebonusrewarditem'][i][j][1] + `</span></p>`;
+                content += `<p><span id="rewarditemname">${boss['phasebonusrewarditem'][i][j][0]}</span> × <span id="rewarditemqty">${boss['phasebonusrewarditem'][i][j][1]}</span></p>`;
               }
               content += 
 `
             </td>
             <td>
 `;
+              totalbonusrewardgold = 0;
               for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                content += `<p><span id="rewarditemname">` + marketdata[boss['phasebonusrewarditem'][i][j][0]] + `</span> × <span id="rewarditemqty">` + boss['phasebonusrewarditem'][i][j][1] + `</span></p>`;
+                if(boss['bossitem'] == boss['phasebonusrewarditem'][i][j][0]){
+                  content += `<p>　</p>`;
+                  continue;
+                }
+
+                tempA = marketdata[boss['phasebonusrewarditem'][i][j][0]];
+                tempB = boss['phasebonusrewarditem'][i][j][1] / iteminfo[boss['phasebonusrewarditem'][i][j][0]];
+                tempcalc = tempA * tempB;
+
+                tempAtoShow = tempA;
+                if(boss['phasebonusrewarditem'][i][j][0].indexOf("의 파편") != -1){
+                  tempAtoShow = tempA.toFixed(3);
+                }
+
+                content += `<p><span id="rewarditemname">${tempAtoShow}</span> × <span id="rewarditemqty">${tempB}</span> = <span>${parseInt(tempcalc)}</span></p>`;
+                totalbonusrewardgold += tempcalc;
               }
               content +=
 `
             </td>
-          <td>
-            <p><span>n</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
-            <p><span>(</span><span>손실</span><span>)</span></p>
+          <td class="fw-bold">
+            <p><span>${parseInt(totalbonusrewardgold)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
+`;
+              tempresult = parseInt(totalbonusrewardgold) - boss['phasebonusrewardgold'][i];
+              temptextcolor = "#00ff00";
+              if(tempresult <= 0){
+                temptextcolor = "#ff6b6b";
+              }
+              content +=
+`
+            <p><span style="color:${temptextcolor}">${tempresult}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
+`;
+              content +=
+`
           </td>
           </tr>
         </tbody>
