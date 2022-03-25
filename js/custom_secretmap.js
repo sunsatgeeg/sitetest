@@ -40,12 +40,18 @@ $(function(){
             var breakpoint = totalgain - tax - distribution;
             $('#breakpoint').text(breakpoint);
             $('#breakpoint').attr('data-bs-original-title', String(totalgain) + " - " + String(tax) + " - " + String(distribution));
+            $('#breakpoint').on("click", clickToCopy);
+            $('#breakpoint').css("cursor", "pointer");
             var fairprice = parseInt(breakpoint*100/(110));
             $('#fairprice').text(fairprice);
             $('#fairprice').attr('data-bs-original-title', String(breakpoint) + " ÷ 1.1");
+            $('#fairprice').on("click", clickToCopy);
+            $('#fairprice').css("cursor", "pointer");
             var giveme = parseInt(fairprice*100/(110));
             $('#giveme').text(giveme);
             $('#giveme').attr('data-bs-original-title', String(fairprice) + " ÷ 1.1");
+            $('#giveme').on("click", clickToCopy);
+            $('#giveme').css("cursor", "pointer");
 
             datatime = callback['date'];
             db_year = datatime.slice(0,4);
@@ -54,6 +60,7 @@ $(function(){
             db_hour = datatime.slice(8,10);
             db_min = datatime.slice(10,12);
             $('#date').text(db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min + " 기준");
+
 
         }
     });
