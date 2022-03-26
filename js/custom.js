@@ -1,7 +1,7 @@
 local = false
 var url;
 var cookie;
-var nocommu = ['bidcalc']
+var nocommu = ['bidcalc','craftcalc']
 if(local){
     cookie = '들꽃';
     url = "http://127.0.0.1:5000/";
