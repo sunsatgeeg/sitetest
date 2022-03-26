@@ -37,6 +37,7 @@ $(function(){
     <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기(미완)</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>`
     );
+    
     $('header').find('.nav-link').filter(function(){
         if($(this).attr('href') == here){
             $(this).addClass('active');
