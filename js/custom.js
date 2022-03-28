@@ -7,7 +7,7 @@ if(local){
     url = "http://127.0.0.1:5000/";
 }else{
     cookie = $.cookie('indata');
-    url = "http://lochart-env.eba-a6hfjgvd.ap-northeast-2.elasticbeanstalk.com/";
+    url = "https://loamarketjson.herokuapp.com/";
 }
 
 function clickToCopy(element){
