@@ -68,7 +68,7 @@ $(function(){
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
-    url: url + 'other',
+    url: url + 'chart_itemlist',
     success:function(json) {
         db_time = String(json['db_refresh_time']);
 
@@ -336,7 +336,7 @@ $.ajax({
                             type: 'GET',
                             dataType: 'jsonp',
                             data:{'item':$(this).text()},
-                            url: url,
+                            url: url + 'tickchart_data',
                             success:function(json) {
                                 generateChartData(json['data']);
                                 makeSeries(json['item'], 1);
@@ -454,7 +454,7 @@ $.ajax({
                     type: 'GET',
                     dataType: 'jsonp',
                     data:{'item':cookie},
-                    url: url,
+                    url: url + 'tickchart_data',
                     success:function(json) {
                         var array = json['item'].split(",");
                         generateChartData(json['data']);
