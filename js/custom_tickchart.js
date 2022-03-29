@@ -321,6 +321,9 @@ $.ajax({
 
             var indata = [];
             $(".itemList .dropdown-menu li").filter(function() {
+                if($(this).children().prop('tagName') == 'INPUT'){
+                    return;
+                }
                 $(this).on("click", function(){
                     $("#myInput").val("");
                     $(".itemList .dropdown-menu li").css('display', '');

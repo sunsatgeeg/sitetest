@@ -436,8 +436,13 @@ am5.ready(function() {
 
   //candleChart
   $('.candleitemList').on('click', function(){
-    $('.candleitemList li').off('click');
-    $('.candleitemList li').on('click', function(){
+    $(".candleitemList .dropdown-menu li").filter(function() {
+      if($(this).children().prop('tagName') == 'INPUT'){
+        return;
+      }
+      
+      $(this).off('click');
+      $(this).on('click', function(){
         $("#candlemyInput").val("");
         $(".candleitemList .dropdown-menu li").css('display', '');
         $(".candleitemList .dropdown-menu").scrollTop(0);
@@ -449,8 +454,9 @@ am5.ready(function() {
         $(this).parent().parent().find(".btn").text($(this).text());
         
         loadData(currentUnit, $(this).text());
+      });
+    });
   });
-});
 
   // Make stuff animate on load
   // https://www.amcharts.com/docs/v5/concepts/animations/
