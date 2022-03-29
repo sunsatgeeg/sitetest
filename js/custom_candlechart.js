@@ -12,10 +12,10 @@ $(function(){
   });
 
   $('.candleChartTools #candlemaBtn').on("click", function(){
-    var dropdownMenu = $('#candleMA #seriesUl');
-    $('#candleMA #series').text('선택');
-    $('#candleMA #length').val("2");
-    $('#candleMA #width').val("1");
+    var dropdownMenu = $('#candleMA #candleseriesUl');
+    $('#candleMA #candleseries').text('선택');
+    $('#candleMA #candlelength').val("2");
+    $('#candleMA #candlewidth').val("1");
 
     $("#candleMA li").filter(function() {
       $(this).on("click", function(){
@@ -50,9 +50,12 @@ $(function(){
         $("#candlemyInput").focus(); 
     }, 50);
   });
-  $(".candleitemList #candlemyInput").on("keyup", function() {
+  $(".candleitemList li #candlemyInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $(".candleitemList .dropdown-menu li").filter(function() {
+        if($(this).children().prop('tagName') == 'INPUT'){
+          return;
+        }
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -375,7 +378,7 @@ am5.ready(function() {
     series.data.setAll(toolData);
 }
 
-  $("#candleMA #make").on("click", function(e){
+  $("#candleMA #candlemake").on("click", function(e){
     var targetSeries = $('#candleMA #candleseries').text();
     if(targetSeries == "선택"){
       alert('대상을 선택하세요');
@@ -390,16 +393,16 @@ am5.ready(function() {
     }else if(targetSeries == "고가"){
       targetSeries = "high";
     }
-    var maLength = $('#candleMA #length').val();
+    var maLength = $('#candleMA #candlelength').val();
     if(301 > maLength < 1 ){
         alert('단위 최솟값은 2 이상, 최댓값은 300 이하입니다.');
-        $('#candleMA #length').val("2");
+        $('#candleMA #candlelength').val("2");
         return;
     }
-    var maWidth = $('#candleMA #width').val();
+    var maWidth = $('#candleMA #candlewidth').val();
     if(maWidth <= 0){
         alert('굵기 최솟값은 1 이상입니다.');
-        $('#candleMA #width').val("1");
+        $('#candleMA #candlewidth').val("1");
         return;
     }
     var maColor = $('#candleMA #candle-color-picker').val();
@@ -407,7 +410,7 @@ am5.ready(function() {
         alert('선 색깔을 다시 확인해주세요.');
         return;
     }
-    var seriesLine = $('#candleMA #line').text();
+    var seriesLine = $('#candleMA #candleline').text();
 
     series = chart.children._container.series;
     tempValueArray = [];

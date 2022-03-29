@@ -305,9 +305,12 @@ $.ajax({
                 }, 50);
             });
 
-            $(".itemList #myInput").on("keyup", function() {
+            $(".itemList li #myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
                 $(".itemList .dropdown-menu li").filter(function() {
+                    if($(this).children().prop('tagName') == 'INPUT'){
+                        return;
+                    }
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
