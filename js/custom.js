@@ -4,10 +4,10 @@ var cookie;
 var nocommu = ['bidcalc','craftcalc']
 if(local){
     cookie = '들꽃';
-    url = "http://127.0.0.1:5000/";
+    url = "http://127.0.0.1:5000";
 }else{
     cookie = $.cookie('indata');
-    url = "https://lochart.ga/";
+    url = "https://lochart.ga";
 }
 
 function clickToCopy(element){
@@ -64,10 +64,9 @@ $(function(){
 
     if(nocommu.indexOf(here) != -1){
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             data: here,
-            dataType: 'jsonp',
-            url: url + 'visitor',
+                url: url + '/visitor',
         });
     }
 });

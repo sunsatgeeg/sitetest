@@ -1,8 +1,7 @@
 $(function(){
     $('[data-bs-toggle="tooltip"]').tooltip({html: true})
     $.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
+        type: 'POST',
         url: url + "secretmap",
         success:function(json) {
             callback = json[0];

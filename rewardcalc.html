@@ -428,9 +428,8 @@
 
 
       $.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
-        url: url + 'rewardcalc',
+        type: 'POST',
+        url: url + '/rewardcalc',
         success: function(json) {
           marketdata = json[0];
           marketdata['명예의 파편'] = marketdata['명예의 파편 주머니(대)']/1500;

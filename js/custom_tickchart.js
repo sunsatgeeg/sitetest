@@ -66,9 +66,8 @@ $(function(){
 });
 
 $.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: url + 'chart_itemlist',
+    type: 'POST',
+    url: url + '/chart_itemlist',
     success:function(json) {
         db_time = String(json['db_refresh_time']);
 
@@ -339,10 +338,9 @@ $.ajax({
                         }).showToast();
 
                         $.ajax({
-                            type: 'GET',
-                            dataType: 'jsonp',
+                            type: 'POST',
+                            url: url + '/tickchart_data',
                             data:{'item':$(this).text()},
-                            url: url + 'tickchart_data',
                             success:function(json) {
                                 generateChartData(json['data']);
                                 makeSeries(json['item'], 1);
@@ -457,10 +455,9 @@ $.ajax({
                 var array = cookie.split(",");
                 indata = array;
                 $.ajax({
-                    type: 'GET',
-                    dataType: 'jsonp',
+                    type: 'POST',
+                    url: url + '/tickchart_data',
                     data:{'item':cookie},
-                    url: url + 'tickchart_data',
                     success:function(json) {
                         var array = json['item'].split(",");
                         generateChartData(json['data']);

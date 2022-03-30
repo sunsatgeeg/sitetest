@@ -30,9 +30,8 @@ $(function(){
 
 $(function(){
     $.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
-        url: url + 'mari',
+        type: 'POST',
+        url: url + '/mari',
         success: function(json) {
             var newtime = [];
             var prevtime = [];

@@ -289,8 +289,7 @@ am5.ready(function() {
     
     // Handle loaded data
     $.ajax({
-      type: 'GET',
-      dataType: 'jsonp',
+      type: 'POST',
       url: candleurl,
       success:function(json) {
         data = json['data'];

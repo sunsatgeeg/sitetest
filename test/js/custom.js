@@ -245,8 +245,7 @@ $(function(){
       
       // Handle loaded data
       $.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
+        type: 'POST',
         url: url,
         success:function(json) {
           data = json['data'];
