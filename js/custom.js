@@ -37,7 +37,6 @@ $(function(){
         `);
     }
     if(servererror){
-        console.log('1')
         $('main').children().prepend(`
         <hr>
         <div class="clearfix">
