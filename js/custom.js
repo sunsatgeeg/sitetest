@@ -65,8 +65,8 @@ $(function(){
     if(nocommu.indexOf(here) != -1){
         $.ajax({
             type: 'POST',
+            url: url + '/visitor',
             data: here,
-                url: url + '/visitor',
         });
     }
 });
