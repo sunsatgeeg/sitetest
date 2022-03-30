@@ -68,7 +68,8 @@ $(function(){
 $.ajax({
     type: 'POST',
     url: url + '/chart_itemlist',
-    success:function(json) {
+    success:function(data) {
+        var json = JSON.parse(data);
         db_time = String(json['db_refresh_time']);
 
         for (var i = 0; i < json['items'].length; i++) {
@@ -341,7 +342,8 @@ $.ajax({
                             type: 'POST',
                             url: url + '/tickchart_data',
                             data:{'item':$(this).text()},
-                            success:function(json) {
+                            success:function(data) {
+                                var json = JSON.parse(data)[0];
                                 generateChartData(json['data']);
                                 makeSeries(json['item'], 1);
 
@@ -458,9 +460,11 @@ $.ajax({
                     type: 'POST',
                     url: url + '/tickchart_data',
                     data:{'item':cookie},
-                    success:function(json) {
-                        var array = json['item'].split(",");
-                        generateChartData(json['data']);
+                    success:function(data) {
+                        var json = JSON.parse(data)[0];
+                        var array = json.item.split(",");
+
+                        generateChartData(json.data);
 
                         for (var i = 1; i < array.length; i++) {
                             makeSeries(array[i], i);

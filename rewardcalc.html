@@ -430,7 +430,8 @@
       $.ajax({
         type: 'POST',
         url: url + '/rewardcalc',
-        success: function(json) {
+        success: function(data) {
+          var json = JSON.parse(data)[0];
           marketdata = json[0];
           marketdata['명예의 파편'] = marketdata['명예의 파편 주머니(대)']/1500;
 

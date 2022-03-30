@@ -2,8 +2,9 @@ $(function(){
     $('[data-bs-toggle="tooltip"]').tooltip({html: true})
     $.ajax({
         type: 'POST',
-        url: url + "secretmap",
-        success:function(json) {
+        url: url + "/secretmap",
+        success:function(data) {
+            var json = JSON.parse(data)[0];
             callback = json[0];
             droplist = ['태양의 가호', '태양의 축복', '태양의 은총', '명예의 파편 주머니(대)', '3T 보석 1레벨'];
             droplistimages = {'태양의 가호' : '7_163', '태양의 축복' : '7_162', "태양의 은총" : '7_161', '명예의 파편 주머니(대)' : '8_227', "3T 보석 1레벨" : '9_46'};

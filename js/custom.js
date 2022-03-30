@@ -3,7 +3,7 @@ var url;
 var cookie;
 var nocommu = ['bidcalc','craftcalc']
 if(local){
-    cookie = '들꽃';
+    cookie = '들꽃, 고대 유물';
     url = "http://127.0.0.1:5000";
 }else{
     cookie = $.cookie('indata');
@@ -29,7 +29,7 @@ function clickToCopy(element){
 }
 
 $(function(){
-    var servererror = true;
+    var servererror = false;
     if(!(servererror)){
         $('head').append(`
         <!-- temp ADfit -->

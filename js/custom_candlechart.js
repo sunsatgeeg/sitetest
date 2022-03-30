@@ -258,7 +258,7 @@ am5.ready(function() {
       close: false
     }).showToast();
     
-    candleurl = url + "candlechart_data?item=" + name + "&unit=" + unit;
+    candledict = {"item":name, "unit":unit};
     var unitCount = 0;
     //30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
     /*if(unit == '30m'){                              너무 느려서 추후 활성화
@@ -290,8 +290,10 @@ am5.ready(function() {
     // Handle loaded data
     $.ajax({
       type: 'POST',
-      url: candleurl,
-      success:function(json) {
+      data: candledict,
+      url: url + "/candlechart_data",
+      success:function(data) {
+        var json = JSON.parse(data)[0];
         data = json['data'];
         
         // change base interval if it's different
