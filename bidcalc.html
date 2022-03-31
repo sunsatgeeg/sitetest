@@ -89,6 +89,9 @@
       <div class="mx-auto w-50 pt-5">
         <div class="flex-row mb-3">
           <div class="mb-3 row mx-0">
+            <div id="slide" class="mb-2 px-0">
+              <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
+            </div>
             <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
             <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
             <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
@@ -120,7 +123,6 @@
                 <input type="number" placeholder="인원 수" id="othercount" class="form-control">
               </div>
             </div>
-
           </div>
         </div>
 
@@ -203,6 +205,11 @@
         if(sumB == ""){sumB = 0};
 
         $('#price').val(parseInt(sumA) + parseInt(sumB));
+        calc();
+      });
+
+      $('#slider').on('mousemove change', function(){
+        $('#price').val($(this).val());
         calc();
       });
 
