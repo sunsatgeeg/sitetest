@@ -32,8 +32,7 @@ $(function(){
     $.ajax({
         type: 'POST',
         url: url + '/mari',
-        success: function(data) {
-            var json = JSON.parse(data)[0];
+        success: function(json) {
             var newtime = [];
             var prevtime = [];
             var lasttime = [];

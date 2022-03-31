@@ -292,10 +292,9 @@ am5.ready(function() {
     // Handle loaded data
     $.ajax({
       type: 'POST',
-      data: candledict,
       url: url + "/candlechart_data",
-      success:function(data) {
-        var json = JSON.parse(data)[0];
+      data: candledict,
+      success:function(json) {
         data = json['data'];
         
         // change base interval if it's different

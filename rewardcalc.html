@@ -424,15 +424,11 @@
                                 ];
       
       var content = "";
-
-
-
       $.ajax({
         type: 'POST',
         url: url + '/rewardcalc',
-        success: function(data) {
-          var json = JSON.parse(data)[0];
-          marketdata = json[0];
+        success: function(json) {
+          marketdata = json;
           marketdata['명예의 파편'] = marketdata['명예의 파편 주머니(대)']/1500;
 
           datatime = marketdata['date'];
