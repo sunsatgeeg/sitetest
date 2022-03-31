@@ -314,6 +314,16 @@ am5.ready(function() {
   var activeButton = $('#1d');;
   $("#candleBtn button").filter(function() {
     $(this).on("click", function() {
+      if($('.toastify').length != 0){
+        Toastify({
+          text: "잠시만요...",
+          position: "center",
+          gravity: "bottom",
+          duration: 1000,
+          close: false
+        }).showToast();
+        return;
+      }
       curitem = $('.candleitemList button').text();
       btnid = $(this).attr('id');
       if (currentUnit != btnid) {
