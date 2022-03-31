@@ -44,6 +44,8 @@ $(function(){
                 }
                 taxtooltip += "(소수점 첫째 자리에서 올림)<br><span class='fw-bold'>(단, 보석의 경우<br>합성이 있어 오차 있음)</span>";
 
+                $('#th_continent').text(continent);
+
                 $('#total').text(totalgain);
                 $('#tax').text("- " + tax);
                 $('#tax').attr('data-bs-original-title', taxtooltip);
