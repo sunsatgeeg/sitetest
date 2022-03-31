@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head class="h-100">
-  <title>LoChart</title>
+  <title>차트 :: LoChart</title>
+  <script>var here = "/";</script>
+  <meta name="description" content="로스트아크 아이템 과거시세 차트화 사이트">
+
   <!-- toastify -->
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <!-- am charts -->
-  <script src="js/index.js" > </script>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/locales/ko_KR.js"></script>
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,31 +28,25 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
   
   <!-- custom -->
-  <link rel="stylesheet" type="text/css" href="css/custom.css">
   <script src="js/custom.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <script src="js/custom_tickchart.js"></script>
+  <script src="js/custom_candlechart.js"></script>
 
-  <!-- google ADSense 
+  <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
-     crossorigin="anonymous"></script>-->
+     crossorigin="anonymous"></script>
 
-  <!-- temp ADfit 
-  <script src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>-->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+    gtag('config', 'G-XD44D79GLY');
+  </script>  
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
 
@@ -58,106 +56,115 @@
     <header class="mb-3">
       <div>
         <a href="/"><h3 class="float-md-start mb-0 text-white">LoChart</h3></a>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link active" aria-current="page" href="/">차트</a>
-          <a class="nav-link" aria-current="page" href="secretmap">비밀지도</a>
-          <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
-          <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
-        </nav>
+        <nav class="nav nav-masthead justify-content-center float-md-end"></nav>
       </div>
     </header>
 
     <main class="pt-5 pb-5 px-3">
       <div class="text-center">
 
-      <!-- temp ad 
-      <div class="ad mb-5">
+        <!-- temp ad -->
+        <div class="ad mb-5">
+          <div>
+            <div class="text-center">
+              <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+              data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
+              data-ad-width   = "728" 
+              data-ad-height  = "90"></ins>
+            </div>
+          </div>
+          <div id="ads-left">
+            <div>
+              <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+              data-ad-unit    = "DAN-nsfEeS2PlFxohWoX" 
+              data-ad-width   = "160" 
+              data-ad-height  = "600"></ins> 
+            </div>
+          </div>
+          <div id="ads-right">
+            <div>
+              <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+              data-ad-unit    = "DAN-XoJlI1MzVRSxM5dr" 
+              data-ad-width   = "160" 
+              data-ad-height  = "600"></ins> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- chart -->
+        <div class="tick_chart">- 틱 차트(5분)</div>
         <div>
-          <div class="text-center">
-            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
-            data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
-            data-ad-width   = "728" 
-            data-ad-height  = "90"></ins>
+          <!-- dropdown -->
+          <div class="dropdown itemList">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">아이템 추가 / 제거
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><input class="form-control" id="myInput" type="text" placeholder="검색..." autocomplete="off"></li>
+            </ul>
+          </div>
+          <!-- amchart -->
+          <div class="mb-3" id="chartdiv"></div>
+        </div>
+
+        <!-- Chart Tools -->
+        <div class="chartTools mb-3 clearfix">
+          <div class="float-start">
+            <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
+          </div>
+
+          <div class="float-end">
+            <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
+            <button type="button" class="btn btn-primary" id="reset">초기화</button>
           </div>
         </div>
-        <div id="ads-left">
-          <div>
-            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
-            data-ad-unit    = "DAN-nsfEeS2PlFxohWoX" 
-            data-ad-width   = "160" 
-            data-ad-height  = "600"></ins> 
-          </div>
-        </div>
-        <div id="ads-right">
-          <div>
-            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
-            data-ad-unit    = "DAN-XoJlI1MzVRSxM5dr" 
-            data-ad-width   = "160" 
-            data-ad-height  = "600"></ins> 
-          </div>
-        </div>
-      </div>-->
-      
-      <!-- chart -->
-      <div>
+
+        <div class="candle_chart">- 캔들 차트</div>
         <!-- amchart -->
-        <div class="mb-3" id="candlechartdiv"></div>
-      </div>
-
-      <!-- Chart Tools -->
-      <div class="chartTools mb-3 clearfix">
-        <div class="float-start">
-          <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
+        <div>
+          <div class="mb-3" id="candlechartdiv"></div>
         </div>
-        <input id="selectItem" value="에스더의 기운" hidden>
-        <div class="float-end">
-          <!-- 30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달-->
-          <div id="candleBtn">
-            <button type="button" class="btn btn-primary" id="30m">30분</button>
-            <button type="button" class="btn btn-primary" id="1h">1시</button>
-            <button type="button" class="btn btn-primary" id="3h">3시</button>
-            <button type="button" class="btn btn-primary" id="6h">6시</button>
-            <button type="button" class="btn btn-primary" id="12h">12시</button>
-            <button type="button" class="btn btn-primary" id="1d">1일</button>
-            <button type="button" class="btn btn-primary" id="1w">1주</button>
-            <button type="button" class="btn btn-primary" id="1M">1달</button>
+
+        <!-- Chart Tools -->
+        <div class="candleChartTools mb-3 clearfix">
+          <div class="float-start">
+            <div class="btn-group dropup candleitemList">
+              <button type="button" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+              <ul class="dropdown-menu w-100" id="itemUl">
+                <li><input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off"></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-primary" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
           </div>
-          <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
-          <button type="button" class="btn btn-primary" id="reset">초기화</button>
+          <div class="mx-2 float-start candleBtn" id="candleBtn">
+            <!--<button type="button" class="btn btn-info" id="30m">30분</button>
+            <button type="button" class="btn btn-info" id="1h">1시</button> -->
+            <button type="button" class="btn btn-info" id="3h">3시</button>
+            <button type="button" class="btn btn-info" id="6h">6시</button>
+            <button type="button" class="btn btn-info" id="12h">12시</button>
+            <button type="button" class="btn btn-outline-info" id="1d">1일</button>
+            <button type="button" class="btn btn-info" id="1w">1주</button>
+            <button type="button" class="btn btn-info" id="1M">1달</button>
+          </div>
+
+          <div class="float-end">
+            <button type="button" class="btn btn-primary" id="candlewideview">넓게보기</button>
+          </div>
         </div>
-      </div>
-
-      <div>
-        <pre>
-무료로 서버 빌려서 돌리는 거라 데이터 통신 속도가 많이 느립니다
-
-그리고 시세 데이터가 대략 3개월? 정도 밖에 안 모였는데도 데이터 불러오는데 2~3초 기다려야 하는데
-1년 데이터 불러오면 대충 아이템 1개 불러올 때마다 20초?
-
-그래서 그전까지 코드 개선하거나 다른 방법 찾아보던지 아니면 광고 넣어서 더 좋은 서버 빌리기 전까진 양해 바랍니다...
-
-그리고 아직 무료 서버라 트래픽 많이 몰리고, 만든지 얼마 안 돼서
-개선할 때 잠깐 상태 안 좋아질 수 있습니다.
-
-+++
-
-30분봉, 1시간봉, ··· 도 추후에 추가하겠습니다.
-        </pre>
       </div>
     </main>
 
-    <!-- tempAd 
+    <!-- tempAd -->
     <footer class="mt-5 text-white-50">
       <div class="p-0 m-0 mb-2 text-center">
         <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
         data-ad-unit    = "DAN-wTnO0MIIPOzE9w0o" 
         data-ad-width   = "728" 
         data-ad-height  = "90"></ins> 
-      </div>-->
+      </div> 
       
       <!-- AdSense -->
       <div class="ADsense">
-        <!-- loa_market_chart 
+        <!-- loa_market_chart -->
         <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-4936470262963011"
@@ -166,7 +173,7 @@
         data-full-width-responsive="true"></ins>
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>-->
+        </script>
       </div>
       <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
     </footer>
@@ -191,11 +198,11 @@
               <hr>
               <div class="input-group mb-3">
                 <span class="input-group-text">단위</span>
-                <input type="number" class="form-control" id="length" min="1" placeholder=0 aria-label="Length" aria-describedby="Length"/>
+                <input type="number" class="form-control" id="length" min="1" placeholder=0 aria-label="Length" />
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text">선 굵기</span>
-                <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" aria-describedby="StrokeWidth"/>
+                <input type="number" class="form-control" id="width" min="1" placeholder="굵기" aria-label="StrokeWidth" >
                 <input id="color-picker"/>
               </div>
               <div class="btn-group w-50">
@@ -214,9 +221,51 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="candleMA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="candleMALabel">이동평균선</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="btn-group w-100">
+                <button type="button" class="btn btn-outline-primary" id="candleseries" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+                <ul class="dropdown-menu w-100" id="candleseriesUl">
+                  <li><a class="dropdown-item">시가</a></li>
+                  <li><a class="dropdown-item">종가</a></li>
+                  <li><a class="dropdown-item">저가</a></li>
+                  <li><a class="dropdown-item">고가</a></li>
+                </ul>
+              </div>
+              <hr>
+              <div class="input-group mb-3">
+                <span class="input-group-text">단위</span>
+                <input type="number" class="form-control" id="candlelength" min="1" placeholder=0 aria-label="Length" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">선 굵기</span>
+                <input type="number" class="form-control" id="candlewidth" min="1" placeholder="굵기" aria-label="StrokeWidth" >
+                <input id="candle-color-picker"/>
+              </div>
+              <div class="btn-group w-50">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="candleline" data-bs-toggle="dropdown" aria-expanded="false">곡선 그래프</button>
+                <ul class="dropdown-menu w-100" id="candlelineUl">
+                  <li><a class="dropdown-item">곡선 그래프</a></li>
+                  <li><a class="dropdown-item">점선 그래프</a></li>
+                  <li><a class="dropdown-item">꺾은선 그래프</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-primary" id="candlemake">만들기</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  
-
 </body>
 </html>
