@@ -346,7 +346,7 @@ $.ajax({
                                 generateChartData(json['data']);
                                 makeSeries(json['item'], 1);
 
-                                indata.push(json['item'].replace("null,",""));
+                                indata.push(json['item'].replace("null,","").trim());
                                 $.cookie('indata', indata, { expires: 30});
 
                                 toast.hideToast();
@@ -382,7 +382,7 @@ $.ajax({
                 $('#MA #length').val("2");
                 $('#MA #width').val("1");
                 for (var i = 0; i < indata.length; i++) {
-                    dropdownMenu.append('<li><a class="dropdown-item">' + indata[i] + '</a></li>');
+                    dropdownMenu.append('<li><a class="dropdown-item">' + indata[i].trim() + '</a></li>');
                     dropdownMenu.css("cursor", "pointer");
                 }
 
@@ -421,6 +421,7 @@ $.ajax({
                 series = chart.children._container.series;
                 tempValueArray = [];
                 toolData = [];
+                
                 if(series.length == 1){
                     chartValueYField = series._values[0]._settings.valueYField;
                     values = series._values[0]._data._values;
