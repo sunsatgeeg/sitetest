@@ -208,7 +208,10 @@
         calc();
       });
 
-      $('#slider').on('change', function(){
+      $('#slider').on('mousemove change', function(){
+        if($(this).val() == 0){
+          return;
+        }
         $('#price').val($(this).val());
         calc();
       });
