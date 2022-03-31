@@ -246,7 +246,7 @@ am5.ready(function() {
   
   // actual data loading and handling when it is loaded
   var nowname = "";
-  var unitCount = 0;
+  var loadingdata = 0;
   function loadData(unit, name) {
     loadingdata = 1;
     
@@ -318,7 +318,7 @@ am5.ready(function() {
   var activeButton = $('#1d');;
   $("#candleBtn button").filter(function() {
     $(this).on("click", function() {
-      if($('.toastify').length != 0){
+      if(loadingdata == 1){
         Toastify({
           text: "잠시만요...",
           position: "center",
