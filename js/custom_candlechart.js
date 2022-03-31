@@ -246,10 +246,12 @@ am5.ready(function() {
   
   // actual data loading and handling when it is loaded
   var nowname = "";
+  var unitCount = 0;
   function loadData(unit, name) {
+    loadingdata = 1;
+    
     // Load external data
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Setting_data
-    
     var toast = Toastify({
       text: `불러오는 중...`,
       position: "center",
@@ -306,6 +308,8 @@ am5.ready(function() {
         dateAxis.zoom(0, 1, 0);
         nowname = name;
         toast.hideToast();
+        
+        loadingdata = 0;
       }
     });
   }
