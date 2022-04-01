@@ -1,7 +1,7 @@
 local = false
 var url;
 var cookie;
-var nocommu = ['bidcalc','craftcalc']
+var nocommu = ['bidcalc']
 if(local){
     cookie = '';
     url = "http://127.0.0.1:5000";
