@@ -222,6 +222,8 @@
       });
 
       function calc(){
+        $('#slider').val($('#price').val());
+
         price = $('#price').val();
         var tax = Math.ceil(price * 0.05);
         $('#tax').text("- " + tax);
