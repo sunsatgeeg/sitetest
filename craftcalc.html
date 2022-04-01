@@ -81,45 +81,121 @@
       </div>
       
       <div class="mx-auto w-100 pt-5 pb-5">
-        <button type="button" class="btn btn-outline-light btn-lg active" data-bs-toggle="collapse" data-bs-target="#collapse">영지 효과</button>
-        <div class="accordion mb-5 w-50 mx-auto" id="bossaccordion">
-          <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#bossaccordion" style="">
-            <div class="accordion-body p-0">
-              <table class="table table-dark table-hover mb-0">
-                <thead>
-                  <tr>
-                    <th scope="col">전체</th>
-                    <th scope="col">배틀아이템</th>
-                    <th scope="col">요리</th>
-                    <th scope="col">특수</th>
-                    <th scope="col">생활도구</th>
-                  </tr>
-                </thead>
-                <tbody class="align-middle">
-                  <tr>
-                    <th>
-                      <input type="number" class="input_box" id="" value="0">
-                    </th>
-                    <th>
-                      <input type="number" class="input_box" id="" value="0">
-                    </th>
-                    <th>
-                      <input type="number" class="input_box" id="" value="0">
-                    </th>
-                    <th>
-                      <input type="number" class="input_box" id="" value="0">
-                    </th>
-                    <th>
-                      <input type="number" class="input_box" id="" value="0">
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
+        <div class="fresh-table full-color-custom">
+          <div class="toolbar" style="width: 112px;">
+            <button id="alertBtn" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">영지 효과</button>
+            <div class="accordion" id="bossaccordion" style="width: 584px;">
+              <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#bossaccordion">
+                <div class="accordion-body p-0">
+                  <table class="table mt-3 table-hover mb-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">전체</th>
+                        <th scope="col">배틀아이템</th>
+                        <th scope="col">요리</th>
+                        <th scope="col">특수</th>
+                      </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                      <tr>
+                        <td colspan="5">대성공 확률</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="gs_all" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="gs_b" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="gs_c" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="gs_s" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">제작 수수료 감소율</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="cc_all" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="cc_b" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="cc_c" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="cc_s" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">활동력 감소율</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="e_all" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="e_b" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="e_c" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="e_s" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="fresh-table full-color-custom">
-          <table id="fresh-table" class="table">
+          <table id="fresh-table" 
+                 class="table"
+                 data-detail-view="true"
+                 data-detail-view-icon="false"
+                 data-detail-view-by-click="true"
+                 data-detail-formatter="detailFormatter">
             <thead>
               <th data-field="item" data-sortable="true">아이템</th>
               <th data-field="recommend" data-sortable="true">추천방식</th>
@@ -160,74 +236,140 @@
     </footer>
   </div>
   <style>
+    .fresh-table .bootstrap-table .table thead > tr > th:first-child {
+      padding-left: 0px !important;
+    }
+    .bootstrap-table .fixed-table-container .table thead th .sortable {
+      padding-right: 0.75rem !important;
+    }
+    .fresh-table .bootstrap-table .table > thead > tr > th{
+      padding: 0px !important;
+      font-size: var(--bs-body-font-size) !important;
+    }
+    .fresh-table .bootstrap-table .table tbody > tr > td {
+      padding-left: .75rem !important;
+    }
+    .fresh-table .bootstrap-table .table tbody > tr > td {
+      padding: .75rem !important;
+    }
+    .input-group{
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+    }
     .input_box{
+      display: block;
+      width: 100px;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      appearance: none;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .input_box_text{
+      display: flex;
+      align-items: center;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+    }
+    .input-group>.input_box{
+      position: relative;
+      flex: 1 1 auto;
+      width: 1%;
+      min-width: 0;
     }
   </style>
+  <script src="js/craft_recipe.js" > </script>
   <script>
+    
+    function detailFormatter(index, row) {
+      console.log(index);
+    }
+
     $(function(){
-      var $table = $('#fresh-table')
-      var data = [
-        {
-          item: '회오리 수류탄',
-          recommend: '제작',
-          buyprice: 111,
-          craftprice: 22,
-          profit: 88,
-          profitperenergy: 121212
+      var $table = $('#fresh-table');
+      $table.bootstrapTable({
+        classes: 'table table-hover table-striped',
+        toolbar: '.toolbar',
+        search: true,
+        pagination: true,
+        striped: true,
+        pageSize: 10,
+        pageList: [10, 25, 50, 100],
+
+        formatShowingRows: function(pageFrom, pageTo, totalRows){
+          return ''
         },
-        {
-          item: '파괴 폭탄',
-          recommend: '구매',
-          buyprice: 555,
-          craftprice: 11,
-          profit: 123,
-          profitperenergy: 1212
+        formatRecordsPerPage: function (pageNumber) {
+          return pageNumber + ' rows visible'
         },
-        {
-          item: '페로몬 폭탄',
-          recommend: '구매',
-          buyprice: 333,
-          craftprice: 33,
-          profit: 333,
-          profitperenergy: 3333
-        },
-        {
-          item: '신호탄',
-          recommend: '구매',
-          buyprice: 123,
-          craftprice: 34,
-          profit: 678,
-          profitperenergy: 90123
-        }
-      ]
-
-      $(function() {
-        $table.bootstrapTable({
-          data: data,
-          classes: 'table table-hover table-striped',
-          toolbar: '.toolbar',
-
-          search: true,
-          pagination: true,
-          striped: true,
-          pageSize: 3,
-          pageList: [3, 10, 25, 50, 100],
-
-          formatShowingRows: function(pageFrom, pageTo, totalRows){
-            return ''
-          },
-          formatRecordsPerPage: function (pageNumber) {
-            return pageNumber + ' rows visible'
-          },
-        })
-
-
-        //$alertBtn.click(function () {
-        //  alert('')
-        //})
       })
 
-      
+      $.ajax({
+        type: 'POST',
+        url: url + '/craftcalc',
+        success: function(json) {
+          recipedata.forEach(function(recipe, index){
+            type = recipe[Object.keys(recipe)[0]]['분류'];
+            delete recipe[Object.keys(recipe)[0]]['분류'];
+            if(type == '배틀아이템'){
+              sale = "b"
+            }else if(type == "요리"){
+              sale = "c"
+            }else if(type == "특수"){
+              sale = "s"
+            }
+            qty = recipe[Object.keys(recipe)[0]]['수량'];
+            delete recipe[Object.keys(recipe)[0]]['수량'];
+            e = recipe[Object.keys(recipe)[0]]['활동력'];
+            delete recipe[Object.keys(recipe)[0]]['활동력'];
+
+            craftprice = 0;
+            for (var i = 0; i < Object.keys(recipe).length; i++) {
+              itemname = Object.keys(recipe)[i];
+              itmeprice = recipe[Object.keys(recipe)[i]];
+              if(itemname == '실링'){
+                calcprice = 0;
+              }else if(itemname == "골드"){
+                if($('#cc_' + sale).val() == 0){
+                  calcprice = recipe[Object.keys(recipe)[i]];
+                }else{
+                  calcprice = recipe[Object.keys(recipe)[i]] - (recipe[Object.keys(recipe)[i]] * ($('#cc_' + sale).val() / 100));
+                }
+              }else{
+                calcprice = json[Object.keys(recipe)[i]];
+              }
+              craftprice += calcprice;
+            }
+            
+            $table.bootstrapTable('insertRow', {
+              index: 1,
+              row: {item: Object.keys(recipe)[0],
+                    recommend: '제작',
+                    buyprice: 'asd',
+                    craftprice: craftprice,
+                    profit: '12',
+                    profitperenergy: '12'}
+            });
+          });
+        }
+      });
     });
   </script>
 </body>

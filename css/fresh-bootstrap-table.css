@@ -98,6 +98,10 @@
 .dropdown-menu > a:hover {
   background-color: rgb(148, 148, 148);
 }
+.pagination>.disabled>a{
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
 
 
 /*ORIGINAL*/
