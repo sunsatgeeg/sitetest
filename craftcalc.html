@@ -103,25 +103,25 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_all" value="0">
+                            <input type="number" class="input_box" id="gs_all" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_b" value="0">
+                            <input type="number" class="input_box" id="gs_b" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_c" value="0">
+                            <input type="number" class="input_box" id="gs_c" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_s" value="0">
+                            <input type="number" class="input_box" id="gs_s" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -161,25 +161,25 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_all" value="0">
+                            <input type="number" class="input_box" id="e_all" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_b" value="0">
+                            <input type="number" class="input_box" id="e_b" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_c" value="0">
+                            <input type="number" class="input_box" id="e_c" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_s" value="0">
+                            <input type="number" class="input_box" id="e_s" value="5">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -333,11 +333,11 @@
             type = recipe['분류'];
             delete recipe['분류'];
             if(type == '배틀아이템'){
-              sale = "b"
+              type = "b"
             }else if(type == "요리"){
-              sale = "c"
+              type = "c"
             }else if(type == "특수"){
-              sale = "s"
+              type = "s"
             }
             qty = recipe['수량'];
             delete recipe['수량'];
@@ -356,7 +356,7 @@
               if(thisitemname == '실링'){
                 calcprice = 0;
               }else if(thisitemname == "골드"){
-                thissale = $('#cc_' + sale).val()
+                thissale = $('#cc_' + type).val() + $('#cc_all').val();
                 if(thissale == 0){
                   calcprice = thisitmeqty;
                 }else{
@@ -383,15 +383,42 @@
               }
               craftprice += calcprice;
             }
+
+            thisbuyprice = json[itemname]
+            if(itemname.lastIndexOf('(') != -1){
+              thisbuyprice = json[itemname.substr(0, itemname.lastIndexOf('('))];
+            }
+
+            thisgs = parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val()) + 5;
+            if(thisgs == 5){
+              gsqty = qty * (5/100);
+            }else{
+              gsqty = qty + (qty * ((5 + (5 / (parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())))) / 100));
+            }
+            thisprofit = thisbuyprice - (craftprice / gsqty);
             
+            this_e = parseInt($('#e_' + type).val()) + parseInt($('#e_all').val());
+            if(this_e == 0){
+              es = e;
+            }else{
+              es = e - (e * (this_e / 100));
+            }
+
+            if(thisbuyprice > (craftprice / qty)){
+              thisrecommend =  "제작";
+            }else{
+              thisrecommend =  "구매";
+            }
+
             $table.bootstrapTable('insertRow', {
               index: 1,
               row: {item: itemname,
-                    recommend: '제작',
-                    buyprice: 'asd',
+                    recommend: thisrecommend,
+                    buyprice: thisbuyprice,
                     craftprice: craftprice.toFixed(2),
-                    profit: '12',
-                    profitperenergy: '12'}
+                    profit: thisprofit.toFixed(2),
+                    profitperenergy: parseInt((10000 / es) * thisprofit)
+                  }
             });
           });
         }
