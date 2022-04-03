@@ -132,25 +132,25 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_all" value="0">
+                            <input type="number" class="input_box" id="cc_all" value="1">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_b" value="0">
+                            <input type="number" class="input_box" id="cc_b" value="1">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_c" value="0">
+                            <input type="number" class="input_box" id="cc_c" value="1">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_s" value="0">
+                            <input type="number" class="input_box" id="cc_s" value="1">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -300,6 +300,7 @@
     
     function detailFormatter(index, row) {
       console.log(index);
+      return 'detail';
     }
 
     $(function(){
@@ -326,8 +327,11 @@
         url: url + '/craftcalc',
         success: function(json) {
           recipedata.forEach(function(recipe, index){
-            type = recipe[Object.keys(recipe)[0]]['분류'];
-            delete recipe[Object.keys(recipe)[0]]['분류'];
+            itemname = Object.keys(recipe)[0];
+            recipe = recipe[Object.keys(recipe)[0]];
+
+            type = recipe['분류'];
+            delete recipe['분류'];
             if(type == '배틀아이템'){
               sale = "b"
             }else if(type == "요리"){
@@ -335,35 +339,57 @@
             }else if(type == "특수"){
               sale = "s"
             }
-            qty = recipe[Object.keys(recipe)[0]]['수량'];
-            delete recipe[Object.keys(recipe)[0]]['수량'];
-            e = recipe[Object.keys(recipe)[0]]['활동력'];
-            delete recipe[Object.keys(recipe)[0]]['활동력'];
-
+            qty = recipe['수량'];
+            delete recipe['수량'];
+            e = recipe['활동력'];
+            delete recipe['활동력'];
+            
+            console.log(itemname)
             craftprice = 0;
             for (var i = 0; i < Object.keys(recipe).length; i++) {
-              itemname = Object.keys(recipe)[i];
-              itmeprice = recipe[Object.keys(recipe)[i]];
-              if(itemname == '실링'){
+              thisitemname = Object.keys(recipe)[i];
+              if(thisitemname.lastIndexOf('(') != -1){
+                thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
+              }
+              thisitmeqty = recipe[Object.keys(recipe)[i]];
+
+              if(thisitemname == '실링'){
                 calcprice = 0;
-              }else if(itemname == "골드"){
-                if($('#cc_' + sale).val() == 0){
-                  calcprice = recipe[Object.keys(recipe)[i]];
+              }else if(thisitemname == "골드"){
+                thissale = $('#cc_' + sale).val()
+                if(thissale == 0){
+                  calcprice = thisitmeqty;
                 }else{
-                  calcprice = recipe[Object.keys(recipe)[i]] - (recipe[Object.keys(recipe)[i]] * ($('#cc_' + sale).val() / 100));
+                  calcprice = thisitmeqty - (thisitmeqty * (thissale / 100));
                 }
               }else{
-                calcprice = json[Object.keys(recipe)[i]];
+                try{
+                  thisunit = itemunit[Object.keys(recipe)[i]];
+                  if(thisunit == undefined){
+                    thisunit = 1;
+                  }
+                }catch{}
+                marketprice = json[thisitemname];
+                if(Object.keys(recipe)[i].lastIndexOf('제작)') != -1){
+                  for (var j = 0; j < $table.bootstrapTable('getData').length; j++) {
+                    if($table.bootstrapTable('getData')[j]['item'] == thisitemname){
+                      marketprice = $table.bootstrapTable('getData')[j]['craftprice'] / recipe[Object.keys(recipe)[i]];
+                      break;
+                    }
+                  }
+                }
+
+                calcprice = marketprice * (thisitmeqty / thisunit);
               }
               craftprice += calcprice;
             }
             
             $table.bootstrapTable('insertRow', {
               index: 1,
-              row: {item: Object.keys(recipe)[0],
+              row: {item: itemname,
                     recommend: '제작',
                     buyprice: 'asd',
-                    craftprice: craftprice,
+                    craftprice: craftprice.toFixed(2),
                     profit: '12',
                     profitperenergy: '12'}
             });
@@ -371,6 +397,7 @@
         }
       });
     });
+
   </script>
 </body>
 </html>
