@@ -212,7 +212,7 @@
               <th data-field="profit" data-sortable="true" data-cell-style="profcellStyle">판매이익</th>
               <th data-field="profitperenergy" data-sortable="true">이익/활동력</th>
             </thead>
-            <tbody></tbody>
+            <tbody style="cursor:pointer"></tbody>
           </table>
         </div>
       </div>
@@ -410,7 +410,42 @@
     }
     
     function detailFormatter(index, row) {
-      return 'detail';
+      html = "";
+      html += `<table class="table" style="cursor:auto;">
+  <thead>
+    <tr>
+      <th scope="col">시세</th>
+      <th scope="col">판매수수료</th>
+      <th scope="col">제작비용(개당)</th>
+      <th scope="col">재료</th>
+      <th scope="col">개수</th>
+      <th scope="col">가격</th>
+      <th scope="col">제작비용</th>
+      <th scope="col">활동력</th>
+      <th scope="col">활동력 X<p>활동력 감소율</th>
+      <th scope="col">수량</th>
+      <th scope="col">수량 X<p>대성공</th>
+      <th scope="col">이익</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">11</th>
+      <td>22</td>
+      <td>33</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th scope="row">55</th>
+      <td>66</td>
+      <td>77</td>
+      <td>88</td>
+    </tr>
+  </tbody>
+</table>`;
+
+
+      return html;
     }
 
     function imageFormatter(index, row) {
