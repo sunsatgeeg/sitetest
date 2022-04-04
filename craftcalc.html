@@ -82,12 +82,13 @@
       
       <div class="mx-auto w-100 pt-5 pb-5">
         <div class="fresh-table full-color-custom">
-          <div class="toolbar" style="width: 112px;">
+          <div class="toolbar text-start">
             <button id="alertBtn" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">영지 효과</button>
-            <div class="accordion" id="bossaccordion" style="width: 584px;">
-              <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#bossaccordion">
+            <button id="btnPurpose" class="btn btn-outline-light"><span>목적 : </span><span id="purpose">판매</span></button>
+            <div class="accordion" style="width: 584px;">
+              <div id="collapse" class="accor dion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion">
                 <div class="accordion-body p-0">
-                  <table class="table mt-3 table-hover mb-3">
+                  <table class="table mt-3 table-hover mb-3 text-center">
                     <thead>
                       <tr>
                         <th scope="col">전체</th>
@@ -96,7 +97,7 @@
                         <th scope="col">특수</th>
                       </tr>
                     </thead>
-                    <tbody class="align-middle">
+                    <tbody class="align-middle" id="wisdomeffect">
                       <tr>
                         <td colspan="5">대성공 확률</td>
                       </tr>
@@ -109,19 +110,19 @@
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_b" value="5">
+                            <input type="number" class="input_box" id="gs_b" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_c" value="5">
+                            <input type="number" class="input_box" id="gs_c" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_s" value="5">
+                            <input type="number" class="input_box" id="gs_s" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -132,25 +133,25 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_all" value="1">
+                            <input type="number" class="input_box" id="cc_all" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_b" value="1">
+                            <input type="number" class="input_box" id="cc_b" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_c" value="1">
+                            <input type="number" class="input_box" id="cc_c" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="cc_s" value="1">
+                            <input type="number" class="input_box" id="cc_s" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -161,32 +162,32 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_all" value="5">
+                            <input type="number" class="input_box" id="e_all" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_b" value="5">
+                            <input type="number" class="input_box" id="e_b" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_c" value="5">
+                            <input type="number" class="input_box" id="e_c" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="e_s" value="5">
+                            <input type="number" class="input_box" id="e_s" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                </div>  
               </div>
             </div>
           </div>
@@ -304,6 +305,26 @@
     }
 
     $(function(){
+      if ($.cookie("purpose") == ""){
+        return;
+      }else{
+        $('#btnPurpose').find('#purpose').text($.cookie("purpose"));
+        $('#wisdomeffect').find('input').filter(function(){
+          $(this).val($.cookie($(this).attr('id')));
+        });
+      }
+      $('#wisdomeffect').find('input').filter(function(){
+        $(this).on('change', function(){
+          thiseffectname = $(this).attr('id');
+          thiseffectval = $(this).val();
+          if(thiseffectval == undefined || thiseffectval == ''){
+            $(this).val(0);
+            thiseffectval = 0;
+          }
+          $.cookie(thiseffectname, thiseffectval);
+        });
+      });
+
       var $table = $('#fresh-table');
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
@@ -321,6 +342,17 @@
           return pageNumber + ' rows visible'
         },
       })
+      $('#btnPurpose').on('click', function(){
+        if($(this).find('#purpose').text() == "판매"){
+          $(this).find('#purpose').text("사용");
+          purpose = "use";
+          $.cookie("purpose", "사용");
+        }else{
+          $(this).find('#purpose').text("판매");
+          purpose = "sell";
+          $.cookie("purpose", "판매");
+        }
+      });
 
       $.ajax({
         type: 'POST',
@@ -391,12 +423,12 @@
 
             thisgs = parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val()) + 5;
             if(thisgs == 5){
-              gsqty = qty * (5/100);
+              gsqty = qty + (qty * (5/100));
             }else{
-              gsqty = qty + (qty * ((5 + (5 / (parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())))) / 100));
+              gsqty = ((((((parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())) / 10) / 2) + 5) * qty) / 100) + qty;
             }
-            thisprofit = thisbuyprice - (craftprice / gsqty);
-            
+            thisprofit = ((thisbuyprice - Math.ceil(thisbuyprice * 0.05)) * gsqty - craftprice);
+
             this_e = parseInt($('#e_' + type).val()) + parseInt($('#e_all').val());
             if(this_e == 0){
               es = e;
