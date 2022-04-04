@@ -4,6 +4,10 @@
   <title>제작 :: LoChart</title>
   <script>var here = "craftcalc";</script>
 
+  <!-- toastify -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/jquery.cookie-1.4.1.min.js" > </script>
@@ -84,7 +88,6 @@
         <div class="fresh-table full-color-custom">
           <div class="toolbar text-start">
             <button id="alertBtn" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">영지 효과</button>
-            <button id="btnPurpose" class="btn btn-outline-light"><span>목적 : </span><span id="purpose">판매</span></button>
             <div class="accordion" style="width: 584px;">
               <div id="collapse" class="accor dion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion">
                 <div class="accordion-body p-0">
@@ -104,7 +107,7 @@
                       <tr>
                         <th>
                           <div class="input-group">
-                            <input type="number" class="input_box" id="gs_all" value="5">
+                            <input type="number" class="input_box" id="gs_all" value="0">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -188,6 +191,7 @@
                     </tbody>
                   </table>
                 </div>  
+                <button id="wisdomedit" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">수정</button>
               </div>
             </div>
           </div>
@@ -198,7 +202,8 @@
                  data-detail-view-by-click="true"
                  data-detail-formatter="detailFormatter">
             <thead>
-              <th data-field="item" data-sortable="true">아이템</th>
+              <th data-field="image" data-formatter="imageFormatter"></th>
+              <th class="text-start" data-field="item" data-sortable="true">아이템</th>
               <th data-field="recommend" data-sortable="true">추천방식</th>
               <th data-field="buyprice" data-sortable="true">시세</th>
               <th data-field="craftprice" data-sortable="true">제작비용</th>
@@ -253,6 +258,9 @@
     .fresh-table .bootstrap-table .table tbody > tr > td {
       padding: .75rem !important;
     }
+    .fresh-table .bootstrap-table .table tbody > tr > td:nth-child(1) {
+      padding: 0px !important;
+    }
     .input-group{
       position: relative;
       display: flex;
@@ -298,34 +306,123 @@
   </style>
   <script src="js/craft_recipe.js" > </script>
   <script>
-    
-    function detailFormatter(index, row) {
-      console.log(index);
-      return 'detail';
-    }
+    var jsonsave;
+    var $table = $('#fresh-table');
 
-    $(function(){
-      if ($.cookie("purpose") == ""){
-        return;
-      }else{
-        $('#btnPurpose').find('#purpose').text($.cookie("purpose"));
-        $('#wisdomeffect').find('input').filter(function(){
-          $(this).val($.cookie($(this).attr('id')));
-        });
-      }
-      $('#wisdomeffect').find('input').filter(function(){
-        $(this).on('change', function(){
-          thiseffectname = $(this).attr('id');
-          thiseffectval = $(this).val();
-          if(thiseffectval == undefined || thiseffectval == ''){
-            $(this).val(0);
-            thiseffectval = 0;
+    function recipecalc(){
+      tabledata = [];
+      
+      recipedata.forEach(function(recipe){
+        itemname = Object.keys(recipe)[0];
+        recipe = recipe[Object.keys(recipe)[0]];
+
+        type = recipe['분류'];
+        if(type == '배틀아이템'){
+          type = "b";
+        }else if(type == "요리"){
+          type = "c";
+        }else if(type == "특수"){
+          type = "s";
+        }
+        qty = recipe['수량'];
+        e = recipe['활동력'];
+        
+        craftprice = 0;
+        for (var i = 3; i < Object.keys(recipe).length; i++) {
+          thisitemname = Object.keys(recipe)[i];
+            if(thisitemname.lastIndexOf('(') != -1){
+            thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
           }
-          $.cookie(thiseffectname, thiseffectval);
+          thisitmeqty = recipe[Object.keys(recipe)[i]];
+
+          if(thisitemname == '실링'){
+            calcprice = 0;
+          }else if(thisitemname == "골드"){
+            thissale = parseInt($('#cc_' + type).val()) + parseInt($('#cc_all').val());
+            if(thissale == 0){
+              calcprice = thisitmeqty;
+            }else{
+              calcprice = thisitmeqty - (thisitmeqty * (thissale / 100));
+            }
+          }else{
+            try{
+              thisunit = itemunit[Object.keys(recipe)[i]];
+              if(thisunit == undefined){
+                thisunit = 1;
+              }
+            }catch{}
+            marketprice = jsonsave[thisitemname];
+            if(Object.keys(recipe)[i].lastIndexOf('제작)') != -1){
+              for (var j = 0; j < tabledata.length; j++) {
+                if(tabledata[j]['item'] == thisitemname){
+                  marketprice = tabledata[j]['craftprice'] / recipe[Object.keys(recipe)[i]];
+                  break;
+                }
+              }
+            }
+
+            calcprice = marketprice * (thisitmeqty / thisunit);
+          }
+          craftprice += calcprice;
+        }
+
+        thisbuyprice = jsonsave[itemname]
+        if(itemname.lastIndexOf('(') != -1){
+          thisbuyprice = jsonsave[itemname.substr(0, itemname.lastIndexOf('('))];
+        }
+
+        thisgs = parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val()) + 5;
+        if(thisgs == 5){
+          gsqty = qty + (qty * (5/100));
+        }else{
+          gsqty = ((((((parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())) / 10) / 2) + 5) * qty) / 100) + qty;
+        }
+        thisprofit = ((thisbuyprice - Math.ceil(thisbuyprice * 0.05)) * gsqty - craftprice);
+
+        this_e = parseInt($('#e_' + type).val()) + parseInt($('#e_all').val());
+        if(this_e == 0){
+          es = e;
+        }else{
+          es = e - (e * (this_e / 100));
+        }
+
+        if(thisbuyprice > (craftprice / qty)){
+          thisrecommend =  "제작";
+        }else{
+          thisrecommend =  "구매";
+        }
+
+        tabledata.push({item: itemname,
+                recommend: thisrecommend,
+                buyprice: thisbuyprice,
+                craftprice: craftprice.toFixed(2),
+                profit: thisprofit.toFixed(2),
+                profitperenergy: parseInt((10000 / es) * thisprofit)
         });
       });
 
-      var $table = $('#fresh-table');
+      $table.bootstrapTable('load', tabledata);
+    }
+    
+    function detailFormatter(index, row) {
+      return 'detail';
+    }
+
+    function imageFormatter(index, row) {
+      if(row['item'].lastIndexOf('(') != -1){
+        thisname = row['item'].substr(0, row['item'].lastIndexOf('('));
+      }else{
+        thisname = row['item'];
+      }
+
+      if(recipeimg[thisname] && recipeimg[thisname].length > 0){
+        image = recipeimg[thisname][0];
+        grade = recipeimg[thisname][1];
+      }
+      return '<img class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/' + image + '.png" style="width: 64px;">'
+    }
+
+    $(function(){
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
@@ -342,117 +439,53 @@
           return pageNumber + ' rows visible'
         },
       })
-      $('#btnPurpose').on('click', function(){
-        if($(this).find('#purpose').text() == "판매"){
-          $(this).find('#purpose').text("사용");
-          purpose = "use";
-          $.cookie("purpose", "사용");
-        }else{
-          $(this).find('#purpose').text("판매");
-          purpose = "sell";
-          $.cookie("purpose", "판매");
-        }
+
+      if ($.cookie("gs_all") == "" || url == "http://127.0.0.1:5000"){
+        $('#wisdomeffect').find('input').filter(function(){
+          $(this).val(0);
+        });
+      }else{
+        $('#wisdomeffect').find('input').filter(function(){
+          $(this).val($.cookie($(this).attr('id')));
+        });
+      }
+
+      $('#wisdomeffect').find('input').filter(function(){
+        $(this).on('change', function(){
+          thiseffectname = $(this).attr('id');
+          thiseffectval = $(this).val();
+          if(thiseffectval == undefined || thiseffectval == '' || parseInt(thiseffectval) < 0){
+            $(this).val(0);
+            thiseffectval = 0;
+          }
+          $.cookie(thiseffectname, thiseffectval);
+        });
+      });
+
+      function recipecalcwait() {
+        setTimeout(() => {
+          recipecalc();
+          tost.hideToast();
+        }, 350);
+      }
+
+      $('#wisdomedit').on('click', async function(){
+        tost = Toastify({
+                        text: "계산중...",
+                        position: "center",
+                        gravity: "bottom",
+                        duration: -1,
+                        close: false
+                        }).showToast();
+        await recipecalcwait();
       });
 
       $.ajax({
         type: 'POST',
         url: url + '/craftcalc',
         success: function(json) {
-          recipedata.forEach(function(recipe, index){
-            itemname = Object.keys(recipe)[0];
-            recipe = recipe[Object.keys(recipe)[0]];
-
-            type = recipe['분류'];
-            delete recipe['분류'];
-            if(type == '배틀아이템'){
-              type = "b"
-            }else if(type == "요리"){
-              type = "c"
-            }else if(type == "특수"){
-              type = "s"
-            }
-            qty = recipe['수량'];
-            delete recipe['수량'];
-            e = recipe['활동력'];
-            delete recipe['활동력'];
-            
-            console.log(itemname)
-            craftprice = 0;
-            for (var i = 0; i < Object.keys(recipe).length; i++) {
-              thisitemname = Object.keys(recipe)[i];
-              if(thisitemname.lastIndexOf('(') != -1){
-                thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
-              }
-              thisitmeqty = recipe[Object.keys(recipe)[i]];
-
-              if(thisitemname == '실링'){
-                calcprice = 0;
-              }else if(thisitemname == "골드"){
-                thissale = $('#cc_' + type).val() + $('#cc_all').val();
-                if(thissale == 0){
-                  calcprice = thisitmeqty;
-                }else{
-                  calcprice = thisitmeqty - (thisitmeqty * (thissale / 100));
-                }
-              }else{
-                try{
-                  thisunit = itemunit[Object.keys(recipe)[i]];
-                  if(thisunit == undefined){
-                    thisunit = 1;
-                  }
-                }catch{}
-                marketprice = json[thisitemname];
-                if(Object.keys(recipe)[i].lastIndexOf('제작)') != -1){
-                  for (var j = 0; j < $table.bootstrapTable('getData').length; j++) {
-                    if($table.bootstrapTable('getData')[j]['item'] == thisitemname){
-                      marketprice = $table.bootstrapTable('getData')[j]['craftprice'] / recipe[Object.keys(recipe)[i]];
-                      break;
-                    }
-                  }
-                }
-
-                calcprice = marketprice * (thisitmeqty / thisunit);
-              }
-              craftprice += calcprice;
-            }
-
-            thisbuyprice = json[itemname]
-            if(itemname.lastIndexOf('(') != -1){
-              thisbuyprice = json[itemname.substr(0, itemname.lastIndexOf('('))];
-            }
-
-            thisgs = parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val()) + 5;
-            if(thisgs == 5){
-              gsqty = qty + (qty * (5/100));
-            }else{
-              gsqty = ((((((parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())) / 10) / 2) + 5) * qty) / 100) + qty;
-            }
-            thisprofit = ((thisbuyprice - Math.ceil(thisbuyprice * 0.05)) * gsqty - craftprice);
-
-            this_e = parseInt($('#e_' + type).val()) + parseInt($('#e_all').val());
-            if(this_e == 0){
-              es = e;
-            }else{
-              es = e - (e * (this_e / 100));
-            }
-
-            if(thisbuyprice > (craftprice / qty)){
-              thisrecommend =  "제작";
-            }else{
-              thisrecommend =  "구매";
-            }
-
-            $table.bootstrapTable('insertRow', {
-              index: 1,
-              row: {item: itemname,
-                    recommend: thisrecommend,
-                    buyprice: thisbuyprice,
-                    craftprice: craftprice.toFixed(2),
-                    profit: thisprofit.toFixed(2),
-                    profitperenergy: parseInt((10000 / es) * thisprofit)
-                  }
-            });
-          });
+          jsonsave = json;
+          recipecalc();
         }
       });
     });
