@@ -190,8 +190,10 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>  
-                <button id="wisdomedit" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">수정</button>
+                </div>
+                <div class="text-center">
+                  <button id="wisdomedit" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">수정</button>
+                </div>
               </div>
             </div>
           </div>
@@ -440,7 +442,7 @@
         },
       })
 
-      if ($.cookie("gs_all") == "" || url == "http://127.0.0.1:5000"){
+      if ($.cookie("gs_all") == "" || $.cookie("gs_all") == undefined || url == "http://127.0.0.1:5000"){
         $('#wisdomeffect').find('input').filter(function(){
           $(this).val(0);
         });
