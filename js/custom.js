@@ -51,7 +51,7 @@ $(function(){
     <a class="nav-link" aria-current="page" href="mari">마리샵</a>
     <a class="nav-link" aria-current="page" href="secretmap">비밀지도</a>
     <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
-    <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기(미완)</a>
+    <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
     `);
     

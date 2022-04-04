@@ -311,6 +311,7 @@
   <script src="js/craft_recipe.js" > </script>
   <script>
     var jsonsave;
+    var jsondate;
     var $table = $('#fresh-table');
 
     function recipecalc(){
@@ -334,7 +335,7 @@
         craftprice = 0;
         for (var i = 3; i < Object.keys(recipe).length; i++) {
           thisitemname = Object.keys(recipe)[i];
-            if(thisitemname.lastIndexOf('(') != -1){
+          if(thisitemname.lastIndexOf('(') != -1){
             thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
           }
           thisitmeqty = recipe[Object.keys(recipe)[i]];
@@ -402,7 +403,10 @@
                 craftprice: craftprice.toFixed(2),
                 profit: thisprofit.toFixed(2),
                 profitperenergy: parseInt((10000 / es) * thisprofit),
-                dict: recipe
+                dict: recipe,
+                es: es,
+                gsqty: gsqty
+
         });
       });
 
@@ -430,21 +434,69 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">11</th>
-      <td>22</td>
-      <td>33</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th scope="row">55</th>
-      <td>66</td>
-      <td>77</td>
-      <td>88</td>
+      <td scope="row">${row['buyprice']}</td>
+      <td>${Math.ceil(row['buyprice'] * 0.05)}</td>
+      <td>${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
+      <td>`;
+
+      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+        html += `<p>${Object.keys(row['dict'])[i]}</p>`;
+      }
+
+      html += `</td>
+      <td>`;
+       
+      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+        html += `<p>${row['dict'][Object.keys(row['dict'])[i]]}</p>`;
+      }
+
+      html += `</td>
+      <td>`;
+      
+      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+        thisitemname = Object.keys(row['dict'])[i];
+        if(thisitemname.lastIndexOf('(') != -1){
+          thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
+        }
+        if(thisitemname == "실링"){
+          calcprice = 0;
+
+        }else if(thisitemname == "골드"){
+          thissale = parseInt($('#cc_' + type).val()) + parseInt($('#cc_all').val());
+          if(thissale == 0){
+            calcprice = row['dict'][Object.keys(row['dict'])[i]];
+          }else{
+            calcprice = row['dict'][Object.keys(row['dict'])[i]] - (row['dict'][Object.keys(row['dict'])[i]] * (thissale / 100));
+          }
+        }else{
+          try{
+            thisunit = itemunit[Object.keys(row['dict'])[i]];
+            if(thisunit == undefined){
+              thisunit = 1;
+            }
+          }catch{}
+          marketprice = jsonsave[thisitemname];
+          calcprice = (marketprice / thisunit) * row['dict'][Object.keys(row['dict'])[i]]
+          if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
+            for (var j = 0; j < tabledata.length; j++) {
+              if(tabledata[j]['item'] == thisitemname){
+                calcprice = (tabledata[j]['craftprice'] * row['dict'][Object.keys(row['dict'])[i]]) / tabledata[j]['dict']['수량'];
+                break;
+              }
+            }
+          }
+        }
+        html += `<p>${calcprice.toFixed(2)}</p>`;
+      }
+      html +=`<td>${row['craftprice']}</td>
+      <td>${row['dict']['활동력']}</td>
+      <td>${row['es']}</td>
+      <td>${row['dict']['수량']}</td>
+      <td>${row['gsqty']}</td>
+      <td>${row['profit']}</td>
     </tr>
   </tbody>
 </table>`;
-
-
       return html;
     }
 
@@ -495,6 +547,8 @@
     }
 
     $(function(){
+
+
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
@@ -508,7 +562,14 @@
           return ''
         },
         formatRecordsPerPage: function (pageNumber) {
-          return pageNumber + ' rows visible'
+          jsondate = String(jsondate);
+          db_year = jsondate.slice(0,4);
+          db_mon = jsondate.slice(4,6);
+          db_day = jsondate.slice(6,8);
+          db_hour = jsondate.slice(8,10);
+          db_min = jsondate.slice(10,12);
+
+          return pageNumber + ' 아이템 값 기준 : ' + db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min + " 기준"
         },
       })
 
@@ -558,6 +619,8 @@
         url: url + '/craftcalc',
         success: function(json) {
           jsonsave = json;
+          jsondate = jsonsave['date'];
+
           recipecalc();
         }
       });
