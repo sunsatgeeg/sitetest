@@ -206,10 +206,10 @@
             <thead>
               <th data-field="image" data-formatter="imageFormatter"></th>
               <th class="text-start" data-field="item" data-sortable="true">아이템</th>
-              <th data-field="recommend" data-sortable="true">추천방식</th>
+              <th data-field="recommend" data-sortable="true" data-cell-style="recomcellStyle">추천방식</th>
               <th data-field="buyprice" data-sortable="true">시세</th>
               <th data-field="craftprice" data-sortable="true">제작비용</th>
-              <th data-field="profit" data-sortable="true">이익</th>
+              <th data-field="profit" data-sortable="true" data-cell-style="profcellStyle">판매이익</th>
               <th data-field="profitperenergy" data-sortable="true">이익/활동력</th>
             </thead>
             <tbody></tbody>
@@ -305,6 +305,8 @@
       width: 1%;
       min-width: 0;
     }
+    
+    * { font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;}
   </style>
   <script src="js/craft_recipe.js" > </script>
   <script>
@@ -399,7 +401,8 @@
                 buyprice: thisbuyprice,
                 craftprice: craftprice.toFixed(2),
                 profit: thisprofit.toFixed(2),
-                profitperenergy: parseInt((10000 / es) * thisprofit)
+                profitperenergy: parseInt((10000 / es) * thisprofit),
+                dict: recipe
         });
       });
 
@@ -422,6 +425,38 @@
         grade = recipeimg[thisname][1];
       }
       return '<img class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/' + image + '.png" style="width: 64px;">'
+    }
+
+    function recomcellStyle(value, row, index) {
+      if (row['recommend'] == '구매') {
+        return {
+          css: {
+            color: 'red'
+          }
+        }
+      }else{
+        return {
+          css: {
+            color: '#00ff00'
+          }
+        }
+      }
+    }
+
+    function profcellStyle(value, row, index) {
+      if (row['profit'] <= 0) {
+        return {
+          css: {
+            color: 'red'
+          }
+        }
+      }else{
+        return {
+          css: {
+            color: '#00ff00'
+          }
+        }
+      }
     }
 
     $(function(){
@@ -450,6 +485,7 @@
         $('#wisdomeffect').find('input').filter(function(){
           $(this).val($.cookie($(this).attr('id')));
         });
+        recipecalcwait();
       }
 
       $('#wisdomeffect').find('input').filter(function(){
