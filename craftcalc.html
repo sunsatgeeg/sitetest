@@ -192,6 +192,7 @@
                   </table>
                 </div>
                 <div class="text-center">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">도움말</button>
                   <button id="wisdomedit" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">수정</button>
                 </div>
               </div>
@@ -627,5 +628,27 @@
     });
 
   </script>
+  <div class="modal fade bd-example-modal-lg" id="MA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black">도움말</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-black">
+          <div>
+            <img src="img\wisdom.png">
+            <p>▲ 위와 같이 제작 대성공 확률 4% 니까 밑에 전체에 4입력</p>
+            <p>[배틀 아이템 - 폭탄] 제작 대성공 확률 3% 증가니까 밑에 배틀아이템에 3입력</p>
+            <p>[요리] 제작 대성공 확률 1% 증가니까 밑에 배틀아이템에 1입력</p>
+            <img src="img\wisdomeffect.png">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn btn-outline-dark text-black" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
