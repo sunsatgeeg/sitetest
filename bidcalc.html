@@ -89,7 +89,7 @@
       <div class="mx-auto w-50 pt-5">
         <div class="flex-row mb-3">
           <div class="inputmethod">
-            <div id="slidezone" class="mb-3 row mx-0" style="display:none;">
+            <div id="slide" class="mb-3 row mx-0" style="display:none;">
               <div class="mb-2 px-0">
                 <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
               </div>
@@ -98,7 +98,7 @@
               <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
               <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
             </div>
-            <div id="keypadzone">
+            <div id="keypad">
               <div id="pinpad"> 
                 <form class="mx-auto mb-2">
                   <input type="button" value="1" id="1" class="pinButton calc"/>
@@ -124,17 +124,17 @@
           </div>
           <div class="btn-group w-100 row">
             <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount" for="4">4인
+              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="4">4인
                 <input type="radio" class="btn-check" name="options-outlined" id="4" >
               </label>
             </div>
             <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount active" for="8">8인
+              <label class="btn btn-outline-light btn-lg w-100 personcount active" forI="8">8인
                 <input type="radio" class="btn-check" name="options-outlined" id="8">
               </label>
             </div>
             <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount" for="16">16인
+              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="16">16인
                 <input type="radio" class="btn-check" name="options-outlined" id="16" >
               </label>
             </div>
@@ -186,7 +186,8 @@
         </div>
         <div class="mb-3 row mx-0 btninputmethod">
           <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2 active" value="keypad">키패드</button>
-          <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col ms-2" value="slide">슬라이드</button>
+          <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
+          <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
         </div>
       </div>
     </main>
@@ -226,12 +227,17 @@
       if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
         console.log('');
       }else{
-        if($.cookie("inputmethod") != 'keypad'){
-          $('#btnslide').addClass('active');
-          $('#slidezone').show();
-          $('#btnkeypad').removeClass('active');
-          $('#keypadzone').hide();
-        }
+        target = "#" + $.cookie("inputmethod");
+        
+        $('.btninputmethod button').filter(function(){
+            $(this).removeClass('active');
+        })
+        $(target).addClass('active');
+
+        $('.inputmethod').children().filter(function(){
+          $(this).hide();
+        });
+        $(target).show();
       }
 
       $('.clickcount').on("click",function(){
@@ -262,13 +268,15 @@
         $.cookie("inputmethod", $(this).val());
 
         $('.inputmethod').children().filter(function(){
-          $(this).toggle();
+          $(this).hide();
         });
+
+        $('#' + $(this).val()).show();
       })
 
       var input_value = $("#price");
       $(".calc").click(function () {
-        let value = $(this).val();
+        var value = $(this).val();
         field(value);
       });
       function field(value) {
@@ -331,13 +339,13 @@
         if($('#price').val() == ""){
           return;
         }
-        personcount = parseInt($(this).attr('for'));
+        personcount = parseInt($(this).attr('forI'));
         calc();
       });
 
       $('#othercount').on('keyup change', function(){
         personcount = parseInt($(this).val());
-        if($(this).val() == ""){
+        if($(this).val() == "" || $(this).val() < 0){
           return;
         }
         if(personcount < 2){

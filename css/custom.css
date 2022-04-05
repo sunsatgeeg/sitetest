@@ -166,7 +166,7 @@ html{
     box-shadow: -420px 0 0 400px #00fd0a;
 }
   
-#keypadzone form {
+#keypad form {
     width: 390px;
     background: #4b4b4b;
     padding: 35px 25px;
@@ -175,11 +175,11 @@ html{
     border-radius: 5px;
   }
   
-#keypadzone input:focus {
+#keypad input:focus {
     outline: none;
 }
   
-#keypadzone .pinButton {
+#keypad .pinButton {
     border: none;
     background: none;
     font-size: 1.5em;
@@ -192,33 +192,33 @@ html{
     margin: 7px 20px;
 }
   
-#keypadzone .clear,
-#keypadzone .backspace {
+#keypad .clear,
+#keypad .backspace {
     font-size: 1em !important;
 }
   
-#keypadzone .pinButton:hover {
+#keypad .pinButton:hover {
     box-shadow: #ffffff 0 0 1px 1px;
 }
-#keypadzone .pinButton:active {
+#keypad .pinButton:active {
     background: #506ce8;
     color: #fff;
 }
   
-#keypadzone .clear:hover {
+#keypad .clear:hover {
     box-shadow: #ff3c41 0 0 1px 1px;
 }
   
-#keypadzone .clear:active {
+#keypad .clear:active {
     background: #ff3c41;
     color: #fff;
 }
   
-#keypadzone .backspace:hover {
+#keypad .backspace:hover {
     box-shadow: #47cf73 0 0 1px 1px;
 }
   
-#keypadzone .backspace:active {
+#keypad .backspace:active {
     background: #47cf73;
     color: #fff;
 }
