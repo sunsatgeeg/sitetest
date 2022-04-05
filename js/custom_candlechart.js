@@ -121,7 +121,7 @@ am5.ready(function() {
   });
 
   var dateAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
-    groupData: true,
+    groupData: false,
     maxDeviation: 1,
     baseInterval: { timeUnit: "minute", count: 30 },
     renderer: am5xy.AxisRendererX.new(root, {}),
