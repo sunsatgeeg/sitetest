@@ -203,7 +203,9 @@
                  data-detail-view="true"
                  data-detail-view-icon="false"
                  data-detail-view-by-click="true"
-                 data-detail-formatter="detailFormatter">
+                 data-detail-formatter="detailFormatter"
+                 data-sort-name="profit"
+                 data-sort-order="desc">
             <thead>
               <th data-field="image" data-formatter="imageFormatter"></th>
               <th class="text-start" data-field="item" data-sortable="true">아이템</th>
@@ -211,7 +213,7 @@
               <th data-field="buyprice" data-sortable="true">시세</th>
               <th data-field="craftprice" data-sortable="true">제작비용</th>
               <th data-field="profit" data-sortable="true" data-cell-style="profcellStyle">판매이익</th>
-              <th data-field="profitperenergy" data-sortable="true">이익/활동력</th>
+              <th data-field="profitperenergy" data-sortable="true" data-formatter="profitperenergyFormatter">이익/활동력</th>
             </thead>
             <tbody style="cursor:pointer"></tbody>
           </table>
@@ -261,7 +263,7 @@
     .fresh-table .bootstrap-table .table tbody > tr > td {
       padding: .75rem !important;
     }
-    .fresh-table .bootstrap-table .table tbody > tr > td:nth-child(1) {
+    #fresh-table > tbody > tr > td:nth-child(1) {
       padding: 0px !important;
     }
     .input-group{
@@ -306,7 +308,7 @@
       width: 1%;
       min-width: 0;
     }
-    
+
     * { font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;}
   </style>
   <script src="js/craft_recipe.js" > </script>
@@ -314,6 +316,19 @@
     var jsonsave;
     var jsondate;
     var $table = $('#fresh-table');
+
+    function showtoastify(){
+      toast = Toastify({
+        text: "제작 활동력이 1이라서 비상식적인 이득으로 나온 것입니다. 실제론 활동력 1만 못 녹입니다.",
+        position: "center",
+        gravity: "bottom",
+        duration: -1,
+        close: false
+      }).showToast();
+    }
+    function hidetoastify(){
+      toast.hideToast();
+    }
 
     function recipecalc(){
       tabledata = [];
@@ -515,6 +530,18 @@
       return '<img class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/' + image + '.png" style="width: 64px;">'
     }
 
+    waringitemarr = ['신호탄','회복약'];
+    function profitperenergyFormatter(value, row){
+      
+      if(waringitemarr.indexOf(row['item']) != -1){
+        return value + ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16" onmouseover="showtoastify();" onmouseout="hidetoastify();">
+                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                         </svg>`;
+      }else{
+        return value;
+      }
+    }
+
     function recomcellStyle(value, row, index) {
       if (row['recommend'] == '구매') {
         return {
@@ -548,8 +575,6 @@
     }
 
     $(function(){
-
-
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
@@ -638,7 +663,7 @@
         <div class="modal-body text-black">
           <div>
             <img src="img\wisdom.png">
-            <p>▲ 위와 같이 제작 대성공 확률 4% 니까 밑에 전체에 4입력</p>
+            <p>▲ 위와 같이 제작 대성공 확률 4% 증가니까 밑에 전체에 4입력</p>
             <p>[배틀 아이템 - 폭탄] 제작 대성공 확률 3% 증가니까 밑에 배틀아이템에 3입력</p>
             <p>[요리] 제작 대성공 확률 1% 증가니까 밑에 요리에 1입력</p>
             <img src="img\wisdomeffect.png">

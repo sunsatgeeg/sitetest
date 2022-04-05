@@ -115,6 +115,7 @@ $.ajax({
             // Create axes  
             // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
             var xAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
+                groupData: true,
                 maxDeviation: 0.2,
                 baseInterval: {
                     timeUnit: "minute",
