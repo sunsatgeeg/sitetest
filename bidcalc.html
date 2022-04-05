@@ -226,11 +226,11 @@
       if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
         console.log('');
       }else{
-        if($.cookie("inputmethod") != 'slide'){
-          $('#btnslide').removeClass('active');
-          $('#slidezone').hide();
-          $('#btnkeypad').addClass('active');
-          $('#keypadzone').show();
+        if($.cookie("inputmethod") != 'keypad'){
+          $('#btnslide').addClass('active');
+          $('#slidezone').show();
+          $('#btnkeypad').removeClass('active');
+          $('#keypadzone').hide();
         }
       }
 
