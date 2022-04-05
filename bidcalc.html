@@ -225,7 +225,13 @@
       var price = 0;
 
       if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
-        console.log('');
+        $('.btninputmethod button').filter(function(){
+            $(this).removeClass('active');
+        })
+        $('#btnnone').addClass('active');
+        $('.inputmethod').children().filter(function(){
+          $(this).hide();
+        });
       }else{
         target = $.cookie("inputmethod");
 
