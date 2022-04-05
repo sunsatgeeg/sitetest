@@ -89,7 +89,7 @@
       <div class="mx-auto w-50 pt-5">
         <div class="flex-row mb-3">
           <div class="inputmethod">
-            <div id="slide" class="mb-3 row mx-0" style="display:none;">
+            <div id="slide" class="mb-3 row mx-0">
               <div class="mb-2 px-0">
                 <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
               </div>
@@ -185,7 +185,7 @@
           </div>
         </div>
         <div class="mb-3 row mx-0 btninputmethod">
-          <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2 active" value="keypad">키패드</button>
+          <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2" value="keypad">키패드</button>
           <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
           <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
         </div>
@@ -227,8 +227,8 @@
       if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
         console.log('');
       }else{
-        target = "#" + $.cookie("inputmethod");
-        
+        target = "#btn" + $.cookie("inputmethod");
+
         $('.btninputmethod button').filter(function(){
             $(this).removeClass('active');
         })
