@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>경매 계산기 :: LoChart</title>
+  <script>var here = "bidcalc";</script>
+  
+  <!-- toastify -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/jquery.cookie-1.4.1.min.js" > </script>
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <!-- custom -->
+  <script src="js/custom.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  
+
+  <!-- google ADSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
+     crossorigin="anonymous"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <style>
+    @media (max-width: 992px) {
+      .w-50 {
+        width: 100%!important;
+      }
+    }
+    #drag-1 {
+  width: 25%;
+  max-height: 6.5em;
+  margin: 1rem 0 0 1rem;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 4%;
+  touch-action: none;
+  user-select: none;
+  transform: translate(0px, 0px);
+  z-index: 99;
+}
+  </style>
+  <link href="css/cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-3">
+      <div>
+        <a href="/"><h3 class="float-md-start mb-0 text-white">LoChart</h3></a>
+        <nav class="nav nav-masthead justify-content-center float-md-end"></nav>
+      </div>
+    </header>
+
+    <main class="pt-5 pb-5 px-3">
+      <div class="text-center">
+        <div id="drag-1" class="draggable">
+          <p> You can drag one element </p>
+        </div>
+      <!-- temp ad -->
+      <div class="ad mb-5">
+        <div>
+          <div class="text-center">
+            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+            data-ad-unit    = "DAN-XJwlOkv1K5GXhAIz" 
+            data-ad-width   = "728" 
+            data-ad-height  = "90"></ins>
+          </div>
+        </div>
+        <div id="ads-left">
+          <div>
+            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+            data-ad-unit    = "DAN-nsfEeS2PlFxohWoX" 
+            data-ad-width   = "160" 
+            data-ad-height  = "600"></ins> 
+          </div>
+        </div>
+        <div id="ads-right">
+          <div>
+            <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+            data-ad-unit    = "DAN-XoJlI1MzVRSxM5dr" 
+            data-ad-width   = "160" 
+            data-ad-height  = "600"></ins> 
+          </div>
+        </div>
+      </div>
+      
+      <div class="mx-auto w-50 pt-5">
+        <div class="flex-row mb-3">
+          <div class="inputmethod">
+            <div id="slide" class="mb-3 row mx-0">
+              <div class="mb-2 px-0">
+                <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
+              </div>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
+            </div>
+            <div id="keypad">
+              <div id="pinpad"> 
+                <form class="mx-auto mb-2">
+                  <input type="button" value="7" id="7" class="pinButton calc"/>
+                  <input type="button" value="8" id="8" class="pinButton calc"/>
+                  <input type="button" value="9" id="9" class="pinButton calc"/><br>
+                  <input type="button" value="4" id="4" class="pinButton calc"/>
+                  <input type="button" value="5" id="5" class="pinButton calc"/>
+                  <input type="button" value="6" id="6" class="pinButton calc"/><br>
+                  <input type="button" value="1" id="1" class="pinButton calc"/>
+                  <input type="button" value="2" id="2" class="pinButton calc"/>
+                  <input type="button" value="3" id="3" class="pinButton calc"/><br>
+                  <input type="button" value="clear" id="clear" class="pinButton clear"/>
+                  <input type="button" value="0" id="0 " class="pinButton calc"/>
+                  <input type="button" value="←" id="backspace" class="pinButton backspace"/>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text" >가격</span>
+            <input type="text" class="form-control" id="price">
+            <button class="btn btn-outline-light" type="button" id="priceclear">X</button>
+          </div>
+          <div class="btn-group w-100 row">
+            <div class="col px-0 me-2">
+              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="4">4인
+                <input type="radio" class="btn-check" name="options-outlined" id="4" >
+              </label>
+            </div>
+            <div class="col px-0 me-2">
+              <label class="btn btn-outline-light btn-lg w-100 personcount active" forI="8">8인
+                <input type="radio" class="btn-check" name="options-outlined" id="8">
+              </label>
+            </div>
+            <div class="col px-0 me-2">
+              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="16">16인
+                <input type="radio" class="btn-check" name="options-outlined" id="16" >
+              </label>
+            </div>
+            <div class="col px-0">
+              <div class="input-group input-group-lg w-100" style="width: 120px;">
+                <input type="number" placeholder="인원 수" id="othercount" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="table text-white mb-0">
+          <thead>
+            <tr>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="fix-stroke">
+              <td scope="col">판매 수수료 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16" data-bs-toggle="tooltip" data-bs-placement="right" title="숫자에 커서를 올리면 계산한 식이 나옵니다">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                </svg>
+              </td>
+              <td scope="col text-danger" class="text-end" id="tax" data-bs-toggle="tooltip" data-bs-placement="right" title="　">0</td>
+            </tr>
+            <tr>
+              <td scope="col">분배금</td>
+              <td scope="col text-danger" class="text-end" id="distribution" data-bs-toggle="tooltip" data-bs-placement="right" title="　">0</td>
+            </tr>
+            <tr>
+              <td scope="col">손익 분기점</td>
+              <td scope="col" class="text-end fw-bold" id="breakpoint" style="color: #ffaa99;" data-bs-toggle="tooltip" data-bs-placement="right" title="　">0</td>
+            </tr>
+            <tr>
+              <td scope="col">입찰 적정가</td>
+              <td scope="col" class="text-end fw-bold" id="fairprice" style="color: #99ff88;" data-bs-toggle="tooltip" data-bs-placement="right" title="　">0</td>
+            </tr>
+            <tr>
+              <td scope="col">그냥'줘'</td>
+              <td scope="col" class="text-end fw-bold" id="giveme" style="color: #88ddff;" data-bs-toggle="tooltip" data-bs-placement="right" title="　">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="clearfix">
+          <div class="float-end text-end">
+            <p class="my-0 mb-3">숫자를 클릭하면 복사가 됩니다.</p>
+          </div>
+        </div>
+        <div class="mb-3 row mx-0 btninputmethod">
+          <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2" value="keypad">키패드</button>
+          <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
+          <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- tempAd -->
+    <footer class="mt-5 text-white-50">
+      <div class="p-0 m-0 mb-2 text-center">
+        <ins class="kakao_ad_area" style="display:none;" rel="nofollow"
+        data-ad-unit    = "DAN-wTnO0MIIPOzE9w0o" 
+        data-ad-width   = "728" 
+        data-ad-height  = "90"></ins> 
+      </div>
+      
+      <!-- AdSense -->
+      <div class="ADsense">
+        <!-- loa_market_chart -->
+        <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4936470262963011"
+        data-ad-slot="8129420230"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+  </div>
+
+  <script>
+    $(function(){
+      // target elements with the "draggable" class
+      interact('.draggable')
+        .draggable({
+          // enable inertial throwing
+          inertia: true,
+          // keep the element within the area of it's parent
+          modifiers: [
+            interact.modifiers.restrictRect({
+              restriction: 'parent',
+              endOnly: true
+            })
+          ],
+          // enable autoScroll
+          autoScroll: true,
+
+          listeners: {
+            // call this function on every dragmove event
+            move: dragMoveListener,
+
+            // call this function on every dragend event
+            end (event) {
+              var textEl = event.target.querySelector('p')
+
+              textEl && (textEl.textContent =
+                'moved a distance of ' +
+                (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+                          Math.pow(event.pageY - event.y0, 2) | 0))
+                  .toFixed(2) + 'px')
+            }
+          }
+        })
+
+      function dragMoveListener (event) {
+        var target = event.target
+        // keep the dragged position in the data-x/data-y attributes
+        var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+        var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+        // translate the element
+        target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+        // update the posiion attributes
+        target.setAttribute('data-x', x)
+        target.setAttribute('data-y', y)
+      }
+
+      // this function is used later in the resizing and gesture demos
+      window.dragMoveListener = dragMoveListener
+
+      $('[data-bs-toggle="tooltip"]').tooltip({html: true})
+      var personcount = 8;
+      var price = 0;
+
+      if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
+        $('.btninputmethod button').filter(function(){
+            $(this).removeClass('active');
+        })
+        $('#btnnone').addClass('active');
+        $('.inputmethod').children().filter(function(){
+          $(this).hide();
+        });
+      }else{
+        target = $.cookie("inputmethod");
+
+        $('.btninputmethod button').filter(function(){
+            $(this).removeClass('active');
+        })
+        $("#btn" + target).addClass('active');
+
+        $('.inputmethod').children().filter(function(){
+          $(this).hide();
+        });
+        $("#" + target).show();
+      }
+
+      $('.clickcount').on("click",function(){
+        sumA = $(this).find('#countvalue').text();
+        sumB = $('#price').val();
+        if(sumB == ""){sumB = 0};
+
+        $('#price').val(parseInt(sumA) + parseInt(sumB));
+        calc();
+      });
+
+      $('#slider').on('mousemove change', function(){
+        if($(this).val() == 0){
+          return;
+        }
+        $('#price').val($(this).val());
+        calc();
+      });
+
+      $('.btninputmethod button').on('click', function(){
+        if($(this).hasClass("active")){
+          return;
+        }
+        $('.btninputmethod button').filter(function(){
+            $(this).removeClass('active');
+        })
+        $(this).addClass('active');
+        $.cookie("inputmethod", $(this).val());
+
+        $('.inputmethod').children().filter(function(){
+          $(this).hide();
+        });
+
+        $('#' + $(this).val()).show();
+      })
+
+      var input_value = $("#price");
+      $(".calc").click(function () {
+        var value = $(this).val();
+        field(value);
+      });
+      function field(value) {
+        if(input_value.val() == 0){
+          input_value.val("");
+        }
+        input_value.val(input_value.val() + value);
+        calc();
+      }
+      $("#clear").click(function () {
+        input_value.val(0);
+        calc();
+      });
+      $("#backspace").click(function () {
+        input_value.val(input_value.val().slice(0, -1));
+        if(input_value.val() == ""){
+          input_value.val(0)
+        }
+        calc();
+      });
+
+      $('#priceclear').on('click',function(){
+        $('#price').val(0);
+        calc();
+      });
+
+      function calc(){
+        $('#slider').val($('#price').val());
+
+        price = $('#price').val();
+        var tax = Math.ceil(price * 0.05);
+        $('#tax').text("- " + tax);
+        $('#tax').attr('data-bs-original-title', String(price) + " x 0.05");
+        var distribution = parseInt((price-tax) / personcount);
+        $('#distribution').text("- " + distribution);
+        $('#distribution').attr('data-bs-original-title', "" + String(price) + " - " + String(tax) + " = " + String(price - tax) + " ÷ " + String(personcount));
+        var breakpoint = price - tax - distribution;
+        $('#breakpoint').text(breakpoint);
+        $('#breakpoint').attr('data-bs-original-title', String(price) + " - " + String(tax) + " - " + String(distribution));
+        $('#breakpoint').css("cursor", "pointer");
+        var fairprice = parseInt(breakpoint*100/(110));
+        $('#fairprice').text(fairprice);
+        $('#fairprice').attr('data-bs-original-title', String(breakpoint) + " ÷ 1.1");
+        $('#fairprice').css("cursor", "pointer");
+        var giveme = parseInt(fairprice*100/(110));
+        $('#giveme').text(giveme);
+        $('#giveme').attr('data-bs-original-title', String(fairprice) + " ÷ 1.1");
+        $('#giveme').css("cursor", "pointer");
+      }
+      $('#breakpoint').on("click", clickToCopy);
+      $('#fairprice').on("click", clickToCopy);
+      $('#giveme').on("click", clickToCopy);
+
+      $('.personcount').on('click', function(){
+        $('#othercount').val("");
+        $(this).parent().parent().find('.personcount').filter(function(){
+          $(this).removeClass('active');
+        })
+        $(this).addClass('active');
+        if($('#price').val() == ""){
+          return;
+        }
+        personcount = parseInt($(this).attr('forI'));
+        calc();
+      });
+
+      $('#othercount').on('keyup change', function(){
+        personcount = parseInt($(this).val());
+        if($(this).val() == "" || $(this).val() < 0){
+          return;
+        }
+        if(personcount < 2){
+          return; 
+        }
+        $('.personcount').each(function(){
+          $(this).removeClass('active');
+        });
+        if($('#price').val() == ""){
+          return;
+        }
+        calc();
+      });
+      
+      $('#price').on('keyup change', function(){
+        if($(this).val() == ""){
+          return;
+        }
+        price = parseInt($(this).val());
+        calc();
+      });
+      
+    });
+  </script>
+</body>
+</html>
