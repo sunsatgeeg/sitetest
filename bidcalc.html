@@ -227,17 +227,17 @@
       if ($.cookie("inputmethod") == "" || $.cookie("inputmethod") == undefined || url == "http://127.0.0.1:5000"){
         console.log('');
       }else{
-        target = "#btn" + $.cookie("inputmethod");
+        target = $.cookie("inputmethod");
 
         $('.btninputmethod button').filter(function(){
             $(this).removeClass('active');
         })
-        $(target).addClass('active');
+        $("#btn" + target).addClass('active');
 
         $('.inputmethod').children().filter(function(){
           $(this).hide();
         });
-        $(target).show();
+        $("#" + target).show();
       }
 
       $('.clickcount').on("click",function(){
