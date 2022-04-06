@@ -43,19 +43,18 @@
         width: 100%!important;
       }
     }
-    #drag-1 {
-  width: 25%;
-  max-height: 6.5em;
-  margin: 1rem 0 0 1rem;
-  background-color: #29e;
-  color: white;
-  border-radius: 0.75em;
-  padding: 4%;
-  touch-action: none;
-  user-select: none;
-  transform: translate(0px, 0px);
-  z-index: 99;
-}
+    #keypad {
+      margin: 1rem 0 0 1rem;
+      background-color: #29e;
+      color: white;
+      border-radius: 0.75em;
+      touch-action: none;
+      user-select: none;
+      transform: translate(0px, 0px);
+      position: absolute;
+
+      z-index: 99;
+    }
   </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
@@ -72,9 +71,6 @@
 
     <main class="pt-5 pb-5 px-3">
       <div class="text-center">
-        <div id="drag-1" class="draggable">
-          <p> You can drag one element </p>
-        </div>
       <!-- temp ad -->
       <div class="ad mb-5">
         <div>
@@ -106,18 +102,10 @@
       <div class="mx-auto w-50 pt-5">
         <div class="flex-row mb-3">
           <div class="inputmethod">
-            <div id="slide" class="mb-3 row mx-0">
-              <div class="mb-2 px-0">
-                <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
-              </div>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
-            </div>
-            <div id="keypad">
+            <div id="keypad" class="draggable" style="display: none;">
+              <div id="top" style="padding-top:25px;"></div>
               <div id="pinpad"> 
-                <form class="mx-auto mb-2">
+                <form class="mx-auto">
                   <input type="button" value="7" id="7" class="pinButton calc"/>
                   <input type="button" value="8" id="8" class="pinButton calc"/>
                   <input type="button" value="9" id="9" class="pinButton calc"/><br>
@@ -132,6 +120,15 @@
                   <input type="button" value="←" id="backspace" class="pinButton backspace"/>
                 </form>
               </div>
+            </div>
+            <div id="slide" class="mb-3 row mx-0">
+              <div class="mb-2 px-0">
+                <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
+              </div>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
+              <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
             </div>
           </div>
           <div class="input-group input-group-lg mb-3">
@@ -238,7 +235,7 @@
   <script>
     $(function(){
       // target elements with the "draggable" class
-      interact('.draggable')
+      interact('#top')
         .draggable({
           // enable inertial throwing
           inertia: true,
@@ -254,23 +251,13 @@
 
           listeners: {
             // call this function on every dragmove event
-            move: dragMoveListener,
-
-            // call this function on every dragend event
-            end (event) {
-              var textEl = event.target.querySelector('p')
-
-              textEl && (textEl.textContent =
-                'moved a distance of ' +
-                (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                          Math.pow(event.pageY - event.y0, 2) | 0))
-                  .toFixed(2) + 'px')
-            }
+            move: dragMoveListener
           }
         })
 
       function dragMoveListener (event) {
-        var target = event.target
+        var target = event.target.offsetParent
+        
         // keep the dragged position in the data-x/data-y attributes
         var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
         var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
