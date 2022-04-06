@@ -110,6 +110,20 @@ html{
     text-overflow: ellipsis;
 
 }
+.item-image[data-grade="5"] {
+    background: linear-gradient(135deg,#341a09,#a24006);
+}
+.item-name[data-grade="5"]{
+    color: rgb(250, 93, 0);
+}
+
+.item-image[data-grade="4"] {
+    background: linear-gradient(135deg,#362003,#9e5f04);
+}
+.item-name[data-grade="4"] {
+    color: rgb(249, 146, 0);
+}
+
 .item-image[data-grade="3"] {
     background: linear-gradient(135deg,#261331,#480d5d);
 }   
@@ -221,4 +235,118 @@ html{
 #keypad .backspace:active {
     background: #47cf73;
     color: #fff;
+}
+
+.game-tooltip-item {
+    z-index: 30;
+    width: 100%;
+    max-width: 380px;
+    padding: 0 0 20px;
+    background-color: #2a2c35;
+    box-sizing: border-box;
+    border: 1px solid #1c1f2a;
+    color: #fff;
+    text-align: left;
+}
+.game-tooltip-item .NameTagBox {
+    font-size: 18px;
+    margin: 0!important;
+    padding: 15px 25px;
+    background-color: #2b2e37;
+    border-bottom: 1px solid #1c1f2a;
+    text-align: center;
+}
+.game-tooltip-item .NameTagBox font {
+    font-size: inherit;
+}
+.game-tooltip-item .NameTagBox p{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+.game-tooltip-item .itemdic-item-content>div, .game-tooltip-item>div:not(.itemdic-item-content) {
+    margin: 12px 15px 0;
+}
+.game-tooltip-item .ItemTitle {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    position: relative;
+    height: 68px;
+    padding-left: 83px;
+}
+.game-tooltip-item .ItemTitle .slotData[data-grade="3"] {
+    background: linear-gradient(135deg,#261331,#480d5d);
+}
+.game-tooltip-item .ItemTitle .slotData {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 68px;
+    height: 68px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    background-size: 46px 46px;
+}
+.game-tooltip-item .ItemTitle .slotData img {
+    width: 64px;
+    height: 64px;
+    border: 0;
+    vertical-align: top;
+}
+.itemdic .itemdic-contents .itemdic-iteminfo .itemdic-items .leftStr0 {
+    height: auto;
+    min-height: 24px;
+}
+.game-tooltip-item .ItemTitle .leftStr0 {
+    display: block;
+    height: 42px;
+    min-height: 24px;
+    font-size: 16px;
+}
+.game-tooltip-item .ItemTitle .leftStr0 font {
+    font-size: inherit;
+}
+.game-tooltip-item .ItemTitle .rightStr0 {
+    display: block;
+    margin-left: auto;
+}
+.game-tooltip-item .ItemTitle .leftStr2 {
+    line-height: 1.75;
+}
+.game-tooltip-item .ItemTitle .leftStr2 font[size="14"] {
+    font-size: 14px;
+}
+.game-tooltip-item .itemdic-item-content>div, .game-tooltip-item>div:not(.itemdic-item-content) {
+    margin: 12px 15px 0;
+}
+.game-tooltip-item font[size="12"] {
+    font-size: 14px;
+}
+br {
+    opacity: 0;
+}
+.game-tooltip-item .ItemTitle .leftStr1 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    font-size: 14px;
+}
+.game-tooltip-item .MultiTextBox {
+    display: -ms-flexbox;
+    display: flex;
+}
+.game-tooltip-item .MultiTextBox span:nth-child(2) {
+    display: block;
+    margin-left: auto;
 }
