@@ -333,9 +333,9 @@
     function recipecalc(){
       tabledata = [];
       
-      recipedata.forEach(function(recipe){
-        itemname = Object.keys(recipe)[0];
-        recipe = recipe[Object.keys(recipe)[0]];
+      Object.keys(recipedata).forEach(function(item){
+        itemname = item;
+        recipe = recipedata[item];
 
         type = recipe['분류'];
         if(type == '배틀아이템'){
@@ -349,7 +349,7 @@
         e = recipe['활동력'];
         
         craftprice = 0;
-        for (var i = 3; i < Object.keys(recipe).length; i++) {
+        for (var i = 4; i < Object.keys(recipe).length; i++) {
           thisitemname = Object.keys(recipe)[i];
           if(thisitemname.lastIndexOf('(') != -1){
             thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
@@ -430,6 +430,7 @@
     }
     
     function detailFormatter(index, row) {
+      console.log(row)
       html = "";
       html += `<table class="table" style="cursor:auto;">
   <thead>
@@ -455,21 +456,21 @@
       <td>${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
       <td>`;
 
-      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+      for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         html += `<p>${Object.keys(row['dict'])[i]}</p>`;
       }
 
       html += `</td>
       <td>`;
        
-      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+      for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         html += `<p>${row['dict'][Object.keys(row['dict'])[i]]}</p>`;
       }
 
       html += `</td>
       <td>`;
       
-      for (var i = 3; i < Object.keys(row['dict']).length; i++) {
+      for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         thisitemname = Object.keys(row['dict'])[i];
         if(thisitemname.lastIndexOf('(') != -1){
           thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
@@ -523,11 +524,45 @@
         thisname = row['item'];
       }
 
-      if(recipeimg[thisname] && recipeimg[thisname].length > 0){
-        image = recipeimg[thisname][0];
-        grade = recipeimg[thisname][1];
-      }
-      return '<img class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/' + image + '.png" style="width: 64px;">'
+      image = row.dict.key.Element_001.value.slotData.iconPath;
+      grade = row.dict.key.Element_001.value.slotData.iconGrade;
+
+      return '<img data-key="' + JSON.stringify(row.dict.key).replace(/"/gi, "&quot;") + '" class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/' + image + '" onmouseover="tooltip_item_show(this);" onmouseout="tooltip_item_hide(this);" style="width: 64px;">'
+    }
+
+    function tooltip_item_show(e){
+      offtop = $(e).offset().top;
+      offleft = $(e).offset().left + 75;
+      keydata = JSON.parse($(e).attr('data-key'));
+
+      tooltiphtml = `<div class="itemdic-item game-tooltip game-tooltip-item" style="position: absolute; left: ${offleft}px; top: ${offtop}px;">`;
+
+      Object.keys(keydata).forEach(function(e){
+        tooltiphtml += `<div class="${keydata[e]['type']}">`;
+        if(keydata[e]['type'] == "ItemTitle"){
+          tooltiphtml += `<span class="slotData" data-grade="${keydata[e]['value']['slotData']['iconGrade']}"><img src="https://cdn-lostark.game.onstove.com/${keydata[e]['value']['slotData']['iconPath']}" alt="" data-grade="${keydata[e]['value']['slotData']['iconGrade']}" class="item-image"}></span>`;
+          try{
+            delete keydata[e]['value']['slotData'];
+            delete keydata[e]['value']['qualityValue'];
+          }catch{}
+          Object.keys(keydata[e]['value']).forEach(function(f){
+            tooltiphtml += `<span class="${f}">${keydata[e]['value'][f]}</span>`;
+          });
+        }else if(keydata[e]['type'] == "MultiTextBox"){
+          keyvaluearr = keydata[e]['value'].split('|');
+          keyvaluearr.forEach(function(g){
+            tooltiphtml += `<span>${g}</span>`;
+          });
+        }else{
+          tooltiphtml += `${keydata[e]['value']}`;
+        }
+        tooltiphtml += `</div>`;
+      });
+
+      $('body').append(tooltiphtml);
+    }
+    function tooltip_item_hide(e){
+      $('body').find('.game-tooltip-item').remove()
     }
 
     waringitemarr = ['신호탄','회복약'];
