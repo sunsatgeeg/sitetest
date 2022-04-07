@@ -474,6 +474,7 @@
             for (var j = 0; j < tabledata.length; j++) {
               if(tabledata[j]['item'] == thisitemname){
                 price = ((tabledata[j]['craftprice'] * row['dict'][Object.keys(row['dict'])[i]]) / tabledata[j]['dict']['수량']) / row['dict'][Object.keys(row['dict'])[i]];
+                price = price.toFixed(1);
                 break;
               }
             }
