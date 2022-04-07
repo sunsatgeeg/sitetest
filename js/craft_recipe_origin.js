@@ -11,20 +11,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 5초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_4.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -60,20 +50,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_78.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -109,20 +89,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 10초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_6.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -158,20 +128,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 10초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_7.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -207,20 +167,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 10초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_8.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -255,20 +205,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -303,20 +243,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -351,20 +281,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -399,20 +319,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_71.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -447,20 +357,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_71.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -495,20 +395,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_9_71.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -543,20 +433,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_109.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -591,20 +471,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_109.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -639,20 +509,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_109.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -688,20 +548,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
         "leftStr1": "",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_213.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -737,20 +587,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
         "leftStr1": "",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_214.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -790,20 +630,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
         "leftStr1": "",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Use/Use_8_215.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -843,20 +673,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_10.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -892,20 +712,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_72.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -941,20 +751,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_76.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -990,20 +790,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1017,9 +807,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,660%</font> 만큼의 피해를 주고, 적을 공중에 띄운다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1035,20 +829,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_1.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1062,9 +846,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>1,052%</font> 만큼의 [화] 속성 피해를 준다. 10초간 유지되는 넓은 화염지대를 생성하고, 화염지대 위에 서 있는 대상에게<font color='#ffff99'>0.5</font>초 마다<font color='#99ff99'>157%</font> 만큼의 [화] 속성 피해를 준다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1080,20 +868,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_47.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1107,9 +885,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>2,613%</font> 만큼의 [암] 속성 피해를 주고, 대상의 모든 방어력을 <font color='#ffff99'>20</font>초 동안 <font color='#99ff99'>20%</font> 감소시킨다.<BR>무력화 : 하<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1125,20 +907,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1173,20 +945,10 @@ var recipedata = {
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 생활 재료</FONT></FONT>",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 1,
           "iconPath": "EFUI_IconAtlas/All_Quest/All_Quest_03_31.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1222,20 +984,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_17.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1271,20 +1023,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_50.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1320,20 +1062,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_63.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1347,9 +1079,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'><font color='#ffff99'>1</font>초마다 주변 무작위 지점에 낙뢰를 떨어뜨려 적에게 <font color='#99ff99'>588%</font>의 피해를 준다. <font color='#ffff99'>20</font>초 동안 지속된다.<BR><BR><FONT COLOR='#FFEC50'>물약</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1365,20 +1101,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_70.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1414,20 +1140,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_49.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1463,20 +1179,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_69.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1512,20 +1218,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_21.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1539,9 +1235,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>파괴 폭탄을 던져 <font color='#99ff99'>1,307%</FONT> 만큼의 피해를 입힌다.<BR>부위 파괴 : 레벨 3<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1557,20 +1257,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_0.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1584,9 +1274,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 적을 <font color='#99ff99'>3,660%</FONT> 만큼의 [성] 속성 피해를 주고, <font color='#ffff99'>4</font>초 동안 기절시킨다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1602,20 +1296,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_2.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1629,9 +1313,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,660%</FONT> 만큼의 [수] 속성 피해를 주고, <font color='#ffff99'>4</font>초 동안 동결시킨다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1647,20 +1335,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_3.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1674,9 +1352,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져<font color='#99ff99'>1,464%</FONT> 만큼의 [뇌] 속성 피해를 주고 <font color='#ffff99'>6</font>초에 걸쳐 <font color='#ffff99'>2</font>초마다 <font color='#99ff99'>732%</FONT> 만큼의 전류 피해를 준다.<br>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1692,20 +1374,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_54.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1719,9 +1391,13 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>2,449%</FONT> 만큼의 [토] 속성 피해를 주고, 대상의 공격속도와 이동속도를 <font color='#ffff99'>20</font>초 동안<font color='#99ff99'>40%</font> 감소시킨다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
     },
     "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    },
+    "Element_006": {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
@@ -1737,20 +1413,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_19.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1786,20 +1452,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_44.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1835,20 +1491,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_52.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1884,20 +1530,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_45.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1933,20 +1569,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_12.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -1982,20 +1608,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -2031,20 +1647,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 5분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 3,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_73.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -2080,20 +1686,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_77.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -2125,20 +1721,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 10초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 3,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_80.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2174,20 +1760,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 10초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 3,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_80.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2223,20 +1799,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_81.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2250,9 +1816,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 적을 <font color='#99ff99'>4,754%</FONT> 만큼의 [성] 속성 피해를 주고, <font color='#ffff99'>4</font>초 동안 기절시킨다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2268,20 +1838,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_81.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2295,9 +1855,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 적을 <font color='#99ff99'>4,754%</FONT> 만큼의 [성] 속성 피해를 주고, <font color='#ffff99'>4</font>초 동안 기절시킨다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2313,20 +1877,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_82.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2340,9 +1894,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>1,367%</font> 만큼의 [화] 속성 피해를 준다. 10초간 유지되는 넓은 화염지대를 생성하고, 화염지대 위에 서 있는 대상에게<font color='#ffff99'>0.5</font>초 마다<font color='#99ff99'>205%</font> 만큼의 [화] 속성 피해를 준다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
+  },
+  "Element_0055": {
+    "type": "SingleTextBox",
     "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
   },
-  "Element_005": {
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2358,20 +1916,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_82.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2385,9 +1933,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>1,367%</font> 만큼의 [화] 속성 피해를 준다. 10초간 유지되는 넓은 화염지대를 생성하고, 화염지대 위에 서 있는 대상에게<font color='#ffff99'>0.5</font>초 마다<font color='#99ff99'>205%</font> 만큼의 [화] 속성 피해를 준다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2403,20 +1955,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_83.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2430,9 +1972,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>4,754%</FONT> 만큼의 [수] 속성 피해를 주고, <font color='#ffff99'>6</font>초 동안 동결시킨다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2448,20 +1994,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_83.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2475,9 +2011,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>4,754%</FONT> 만큼의 [수] 속성 피해를 주고, <font color='#ffff99'>6</font>초 동안 동결시킨다.<BR>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2493,20 +2033,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_84.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2520,9 +2050,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져<font color='#99ff99'>1,568%</FONT> 만큼의 [뇌] 속성 피해를 주고 <font color='#ffff99'>8</font>초에 걸쳐 <font color='#ffff99'>2</font>초마다 <font color='#99ff99'>793%</FONT> 만큼의 전류 피해를 준다.<br>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2538,20 +2072,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_84.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2565,9 +2089,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져<font color='#99ff99'>1,568%</FONT> 만큼의 [뇌] 속성 피해를 주고 <font color='#ffff99'>8</font>초에 걸쳐 <font color='#ffff99'>2</font>초마다 <font color='#99ff99'>793%</FONT> 만큼의 전류 피해를 준다.<br>무력화 : 중상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2583,20 +2111,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_85.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2610,9 +2128,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,396%</font> 만큼의 [토] 속성 피해를 주고, 대상의 공격속도와 이동속도를 <font color='#ffff99'>20</font>초 동안<font color='#99ff99'>60%</font> 감소시킨다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2628,20 +2150,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_85.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2655,9 +2167,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,396%</font> 만큼의 [토] 속성 피해를 주고, 대상의 공격속도와 이동속도를 <font color='#ffff99'>20</font>초 동안<font color='#99ff99'>60%</font> 감소시킨다.<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2673,20 +2189,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_86.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2700,9 +2206,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>4,754%</font> 만큼의 피해를 주고, 적을 공중에 띄운다.<BR>부위 파괴 : 레벨 1<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2718,20 +2228,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_86.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2745,9 +2245,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>4,754%</font> 만큼의 피해를 주고, 적을 공중에 띄운다.<BR>부위 파괴 : 레벨 1<BR>무력화 : 상<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2763,20 +2267,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_87.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2790,9 +2284,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,396%</font> 만큼의 [암] 속성 피해를 주고, 대상의 모든 방어력을 <font color='#ffff99'>25</font>초 동안 <font color='#99ff99'>20%</font> 감소시킨다.<BR>무력화 : 하<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2808,20 +2306,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_87.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2835,9 +2323,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>수류탄을 던져 <font color='#99ff99'>3,396%</font> 만큼의 [암] 속성 피해를 주고, 대상의 모든 방어력을 <font color='#ffff99'>25</font>초 동안 <font color='#99ff99'>20%</font> 감소시킨다.<BR>무력화 : 하<BR><BR><FONT COLOR='#FFEC50'>수류탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2853,20 +2345,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_88.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2902,20 +2384,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_88.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2951,20 +2423,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_89.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -2978,9 +2440,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>파괴 폭탄을 던져 <font color='#99ff99'>1,307%</FONT> 만큼의 피해를 입힌다.<BR>부위 파괴 : 레벨 4<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -2996,20 +2462,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_89.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3023,9 +2479,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>파괴 폭탄을 던져 <font color='#99ff99'>1,307%</FONT> 만큼의 피해를 입힌다.<BR>부위 파괴 : 레벨 4<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -3041,20 +2501,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_90.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3090,20 +2540,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_90.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3139,20 +2579,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_91.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3166,7 +2596,7 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>폭탄을 던져 파티원의 행동불가 상태이상을 제거하며 <FONT COLOR='#ffff99'>2</FONT>초 동안 상태 이상에 면역이 된다.<BR>동결/석화/기절/수면/지진/감전/해충/공포 등<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>폭탄을 던져 파티원의 행동불가 상태이상을 제거하며<br><FONT COLOR='#ffff99'>2</FONT>초 동안 상태 이상에 면역이 된다.<BR>동결/석화/기절/수면/지진/감전/해충/공포 등<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
   },
   "Element_005": {
     "type": "SingleTextBox",
@@ -3188,20 +2618,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_91.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3215,7 +2635,7 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>폭탄을 던져 파티원의 행동불가 상태이상을 제거하며 <FONT COLOR='#ffff99'>2</FONT>초 동안 상태 이상에 면역이 된다.<BR>동결/석화/기절/수면/지진/감전/해충/공포 등<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>폭탄을 던져 파티원의 행동불가 상태이상을 제거하며<br><FONT COLOR='#ffff99'>2</FONT>초 동안 상태 이상에 면역이 된다.<BR>동결/석화/기절/수면/지진/감전/해충/공포 등<BR><BR><FONT COLOR='#FFEC50'>폭탄</FONT></FONT></FONT>"
   },
   "Element_005": {
     "type": "SingleTextBox",
@@ -3237,20 +2657,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_92.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3286,20 +2696,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_92.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3335,20 +2735,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_93.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3384,20 +2774,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_93.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3433,20 +2813,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_94.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3460,9 +2830,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'><font color='#ffff99'>1</font>초마다 주변 무작위 지점에 낙뢰를 떨어뜨려 적에게 <font color='#99ff99'>588%</font>의 피해를 준다. <font color='#ffff99'>24</font>초 동안 지속된다.<BR><BR><FONT COLOR='#FFEC50'>물약</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -3478,20 +2852,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_94.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3505,9 +2869,13 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'><font color='#ffff99'>1</font>초마다 주변 무작위 지점에 낙뢰를 떨어뜨려 적에게 <font color='#99ff99'>588%</font>의 피해를 준다. <font color='#ffff99'>24</font>초 동안 지속된다.<BR><BR><FONT COLOR='#FFEC50'>물약</FONT></FONT></FONT>"
   },
   "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+  },
+  "Element_006": {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
@@ -3523,20 +2891,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_95.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3572,20 +2930,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_95.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3621,20 +2969,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 3,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_96.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3670,20 +3008,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 3,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_96.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3719,20 +3047,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3768,20 +3086,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3817,20 +3125,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 5초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 1,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_98.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3866,20 +3164,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 5초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 1,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_98.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3915,20 +3203,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_99.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3964,20 +3242,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_99.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -4013,20 +3281,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_100.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -4062,20 +3320,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 30초",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_100.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -4111,20 +3359,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_101.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -4160,20 +3398,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 30초",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_101.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -4209,20 +3437,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },
@@ -4258,20 +3476,10 @@ var recipedata = {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
         "leftStr1": "재사용 대기시간 1분",
         "leftStr2": "",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
-          "advBookIcon": 0,
-          "friendship": 0,
           "iconGrade": 2,
           "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
-          "imagePath": "",
-          "islandIcon": 0,
-          "rtString": "",
-          "seal": false,
-          "temporary": 0,
-          "town": 0,
-          "trash": 0
         }
       }
     },

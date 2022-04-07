@@ -426,7 +426,6 @@
     }
     
     function detailFormatter(index, row) {
-      console.log(row)
       html = "";
       html += `<table class="table" style="cursor:auto;">
   <thead>
@@ -471,6 +470,14 @@
           price = row['dict'][Object.keys(row['dict'])[i]];
         }else{
           price = jsonsave[thisitemname];
+          if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
+            for (var j = 0; j < tabledata.length; j++) {
+              if(tabledata[j]['item'] == thisitemname){
+                price = ((tabledata[j]['craftprice'] * row['dict'][Object.keys(row['dict'])[i]]) / tabledata[j]['dict']['수량']) / row['dict'][Object.keys(row['dict'])[i]];
+                break;
+              }
+            }
+          }
         }
         html += `<p>${price}</p>`;
       }
@@ -584,7 +591,6 @@
           tooltiphtml += `<span class="slotData" data-grade="${keydata[e]['value']['slotData']['iconGrade']}"><img src="https://cdn-lostark.game.onstove.com/${keydata[e]['value']['slotData']['iconPath']}" alt="" data-grade="${keydata[e]['value']['slotData']['iconGrade']}" class="item-image"}></span>`;
           try{
             delete keydata[e]['value']['slotData'];
-            delete keydata[e]['value']['qualityValue'];
           }catch{}
           Object.keys(keydata[e]['value']).forEach(function(f){
             tooltiphtml += `<span class="${f}">${keydata[e]['value'][f]}</span>`;
