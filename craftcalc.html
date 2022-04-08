@@ -201,6 +201,7 @@
                   </table>
                 </div>
                 <div class="text-center">
+                  <button id="wisdomeffectclear" class="btn btn-primary">초기화</button>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">도움말</button>
                   <button id="wisdomedit" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">수정</button>
                 </div>
@@ -327,6 +328,8 @@
     var $table = $('#fresh-table');
 
     function recipecalc(){
+      $table.bootstrapTable('load', []);
+
       tabledata = [];
       
       Object.keys(recipedata).forEach(function(item){
@@ -655,6 +658,8 @@
       }
     }
 
+    
+
     $(function(){
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
@@ -690,6 +695,11 @@
         });
         recipecalcwait();
       }
+      $('#wisdomeffectclear').on('click', function(){
+        $('#wisdomeffect').find('input').filter(function(){
+          $(this).val(0);
+        });
+      });
 
       $('#wisdomeffect').find('input').filter(function(){
         $(this).on('change', function(){
@@ -706,18 +716,10 @@
       function recipecalcwait() {
         setTimeout(() => {
           recipecalc();
-          tost.hideToast();
         }, 350);
       }
 
       $('#wisdomedit').on('click', async function(){
-        tost = Toastify({
-                        text: "계산중...",
-                        position: "center",
-                        gravity: "bottom",
-                        duration: -1,
-                        close: false
-                        }).showToast();
         await recipecalcwait();
       });
 
