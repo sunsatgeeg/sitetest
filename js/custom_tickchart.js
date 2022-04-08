@@ -348,7 +348,7 @@ $.ajax({
                                 makeSeries(json['item'], 1);
 
                                 indata.push(json['item'].replace("null,","").trim());
-                                $.cookie('indata', indata, { expires: 30});
+                                $.cookie('indata', indata, { expires: 365 });
 
                                 toast.hideToast();
                             }

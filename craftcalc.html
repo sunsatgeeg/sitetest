@@ -710,7 +710,7 @@
             $(this).val(0);
             thiseffectval = 0;
           }
-          $.cookie(thiseffectname, thiseffectval);
+          $.cookie(thiseffectname, thiseffectval, { expires: 365 });
         });
       });
 
