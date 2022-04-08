@@ -326,7 +326,7 @@
             $(this).removeClass('active');
         })
         $(this).addClass('active');
-        $.cookie("inputmethod", $(this).val());
+        $.cookie("inputmethod", $(this).val(), { expires : 365 });
 
         $('.inputmethod').children().filter(function(){
           $(this).hide();
