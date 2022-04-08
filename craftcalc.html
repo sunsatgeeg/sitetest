@@ -698,9 +698,8 @@
           $(this).val(0);
         }else {
           $(this).val($.cookie(givemeid));
-          recipecal();
         }
-        
+
         $(this).on('change', function(){
           thiseffectname = $(this).attr('id');
           thiseffectval = $(this).val();
@@ -709,6 +708,7 @@
             thiseffectval = 0;
           }
           $.cookie(thiseffectname, thiseffectval);
+          recipecal();
         });
       });
 
