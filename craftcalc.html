@@ -404,6 +404,9 @@
           es = e;
         }else{
           es = e - (e * (this_e / 100));
+          if(es == 0){
+            es = 1;
+          }
         }
 
         if(thisbuyprice > (craftprice / qty)){
@@ -411,7 +414,7 @@
         }else{
           thisrecommend =  "구매";
         }
-
+        
         tabledata.push({item: itemname,
                 recommend: thisrecommend,
                 buyprice: thisbuyprice,
@@ -692,8 +695,6 @@
 
       $('#wisdomeffect').find('input').filter(function(){
         givemeid = $(this).attr('id');
-        console.log(givemeid);
-        console.log($.cookie(givemeid));
         if($.cookie(givemeid) == undefined || $.cookie(givemeid) == ''){
           $(this).val(0);
         }else {
