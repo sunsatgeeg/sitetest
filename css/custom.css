@@ -183,7 +183,6 @@ html{
 #keypad form {
     width: 390px;
     background: #4b4b4b;
-    padding: 35px 25px;
     text-align: center;
     box-shadow: 0px 5px 5px -0px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
@@ -197,13 +196,14 @@ html{
     border: none;
     background: none;
     font-size: 1.5em;
-    border-radius: 50%;
-    height: 60px;
+    border-radius: 10%;
+    height: 92px;
+    width: 126px;
     font-weight: 550;
-    width: 60px;
     color: transparent;
     text-shadow: 0 0 0 rgb(255, 255, 255);
-    margin: 7px 20px;
+    vertical-align: middle;
+    font-size:30px;
 }
   
 #keypad .clear,
