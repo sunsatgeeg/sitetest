@@ -658,8 +658,6 @@
       }
     }
 
-    
-
     $(function(){
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
@@ -685,23 +683,24 @@
         },
       })
 
-      if ($.cookie("gs_all") == "" || $.cookie("gs_all") == undefined || url == "http://127.0.0.1:5000"){
-        $('#wisdomeffect').find('input').filter(function(){
-          $(this).val(0);
-        });
-      }else{
-        $('#wisdomeffect').find('input').filter(function(){
-          $(this).val($.cookie($(this).attr('id')));
-        });
-        recipecalcwait();
-      }
       $('#wisdomeffectclear').on('click', function(){
         $('#wisdomeffect').find('input').filter(function(){
           $(this).val(0);
+          $.cookie($(this).attr('id'), 0);
         });
       });
 
       $('#wisdomeffect').find('input').filter(function(){
+        givemeid = $(this).attr('id');
+        console.log(givemeid);
+        console.log($.cookie(givemeid));
+        if($.cookie(givemeid) == undefined || $.cookie(givemeid) == ''){
+          $(this).val(0);
+        }else {
+          $(this).val($.cookie(givemeid));
+          recipecal();
+        }
+        
         $(this).on('change', function(){
           thiseffectname = $(this).attr('id');
           thiseffectval = $(this).val();
