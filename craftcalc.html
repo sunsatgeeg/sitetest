@@ -451,7 +451,7 @@
             if(thissale == 0){
               calcprice = thisitmeqty;
             }else{
-              calcprice = thisitmeqty - (thisitmeqty * (thissale / 100));
+              calcprice = Math.floor(thisitmeqty - (thisitmeqty * (thissale / 100)));
             }
           }else{
             try{
@@ -684,7 +684,7 @@
 
       html += `</td>
       <td>`;
-
+      console.log(row);
       // 재료 총 가격
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         thisitemname = Object.keys(row['dict'])[i];
@@ -698,7 +698,7 @@
           if(thissale == 0){
             calcprice = row['dict'][Object.keys(row['dict'])[i]];
           }else{
-            calcprice = row['dict'][Object.keys(row['dict'])[i]] - (row['dict'][Object.keys(row['dict'])[i]] * (thissale / 100));
+            calcprice = Math.floor(row['dict'][Object.keys(row['dict'])[i]] - (row['dict'][Object.keys(row['dict'])[i]] * (thissale / 100)));
           }
         }else{
           try{
