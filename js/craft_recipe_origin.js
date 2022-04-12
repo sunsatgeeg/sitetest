@@ -3123,20 +3123,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_97.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
@@ -3172,20 +3162,10 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
-      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
-        "advBookIcon": 0,
-        "friendship": 0,
         "iconGrade": 2,
         "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_97.png",
-        "imagePath": "",
-        "islandIcon": 0,
-        "rtString": "",
-        "seal": false,
-        "temporary": 0,
-        "town": 0,
-        "trash": 0
       }
     }
   },
