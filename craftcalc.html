@@ -464,7 +464,7 @@
             if(Object.keys(recipe)[i].lastIndexOf('제작)') != -1){
               for (var j = 0; j < tabledata.length; j++) {
                 if(tabledata[j]['item'] == thisitemname){
-                  marketprice = tabledata[j]['craftprice'] / recipe[Object.keys(recipe)[i]];
+                  marketprice = (tabledata[j]['craftprice'] / recipe[Object.keys(recipe)[i]]).toFixed(2);
                   break;
                 }
               }
@@ -708,17 +708,18 @@
             }
           }catch{}
           marketprice = jsonsave[thisitemname];
-          calcprice = (marketprice / thisunit) * row['dict'][Object.keys(row['dict'])[i]]
+          calcprice = ((marketprice / thisunit) * row['dict'][Object.keys(row['dict'])[i]]).toFixed(2)
           if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
             for (var j = 0; j < tabledata.length; j++) {
               if(tabledata[j]['item'] == thisitemname){
-                calcprice = (tabledata[j]['craftprice'] * row['dict'][Object.keys(row['dict'])[i]]) / tabledata[j]['dict']['수량'];
+                console.log((tabledata[j]['craftprice'] / tabledata[j]['dict']['수량']).toFixed(2));
+                calcprice = ((tabledata[j]['craftprice'] / tabledata[j]['dict']['수량']).toFixed(2) * row['dict'][Object.keys(row['dict'])[i]]).toFixed(2);
                 break;
               }
             }
           }
         }
-        html += `<p>${calcprice.toFixed(2)}</p>`;
+        html += `<p>${calcprice}</p>`;
       }
       html +=`<td>${row['craftprice']}</td>
       <td>${row['dict']['활동력']}<br>(${row['es']})</td>
