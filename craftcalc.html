@@ -169,7 +169,7 @@
                       <tr>
                         <td colspan="5">
                           대성공 확률
-                          <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { allowHTML: true, content: '대성공 확률이 0일 경우에는 기본 대성공 확률 5% 반영 X<br>기본 대성공 <FONT COLOR=`#bd0000`>5%</FONT>에서 영지효과 곱연산<br>Ex) 대성공 확률 <FONT COLOR=`#0000ff`>6%</FONT>일 경우 <FONT COLOR=`#bd0000`>5</FONT> + (<FONT COLOR=`#bd0000`>5</FONT> X <FONT COLOR=`#0000ff`>0.06</FONT> = 5.3%)',theme: 'light', placement: 'right', });"></i>
+                          <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { allowHTML: true, content: '대성공 확률이 0일 경우에는 기본 대성공 확률 5% 반영 X<br>-------------------------------------------------------<br>기본 대성공 <FONT COLOR=`#bd0000`>5%</FONT>에서 영지효과 곱연산<br>Ex) 대성공 확률 <FONT COLOR=`#0000ff`>6%</FONT>일 경우 <FONT COLOR=`#bd0000`>5</FONT> + (<FONT COLOR=`#bd0000`>5</FONT> X <FONT COLOR=`#0000ff`>0.06</FONT> = 5.3%)',theme: 'light', placement: 'right', });"></i>
                         </td>
                       </tr>
                       <tr>
@@ -381,6 +381,7 @@
     .pricetxt,
     .pricehide {
       font: inherit;
+      text-align: center!important;
       margin: 0;
       padding: 0;
     }
@@ -417,6 +418,11 @@
       temp = [];
       Object.keys(recipedata).forEach(function(item){
         itemname = item;
+        if(itemname.lastIndexOf('(') != -1){
+          temp.push(itemname.substr(0, itemname.lastIndexOf('(')));
+        }else{
+          temp.push(itemname);
+        }
         recipe = recipedata[item];
 
         type = recipe['분류'];
@@ -518,21 +524,40 @@
       $accord = $('#accordionitemprice').find('.row');
 
       ([...new Set(temp)].sort()).forEach(function(e){
-        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${iteminfo[e][1]}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${iteminfo[e][0]}" alt=""> <span id='itemname'>${e}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[e]}"></div>`);
+        originE = e;
+        try{
+          grade = iteminfo[e][1];
+          image = iteminfo[e][0];
+        }catch{
+          if(e.indexOf('빛나는 ') != -1){
+            behindE = e.substr(4);
+            try{behindE = behindE.replace("정령의 회복약", "정가");}catch{}
+            grade = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconPath;
+          }else{
+            try{e = e.replace("융화 재료", "융화 재료(고고학)");}catch{}
+            grade = recipedata[e].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[e].key.Element_001.value.slotData.iconPath;
+          }
+        }
+        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${originE.substr(0,14)}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
       });
 
       $(this).off('click');
       $('.pricetxt').filter(function(){
         $(this).parent().find('.pricehide').text($(this).val());
-        $(this).width($(this).parent().find('.pricehide').width());
+        $(this).width($(this).parent().find('.pricehide').width() + 16);
         $(this).on('input', function(){
           $(this).parent().find('.pricehide').text($(this).val());
-          $(this).width($(this).parent().find('.pricehide').width());
-          if($(this).val()==''){
+          $(this).width($(this).parent().find('.pricehide').width() + 16);
+          if($(this).val() == ''){
             $(this).val(0);
             $(this).parent().find('.pricehide').text(0);
           }
-          jsonsave[$(this).parent().find('#itemname').text()] = parseInt($(this).val());
+          if($(this).val().indexOf('0') == 0 && $(this).val().length >= 2){
+            $(this).val($(this).val().substr(1));
+          }
+          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
           recipecalc();
         })
 

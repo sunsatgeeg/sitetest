@@ -1,5 +1,80 @@
-var iteminfo = {"들꽃":["EFUI_IconAtlas/Use/Use_8_46.png",0], "자연산 진주":["EFUI_IconAtlas/Use/Use_8_72.png",1], "투박한 버섯":["EFUI_IconAtlas/Use/Use_8_56.png",0], "싱싱한 버섯":["EFUI_IconAtlas/All_Quest/All_Quest_02_101.png",1], "화려한 버섯":["EFUI_IconAtlas/Use/Use_8_57.png",2], "묵직한 철광석":["EFUI_IconAtlas/Use/Use_3_239.png",2], "수줍은 들꽃":["EFUI_IconAtlas/Use/Use_4_14.png",1], "화사한 들꽃":["EFUI_IconAtlas/Use/Use_8_47.png",2], "두툼한 생고기":["EFUI_IconAtlas/Use/Use_2_192.png",0], "오레하 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_67.png",2], "질긴 가죽":["EFUI_IconAtlas/Use/Use_2_204.png",1], "생선":["EFUI_IconAtlas/Use/Use_1_142.png",2], "오레하 태양 잉어":["EFUI_IconAtlas/Use/Use_8_74.png",2], "고대 유물":["EFUI_IconAtlas/Use/Use_9_3.png",0], "희귀한 유물":["EFUI_IconAtlas/Use/Use_9_4.png",1], "오레하 유물":["EFUI_IconAtlas/Use/Use_9_11.png",2], "붉은 살 생선":["EFUI_IconAtlas/Use/Use_4_49.png",1], "다듬은 생고기":["EFUI_IconAtlas/Use/Use_2_196.png",1], "칼다르 태양 잉어":["EFUI_IconAtlas/Use/Use_8_73.png",2], "칼다르 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_66.png",2], "튼튼한 목재":["EFUI_IconAtlas/Use/Use_4_4.png",2], "단단한 철광석":["EFUI_IconAtlas/Use/Use_5_76.png",2], "부드러운 목재":["EFUI_IconAtlas/Use/Use_3_253.png",1], "철광석":["EFUI_IconAtlas/Use/Use_3_243.png",0], "목재":["EFUI_IconAtlas/Use/Use_3_252.png",0], "정령의 회복약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_8.png",3], "섬광 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_0.png",2], "화염 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_1.png",2], "냉기 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_2.png",2], "전기 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_3.png",2], "점토 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_54.png",2], "회오리 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png",2], "암흑 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_47.png",2], "수면 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_69.png",2], "파괴 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_21.png",2], "부식 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_49.png",2], "성스러운 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_70.png",2], "만능 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_17.png",2], "보호 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_50.png",2], "천둥 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_63.png",2], "위장 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_19.png",2], "은신 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_44.png",3], "신속 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_52.png",2], "신호탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_4.png",1], "모닥불":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_12.png",2], "도발 허수아비":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_45.png",2], "성스러운 부적":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png",2], "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2]};
-var itemunit = {"수줍은 들꽃":10,"붉은 살 생선":10,"자연산 진주":10,"칼다르 태양 잉어":10,"싱싱한 버섯":10,"희귀한 유물":10,"묵직한 철광석":10,"오레하 태양 잉어":10 ,"화사한 들꽃":10,"질긴 가죽":10,"칼다르 두툼한 생고기":10,"다듬은 생고기":10,"화려한 버섯":10,"부드러운 목재":10,"오레하 유물":10,"단단한 철광석":10,"오레하 두툼한 생고기":10,"튼튼한 목재":10,"목재":100,"두툼한 생고기":100,"들꽃":100,"고대 유물":100,"생선":100,"철광석":100,"투박한 버섯":100};
+var iteminfo = {
+  "들꽃":["EFUI_IconAtlas/Use/Use_8_46.png",0],
+  "자연산 진주":["EFUI_IconAtlas/Use/Use_8_72.png",1], 
+  "투박한 버섯":["EFUI_IconAtlas/Use/Use_8_56.png",0], 
+  "싱싱한 버섯":["EFUI_IconAtlas/All_Quest/All_Quest_02_101.png",1], 
+  "화려한 버섯":["EFUI_IconAtlas/Use/Use_8_57.png",2], 
+  "묵직한 철광석":["EFUI_IconAtlas/Use/Use_3_239.png",2], 
+  "수줍은 들꽃":["EFUI_IconAtlas/Use/Use_4_14.png",1], 
+  "화사한 들꽃":["EFUI_IconAtlas/Use/Use_8_47.png",2], 
+  "두툼한 생고기":["EFUI_IconAtlas/Use/Use_2_192.png",0],
+  "오레하 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_67.png",2], 
+  "질긴 가죽":["EFUI_IconAtlas/Use/Use_2_204.png",1], 
+  "생선":["EFUI_IconAtlas/Use/Use_1_142.png",2], 
+  "오레하 태양 잉어":["EFUI_IconAtlas/Use/Use_8_74.png",2], 
+  "고대 유물":["EFUI_IconAtlas/Use/Use_9_3.png",0], 
+  "희귀한 유물":["EFUI_IconAtlas/Use/Use_9_4.png",1], 
+  "오레하 유물":["EFUI_IconAtlas/Use/Use_9_11.png",2], 
+  "붉은 살 생선":["EFUI_IconAtlas/Use/Use_4_49.png",1], 
+  "다듬은 생고기":["EFUI_IconAtlas/Use/Use_2_196.png",1], 
+  "칼다르 태양 잉어":["EFUI_IconAtlas/Use/Use_8_73.png",2], 
+  "칼다르 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_66.png",2],
+  "튼튼한 목재":["EFUI_IconAtlas/Use/Use_4_4.png",2], 
+  "단단한 철광석":["EFUI_IconAtlas/Use/Use_5_76.png",2], 
+  "부드러운 목재":["EFUI_IconAtlas/Use/Use_3_253.png",1], 
+  "철광석":["EFUI_IconAtlas/Use/Use_3_243.png",0], 
+  "목재":["EFUI_IconAtlas/Use/Use_3_252.png",0], 
+  "정령의 회복약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_8.png",3], 
+  "섬광 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_0.png",2], 
+  "화염 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_1.png",2], 
+  "냉기 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_2.png",2], 
+  "전기 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_3.png",2], 
+  "점토 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_54.png",2], 
+  "회오리 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png",2], 
+  "암흑 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_47.png",2], 
+  "수면 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_69.png",2], 
+  "파괴 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_21.png",2], 
+  "부식 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_49.png",2], 
+  "성스러운 폭탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_70.png",2], 
+  "만능 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_17.png",2], 
+  "보호 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_50.png",2], 
+  "천둥 물약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_63.png",2], 
+  "위장 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_19.png",2], 
+  "은신 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_44.png",3], 
+  "신속 로브":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_52.png",2], 
+  "신호탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_4.png",1], 
+  "모닥불":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_12.png",2], 
+  "도발 허수아비":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_45.png",2], 
+  "성스러운 부적":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png",2], 
+  "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2]
+};
+var itemunit = {
+  "수줍은 들꽃":10,
+  "붉은 살 생선":10,
+  "자연산 진주":10,
+  "칼다르 태양 잉어":10,
+  "싱싱한 버섯":10,
+  "희귀한 유물":10,
+  "묵직한 철광석":10,
+  "오레하 태양 잉어":10,
+  "화사한 들꽃":10,
+  "질긴 가죽":10,
+  "칼다르 두툼한 생고기":10,
+  "다듬은 생고기":10,
+  "화려한 버섯":10,
+  "부드러운 목재":10,
+  "오레하 유물":10,
+  "단단한 철광석":10,
+  "오레하 두툼한 생고기":10,
+  "튼튼한 목재":10,
+  "목재":100,
+  "두툼한 생고기":100,
+  "들꽃":100,
+  "고대 유물":100,
+  "생선":100,
+  "철광석":100,
+  "투박한 버섯":100
+};
 var recipedata = {
 "신호탄":{"key":{
     "Element_000": {
@@ -3040,7 +3115,7 @@ var recipedata = {
 "빛나는 신속 로브(신속 로브 제작)":{"key":{
   "Element_000": {
     "type": "NameTagBox",
-    "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>빛나는 진군의 깃발</FONT></P>"
+    "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>빛나는 신속 로브</FONT></P>"
   },
   "Element_001": {
     "type": "ItemTitle",
@@ -3048,10 +3123,20 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
+      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
+        "advBookIcon": 0,
+        "friendship": 0,
         "iconGrade": 2,
-        "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
+        "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_97.png",
+        "imagePath": "",
+        "islandIcon": 0,
+        "rtString": "",
+        "seal": false,
+        "temporary": 0,
+        "town": 0,
+        "trash": 0
       }
     }
   },
@@ -3065,11 +3150,11 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>진군의 깃발을 들어올려 자신과 파티원의 이동속도를 <FONT COLOR='#ffff99'>25</FONT>초 동안 <FONT COLOR='#99ff99'>20%</FONT> 증가시킨다. (운반 속도는 증가되지 않습니다.)<BR><BR><FONT COLOR='#FFEC50'>깃발</FONT></FONT></FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'><FONT COLOR='#ffff99'>12</FONT>초 동안, 이동속도를 <FONT COLOR='#99ff99'>40%</FONT> 증가시키고, 이동속도 감소 효과에 면역이 된다. (운반 속도는 증가되지 않습니다.)<BR><BR><FONT COLOR='#FFEC50'>로브</FONT></FONT></FONT>"
   },
   "Element_005": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
   },
   "Element_006": {
     "type": "SingleTextBox",
@@ -3079,7 +3164,7 @@ var recipedata = {
 "빛나는 신속 로브(신속 로브 구매)":{"key":{
   "Element_000": {
     "type": "NameTagBox",
-    "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>빛나는 진군의 깃발</FONT></P>"
+    "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>빛나는 신속 로브</FONT></P>"
   },
   "Element_001": {
     "type": "ItemTitle",
@@ -3087,10 +3172,20 @@ var recipedata = {
       "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 배틀아이템</FONT></FONT>",
       "leftStr1": "재사용 대기시간 1분",
       "leftStr2": "",
+      "qualityValue": -1,
       "rightStr0": "",
       "slotData": {
+        "advBookIcon": 0,
+        "friendship": 0,
         "iconGrade": 2,
-        "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_102.png",
+        "iconPath": "EFUI_IconAtlas/Battle_Item/Battle_Item_01_97.png",
+        "imagePath": "",
+        "islandIcon": 0,
+        "rtString": "",
+        "seal": false,
+        "temporary": 0,
+        "town": 0,
+        "trash": 0
       }
     }
   },
@@ -3104,11 +3199,11 @@ var recipedata = {
   },
   "Element_004": {
     "type": "SingleTextBox",
-    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>진군의 깃발을 들어올려 자신과 파티원의 이동속도를 <FONT COLOR='#ffff99'>25</FONT>초 동안 <FONT COLOR='#99ff99'>20%</FONT> 증가시킨다. (운반 속도는 증가되지 않습니다.)<BR><BR><FONT COLOR='#FFEC50'>깃발</FONT></FONT></FONT>"
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'><FONT COLOR='#ffff99'>12</FONT>초 동안, 이동속도를 <FONT COLOR='#99ff99'>40%</FONT> 증가시키고, 이동속도 감소 효과에 면역이 된다. (운반 속도는 증가되지 않습니다.)<BR><BR><FONT COLOR='#FFEC50'>로브</FONT></FONT></FONT>"
   },
   "Element_005": {
     "type": "SingleTextBox",
-    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 3개</FONT>"
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT>, 일부 지역 장착 제한 5개</FONT>"
   },
   "Element_006": {
     "type": "SingleTextBox",
