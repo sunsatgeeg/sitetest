@@ -684,7 +684,6 @@
 
       html += `</td>
       <td>`;
-      console.log(row);
       // 재료 총 가격
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         thisitemname = Object.keys(row['dict'])[i];
@@ -712,7 +711,6 @@
           if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
             for (var j = 0; j < tabledata.length; j++) {
               if(tabledata[j]['item'] == thisitemname){
-                console.log((tabledata[j]['craftprice'] / tabledata[j]['dict']['수량']).toFixed(2));
                 calcprice = ((tabledata[j]['craftprice'] / tabledata[j]['dict']['수량']).toFixed(2) * row['dict'][Object.keys(row['dict'])[i]]).toFixed(2);
                 break;
               }
