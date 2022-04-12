@@ -89,7 +89,7 @@
       <div class="mx-auto w-50 pt-5">
         <button id="btn-test-getDisplayMedia">Test getDisplayMedia API</button>
         <hr>
-        <video controls autoplay playsinline muted="false" volume=0></video>
+        <video autoplay playsinline muted="false" volume=0></video>
         <br>
         <textarea id="settings" style="width: 100%; height: 218px; display: none;"></textarea>
         <br>
@@ -124,111 +124,140 @@
   </div>
 
   <script src="https://www.webrtc-experiment.com/common.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
-    $(function(){
-      var video            = $('video');
-      var button           = $('#btn-test-getDisplayMedia');
-      var textarea         = $('#capabilities');
-      var settings         = $('#settings');
+      function preload() {
+        var video            = $('video')[0];
+        var button           = $('#btn-test-getDisplayMedia')[0];
+        var textarea         = $('#capabilities')[0];
+        var settings         = $('#settings')[0];
 
-      button.on('click', function(){
+        $('#btn-test-getDisplayMedia').on('click', function(){
           this.disabled = true;
           
           invokeGetDisplayMedia(function(screen) {
-              addStreamStopListener(screen, function() {
-                  location.reload();
-              });
-              
-              video.srcObject = screen;
-
-              var _capabilities = screen.getTracks()[0].getCapabilities();
-              capabilities.value = 'capabilities:\n\n' + JSON.stringify(_capabilities, null, '\t');
-              capabilities.style.display = '';
-
-              var _settings = screen.getTracks()[0].getSettings();
-              settings.value = 'settings:\n\n' + JSON.stringify(_settings, null, '\t');
-              settings.style.display = '';
-          }, function(e) {
-              button.disabled = false;
-
-              var error = {
-                  name: e.name || 'UnKnown',
-                  message: e.message || 'UnKnown',
-                  stack: e.stack || 'UnKnown'
-              };
-
-              if(error.name === 'PermissionDeniedError') {
-                  if(location.protocol !== 'https:') {
-                      error.message = 'Please use HTTPs.';
-                      error.stack   = 'HTTPs is required.';
-                  }
-              }
-
-              console.error(error.name);
-              console.error(error.message);
-              console.error(error.stack);
-
-              alert('Unable to capture your screen.\n\n' + error.name + '\n\n' + error.message + '\n\n' + error.stack);
+            addStreamStopListener(screen, function() {
+              location.reload();
           });
-      });
+            
+            video.srcObject = screen;
 
-      if(!navigator.getDisplayMedia && !navigator.mediaDevices.getDisplayMedia) {
+            var _capabilities = screen.getTracks()[0].getCapabilities();
+            capabilities.value = 'capabilities:\n\n' + JSON.stringify(_capabilities, null, '\t');
+            capabilities.style.display = '';
+
+            var _settings = screen.getTracks()[0].getSettings();
+            settings.value = 'settings:\n\n' + JSON.stringify(_settings, null, '\t');
+            settings.style.display = '';
+        }, function(e) {
+          button.disabled = false;
+
+            var error = {
+              name: e.name || 'UnKnown',
+              message: e.message || 'UnKnown',
+              stack: e.stack || 'UnKnown'
+            };
+
+            if(error.name === 'PermissionDeniedError') {
+              if(location.protocol !== 'https:') {
+                error.message = 'Please use HTTPs.';
+                error.stack   = 'HTTPs is required.';
+              }
+            }
+
+            console.error(error.name);
+            console.error(error.message);
+            console.error(error.stack);
+
+            alert('Unable to capture your screen.\n\n' + error.name + '\n\n' + error.message + '\n\n' + error.stack);
+          });
+        });
+
+        if(!navigator.getDisplayMedia && !navigator.mediaDevices.getDisplayMedia) {
           var error = 'Your browser does NOT supports getDisplayMedia API.';
-          document.querySelector('h1').innerHTML = error;
-          document.querySelector('h1').style.color = 'red';
+          $('h1').innerHTML = error;
+          $('h1').style.color = 'red';
 
-          document.querySelector('video').style.display = 'none';
+          $('video').style.display = 'none';
           button.style.display = 'none';
           throw new Error(error);
-      }
+        }
 
-      function invokeGetDisplayMedia(success, error) {
+        function invokeGetDisplayMedia(success, error) {
           var videoConstraints = {};
 
           videoConstraints.aspectRatio = screen.width/screen.height;
           videoConstraints.frameRate = 30;
-          videoConstraints.cursor = "never";
           videoConstraints.width = screen.width;
           videoConstraints.height = screen.height;
+          
 
           if(!Object.keys(videoConstraints).length) {
-              videoConstraints = true;
+            videoConstraints = true;
           }
 
           var displayMediaStreamConstraints = {
-              video: videoConstraints
+            video: videoConstraints
           };
 
           if(navigator.mediaDevices.getDisplayMedia) {
-              navigator.mediaDevices.getDisplayMedia(displayMediaStreamConstraints).then(success).catch(error);
+            navigator.mediaDevices.getDisplayMedia(displayMediaStreamConstraints).then(success).catch(error);
           }
           else {
-              navigator.getDisplayMedia(displayMediaStreamConstraints).then(success).catch(error);
+            navigator.getDisplayMedia(displayMediaStreamConstraints).then(success).catch(error);
           }
-      }
+        }
 
-      function addStreamStopListener(stream, callback) {
+        function addStreamStopListener(stream, callback) {
           stream.addEventListener('ended', function() {
-              callback();
-              callback = function() {};
+            callback();
+            callback = function() {};
           }, false);
           stream.addEventListener('inactive', function() {
-              callback();
-              callback = function() {};
+            callback();
+            callback = function() {};
           }, false);
           stream.getTracks().forEach(function(track) {
-              track.addEventListener('ended', function() {
-                  callback();
-                  callback = function() {};
-              }, false);
-              track.addEventListener('inactive', function() {
-                  callback();
-                  callback = function() {};
-              }, false);
+            track.addEventListener('ended', function() {
+              callback();
+              callback = function() {};
+            }, false);
+            track.addEventListener('inactive', function() {
+              callback();
+              callback = function() {};
+            }, false);
           });
+        }
       }
-    })
+
+      let cam;
+      function setup() {
+        createCanvas(400, 300);
+        cam = createCapture($('video'));
+        cam.size(400, 300);
+        //cam.hide();
+      }
+
+      function draw(){
+        grayscale();
+      }
+
+      function grayscale(){
+        loadPixels();
+        cam.loadPixels();
+        for(let y = 0; y < height; y++){
+          for(let x = 0; x < width*4; x+=4){
+            let xy = x+y*width*4;
+            let gray = (cam.pixels[xy+0]+cam.pixels[xy+1]+cam.pixels[xy+2])/3;
+            pixels[xy+0] = gray;
+            pixels[xy+1] = gray;
+            pixels[xy+2] = gray;
+            pixels[xy+3] = 255;
+          }
+        }
+        updatePixels();
+      }
   </script>
 </body>
 </html>
