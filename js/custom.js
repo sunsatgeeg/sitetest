@@ -1,7 +1,7 @@
 local = false
 var url;
 var cookie;
-var nocommu = ['bidcalc']
+var nocommu = ['bidcalc','cardcalc']
 if(local){
     cookie = '';
     url = "http://127.0.0.1:5000";
@@ -53,6 +53,7 @@ $(function(){
     <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
     <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
+    <a class="nav-link" aria-current="page" href="cardcalc">카드작 계산기(예고)</a>
     `);
     
     $('header').find('.nav-link').filter(function(){
