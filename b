@@ -65,9 +65,16 @@
           document.querySelector('#canvaszone').appendChild(canvas);
 
           if(matchLoc.x == 38 && matchLoc.y == 38){
-            console.log(`${i}${j}`);
-            console.log(templatename);
-
+            for (var l = 5; l > 0; l--) {
+                console.log((92 - (Math.abs(l-5) * 15)));
+                console.log(source.ucharAt(137, (92 - (Math.abs(l-5) * 15)) * dst.channels()))
+                if(dst.ucharAt(137, (92 - (Math.abs(k-5) * 15)) * dst.channels()) > 100){
+                    detailcarddeck[carddeck[parseInt(String(i)+String(j))]] = k;
+                    k=0;
+                }else if(k==1){
+                    detailcarddeck[carddeck[parseInt(String(i)+String(j))]] = 0;
+                }
+            }
             carddeck.push(templatename);
           }
         }

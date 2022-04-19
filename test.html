@@ -254,127 +254,112 @@
     }
 
     function previewFile(file) {
-      while (document.querySelector('#gallery').hasChildNodes()) {
-        document.querySelector('#gallery').removeChild(document.querySelector('#gallery').firstChild);
-      }
-
       let reader = new FileReader()
       reader.readAsDataURL(file)
-      reader.onloadend = function() {
-        let img = document.createElement('canvas');
-        img.id = "canvas";
-        img.width = "1920";
-        img.style = "display:none;"
-        img.height = "1080";
-        var ctx = img.getContext('2d');
+      reader.onloadend = async function() {
+        var canvasimage = new Image();
+        var cardremoveimage = new Image();
+        canvasimage.src = reader.result;
+        cardremoveimage.src = cardremovebase64;
+        await new Promise(r => {
+          canvasimage.onload = r
+          cardremoveimage.onload = r
+        })
+        var canvas = cv.imread(canvasimage);
+        var cardremove = cv.imread(cardremoveimage);
 
-        var image = new Image();
-        image.onload = function() {
-          ctx.drawImage(image, 1, 0);
-        };
-        image.src = reader.result;
-        document.getElementById('gallery').appendChild(img);
+        let mask = new cv.Mat();
+        var method  = cv.TM_CCORR_NORMED;
+
+        let result_cols =   canvas.cols - cardremove.cols + 1;
+        let result_rows =   canvas.rows - cardremove.rows + 1;
+
+        var result = new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+        cv.matchTemplate(canvas, cardremove, result, method, mask);
+
+        cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+        let minMaxLoc   =   cv.minMaxLoc(result);
+
+        let matchLoc;
+
+        if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+            matchLoc  = minMaxLoc.minLoc;
+        }else{
+            matchLoc  = minMaxLoc.maxLoc;
+        }
+
+        var cardremovex = matchLoc.x;
+        var cardremovey = matchLoc.y;
+        var startX = cardremovex - 1101;
+        var startY = cardremovey + 92;
 
         var carddeck = [];
-        var startX;
-        var startY;
         let template;
-        let templatename;
+        var templateimage;
         let dst;
-        let mask;
         let rect;
-
-        //let low = new cv.Mat(src.rows, src.cols, src.type(), [0, 0, 0, 0]);
-        //let high = new cv.Mat(src.rows, src.cols, src.type(), [122, 122, 121, 255]);
-        //cv.inRange(src, low, high, dst);
-        //let inRangeDst = dst;
         
         for (var i = 0; i < Object.keys(cardlist).length; i++) {
-          templateimg = document.querySelector('#template');
-          templatectx = templateimg.getContext('2d');
-
-          var templateimage = new Image();
-          templateimage.onload = function() {
-            templatectx.drawImage(templateimage, 1, 0);
-          };
+          templateimage = new Image();
           templateimage.src = Object.keys(cardlist)[i];
+          await new Promise(r => {
+            templateimage.onload = r
+          })
+          template = cv.imread(templateimage);
 
-          templateimg.onload = function(i){
-            src = cv.imread('canvas');
-            template = cv.imread('template');
-            console.log(template);
-            startX = 98;
-            startY = 291;
-            dst = new cv.Mat();
-            mask = new cv.Mat();
-            rect = new cv.Rect(0,0,0,0);
-
-            for (var j = 0; j < 4; j++) {
-              y = startY + (j * 182);
-              for (var k = 0; k < 10; k++) {
-                if(((j*10) + k) == 40){
-                  break;
-                }
-
-                x = startX + (k * 118);
-                
-                rect = new cv.Rect(x, y, 116, 164);
-                source = src.roi(rect);
-
-                var method  =   cv.TM_CCORR_NORMED;
-
-                let result_cols =   source.cols - template.cols + 1;
-                let result_rows =   source.rows - template.rows + 1;
-
-                var result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
-
-                cv.matchTemplate(source, template, result, method, mask);
-
-                cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
-
-                let minMaxLoc   =   cv.minMaxLoc(result);
-
-                let matchLoc;
-
-                if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
-                    matchLoc  = minMaxLoc.minLoc;
-                }else{
-                    matchLoc  = minMaxLoc.maxLoc;
-                }
-
-                console.log(matchLoc.x, matchLoc.y);
-                if(matchLoc.x == 38 && matchLoc.y == 38){
-                  console.log(`${j}${k}`);
-                  console.log(cardlist[Object.keys(cardlist)[i]]);
-
-                  carddeck.push(cardlist[Object.keys(cardlist)[i]]);
-                }
-
-                let canvas  =   document.createElement("canvas");
-                canvas.id = `canvas${j}${k}`
-
-                var output  =   new cv.Mat();
-                source.copyTo(output);
-
-                let point1 = new cv.Point(matchLoc.x, matchLoc.y);
-                let point2 = new cv.Point(matchLoc.x + template.cols, matchLoc.y + template.rows);
-
-                let color = new cv.Scalar(255, 0, 0, 255);
-                cv.rectangle(output, point1, point2, color, 2, cv.LINE_AA, 0);
-
-                cv.imshow(canvas, output);
-                document.querySelector('#canvaszone').appendChild(canvas);
+          for (var j = 0; j < 4; j++) {
+            y = startY + (j * 182);
+            for (var k = 0; k < 10; k++) {
+              if(((j*10) + k) == 40){
+                break;
               }
+              dst = new cv.Mat();
+              mask = new cv.Mat();
+              rect = new cv.Rect(0,0,0,0);
+
+              x = startX + (k * 118);
+              
+              rect = new cv.Rect(x, y, 116, 164);
+              source = canvas.roi(rect);
+
+              method  =   cv.TM_CCORR_NORMED;
+
+              result_cols =   source.cols - template.cols + 1;
+              result_rows =   source.rows - template.rows + 1;
+
+              result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+              cv.matchTemplate(source, template, result, method, mask);
+
+              cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+              minMaxLoc   =   cv.minMaxLoc(result);
+
+              if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+                  matchLoc  = minMaxLoc.minLoc;
+              }else{
+                  matchLoc  = minMaxLoc.maxLoc;
+              }
+
+              if(matchLoc.x == 38 && matchLoc.y == 38){
+                for (var l = 5; l > 0; l--) {
+                  console.log(92 - (Math.abs(l-5) * 15));
+                  console.log(source.ucharAt(137, (92 - (Math.abs(l-5) * 15)) * source.channels()))
+                }
+                carddeck.push(cardlist[Object.keys(cardlist)[i]]);
+                j=4;k=10;
+              }
+
+              result.delete();source.delete();mask.delete()
             }
           }
-
-          
+          template.delete();
         }
-        
-        console.log(carddeck)
-        
+        canvas.delete(),cardremove.delete();
+        console.log(carddeck);
       }
-
     }
 
     function uploadFile(file, i) {
