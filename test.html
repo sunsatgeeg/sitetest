@@ -269,7 +269,7 @@
         var cardremove = cv.imread(cardremoveimage);
 
         let mask = new cv.Mat();
-        var method  = cv.TM_CCORR_NORMED;
+        var method  = cv.TM_CCOEFF;
 
         let result_cols =   canvas.cols - cardremove.cols + 1;
         let result_rows =   canvas.rows - cardremove.rows + 1;
@@ -300,6 +300,8 @@
         var templateimage;
         let dst;
         let rect;
+        var lastJ = 0;
+        var lastK = 0;
         
         for (var i = 0; i < Object.keys(cardlist).length; i++) {
           templateimage = new Image();
@@ -308,11 +310,16 @@
             templateimage.onload = r
           })
           template = cv.imread(templateimage);
+          console.log(cardlist[Object.keys(cardlist)[i]])
 
-          for (var j = 0; j < 4; j++) {
+          for (var j = lastJ; j < 4; j++) {
+            console.log('j',j)
             y = startY + (j * 182);
-            for (var k = 0; k < 10; k++) {
-              if(((j*10) + k) == 40){
+            for (var k = lastK; k < 10; k++) {
+              console.log('k',k)
+              if(carddeck.length == 40){
+                lastJ = 0;
+                lastK = 0;
                 break;
               }
               dst = new cv.Mat();
@@ -323,8 +330,6 @@
               
               rect = new cv.Rect(x, y, 116, 164);
               source = canvas.roi(rect);
-
-              method  =   cv.TM_CCORR_NORMED;
 
               result_cols =   source.cols - template.cols + 1;
               result_rows =   source.rows - template.rows + 1;
@@ -343,12 +348,23 @@
                   matchLoc  = minMaxLoc.maxLoc;
               }
 
+              console.log(matchLoc.x,matchLoc.y)
               if(matchLoc.x == 38 && matchLoc.y == 38){
-                for (var l = 5; l > 0; l--) {
-                  console.log(92 - (Math.abs(l-5) * 15));
-                  console.log(source.ucharAt(137, (92 - (Math.abs(l-5) * 15)) * source.channels()))
-                }
+                //for (var l = 5; l > 0; l--) {
+                //  console.log(92 - (Math.abs(l-5) * 15));
+                //  console.log(source.ucharAt(137, (92 - (Math.abs(l-5) * 15)) * source.channels()))
+                //}
                 carddeck.push(cardlist[Object.keys(cardlist)[i]]);
+                delete cardlist[Object.keys(cardlist)[i]];
+                i--;
+                
+                if(k==9){
+                  lastJ++;
+                  lastK=0;
+                }else{
+                  lastK=k+1;
+                  lastJ=j;
+                }
                 j=4;k=10;
               }
 
