@@ -361,12 +361,23 @@
                 }
 
                 if(matchLoc.x == 38 && matchLoc.y == 38){
+                  //솔 그랑데, 지휘관 솔 이미지 똑같아서 조건 추가
+                  if(cardlist[Object.keys(cardlist)[i]] == '솔 그랑데' ||
+                     cardlist[Object.keys(cardlist)[i]] == '지휘관 솔'){
+                      if(source.ucharAt(21, 41 * source.channels() + 2) < 130){
+                        target = "지휘관 솔";
+                      }else{
+                        target = "솔 그랑데"
+                      }
+                    }else{
+                      target = cardlist[Object.keys(cardlist)[i]]
+                    }
                   for (var l = 5; l > 0; l--) {
                     if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
-                      carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
+                      carddeck[target] = l;
                       l=0;
                     }else if(l==1){
-                      carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
+                      carddeck[target] = 0;
                     }
                   }
                   document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
