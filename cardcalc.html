@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head class="h-100">
-  <title>카드작 계산 :: LoChart</title>
-  <meta name="description" content="사진으로 카드 강화 계산">
+  <title>도감작 계산기 :: LoChart</title>
+  <meta name="description" content="로스트아크 도감작 계산기">
   <script>var here = "cardcalc";</script>
-  
-  <!-- toastify -->
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/jquery.cookie-1.4.1.min.js"></script>
+  <script src="js/jquery.cookie-1.4.1.min.js" > </script>
 
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -43,6 +39,47 @@
       .w-50 {
         width: 100%!important;
       }
+    }
+    body {
+      font-family: sans-serif;
+    }
+    a {
+      color: #369;
+    }
+    .note {
+      width: 500px;
+      margin: 50px auto;
+      font-size: 1.1em;
+      color: #333;
+      text-align: justify;
+    }
+    #drop-area {
+      border: 2px dashed #ccc;
+      border-radius: 20px;
+      width: 90%;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    #drop-area.highlight {
+      border-color: purple;
+    }
+    p {
+      margin-top: 0;
+    }
+    .my-form {
+      margin-bottom: 10px;
+    }
+    #gallery {
+      margin-top: 10px;
+    }
+    #gallery img {
+      width: 48%;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    #fileElem {
+      display: none;
     }
   </style>
   <link href="css/cover.css" rel="stylesheet">
@@ -88,21 +125,43 @@
         </div>
       </div>
       
-      <div class="mx-auto w-50 pt-5">
-        <h5>
-          <span>
-            카카오OCR로 할 예정이였으나 인식 안되는것들도 많아서 방법 변경 그냥 이미지 인식으로 바꿔서 바로 오픈 가능 카드 사진들 때문에 쪼끔?
-            많이? 무거워질수 있으나 무료로 해서 좋음 카드 인식이랑 (1~5)강 인식 하는건 다 많들었으나
-            카드 이미지 흑백으로 바꾸고 다시 하나하나 이미지 짜르고 노가다 해야하고난 후 카드 도감 쪽이랑 비교해서 계산 하는것도 해야하네?
-            아직 할일 많았구나 다 한줄;
+      <div class="pt-5">
+        <p>옛날에 한정으로 뿌린(축제를 즐기는..., 그땐 그랬지 세트) 카드들은<br>제가 가진게 없어서 사진을 등록하지 못했습니다. <br>제외하고 테스트해주시길 바랍니다.</p>
+        <button type="button" class="btn btn-outline-light btn-lg" id="mustbtn">조건</button>
+        <button type="button" class="btn btn-outline-light btn-lg" id="methodbtn">방법</button>
+        <div id="must" style="display:none;">
+          <br>
+          <h3>※ 필수 ※</h3>
+          <p>1. 1920 X 1080 해상도</p>
+          <p>2. 인게임 스크린샷으로 찍은 사진</p>
+          <h3>※ 권장 ※</h3>
+          <p>1. 한 사진에 각기 다른 카드 40장이 들어가게(오래걸림, 오인식 방지)</p>
+        </div>
+        <div id="method" style="display:none;">
+          <br>
+          <p>1. 사진들을 선택</p>
+          <p>2. '인식 시작' 클릭</p>
+        </div>
+        <div id="drop-area">
+          <form class="my-form">
+            <p>사진들을 드래그해서 선택할 수도 있어요</p>
+            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+            <label class="btn btn-outline-light btn-lg" for="fileElem">사진 선택</label>
+          </form>
+          <progress id="progress-bar" max=100 value=0></progress>
+          <div id="gallery"></div>
+        </div>
+        <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">인식 시작</button>
+        <br>
+        <br>
+        <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
+        <div id="matchfinish" style="display: none;">
+          <br><span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br><br>
+          <br><span id="test"></span><br><br>
+          <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
+          <button type="button" class="btn btn-outline-danger btn-lg" id="finishno">아니요</button>
+        </div>
 
-            -------------------------------------------------------------------------------------------------------------------------
-
-          대충 사진 올린거 글자 인식해서 강화 현황, 악추피, 야추피, 인추피(기계, 요정? 등등), 신속, 치명, 인내, 등등 계산해주는걸 만드려고 함
-          근데 글자 인식하는게 카카오꺼 API 써서 하는거라 사진 장당 요금 발생해서 입소문타면 감당 못할꺼같아 계산하기전에 광고 띄우던가 하겠음
-          1000장까지는 무료라서 완성되면 주변 지인들 상대로 테스트하고 내봄 물론 완성된다는 가정하에 중간에 멘탈 터지면 쫑이고
-        </span>
-        </h5>
       </div>
     </main>
 
@@ -131,5 +190,311 @@
       <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
     </footer>
   </div>
+
+  <script>
+    document.querySelector('#mustbtn').addEventListener('click', (function(){
+      document.querySelector('#must').style.display = ((document.querySelector('#must').style.display!='none') ? 'none' : 'block');
+    }), false)
+    document.querySelector('#methodbtn').addEventListener('click', (function(){
+      document.querySelector('#method').style.display = ((document.querySelector('#method').style.display!='none') ? 'none' : 'block');
+    }), false)
+    
+    document.querySelector('#finishyes').addEventListener('click', (function(){
+      document.querySelector('#matchfinish').style.display = 'none';
+      document.querySelector('#matchstatus').style.display = '';
+      //document.querySelector('#matchingment').textContent = '도감작 계산중...';
+      document.querySelector('#matchingment').textContent = '여기까지 테스트';
+
+      //도감 계산
+    }), false)
+
+    document.querySelector('#finishno').addEventListener('click', (function(){
+      alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
+    }), false)
+
+
+    // ************************ Drag and drop ***************** //
+    let dropArea = document.getElementById("drop-area")
+
+    // Prevent default drag behaviors
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false)   
+      document.body.addEventListener(eventName, preventDefaults, false)
+    })
+
+    // Highlight drop area when item is dragged over it
+    ;['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, highlight, false)
+    })
+
+    ;['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, unhighlight, false)
+    })
+
+    // Handle dropped files
+    dropArea.addEventListener('drop', handleDrop, false)
+
+    document.querySelector('#matchstart').addEventListener('click', gomatching, false)
+    
+    function gomatching(){
+      if(document.querySelectorAll('#gallery > img').length == 0){
+        alert('사진을 선택해주세요')
+        return
+      }
+      this.style.display="none";
+      document.querySelector('#drop-area').style.display="none";
+      document.querySelector('#matchstatus').style.display = '';
+
+      var head = document.querySelector('head');
+      var opencvscript = document.createElement('script');
+      var cardlistscript = document.createElement('script');
+      opencvscript.type = 'text/javascript';
+      cardlistscript.type = 'text/javascript';
+      opencvscript.defer = true;
+      cardlistscript.defer = true;
+      opencvscript.src = 'js/opencv.js';
+      cardlistscript.src = 'js/cardlist.js';
+      head.appendChild(opencvscript);
+      head.appendChild(cardlistscript);
+      document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
+    }
+
+    var Module = {
+      async onRuntimeInitialized() { 
+        document.querySelector('#matchingment').textContent='카드 인식 시작';
+        var cavasimage;
+        var canvas;
+        var cardremoveimage = new Image();
+        cardremoveimage.src = cardremovebase64;
+        await new Promise(r => {
+          cardremoveimage.onload = r
+        })
+        var cardremove = cv.imread(cardremoveimage);
+        var carddeck = {};
+        var screenimg = document.querySelectorAll('#gallery > img');
+        let mask;
+        var method = cv.TM_CCOEFF_NORMED;;
+        let result_cols;
+        let result_rows;
+        var result;
+        let minMaxLoc;
+        let matchLoc;
+        var cardremovex;
+        var cardremovey;
+        var startX;
+        var startY;
+        let template;
+        var templateimage;
+        let dst;
+        let rect;
+        document.querySelector('#matchingment').textContent='';
+        for (var m = 0; m < screenimg.length; m++) {
+          document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
+          cavasimage = new Image();
+          cavasimage.src = screenimg[m].src;
+          await new Promise(r => {
+            cavasimage.onload = r
+          })
+          
+          canvas = cv.imread(cavasimage);
+          if(canvas.cols != 1920 || canvas.rows != 1080){
+            alert('해상도가 1920 X 1080이 아닙니다.');
+            return;
+          }
+
+          mask    = new cv.Mat();
+
+          result_cols =   canvas.cols - cardremove.cols + 1;
+          result_rows =   canvas.rows - cardremove.rows + 1;
+
+          result = new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+          cv.matchTemplate(canvas, cardremove, result, method, mask);
+
+          cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+          minMaxLoc   =   cv.minMaxLoc(result);
+
+          if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+              matchLoc  = minMaxLoc.minLoc;
+          }else{
+              matchLoc  = minMaxLoc.maxLoc;
+          }
+
+          cardremovex = matchLoc.x;
+          cardremovey = matchLoc.y;
+          startX = cardremovex - 1101;
+          startY = cardremovey + 92;
+          
+          for (var j = 0; j < 4; j++) {
+            y = startY + (j * 182);
+            for (var k = 0; k < 10; k++) {
+              dst = new cv.Mat();
+              mask = new cv.Mat();
+              rect = new cv.Rect(0,0,0,0);
+
+              x = startX + (k * 118);
+              
+              rect = new cv.Rect(x, y, 116, 164);
+              source = canvas.roi(rect);
+
+              for (var i = 0; i < Object.keys(cardlist).length; i++) {
+                templateimage = new Image();
+                templateimage.src = Object.keys(cardlist)[i];
+                await new Promise(r => {
+                  templateimage.onload = r
+                })
+                template = cv.imread(templateimage);
+
+                result_cols =   source.cols - template.cols + 1;
+                result_rows =   source.rows - template.rows + 1;
+
+                result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+                cv.matchTemplate(source, template, result, method, mask);
+
+                cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+                minMaxLoc   =   cv.minMaxLoc(result);
+
+                if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+                    matchLoc  = minMaxLoc.minLoc;
+                }else{
+                    matchLoc  = minMaxLoc.maxLoc;
+                }
+
+                if(matchLoc.x == 38 && matchLoc.y == 38){
+                  //솔 그랑데, 지휘관 솔 이미지 똑같아서 조건 추가
+                  if(cardlist[Object.keys(cardlist)[i]] == '솔 그랑데' && source.ucharAt(21, 41 * source.channels() + 2) < 130){
+                    continue;
+                  }
+                  //기드온, 투란 오인식
+                  if(cardlist[Object.keys(cardlist)[i]] == '기드온' && source.ucharAt(61, 32 * source.channels()) < 150){
+                    continue;
+                  }
+                  //비아키스, 레나 오인식
+                  if(cardlist[Object.keys(cardlist)[i]] == '비아키스' && source.ucharAt(43, 30 * source.channels() + 2) > 90){
+                    continue;
+                  }
+                  //레퓌스, 난민 파밀리아 오인식
+                  if(cardlist[Object.keys(cardlist)[i]] == '레퓌스' && source.ucharAt(73, 34 * source.channels()) > 170){
+                    continue;
+                  }
+
+                  for (var l = 5; l > 0; l--) {
+                    if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
+                      carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
+                      l=0;
+                    }else if(l==1){
+                      carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
+                    }
+                  }
+                  document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
+
+                  delete cardlist[Object.keys(cardlist)[i]];
+
+                  i=Object.keys(cardlist).length;
+                }
+                template.delete();result.delete();
+              }
+              source.delete();mask.delete();
+            }
+          }
+        }
+        canvas.delete(),cardremove.delete();
+        document.querySelector('#matchwhich').textContent=``;
+        document.querySelector('#matchstatus').style.display = 'none';
+        document.querySelector('#matchingment').textContent=`인식된 총 카드 ${Object.keys(carddeck).length}장`;
+        document.querySelector('#test').textContent=`${JSON.stringify(carddeck)}`;
+        console.log(carddeck);
+        console.log(Object.keys(carddeck).length);
+        document.querySelector('#matchfinish').style.display = "";
+      }
+    }
+
+
+    function preventDefaults (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    function highlight(e) {
+      dropArea.classList.add('highlight')
+    }
+
+    function unhighlight(e) {
+      dropArea.classList.remove('active')
+    }
+
+    function handleDrop(e) {
+      var dt = e.dataTransfer
+      var files = dt.files
+
+      handleFiles(files)
+    }
+
+    let uploadProgress = []
+    let progressBar = document.getElementById('progress-bar')
+
+    function initializeProgress(numFiles) {
+      progressBar.value = 0
+      uploadProgress = []
+
+      for(let i = numFiles; i > 0; i--) {
+        uploadProgress.push(0)
+      }
+    }
+
+    function updateProgress(fileNumber, percent) {
+      uploadProgress[fileNumber] = percent
+      let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+      progressBar.value = total
+    }
+
+    function handleFiles(files) {
+      files = [...files]
+      files.sort(function(a,b){
+        var textA = a.name.toLowerCase();
+        var textB = b.name.toLowerCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      })
+      initializeProgress(files.length)
+      files.forEach(previewFile)
+    }
+
+    function previewFile(file) {
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onloadend = async function() {
+        let img = document.createElement('img');
+        img.src = reader.result;
+        document.getElementById('gallery').appendChild(img);
+      }
+    }
+
+    function uploadFile(file, i) {
+      var formData = new FormData()
+      xhr.open('POST', url, true)
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+      // Update progress (can be used to show progress indicator)
+      xhr.upload.addEventListener("progress", function(e) {
+        updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+      })
+
+      xhr.addEventListener('readystatechange', function(e) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          updateProgress(i, 100) // <- Add this
+        }
+        else if (xhr.readyState == 4 && xhr.status != 200) {
+          // Error. Inform the user
+        }
+      })
+      
+      formData.append('upload_preset', 'ujpu6gyk')
+      formData.append('file', file)
+      xhr.send(formData)
+    }
+  </script>
 </body>
 </html>
