@@ -56,7 +56,7 @@
     #drop-area {
       border: 2px dashed #ccc;
       border-radius: 20px;
-      width: 480px;
+      width: 90%;
       margin: 50px auto;
       padding: 20px;
     }
@@ -73,21 +73,10 @@
       margin-top: 10px;
     }
     #gallery img {
-      width: 150px;
+      width: 48%;
       margin-bottom: 10px;
       margin-right: 10px;
       vertical-align: middle;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px;
-      background: #ccc;
-      cursor: pointer;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .button:hover {
-      background: #ddd;
     }
     #fileElem {
       display: none;
@@ -136,24 +125,41 @@
         </div>
       </div>
       
-      <div class="mx-auto w-50 pt-5">
+      <div class="pt-5">
+        <button type="button" class="btn btn-outline-light btn-lg" id="mustbtn">조건</button>
+        <button type="button" class="btn btn-outline-light btn-lg" id="methodbtn">방법</button>
+        <div id="must" style="display:none;">
+          <br>
+          <h3>※ 필수 ※</h3>
+          <p>1. 1920 X 1080 해상도</p>
+          <p>2. 인게임 스크린샷으로 찍은 사진</p>
+          <h3>※ 권장 ※</h3>
+          <p>1. 한 사진에 각기 다른 카드 40장이 들어가게(오래걸림, 오인식 방지)</p>
+        </div>
+        <div id="method" style="display:none;">
+          <br>
+          <p>1. 사진들을 선택</p>
+          <p>2. '인식 시작' 클릭</p>
+        </div>
         <div id="drop-area">
           <form class="my-form">
-            <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+            <p>사진들을 드래그해서 선택할 수도 있어요</p>
             <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="button" for="fileElem">Select some files</label>
+            <label class="btn btn-outline-light btn-lg" for="fileElem">사진 선택</label>
           </form>
           <progress id="progress-bar" max=100 value=0></progress>
           <div id="gallery"></div>
         </div>
-
-        <canvas id="template" width="40" height="40"></canvas>
-
-        <button id="Erosion">Erosion</button>
-
-        <div id="canvaszone">
-          <canvas id="canvasOutput"></canvas>
+        <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">인식 시작</button>
+        <br>
+        <br>
+        <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
+        <div id="matchfinish" style="display: none;">
+          <br><span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br><br>
+          <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
+          <button type="button" class="btn btn-outline-danger btn-lg" id="finishno">아니요</button>
         </div>
+
       </div>
     </main>
 
@@ -183,10 +189,27 @@
     </footer>
   </div>
 
-  <script async src="js/opencv.js" onload="console.log('opencv ready');"></script>
-  <script async src="js/cardlist.js" onload="console.log('cardlist ready');"></script>
-
   <script>
+    document.querySelector('#mustbtn').addEventListener('click', (function(){
+      document.querySelector('#must').style.display = ((document.querySelector('#must').style.display!='none') ? 'none' : 'block');
+    }), false)
+    document.querySelector('#methodbtn').addEventListener('click', (function(){
+      document.querySelector('#method').style.display = ((document.querySelector('#method').style.display!='none') ? 'none' : 'block');
+    }), false)
+    
+    document.querySelector('#finishyes').addEventListener('click', (function(){
+      document.querySelector('#matchfinish').style.display = 'none';
+      document.querySelector('#matchstatus').style.display = '';
+      document.querySelector('#matchingment').textContent = '도감작 계산중...';
+
+      //도감 계산
+    }), false)
+
+    document.querySelector('#finishno').addEventListener('click', (function(){
+      alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
+    }), false)
+
+
     // ************************ Drag and drop ***************** //
     let dropArea = document.getElementById("drop-area")
 
@@ -207,6 +230,181 @@
 
     // Handle dropped files
     dropArea.addEventListener('drop', handleDrop, false)
+
+    document.querySelector('#matchstart').addEventListener('click', gomatching, false)
+    
+    function gomatching(){
+      if(document.querySelectorAll('#gallery > img').length == 0){
+        alert('사진을 선택해주세요')
+        return
+      }
+      this.style.display="none";
+      document.querySelector('#drop-area').style.display="none";
+      document.querySelector('#matchstatus').style.display = '';
+
+      var head = document.querySelector('head');
+      var opencvscript = document.createElement('script');
+      var cardlistscript = document.createElement('script');
+      opencvscript.type = 'text/javascript';
+      cardlistscript.type = 'text/javascript';
+      opencvscript.defer = true;
+      cardlistscript.defer = true;
+      opencvscript.src = 'js/opencv.js';
+      cardlistscript.src = 'js/cardlist.js';
+      head.appendChild(opencvscript);
+      head.appendChild(cardlistscript);
+      document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
+    }
+
+    var Module = {
+      async onRuntimeInitialized() { 
+        document.querySelector('#matchingment').textContent='카드 인식 시작';
+        var cavasimage;
+        var canvas;
+        var cardremoveimage = new Image();
+        cardremoveimage.src = cardremovebase64;
+        await new Promise(r => {
+          cardremoveimage.onload = r
+        })
+        var cardremove = cv.imread(cardremoveimage);
+        var carddeck = {};
+        var screenimg = document.querySelectorAll('#gallery > img');
+        let mask;
+        var method = cv.TM_CCOEFF_NORMED;;
+        let result_cols;
+        let result_rows;
+        var result;
+        let minMaxLoc;
+        let matchLoc;
+        var cardremovex;
+        var cardremovey;
+        var startX;
+        var startY;
+        let template;
+        var templateimage;
+        let dst;
+        let rect;
+        var lastJ = 0;
+        var lastK = 0;
+        document.querySelector('#matchingment').textContent='';
+        for (var m = 0; m < screenimg.length; m++) {
+          document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
+          cavasimage = new Image();
+          cavasimage.src = screenimg[m].src;
+          await new Promise(r => {
+            cavasimage.onload = r
+          })
+          
+          canvas = cv.imread(cavasimage);
+          if(canvas.cols != 1920 || canvas.rows != 1080){
+            alert('해상도가 1920 X 1080이 아닙니다.');
+            return;
+          }
+
+          mask    = new cv.Mat();
+
+          result_cols =   canvas.cols - cardremove.cols + 1;
+          result_rows =   canvas.rows - cardremove.rows + 1;
+
+          result = new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+          cv.matchTemplate(canvas, cardremove, result, method, mask);
+
+          cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+          minMaxLoc   =   cv.minMaxLoc(result);
+
+          if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+              matchLoc  = minMaxLoc.minLoc;
+          }else{
+              matchLoc  = minMaxLoc.maxLoc;
+          }
+
+          cardremovex = matchLoc.x;
+          cardremovey = matchLoc.y;
+          startX = cardremovex - 1101;
+          startY = cardremovey + 92;
+
+          lastJ = 0;
+          lastK = 0;
+          
+          for (var i = 0; i < Object.keys(cardlist).length; i++) {
+            templateimage = new Image();
+            templateimage.src = Object.keys(cardlist)[i];
+            await new Promise(r => {
+              templateimage.onload = r
+            })
+            template = cv.imread(templateimage);
+
+            for (var j = 0; j < 4; j++) {
+              y = startY + (j * 182);
+              for (var k = 0; k < 10; k++) {
+                dst = new cv.Mat();
+                mask = new cv.Mat();
+                rect = new cv.Rect(0,0,0,0);
+
+                x = startX + (k * 118);
+                
+                rect = new cv.Rect(x, y, 116, 164);
+                source = canvas.roi(rect);
+
+                result_cols =   source.cols - template.cols + 1;
+                result_rows =   source.rows - template.rows + 1;
+
+                result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+                cv.matchTemplate(source, template, result, method, mask);
+
+                cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+                minMaxLoc   =   cv.minMaxLoc(result);
+
+                if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+                    matchLoc  = minMaxLoc.minLoc;
+                }else{
+                    matchLoc  = minMaxLoc.maxLoc;
+                }
+
+                if(matchLoc.x == 38 && matchLoc.y == 38){
+                  for (var l = 5; l > 0; l--) {
+                    if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
+                      carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
+                      l=0;
+                    }else if(l==1){
+                      carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
+                    }
+                  }
+                  document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
+
+                  delete cardlist[Object.keys(cardlist)[i]];
+                  i--;
+                  
+                  if(k==9){
+                    lastJ++;
+                    lastK=0;
+                  }else{
+                    lastK=k+1;
+                    lastJ=j;
+                  }
+                  j=4;k=10;
+                }
+
+                result.delete();source.delete();mask.delete()
+              }
+            }
+            template.delete();
+          }
+        }
+        canvas.delete(),cardremove.delete();
+        document.querySelector('#matchwhich').textContent=``;
+        document.querySelector('#matchstatus').style.display = 'none';
+        document.querySelector('#matchingment').textContent=`인식된 총 카드 ${Object.keys(carddeck).length}장`;
+        console.log(carddeck);
+        console.log(Object.keys(carddeck).length);
+        document.querySelector('#matchfinish').style.display = "";
+      }
+    }
+
 
     function preventDefaults (e) {
       e.preventDefault()
@@ -248,8 +446,12 @@
 
     function handleFiles(files) {
       files = [...files]
+      files.sort(function(a,b){
+        var textA = a.name.toLowerCase();
+        var textB = b.name.toLowerCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      })
       initializeProgress(files.length)
-      //files.forEach(uploadFile)
       files.forEach(previewFile)
     }
 
@@ -257,124 +459,9 @@
       let reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onloadend = async function() {
-        var canvasimage = new Image();
-        var cardremoveimage = new Image();
-        canvasimage.src = reader.result;
-        cardremoveimage.src = cardremovebase64;
-        await new Promise(r => {
-          canvasimage.onload = r
-          cardremoveimage.onload = r
-        })
-        var canvas = cv.imread(canvasimage);
-        var cardremove = cv.imread(cardremoveimage);
-
-        let mask = new cv.Mat();
-        var method  = cv.TM_CCOEFF;
-
-        let result_cols =   canvas.cols - cardremove.cols + 1;
-        let result_rows =   canvas.rows - cardremove.rows + 1;
-
-        var result = new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
-
-        cv.matchTemplate(canvas, cardremove, result, method, mask);
-
-        cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
-
-        let minMaxLoc   =   cv.minMaxLoc(result);
-
-        let matchLoc;
-
-        if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
-            matchLoc  = minMaxLoc.minLoc;
-        }else{
-            matchLoc  = minMaxLoc.maxLoc;
-        }
-
-        var cardremovex = matchLoc.x;
-        var cardremovey = matchLoc.y;
-        var startX = cardremovex - 1101;
-        var startY = cardremovey + 92;
-
-        var carddeck = [];
-        let template;
-        var templateimage;
-        let dst;
-        let rect;
-        var lastJ = 0;
-        var lastK = 0;
-        
-        for (var i = 0; i < Object.keys(cardlist).length; i++) {
-          templateimage = new Image();
-          templateimage.src = Object.keys(cardlist)[i];
-          await new Promise(r => {
-            templateimage.onload = r
-          })
-          template = cv.imread(templateimage);
-          console.log(cardlist[Object.keys(cardlist)[i]])
-
-          for (var j = lastJ; j < 4; j++) {
-            console.log('j',j)
-            y = startY + (j * 182);
-            for (var k = lastK; k < 10; k++) {
-              console.log('k',k)
-              if(carddeck.length == 40){
-                lastJ = 0;
-                lastK = 0;
-                break;
-              }
-              dst = new cv.Mat();
-              mask = new cv.Mat();
-              rect = new cv.Rect(0,0,0,0);
-
-              x = startX + (k * 118);
-              
-              rect = new cv.Rect(x, y, 116, 164);
-              source = canvas.roi(rect);
-
-              result_cols =   source.cols - template.cols + 1;
-              result_rows =   source.rows - template.rows + 1;
-
-              result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
-
-              cv.matchTemplate(source, template, result, method, mask);
-
-              cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
-
-              minMaxLoc   =   cv.minMaxLoc(result);
-
-              if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
-                  matchLoc  = minMaxLoc.minLoc;
-              }else{
-                  matchLoc  = minMaxLoc.maxLoc;
-              }
-
-              console.log(matchLoc.x,matchLoc.y)
-              if(matchLoc.x == 38 && matchLoc.y == 38){
-                //for (var l = 5; l > 0; l--) {
-                //  console.log(92 - (Math.abs(l-5) * 15));
-                //  console.log(source.ucharAt(137, (92 - (Math.abs(l-5) * 15)) * source.channels()))
-                //}
-                carddeck.push(cardlist[Object.keys(cardlist)[i]]);
-                delete cardlist[Object.keys(cardlist)[i]];
-                i--;
-                
-                if(k==9){
-                  lastJ++;
-                  lastK=0;
-                }else{
-                  lastK=k+1;
-                  lastJ=j;
-                }
-                j=4;k=10;
-              }
-
-              result.delete();source.delete();mask.delete()
-            }
-          }
-          template.delete();
-        }
-        canvas.delete(),cardremove.delete();
-        console.log(carddeck);
+        let img = document.createElement('img');
+        img.src = reader.result;
+        document.getElementById('gallery').appendChild(img);
       }
     }
 
@@ -401,12 +488,6 @@
       formData.append('file', file)
       xhr.send(formData)
     }
-
-    
-
-    $('#Erosion').on('click', function(){
-
-    })
   </script>
 </body>
 </html>

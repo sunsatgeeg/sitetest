@@ -31,10 +31,12 @@ function clickToCopy(element){
 $(function(){
     var servererror = false;
     if(!(servererror)){
-        $('head').append(`
-        <!-- temp ADfit -->
-        <script src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-        `);
+        var head = document.querySelector('head');
+        var adfitscript = document.createElement('script');
+        adfitscript.type = 'text/javascript';
+        adfitscript.defer = true;
+        adfitscript.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+        head.appendChild(adfitscript);
     }
     if(servererror){
         $('main').children().prepend(`
