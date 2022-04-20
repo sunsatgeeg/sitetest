@@ -284,8 +284,6 @@
         var templateimage;
         let dst;
         let rect;
-        var lastJ = 0;
-        var lastK = 0;
         document.querySelector('#matchingment').textContent='';
         for (var m = 0; m < screenimg.length; m++) {
           document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
@@ -324,29 +322,26 @@
           cardremovey = matchLoc.y;
           startX = cardremovex - 1101;
           startY = cardremovey + 92;
-
-          lastJ = 0;
-          lastK = 0;
           
-          for (var i = 0; i < Object.keys(cardlist).length; i++) {
-            templateimage = new Image();
-            templateimage.src = Object.keys(cardlist)[i];
-            await new Promise(r => {
-              templateimage.onload = r
-            })
-            template = cv.imread(templateimage);
+          for (var j = 0; j < 4; j++) {
+            y = startY + (j * 182);
+            for (var k = 0; k < 10; k++) {
+              dst = new cv.Mat();
+              mask = new cv.Mat();
+              rect = new cv.Rect(0,0,0,0);
 
-            for (var j = 0; j < 4; j++) {
-              y = startY + (j * 182);
-              for (var k = 0; k < 10; k++) {
-                dst = new cv.Mat();
-                mask = new cv.Mat();
-                rect = new cv.Rect(0,0,0,0);
+              x = startX + (k * 118);
+              
+              rect = new cv.Rect(x, y, 116, 164);
+              source = canvas.roi(rect);
 
-                x = startX + (k * 118);
-                
-                rect = new cv.Rect(x, y, 116, 164);
-                source = canvas.roi(rect);
+              for (var i = 0; i < Object.keys(cardlist).length; i++) {
+                templateimage = new Image();
+                templateimage.src = Object.keys(cardlist)[i];
+                await new Promise(r => {
+                  templateimage.onload = r
+                })
+                template = cv.imread(templateimage);
 
                 result_cols =   source.cols - template.cols + 1;
                 result_rows =   source.rows - template.rows + 1;
@@ -377,22 +372,13 @@
                   document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
 
                   delete cardlist[Object.keys(cardlist)[i]];
-                  i--;
-                  
-                  if(k==9){
-                    lastJ++;
-                    lastK=0;
-                  }else{
-                    lastK=k+1;
-                    lastJ=j;
-                  }
-                  j=4;k=10;
-                }
 
-                result.delete();source.delete();mask.delete()
+                  i=Object.keys(cardlist).length;
+                }
+                template.delete();result.delete();
               }
+              source.delete();mask.delete();
             }
-            template.delete();
           }
         }
         canvas.delete(),cardremove.delete();

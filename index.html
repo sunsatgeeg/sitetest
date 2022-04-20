@@ -96,62 +96,68 @@
         </div>
         
         <!-- chart -->
-        <div class="tick_chart">- 틱 차트(5분)</div>
-        <div>
-          <!-- dropdown -->
-          <div class="dropdown itemList">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">아이템 추가 / 제거
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><input class="form-control" id="myInput" type="text" placeholder="검색..." autocomplete="off"></li>
-            </ul>
-          </div>
-          <!-- amchart -->
-          <div class="mb-3" id="chartdiv"></div>
+        <div class="mb-3 row mx-0 continent">
+          <button type="button" class="btn btn-outline-light btn-lg col me-2 active" id="tickchartbtn">틱 차트(5분)</button>
+          <button type="button" class="btn btn-outline-light btn-lg col ms-2" id="candlechartbtn">캔들 차트</button>
         </div>
-
-        <!-- Chart Tools -->
-        <div class="chartTools mb-3 clearfix">
-          <div class="float-start">
-            <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
-          </div>
-
-          <div class="float-end">
-            <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
-            <button type="button" class="btn btn-primary" id="reset">초기화</button>
-          </div>
-        </div>
-
-        <div class="candle_chart">- 캔들 차트</div>
-        <!-- amchart -->
-        <div>
-          <div class="mb-3" id="candlechartdiv"></div>
-        </div>
-
-        <!-- Chart Tools -->
-        <div class="candleChartTools mb-3 clearfix">
-          <div class="float-start">
-            <div class="btn-group dropup candleitemList">
-              <button type="button" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-              <ul class="dropdown-menu w-100" id="itemUl">
-                <li><input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off"></li>
+        <div id="tickchart">
+          <div>
+            <!-- dropdown -->
+            <div class="dropdown itemList">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">아이템 추가 / 제거
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><input class="form-control" id="myInput" type="text" placeholder="검색..." autocomplete="off"></li>
               </ul>
             </div>
-            <button type="button" class="btn btn-primary" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
-          </div>
-          <div class="mx-2 float-start candleBtn" id="candleBtn">
-            <!--<button type="button" class="btn btn-info" id="30m">30분</button>
-            <button type="button" class="btn btn-info" id="1h">1시</button> -->
-            <button type="button" class="btn btn-info" id="3h">3시</button>
-            <button type="button" class="btn btn-info" id="6h">6시</button>
-            <button type="button" class="btn btn-info" id="12h">12시</button>
-            <button type="button" class="btn btn-outline-info" id="1d">1일</button>
-            <button type="button" class="btn btn-info" id="1w">1주</button>
-            <button type="button" class="btn btn-info" id="1M">1달</button>
+            <!-- amchart -->
+            <div class="mb-3" id="chartdiv"></div>
           </div>
 
-          <div class="float-end">
-            <button type="button" class="btn btn-primary" id="candlewideview">넓게보기</button>
+          <!-- Chart Tools -->
+          <div class="chartTools mb-3 clearfix">
+            <div class="float-start">
+              <button type="button" class="btn btn-primary" id="maBtn" data-bs-toggle="modal" data-bs-target="#MA">이동평균선</button>
+            </div>
+
+            <div class="float-end">
+              <button type="button" class="btn btn-primary" id="wideview">넓게보기</button>
+              <button type="button" class="btn btn-primary" id="reset">초기화</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- amchart -->
+        <div id="candlechart" style="display:none;">
+          <div>
+            <div class="mb-3" id="candlechartdiv"></div>
+          </div>
+
+          <!-- Chart Tools -->
+          <div class="candleChartTools mb-3 clearfix">
+            <div class="float-start">
+              <div class="btn-group dropup candleitemList">
+                <button type="button" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+                <ul class="dropdown-menu w-100" id="itemUl">
+                  <li><input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off"></li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-primary" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
+            </div>
+            <div class="mx-2 float-start candleBtn" id="candleBtn">
+              <!--<button type="button" class="btn btn-info" id="30m">30분</button>
+              <button type="button" class="btn btn-info" id="1h">1시</button> -->
+              <button type="button" class="btn btn-info" id="3h">3시</button>
+              <button type="button" class="btn btn-info" id="6h">6시</button>
+              <button type="button" class="btn btn-info" id="12h">12시</button>
+              <button type="button" class="btn btn-outline-info" id="1d">1일</button>
+              <button type="button" class="btn btn-info" id="1w">1주</button>
+              <button type="button" class="btn btn-info" id="1M">1달</button>
+            </div>
+
+            <div class="float-end">
+              <button type="button" class="btn btn-primary" id="candlewideview">넓게보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -271,5 +277,20 @@
       </div>
     </div>
   </div>
+  <script>
+    document.querySelector('#tickchartbtn').addEventListener('click',function(){
+      console.log('1')
+      this.classList.add('active');
+      document.querySelector('#candlechartbtn').classList.remove('active');
+      document.querySelector('#tickchart').style.display = '';
+      document.querySelector('#candlechart').style.display = 'none';
+    }, false)
+    document.querySelector('#candlechartbtn').addEventListener('click',function(){
+      this.classList.add('active');
+      document.querySelector('#tickchartbtn').classList.remove('active');
+      document.querySelector('#candlechart').style.display = '';
+      document.querySelector('#tickchart').style.display = 'none';
+    }, false)
+  </script>
 </body>
 </html>
