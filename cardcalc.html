@@ -180,11 +180,15 @@
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
       helpimage.src = "img/card1.jpg";
+      helpimage.addEventListener('click', function(){window.open("img/card1.jpg");})
+      helpimage.style.cursor = "pointer"
       helpimage.style.width = "50%";
       document.querySelector('#modalimg').appendChild(helpimage);
       
       helpimage = document.createElement('img');
       helpimage.src = "img/card2.jpg";
+      helpimage.addEventListener('click', function(){window.open("img/card2.jpg");})
+      helpimage.style.cursor = "pointer"
       helpimage.style.width = "50%";
       document.querySelector('#modalimg').appendChild(helpimage);
 
