@@ -265,7 +265,7 @@
             break;
           }
           leveltotal += level;
-
+          
           for (var k = 4; k > -1+level; k--) {
             nextlevels.push(cardLevelUpExp[cardgrade[setcardlist[j]]][k]);
           }
@@ -291,7 +291,7 @@
           }
         }
         if(set[3] == "악마"){
-          demonrecommend[setname] = nextLevelExp / (nextbonusdamage / 0.01);
+          demonrecommend[setname] = nextLevelExp;
         }
       }
       document.querySelector('#matchingment').textContent = `계산 완료(임시로 콘솔창에서 확인)`;
