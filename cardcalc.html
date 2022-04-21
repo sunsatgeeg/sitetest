@@ -294,10 +294,12 @@
           demonrecommend[setname] = nextLevelExp;
         }
       }
+      //카드 삭제한번이라도 했으면 오차 있을수 있음
       document.querySelector('#matchingment').textContent = `계산 완료(임시로 콘솔창에서 확인)`;
       demonrecommend = Object.entries(demonrecommend).sort(([, a], [, b]) => a - b);
       //demonrecommend = Object.fromEntries(Object.entries(champ).sort(([, a], [, b]) => a - b));
 
+      console.log('과거에 카드 삭제한번이라도 했으면 오차 있을수 있음(카드 삭제를 해도 도감에서는 수집 유무로 효과가 올라가기 때문에)');
       console.log(demonrecommend);
       console.log(stat)
       console.log(bonusDamage);
@@ -501,8 +503,6 @@
         document.querySelector('#matchstatus').style.display = 'none';
         document.querySelector('#matchingment').textContent=`인식된 총 카드 ${Object.keys(carddeck).length}장`;
         document.querySelector('#test').textContent=`${JSON.stringify(carddeck)}`;
-        console.log(carddeck);
-        console.log(Object.keys(carddeck).length);
         document.querySelector('#matchfinish').style.display = "";
       }
     }
@@ -600,7 +600,9 @@
         </div>
         <div class="modal-body text-black">
           <p>옛날에 한정으로 뿌린(미녀 삼총사, 그땐 그랬지 세트) 카드들은<br>제가 가진게 없어서 사진을 등록하지 못했습니다. <br>제외하고 테스트해주시길 바랍니다.
-          <br>혹시나 저 위에 카드들을 가지고 계신분은 sjssj7777@naver.com으로<br>필수 조건에 맞게 찍은 스크린샷 보내주시면 감사하겠습니다.</p>
+          <br>혹시나 저 위에 카드들을 가지고 계신분은 sjssj7777@naver.com으로<br>필수 조건에 맞게 찍은 스크린샷 보내주시면 감사하겠습니다.<br>
+          (미녀 삼총사, 그땐 그랬지 세트)카드들을 가지고 계신분들은 이미지 데이터를 못찾아서 오래걸립니다.</p>
+          
           <h3>※ 필수 ※</h3>
           <p>1. 1920 X 1080 해상도</p>
           <p>2. 인게임 스크린샷 기능으로 찍은 사진</p>
