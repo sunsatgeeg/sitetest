@@ -177,6 +177,7 @@
   </div>
 
   <script>
+    var carddeck = {};
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
       helpimage.src = "img/card1.jpg";
@@ -195,18 +196,119 @@
       document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
     }, false);
 
-    document.querySelector('#finishyes').addEventListener('click', (function(){
+    document.querySelector('#finishyes').addEventListener('click', async function(){
       document.querySelector('#matchfinish').style.display = 'none';
       document.querySelector('#matchstatus').style.display = '';
-      //document.querySelector('#matchingment').textContent = '도감작 계산중...';
+
       document.querySelector('#matchingment').textContent = '여기까지 테스트';
 
-      //도감 계산
-    }), false)
+      return;
+      document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
+      var head = document.querySelector('head');
+      var cardeffectscript = document.createElement('script');
+      cardeffectscript.type = 'text/javascript';
+      cardeffectscript.defer = true;
+      cardeffectscript.src = 'js/cardeffect.js';
+      head.appendChild(cardeffectscript);
+      await new Promise(r => {
+        cardeffectscript.onload = r
+      })
 
-    document.querySelector('#finishno').addEventListener('click', (function(){
+      document.querySelector('#matchingment').textContent = '도감작 계산 시작';
+      var stat = {
+        "힘"      : 0,
+        "민첩"    : 0,  
+        "지능"    : 0,  
+        "체력"    : 0,  
+        "치명"    : 0,  
+        "특화"    : 0,  
+        "제압"    : 0,  
+        "신속"    : 0,  
+        "인내"    : 0,  
+        "숙련"    : 0,  
+        "방어력"  : 0,
+      }
+      var bonusDamage = {
+        "인간" : 0,
+        "악마" : 0,
+        "물질" : 0,
+        "불사" : 0,
+        "식물" : 0,
+        "곤충" : 0,
+        "정령" : 0,
+        "야수" : 0,
+        "기계" : 0
+      };
+
+      var cardeffectlength = Object.keys(cardeffect).length;
+
+      var setname;
+      var set;
+      var setcardlist;
+      var bonus;
+      var level;
+      var leveltotal;
+      var nextbonus;
+      var demonrecommend = {};
+      var nextlevels;
+      var nextLevelExp;
+      for (var i = 0; i < cardeffectlength; i++) {
+        leveltotal = 0;
+        nextlevels = [];
+        nextLevelExp = 0;
+        setname = Object.keys(cardeffect)[i];
+        document.querySelector('#matchingment').textContent = `(${i+1} / ${cardeffectlength}) [${setname}] 진행중`;
+        set = cardeffect[Object.keys(cardeffect)[i]];
+        setcardlist = set[0];
+        
+        for (var j = 0; j < setcardlist.length; j++) {
+          level = carddeck[setcardlist[j]];
+          if(level == undefined){
+            break;
+          }
+          leveltotal += level;
+
+          for (var k = 4; k > -1+level; k--) {
+            nextlevels.push(cardLevelUpExp[cardgrade[setcardlist[j]]][k]);
+          }
+        }
+        if(j != setcardlist.length){
+          continue;
+        }
+        nextlevels.sort(function(a,b){
+          return a-b;
+        });
+        stat[set[1]] += set[2];
+
+        for (var j = 0; j < Object.keys(set[4]).length; j++) {
+          if(Object.keys(set[4])[j] <= leveltotal){
+            bonusDamage[set[3]] += set[4][Object.keys(set[4])[j]];
+          }else{
+            nextbonusdamage = set[4][Object.keys(set[4])[j]]
+            nextbonus = Object.keys(set[4])[j] - leveltotal;
+            for (var k = 0; k < nextbonus; k++) {
+              nextLevelExp += nextlevels[k];
+            }
+            break;
+          }
+        }
+        if(set[3] == "악마"){
+          demonrecommend[setname] = nextLevelExp / (nextbonusdamage / 0.01);
+        }
+      }
+      document.querySelector('#matchingment').textContent = `계산 완료`;
+      demonrecommend = Object.entries(demonrecommend).sort(([, a], [, b]) => a - b);
+      //demonrecommend = Object.fromEntries(Object.entries(champ).sort(([, a], [, b]) => a - b));
+
+      console.log(demonrecommend);
+      console.log(stat)
+      console.log(bonusDamage);
+
+    }, false)
+
+    document.querySelector('#finishno').addEventListener('click', function(){
       alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
-    }), false)
+    }, false)
 
 
     // ************************ Drag and drop ***************** //
@@ -266,7 +368,6 @@
           cardremoveimage.onload = r
         })
         var cardremove = cv.imread(cardremoveimage);
-        var carddeck = {};
         var screenimg = document.querySelectorAll('#gallery > img');
         let mask;
         var method = cv.TM_CCOEFF_NORMED;;
