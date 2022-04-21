@@ -126,22 +126,7 @@
       </div>
       
       <div class="pt-5">
-        <p>옛날에 한정으로 뿌린(축제를 즐기는..., 그땐 그랬지 세트) 카드들은<br>제가 가진게 없어서 사진을 등록하지 못했습니다. <br>제외하고 테스트해주시길 바랍니다.</p>
-        <button type="button" class="btn btn-outline-light btn-lg" id="mustbtn">조건</button>
-        <button type="button" class="btn btn-outline-light btn-lg" id="methodbtn">방법</button>
-        <div id="must" style="display:none;">
-          <br>
-          <h3>※ 필수 ※</h3>
-          <p>1. 1920 X 1080 해상도</p>
-          <p>2. 인게임 스크린샷으로 찍은 사진</p>
-          <h3>※ 권장 ※</h3>
-          <p>1. 한 사진에 각기 다른 카드 40장이 들어가게(오래걸림, 오인식 방지)</p>
-        </div>
-        <div id="method" style="display:none;">
-          <br>
-          <p>1. 사진들을 선택</p>
-          <p>2. '인식 시작' 클릭</p>
-        </div>
+        <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
         <div id="drop-area">
           <form class="my-form">
             <p>사진들을 드래그해서 선택할 수도 있어요</p>
@@ -192,13 +177,20 @@
   </div>
 
   <script>
-    document.querySelector('#mustbtn').addEventListener('click', (function(){
-      document.querySelector('#must').style.display = ((document.querySelector('#must').style.display!='none') ? 'none' : 'block');
-    }), false)
-    document.querySelector('#methodbtn').addEventListener('click', (function(){
-      document.querySelector('#method').style.display = ((document.querySelector('#method').style.display!='none') ? 'none' : 'block');
-    }), false)
-    
+    document.querySelector('#helpbtn').addEventListener('click', function(){
+      var helpimage = document.createElement('img');
+      helpimage.src = "img/card1.jpg";
+      helpimage.style.width = "50%";
+      document.querySelector('#modalimg').appendChild(helpimage);
+      
+      helpimage = document.createElement('img');
+      helpimage.src = "img/card2.jpg";
+      helpimage.style.width = "50%";
+      document.querySelector('#modalimg').appendChild(helpimage);
+
+      document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
+    }, false);
+
     document.querySelector('#finishyes').addEventListener('click', (function(){
       document.querySelector('#matchfinish').style.display = 'none';
       document.querySelector('#matchstatus').style.display = '';
@@ -496,5 +488,33 @@
       xhr.send(formData)
     }
   </script>
+  <div class="modal fade bd-example-modal-lg" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black">도움말</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-black">
+          <p>옛날에 한정으로 뿌린(미녀 삼총사, 그땐 그랬지 세트) 카드들은<br>제가 가진게 없어서 사진을 등록하지 못했습니다. <br>제외하고 테스트해주시길 바랍니다.
+          <br>혹시나 저 위에 카드들을 가지고 계신분은 sjssj7777@naver.com으로<br>필수 조건에 맞게 찍은 스크린샷 보내주시면 감사하겠습니다.</p>
+          <h3>※ 필수 ※</h3>
+          <p>1. 1920 X 1080 해상도</p>
+          <p>2. 인게임 스크린샷 기능으로 찍은 사진</p>
+          <h3>※ 권장 ※</h3>
+          <p>1. 각 사진마다 중복없이(오래걸림, 오인식 방지)</p>
+          <p>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
+          <p id="modalimg">
+          </p>
+          <h3>※ 사용방법 ※</h3>
+          <p>1. 카드 보관함을 찍은 사진들을 선택</p>
+          <p>2. '인식 시작' 클릭</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn btn-outline-dark text-black" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

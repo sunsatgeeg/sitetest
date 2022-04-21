@@ -263,7 +263,7 @@
                 </div>
                 <div class="text-center">
                   <button id="wisdomeffectclear" class="btn btn-primary">초기화</button>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MA">도움말</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
                 </div>
               </div>
             </div>
@@ -409,6 +409,18 @@
   </style>
   <script src="js/craft_recipe.js" > </script>
   <script>
+    document.querySelector('#helpbtn').addEventListener('click', function(){
+      var helpimage = document.createElement('img');
+      helpimage.src = "img/wisdom.png";
+      document.querySelector('#modalimg1').appendChild(helpimage);
+      
+      helpimage = document.createElement('img');
+      helpimage.src = "img/wisdomeffect.png";
+      document.querySelector('#modalimg2').appendChild(helpimage);
+
+      document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
+    }, false);
+
     var jsonsave;
     var $table = $('#fresh-table');
 
@@ -886,7 +898,7 @@
     });
 
   </script>
-  <div class="modal fade bd-example-modal-lg" id="MA" tabindex="-1" aria-labelledby="MALabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-lg" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -895,11 +907,11 @@
         </div>
         <div class="modal-body text-black">
           <div>
-            <img src="img\wisdom.png">
+            <p id="modalimg1"></p>
             <p>▲ 위와 같이 제작 대성공 확률 4% 증가니까 밑에 전체에 4입력</p>
             <p>[배틀 아이템 - 폭탄] 제작 대성공 확률 3% 증가니까 밑에 배틀아이템에 3입력</p>
             <p>[요리] 제작 대성공 확률 1% 증가니까 밑에 요리에 1입력</p>
-            <img src="img\wisdomeffect.png">
+            <p id="modalimg2"></p>
           </div>
         </div>
         <div class="modal-footer">
