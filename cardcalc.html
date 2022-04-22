@@ -126,25 +126,163 @@
       </div>
       
       <div class="pt-5">
-        <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
-        <div id="drop-area">
-          <form class="my-form">
-            <p>사진들을 드래그해서 선택할 수도 있어요</p>
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="btn btn-outline-light btn-lg" for="fileElem">사진 선택</label>
-          </form>
-          <progress id="progress-bar" max=100 value=0></progress>
-          <div id="gallery"></div>
+        <div id="matchzone">
+          <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
+          <div id="drop-area">
+            <form class="my-form">
+              <p>사진들을 드래그해서 선택할 수도 있어요</p>
+              <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+              <label class="btn btn-outline-light btn-lg" for="fileElem">사진 선택</label>
+            </form>
+            <progress id="progress-bar" max=100 value=0></progress>
+            <div id="gallery"></div>
+          </div>
+          <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">인식 시작</button>
+          <br>
+          <br>
+          <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
+          <div id="matchfinish" style="display: none;">
+            <span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br>
+            <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
+            <button type="button" class="btn btn-outline-danger btn-lg" id="finishno">아니요</button>
+          </div>
         </div>
-        <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">인식 시작</button>
-        <br>
-        <br>
-        <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
-        <div id="matchfinish" style="display: none;">
-          <br><span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br><br>
-          <br><span id="test"></span><br><br>
-          <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
-          <button type="button" class="btn btn-outline-danger btn-lg" id="finishno">아니요</button>
+
+        <div id="mycard" style="display: none;">
+          <div class="clearfix container">
+            <div class="row">
+              <div id="bookeffect" class="col-5">
+                　
+                <table class="table table-dark float-start table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2">현재
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16" data-bs-toggle="tooltip" data-bs-placement="right" title="과거에 카드 삭제한번이라도 했으면 오차 있을수 있음(카드 삭제를 해도 도감에서는 수집 유무로 효과가 올라가기 때문)">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                        </svg>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tbody>
+                    <tr>
+                      <td>힘</td>
+                      <td id="힘"></td>
+                    </tr>
+                    <tr>
+                      <td>민첩</td>
+                      <td id="힘"></td>
+                    </tr>
+                    <tr>
+                      <td>지능</td>
+                      <td id="힘"></td>
+                    </tr>
+                    <tr>
+                      <td>체력</td>
+                      <td id="체력"></td>
+                    </tr>
+                    <tr>
+                      <td>치명</td>
+                      <td id="치명"></td>
+                    </tr>
+                    <tr>
+                      <td>특화</td>
+                      <td id="특화"></td>
+                    </tr>
+                    <tr>
+                      <td>제압</td>
+                      <td id="제압"></td>
+                    </tr>
+                    <tr>
+                      <td>신속</td>
+                      <td id="신속"></td>
+                    </tr>
+                    <tr>
+                      <td>인내</td>
+                      <td id="인내"></td>
+                    </tr>
+                    <tr>
+                      <td>숙련</td>
+                      <td id="숙련"></td>
+                    </tr>
+                    <tr>
+                      <td>물리 방어력</td>
+                      <td id="방어력"></td>
+                    </tr>
+                    <tr>
+                      <td>마법 방어력</td>
+                      <td id="방어력"></td>
+                    </tr>
+                    <tr>
+                      <td>인간 계열 피해량 증가</td>
+                      <td id="인간"></td>
+                    </tr>
+                    <tr>
+                      <td>악마 계열 피해량 증가</td>
+                      <td id="악마"></td>
+                    </tr>
+                    <tr>
+                      <td>물질 계열 피해량 증가</td>
+                      <td id="물질"></td>
+                    </tr>
+                    <tr>
+                      <td>불사 계열 피해량 증가</td>
+                      <td id="불사"></td>
+                    </tr>
+                    <tr>
+                      <td>식물 계열 피해량 증가</td>
+                      <td id="식물"></td>
+                    </tr>
+                    <tr>
+                      <td>곤충 계열 피해량 증가</td>
+                      <td id="곤충"></td>
+                    </tr>
+                    <tr>
+                      <td>정령 계열 피해량 증가</td>
+                      <td id="정령"></td>
+                    </tr>
+                    <tr>
+                      <td>야수 계열 피해량 증가</td>
+                      <td id="야수"></td>
+                    </tr>
+                    <tr>
+                      <td>기계 계열 피해량 증가</td>
+                      <td id="기계"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-7">
+                <div id="bonusdamageBtns">
+                  <button type="button" class="btn btn-outline-light btn-lg">악마</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">야수</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">정령</button>
+                  <br>
+                  <button type="button" class="btn btn-outline-light btn-lg">불사</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">물질</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">인간</button>
+                  <br>
+                  <button type="button" class="btn btn-outline-light btn-lg">식물</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">기계</button>
+                  <button type="button" class="btn btn-outline-light btn-lg">곤충</button>
+                </div>
+                <table class="table table-dark float-end table-hover col mt-2">
+                  <thead>
+                    <tr>
+                      <th scope="col-" class="align-middle">도감 이름</th>
+                      <th scope="col">다음 각성 단계까지<br>필요한 카드 경험치</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tbody id="bookstbody">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+
+          </div>
         </div>
 
       </div>
@@ -177,6 +315,52 @@
   </div>
 
   <script>
+    var recommendExp;
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+    bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
+    bonusDamageBtns.forEach(function(e){
+      e.addEventListener('click', function(){
+        bonusDamageBtns.forEach(function(f){
+          if(f.classList.contains('active')){
+            f.classList.remove('active');
+            return false;
+          }
+        })
+        e.classList.add('active');
+
+        target = document.querySelector('#bookstbody');
+        while (target.hasChildNodes()) {
+          target.removeChild(target.firstChild);
+        }
+
+        try{
+          targetLength = recommendExp[this.innerText].length;
+        }catch{
+          return;
+        }
+
+        for (var i = 0; i < targetLength; i++) {
+          tr = document.createElement('tr');
+          tdsetname = document.createElement('td');
+          tdsetexp = document.createElement('td');
+
+          exp = recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])];
+          if(exp == 0) continue;
+          
+          tdsetname.textContent = Object.keys(recommendExp[this.innerText][i]);
+          tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
+
+          tr.append(tdsetname);
+          tr.append(tdsetexp);
+          target.appendChild(tr);
+        }
+      })
+    });
+
     var carddeck = {};
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
@@ -247,13 +431,16 @@
       var level;
       var leveltotal;
       var nextbonus;
-      var demonrecommend = {};
       var nextlevels;
       var nextLevelExp;
+      var nextUpSetLevel;
+      recommendExp = {};
+      var recommendCard = {};
       for (var i = 0; i < cardeffectlength; i++) {
         leveltotal = 0;
         nextlevels = [];
         nextLevelExp = 0;
+        nextUpSetLevel = [];
         setname = Object.keys(cardeffect)[i];
         document.querySelector('#matchingment').textContent = `(${i+1} / ${cardeffectlength}) [${setname}] 진행중`;
         set = cardeffect[Object.keys(cardeffect)[i]];
@@ -265,51 +452,80 @@
             break;
           }
           leveltotal += level;
-          
+
           for (var k = 4; k > -1+level; k--) {
-            nextlevels.push(cardLevelUpExp[cardgrade[setcardlist[j]]][k]);
+            nextlevels.push([setcardlist[j],cardLevelUpExp[cardgrade[setcardlist[j]]][k]])
           }
         }
         if(j != setcardlist.length){
           continue;
         }
+        
         nextlevels.sort(function(a,b){
-          return a-b;
-        });
+          return a[1] - b[1];
+        })
+
         stat[set[1]] += set[2];
 
         for (var j = 0; j < Object.keys(set[4]).length; j++) {
           if(Object.keys(set[4])[j] <= leveltotal){
             bonusDamage[set[3]] += set[4][Object.keys(set[4])[j]];
           }else{
-            nextbonusdamage = set[4][Object.keys(set[4])[j]]
-            nextbonus = Object.keys(set[4])[j] - leveltotal;
-            for (var k = 0; k < nextbonus; k++) {
-              nextLevelExp += nextlevels[k];
+            nextbonusdamage = set[4][Object.keys(set[4])[j]];
+            nextleveldif = Object.keys(set[4])[j] - leveltotal;
+            for (var k = 0; k < nextleveldif; k++) {
+              nextLevelExp += nextlevels[k][1];
+              nextUpSetLevel.push(nextlevels[k]);
             }
             break;
           }
         }
-        if(set[3] == "악마"){
-          demonrecommend[setname] = nextLevelExp;
+
+        try{
+          recommendCard[set[3]].push({[setname]:nextUpSetLevel});
+          recommendExp[set[3]].push({[setname]:nextLevelExp});
+        }catch{
+          recommendCard[set[3]] = [{[setname]:nextUpSetLevel}];
+          recommendExp[set[3]] = [({[setname]:nextLevelExp})];
         }
       }
       //카드 삭제한번이라도 했으면 오차 있을수 있음
       document.querySelector('#matchingment').textContent = `계산 완료(임시로 콘솔창에서 확인)`;
-      demonrecommend = Object.entries(demonrecommend).sort(([, a], [, b]) => a - b);
-      //demonrecommend = Object.fromEntries(Object.entries(champ).sort(([, a], [, b]) => a - b));
 
-      console.log('과거에 카드 삭제한번이라도 했으면 오차 있을수 있음(카드 삭제를 해도 도감에서는 수집 유무로 효과가 올라가기 때문에)');
-      console.log(demonrecommend);
-      console.log(stat)
-      console.log(bonusDamage);
+      for (var i = 0; i < Object.keys(recommendExp).length; i++) {
+        recommendExp[Object.keys(recommendExp)[i]].sort(function(a,b){
+          return a[Object.keys(a)[0]] - b[Object.keys(b)[0]];
+        })
+      }
 
+      //console.log('과거에 카드 삭제한번이라도 했으면 오차 있을수 있음(카드 삭제를 해도 도감에서는 수집 유무로 효과가 올라가기 때문에)');
+      //console.log('권장강화카드');
+      //console.log(recommendCard);
+      //console.log('권장강화카드에 필요한 카드경험치');
+      //console.log(recommendExp);
+      //console.log(stat)
+      //console.log(bonusDamage);
+
+      
+      for (var i = 0; i < Object.keys(stat).length; i++) {
+        document.querySelectorAll('#'+Object.keys(stat)[i]).forEach(e => {
+          e.textContent = stat[Object.keys(stat)[i]];
+        });
+      }
+      for (var i = 0; i < Object.keys(bonusDamage).length; i++) {
+        document.querySelectorAll('#'+Object.keys(bonusDamage)[i]).forEach(e => {
+          e.textContent = bonusDamage[Object.keys(bonusDamage)[i]].toFixed(2) + "%";
+        });
+      }
+
+      document.querySelector('#matchzone').style.display="none";
+      document.querySelector('#mycard').style.display="";
+      
     }, false)
 
     document.querySelector('#finishno').addEventListener('click', function(){
       alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
     }, false)
-
 
     // ************************ Drag and drop ***************** //
     let dropArea = document.getElementById("drop-area")
@@ -341,7 +557,9 @@
       }
       this.style.display="none";
       document.querySelector('#drop-area').style.display="none";
+      document.querySelector('#helpbtn').style.display = 'none';
       document.querySelector('#matchstatus').style.display = '';
+      
 
       var head = document.querySelector('head');
       var opencvscript = document.createElement('script');
@@ -498,11 +716,10 @@
             }
           }
         }
-        canvas.delete(),cardremove.delete();
+        canvas.delete(),cardremove.delete();  
         document.querySelector('#matchwhich').textContent=``;
         document.querySelector('#matchstatus').style.display = 'none';
         document.querySelector('#matchingment').textContent=`인식된 총 카드 ${Object.keys(carddeck).length}장`;
-        document.querySelector('#test').textContent=`${JSON.stringify(carddeck)}`;
         document.querySelector('#matchfinish').style.display = "";
       }
     }
