@@ -55,7 +55,7 @@ $(function(){
     <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
     <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
-    <a class="nav-link" aria-current="page" href="cardcalc">도감작 계산기(테스트)</a>
+    <a class="nav-link" aria-current="page" href="cardcalc">도감작 계산기</a>
     `);
     
     $('header').find('.nav-link').filter(function(){
