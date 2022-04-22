@@ -148,6 +148,7 @@
           <br>
           <br>
           <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
+          <p id="searchingcardlist"></p>
           <div id="matchfinish" style="display: none;">
             <span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br>
             <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
@@ -653,6 +654,7 @@
         let rect;
         document.querySelector('#matchingment').textContent='';
         for (var m = 0; m < screenimg.length; m++) {
+          thispagecardlist = [];
           document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
           cavasimage = new Image();
           cavasimage.src = screenimg[m].src;
@@ -753,6 +755,7 @@
                       carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
                     }
                   }
+                  thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
                   document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
 
                   delete cardlist[Object.keys(cardlist)[i]];
@@ -764,6 +767,7 @@
               source.delete();mask.delete();
             }
           }
+          document.querySelector('#searchingcardlist').innerHTML += `<br><br>${m+1}페이지(${thispagecardlist.length}) : ${thispagecardlist}`;
         }
         canvas.delete(),cardremove.delete();  
         document.querySelector('#matchwhich').textContent=``;
