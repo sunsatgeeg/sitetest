@@ -7,7 +7,6 @@
   
   <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
   <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -84,6 +83,10 @@
     }
     #fileElem {
       display: none;
+    }
+    .tippy-box[data-theme~='light'] {
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
     }
   </style>
   <link href="css/cover.css" rel="stylesheet">
@@ -258,23 +261,23 @@
               </div>
               <div class="col-7">
                 <div id="bonusdamageBtns">
-                  <button type="button" class="btn btn-outline-light btn-lg">악마</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">야수</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">정령</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">악마</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">야수</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">정령</button>
                   <br>
-                  <button type="button" class="btn btn-outline-light btn-lg">불사</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">물질</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">인간</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">불사</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">물질</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">인간</button>
                   <br>
-                  <button type="button" class="btn btn-outline-light btn-lg">식물</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">기계</button>
-                  <button type="button" class="btn btn-outline-light btn-lg">곤충</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">식물</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">기계</button>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1">곤충</button>
                 </div>
-                <p class="mt-2">각 도감 이름에 커서를 올리면 다음 각성<br>단계까지의 최선 각성 순서를 표시합니다.</p>
+                <p class="mt-2">각 도감 수치에 커서를 올리면 다음 각성<br>단계까지 최선의 강화 순서를 표시합니다.</p>
                 <table class="table table-dark float-end table-hover col">
                   <thead>
                     <tr>
-                      <th scope="col-" class="align-middle">도감 이름</th>
+                      <th scope="col" class="align-middle">도감 이름</th>
                       <th scope="col">다음 각성 단계까지<br>필요한 최소 카드 경험치</th>
                     </tr>
                   </thead>
@@ -358,8 +361,10 @@
           if(exp == 0) continue;
           
           tdsetname.textContent = Object.keys(recommendExp[this.innerText][i]);
-          tdsetname.addEventListener('mouseover',function(){
-            targetSetName = this.innerText;
+          tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
+
+          tdsetexp.addEventListener('mouseover',function(){
+            targetSetName = this.parentNode.firstChild.innerText;
             targetTri = "";
             let list;
 
@@ -380,9 +385,15 @@
             tooltipcontent = ""
             tempdict = {};
             for (var j = 0; j < list.length; j++) {
-              tempdict[list[j][0]] += list[j][1];
+              if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = 0;
+              plus = tempdict[list[j][0]];
+              plus++;
+              tempdict[list[j][0]] = plus; 
             }
-            console.log(tempdict)
+
+            for (var j = 0; j < Object.keys(tempdict).length; j++) {
+              tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]]}강<br>`;
+            }
 
             tippy(this, {
               allowHTML: true, 
@@ -391,7 +402,6 @@
               placement: 'top', 
             });
           })
-          tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
 
           tr.append(tdsetname);
           tr.append(tdsetexp);
