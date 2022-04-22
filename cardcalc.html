@@ -4,6 +4,10 @@
   <title>도감작 계산기 :: LoChart</title>
   <meta name="description" content="로스트아크 도감작 계산기">
   <script>var here = "cardcalc";</script>
+  
+  <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -266,11 +270,12 @@
                   <button type="button" class="btn btn-outline-light btn-lg">기계</button>
                   <button type="button" class="btn btn-outline-light btn-lg">곤충</button>
                 </div>
-                <table class="table table-dark float-end table-hover col mt-2">
+                <p class="mt-2">각 도감 이름에 커서를 올리면 다음 각성<br>단계까지의 최선 각성 순서를 표시합니다.</p>
+                <table class="table table-dark float-end table-hover col">
                   <thead>
                     <tr>
                       <th scope="col-" class="align-middle">도감 이름</th>
-                      <th scope="col">다음 각성 단계까지<br>필요한 카드 경험치</th>
+                      <th scope="col">다음 각성 단계까지<br>필요한 최소 카드 경험치</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -316,6 +321,7 @@
 
   <script>
     var recommendExp;
+    var recommendCard;
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
@@ -352,6 +358,39 @@
           if(exp == 0) continue;
           
           tdsetname.textContent = Object.keys(recommendExp[this.innerText][i]);
+          tdsetname.addEventListener('mouseover',function(){
+            targetSetName = this.innerText;
+            targetTri = "";
+            let list;
+
+            document.querySelectorAll('#bonusdamageBtns button').forEach(function(g){
+              if(g.classList.contains('active')){
+                targetTri = g.innerText;
+                return false;
+              }
+            })
+            
+            recommendCard[targetTri].forEach(function(g){
+              if(Object.keys(g)[0] == targetSetName){
+                list = g[Object.keys(g)[0]];
+                return false;
+              }
+            });
+
+            tooltipcontent = ""
+            tempdict = {};
+            for (var j = 0; j < list.length; j++) {
+              tempdict[list[j][0]] += list[j][1];
+            }
+            console.log(tempdict)
+
+            tippy(this, {
+              allowHTML: true, 
+              content: tooltipcontent,
+              theme: 'light', 
+              placement: 'top', 
+            });
+          })
           tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
 
           tr.append(tdsetname);
@@ -435,7 +474,7 @@
       var nextLevelExp;
       var nextUpSetLevel;
       recommendExp = {};
-      var recommendCard = {};
+      recommendCard = {};
       for (var i = 0; i < cardeffectlength; i++) {
         leveltotal = 0;
         nextlevels = [];
