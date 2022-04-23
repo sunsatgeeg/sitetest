@@ -134,7 +134,6 @@
       
       <div class="pt-5">
         <div id="matchzone">
-          <p>22.04.23 15:00 사진 그냥 막 넣어도 순서대로 인식하게 변경</p>
           <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
           <div id="drop-area">
             <form class="my-form">
@@ -325,7 +324,7 @@
   </div>
 
   <script>
-    var files
+    var infiles
     var recommendExp;
     var recommendCard;
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -645,7 +644,7 @@
           cardremoveimage.onload = r
         })
         var cardremove = cv.imread(cardremoveimage);
-        var screenimg = files;
+        var screenimg = infiles;
         let mask;
         var method = cv.TM_CCOEFF_NORMED;;
         let result_cols;
@@ -841,14 +840,19 @@
     }
 
     function handleFiles(files) {
-      files = [...files]
-      files.sort(function(a,b){
+     
+      target =  document.querySelector('#gallery');
+      while (target.hasChildNodes()) {
+        target.removeChild(target.firstChild);
+      }
+      infiles = [...files]
+      infiles.sort(function(a,b){
         var textA = a.name.toLowerCase();
         var textB = b.name.toLowerCase();
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       })
-      initializeProgress(files.length)
-      files.forEach(previewFile)
+      initializeProgress(infiles.length)
+      infiles.forEach(previewFile)
     }
 
     function previewFile(file) {
@@ -897,8 +901,9 @@
           <p>1. 1920 X 1080 해상도</p>
           <p>2. 인게임 스크린샷 기능으로 찍은 사진</p>
           <h3>※ 권장 ※</h3>
-          <span></span>
-          <p>1. 오인식 방지를 위해 각 사진마다 중복없이</p>
+          <span>아래 사항 지킬시 30초도 안되서 끝, 오인식 방지를 위해</span><br>
+          <p>1. 스크린샷 찍은 순서대로(전설카드 -> 일반카드)넣어주세요.</p>
+          <p>2. 각 사진마다 중복없이</p>
           <p>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
           <p id="modalimg"></p>
           </p>
