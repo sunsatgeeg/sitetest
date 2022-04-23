@@ -134,10 +134,6 @@
       
       <div class="pt-5">
         <div id="matchzone">
-          <p>옛날에 한정으로 뿌린(미녀 삼총사, 그땐 그랬지 세트) 카드들은 제가 가진게 없어서 사진을 등록하지 못했습니다. 제외하고 사용하셔도 무방합니다.
-            <br>혹시나 저 위에 카드들을 가지고 계신분은 sjssj7777@naver.com으로 필수 조건에 맞게 찍은 스크린샷 보내주시면 감사하겠습니다.<br>
-            (미녀 삼총사, 그땐 그랬지 세트)카드들을 가지고 계신분들은 이미지 데이터를 못찾아서 오래걸립니다.</p>
-            
           <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
           <div id="drop-area">
             <form class="my-form">
@@ -755,6 +751,14 @@
                   }
                   //레퓌스, 난민 파밀리아 오인식
                   if(cardlist[Object.keys(cardlist)[i]] == '레퓌스' && source.ucharAt(73, 34 * source.channels()) > 170){
+                    continue;
+                  }
+                  //사일러스, 하눈 오인식
+                  if(cardlist[Object.keys(cardlist)[i]] == '사일러스' && source.ucharAt(42, 28 * source.channels()) > 50){
+                    continue;
+                  }
+                  //하누마탄, 한이 서린 여인 오인식
+                  if(cardlist[Object.keys(cardlist)[i]] == '하누마탄' && source.ucharAt(50, 54 * source.channels()) < 200){
                     continue;
                   }
 
