@@ -134,6 +134,7 @@
       
       <div class="pt-5">
         <div id="matchzone">
+          <p>22.04.23 15:00 사진 그냥 막 넣어도 순서대로 인식하게 변경</p>
           <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
           <div id="drop-area">
             <form class="my-form">
@@ -324,6 +325,7 @@
   </div>
 
   <script>
+    var files
     var recommendExp;
     var recommendCard;
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -643,7 +645,7 @@
           cardremoveimage.onload = r
         })
         var cardremove = cv.imread(cardremoveimage);
-        var screenimg = document.querySelectorAll('#gallery > img');
+        var screenimg = files;
         let mask;
         var method = cv.TM_CCOEFF_NORMED;;
         let result_cols;
@@ -658,17 +660,24 @@
         let template;
         var templateimage;
         let dst;
+        let reader;
         let rect;
         document.querySelector('#matchingment').textContent='';
         for (var m = 0; m < screenimg.length; m++) {
           thispagecardlist = [];
           document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
+
+          reader = new FileReader()
+          reader.readAsDataURL(screenimg[m])
+          await new Promise(r => {
+            reader.onloadend = r
+          })
           cavasimage = new Image();
-          cavasimage.src = screenimg[m].src;
+          cavasimage.src = reader.result;
           await new Promise(r => {
             cavasimage.onload = r
           })
-          
+                    
           canvas = cv.imread(cavasimage);
           if(canvas.cols != 1920 || canvas.rows != 1080){
             alert('해상도가 1920 X 1080이 아닙니다.');
@@ -808,7 +817,7 @@
 
     function handleDrop(e) {
       var dt = e.dataTransfer
-      var files = dt.files
+      files = dt.files
 
       handleFiles(files)
     }
@@ -888,9 +897,8 @@
           <p>1. 1920 X 1080 해상도</p>
           <p>2. 인게임 스크린샷 기능으로 찍은 사진</p>
           <h3>※ 권장 ※</h3>
-          <span>아래 사항 지킬시 30초도 안되서 끝, 오인식 방지를 위해</span><br>
-          <p>1. 스크린샷 찍은 순서대로(전설카드 -> 일반카드)넣어주세요.</p>
-          <p>2. 각 사진마다 중복없이</p>
+          <span></span>
+          <p>1. 오인식 방지를 위해 각 사진마다 중복없이</p>
           <p>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
           <p id="modalimg"></p>
           </p>
