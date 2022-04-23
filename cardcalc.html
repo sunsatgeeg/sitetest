@@ -134,7 +134,7 @@
       
       <div class="pt-5">
         <div id="matchzone">
-          <p>22.04.23 15:00 사진 그냥 막 넣어도 순서대로 인식하게 변경</p>
+          <p>22.04.23 20:00 구조 개선 도움말 확인</p>
           <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
           <div id="drop-area">
             <form class="my-form">
@@ -146,12 +146,10 @@
             <div id="gallery"></div>
           </div>
           <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">인식 시작</button>
-          <br>
-          <br>
-          <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span>
           <p id="searchingcardlist"></p>
+          <span id="matchstatus" style="display: none;">상태 : </span><span id="matchwhich"></span><span id="matchingment"></span><br><br>
           <div id="matchfinish" style="display: none;">
-            <span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br>
+            <span>인게임 카드 보관함에있는 총 카드 개수와 똑같습니까?</span><br><br>
             <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">네</button>
             <button type="button" class="btn btn-outline-danger btn-lg" id="finishno">아니요</button>
           </div>
@@ -325,7 +323,6 @@
   </div>
 
   <script>
-    var infiles
     var recommendExp;
     var recommendCard;
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -416,20 +413,6 @@
     var carddeck = {};
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
-      helpimage.src = "img/card1.jpg";
-      helpimage.addEventListener('click', function(){window.open("img/card1.jpg");})
-      helpimage.style.cursor = "pointer"
-      helpimage.style.width = "50%";
-      document.querySelector('#modalimg').appendChild(helpimage);
-      
-      helpimage = document.createElement('img');
-      helpimage.src = "img/card2.jpg";
-      helpimage.addEventListener('click', function(){window.open("img/card2.jpg");})
-      helpimage.style.cursor = "pointer"
-      helpimage.style.width = "50%";
-      document.querySelector('#modalimg').appendChild(helpimage);
-
-      helpimage = document.createElement('img');
       helpimage.src = "img/warning.jpg";
       helpimage.addEventListener('click', function(){window.open("img/warning.jpg");})
       helpimage.style.cursor = "pointer"
@@ -645,9 +628,9 @@
           cardremoveimage.onload = r
         })
         var cardremove = cv.imread(cardremoveimage);
-        var screenimg = infiles;
+        var screenimg = document.querySelectorAll('#gallery > img');
         let mask;
-        var method = cv.TM_CCOEFF_NORMED;;
+        var method = cv.TM_CCOEFF_NORMED;
         let result_cols;
         let result_rows;
         var result;
@@ -660,25 +643,20 @@
         let template;
         var templateimage;
         let dst;
-        let reader;
         let rect;
+        var lastI;
         document.querySelector('#matchingment').textContent='';
         for (var m = 0; m < screenimg.length; m++) {
           thispagecardlist = [];
           document.querySelector('#matchwhich').textContent=`${m+1}번째 스크린샷 인식중, `;
 
-          reader = new FileReader()
-          reader.readAsDataURL(screenimg[m])
-          await new Promise(r => {
-            reader.onloadend = r
-          })
           cavasimage = new Image();
-          cavasimage.src = reader.result;
+          cavasimage.src = screenimg[m].src;
           await new Promise(r => {
             cavasimage.onload = r
           })
-                    
           canvas = cv.imread(cavasimage);
+          
           if(canvas.cols > 1920 || canvas.rows > 1080){
             alert('해상도가 1920 X 1080이 아닙니다.');
             return;
@@ -705,8 +683,10 @@
 
           cardremovex = matchLoc.x;
           cardremovey = matchLoc.y;
-          startX = cardremovex - 1101;
-          startY = cardremovey + 92;
+          startX = cardremovex;
+          startY = cardremovey + 98;
+
+          lastI = 0;
           
           for (var j = 0; j < 4; j++) {
             y = startY + (j * 182);
@@ -720,7 +700,7 @@
               rect = new cv.Rect(x, y, 116, 164);
               source = canvas.roi(rect);
 
-              for (var i = 0; i < Object.keys(cardlist).length; i++) {
+              for (var i = lastI; i < Object.keys(cardlist).length; i++) {
                 templateimage = new Image();
                 templateimage.src = Object.keys(cardlist)[i];
                 await new Promise(r => {
@@ -779,6 +759,7 @@
                       carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
                     }
                   }
+                  lastI = i;
                   thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
                   document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
 
@@ -791,7 +772,7 @@
               source.delete();mask.delete();
             }
           }
-          document.querySelector('#searchingcardlist').innerHTML += `<br><br>${m+1}페이지(${thispagecardlist.length}) : ${thispagecardlist}`;
+          document.querySelector('#searchingcardlist').innerHTML += `<br><br>${screenimg[m].getAttribute('filename')}[${thispagecardlist.length}장] : ${thispagecardlist}`;
         }
         canvas.delete(),cardremove.delete();  
         document.querySelector('#matchwhich').textContent=``;
@@ -817,7 +798,7 @@
 
     function handleDrop(e) {
       var dt = e.dataTransfer
-      files = dt.files
+      var files = dt.files
 
       handleFiles(files)
     }
@@ -841,19 +822,9 @@
     }
 
     function handleFiles(files) {
-     
-      target =  document.querySelector('#gallery');
-      while (target.hasChildNodes()) {
-        target.removeChild(target.firstChild);
-      }
-      infiles = [...files]
-      infiles.sort(function(a,b){
-        var textA = a.name.toLowerCase();
-        var textB = b.name.toLowerCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-      })
-      initializeProgress(infiles.length)
-      infiles.forEach(previewFile)
+      files = [...files]
+      initializeProgress(files.length)
+      files.forEach(previewFile)
     }
 
     function previewFile(file) {
@@ -862,6 +833,7 @@
       reader.onloadend = async function() {
         let img = document.createElement('img');
         img.src = reader.result;
+        img.setAttribute('filename',file.name);
         document.getElementById('gallery').appendChild(img);
       }
     }
@@ -898,18 +870,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-black">
-          <h3>※ 필수 ※</h3>
-          <p>1. 1920 X 1080 해상도 이내</p>
+          <h3>※ <font COLOR='#00FF00'>필수</font> ※</h3>
+          <p>1. 1920 X 1080 해상도</p>
           <p>2. 화면비율 16:9</p>
-          <h3>※ 권장 ※</h3>
-          <p>1. 각 사진마다 중복없이(오인식 방지)</p>
-          <p>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
-          <p id="modalimg"></p>
           </p>
-          <h3>※ 사용방법 ※</h3>
+          <h3>※ <font COLOR='#0000FF'>사용방법</font> ※</h3>
           <p>1. 카드 보관함을 찍은 사진들을 선택</p>
           <p>2. '인식 시작' 클릭</p>
-          <h3>※ 주의사항 ※</h3>
+          <h3>※ <font COLOR='#FF0000'>주의사항</font> ※</h3>
           <p>1. 노란 영역안에 아무것도 없어야 합니다.(강화 전광판X, 친구 접속 안내문구X)</p>
           <p id="modalimg2"></p>
           <br>
