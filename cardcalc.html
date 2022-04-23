@@ -677,7 +677,7 @@
           })
           canvas = cv.imread(cavasimage);
           
-          if(canvas.cols == 1920 || canvas.rows == 1080){
+          if(canvas.cols != 1920 || canvas.rows != 1080){
             alert('해상도가 1920 X 1080이 아닙니다.');
             return;
           }
