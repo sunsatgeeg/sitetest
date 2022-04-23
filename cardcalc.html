@@ -643,6 +643,12 @@
         })
         var cardremove = cv.imread(cardremoveimage);
         var screenimg = document.querySelectorAll('#gallery > img');
+        screenimg = [...screenimg];
+        screenimg.sort(function(a,b){
+          var textA = a.getAttribute('filename')
+          var textB = b.getAttribute('filename')
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
         let mask;
         var method = cv.TM_CCOEFF_NORMED;
         let result_cols;
@@ -889,7 +895,8 @@
           <p>2. 화면비율 16:9</p>
           </p>
           <h3>※ <font COLOR='orange'>권장</font> ※</h3>
-          <p>1. 각 사진마다 중복없이(오인식 방지)</p>
+          <p>1. 인게임 내 스크린샷 기능으로 찍은 사진</p>
+          <p>2. 각 사진마다 중복없이(오인식 방지)</p>
           <p>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
           <p id="modalimg"></p>
           <h3>※ <font COLOR='#00FF00'>사용방법</font> ※</h3>
