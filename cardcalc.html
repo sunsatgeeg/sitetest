@@ -779,6 +779,152 @@
                       carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
                     }
                   }
+                  /*
+                  // 9장 이하 카드개수
+                  if(
+                      (
+                        source.ucharAt(120,86 * source.channels()     ) >= 230 &&
+                        source.ucharAt(120,86 * source.channels() + 1 ) >= 230 &&
+                        source.ucharAt(120,86 * source.channels() + 2 ) >= 230
+                      ) &&
+                      (
+                        (source.ucharAt(115,57 * source.channels()    ) >= 130 && source.ucharAt(115,57 * source.channels()    ) <= 158) &&
+                        (source.ucharAt(115,57 * source.channels() + 1) >= 224 && source.ucharAt(115,57 * source.channels() + 1) <= 246) &&
+                        (source.ucharAt(115,57 * source.channels() + 2) >= 214 && source.ucharAt(115,57 * source.channels() + 2) <= 242)
+                      )
+                    ){
+                      //8장
+                      if(
+                          (source.ucharAt(120,93 * source.channels()    ) >= 210 && source.ucharAt(124,94 * source.channels()    ) >= 210 && source.ucharAt(115,94 * source.channels()    ) >= 220) &&
+                          (source.ucharAt(120,93 * source.channels() + 1) >= 210 && source.ucharAt(124,94 * source.channels() + 1) >= 210 && source.ucharAt(115,94 * source.channels() + 1) >= 220) &&
+                          (source.ucharAt(120,93 * source.channels() + 2) >= 210 && source.ucharAt(124,94 * source.channels() + 2) >= 210 && source.ucharAt(115,94 * source.channels() + 2) >= 220)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'8장')
+                        }
+                      //3장
+                      else if(
+                          (source.ucharAt(116,97 * source.channels()    ) >= 210 && source.ucharAt(115,96 * source.channels()    ) >= 210 && source.ucharAt(119,95 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(116,97 * source.channels() + 1) >= 210 && source.ucharAt(115,96 * source.channels() + 1) >= 210 && source.ucharAt(119,95 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(116,97 * source.channels() + 2) >= 210 && source.ucharAt(115,96 * source.channels() + 2) >= 210 && source.ucharAt(119,95 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'3장')
+                        }
+                      //6장
+                      else if(
+                          (source.ucharAt(115,96 * source.channels()    ) >= 210 && source.ucharAt(124,96 * source.channels()    ) >= 210 && source.ucharAt(119,93 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(115,96 * source.channels() + 1) >= 210 && source.ucharAt(124,96 * source.channels() + 1) >= 210 && source.ucharAt(119,93 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(115,96 * source.channels() + 2) >= 210 && source.ucharAt(124,96 * source.channels() + 2) >= 210 && source.ucharAt(119,93 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'6장')
+                        }
+                      //9장
+                      else if(
+                          (source.ucharAt(124,94 * source.channels()    ) >= 210 && source.ucharAt(120,97 * source.channels()    ) >= 210 && source.ucharAt(115,96 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(124,94 * source.channels() + 1) >= 210 && source.ucharAt(120,97 * source.channels() + 1) >= 210 && source.ucharAt(115,96 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(124,94 * source.channels() + 2) >= 210 && source.ucharAt(120,97 * source.channels() + 2) >= 210 && source.ucharAt(115,96 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'9장')
+                        }
+                      //7장
+                      else if(
+                          (source.ucharAt(115,93 * source.channels()    ) >= 210 && source.ucharAt(115,97 * source.channels()    ) >= 210 && source.ucharAt(124,94 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(115,93 * source.channels() + 1) >= 210 && source.ucharAt(115,97 * source.channels() + 1) >= 210 && source.ucharAt(124,94 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(115,93 * source.channels() + 2) >= 210 && source.ucharAt(115,97 * source.channels() + 2) >= 210 && source.ucharAt(124,94 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'7장')
+                        }
+                      //4장
+                      else if(
+                          (source.ucharAt(121,93 * source.channels()    ) >= 210 && source.ucharAt(121,97 * source.channels()    ) >= 210 && source.ucharAt(116,96 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(121,93 * source.channels() + 1) >= 210 && source.ucharAt(121,97 * source.channels() + 1) >= 210 && source.ucharAt(116,96 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(121,93 * source.channels() + 2) >= 210 && source.ucharAt(121,97 * source.channels() + 2) >= 210 && source.ucharAt(116,96 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'4장')
+                        }
+                      //2장
+                      else if(
+                          (source.ucharAt(115,95 * source.channels()    ) >= 210 && source.ucharAt(124,93 * source.channels()    ) >= 210 && source.ucharAt(124,97 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(115,95 * source.channels() + 1) >= 210 && source.ucharAt(124,93 * source.channels() + 1) >= 210 && source.ucharAt(124,97 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(115,95 * source.channels() + 2) >= 210 && source.ucharAt(124,93 * source.channels() + 2) >= 210 && source.ucharAt(124,97 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'2장')
+                        }
+                      //1장
+                      else if(
+                          (source.ucharAt(116,95 * source.channels()    ) >= 210 && source.ucharAt(116,94 * source.channels()    ) >= 210) &&
+                          (source.ucharAt(116,95 * source.channels() + 1) >= 210 && source.ucharAt(116,94 * source.channels() + 1) >= 210) &&
+                          (source.ucharAt(116,95 * source.channels() + 2) >= 210 && source.ucharAt(116,94 * source.channels() + 2) >= 210)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'1장')
+                        }
+                      //5장
+                      else{
+                          console.log(cardlist[Object.keys(cardlist)[i]],'5장')
+                      }
+
+                    //10장 이상 카드개수
+                    }else if(
+                      (
+                        source.ucharAt(120,82 * source.channels()     )>= 230 &&  
+                        source.ucharAt(120,82 * source.channels() + 1 )>= 230 &&
+                        source.ucharAt(120,82 * source.channels() + 2 )>= 230
+                      ) &&
+                      (
+                        (source.ucharAt(115,53 * source.channels()    )>= 130 && source.ucharAt(115,53 * source.channels()    )<= 158) &&
+                        (source.ucharAt(115,53 * source.channels() + 1)>= 224 && source.ucharAt(115,53 * source.channels() + 1)<= 246) &&
+                        (source.ucharAt(115,53 * source.channels() + 2)>= 214 && source.ucharAt(115,53 * source.channels() + 2)<= 242)
+                      )
+                    ){
+                      //11장
+                      if(
+                          (source.ucharAt(116,99 * source.channels()    ) >= 230 && source.ucharAt(116,100 * source.channels()    ) >= 230) &&
+                          (source.ucharAt(116,99 * source.channels() + 1) >= 230 && source.ucharAt(116,100 * source.channels() + 1) >= 230) &&
+                          (source.ucharAt(116,99 * source.channels() + 2) >= 230 && source.ucharAt(116,100 * source.channels() + 2) >= 230)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'11장')
+                        }
+                      //12장
+                      else if(
+                          (source.ucharAt(124,97 * source.channels()    ) >= 230 && source.ucharAt(124,102 * source.channels()    ) >= 230) &&
+                          (source.ucharAt(124,97 * source.channels() + 1) >= 230 && source.ucharAt(124,102 * source.channels() + 1) >= 230) &&
+                          (source.ucharAt(124,97 * source.channels() + 2) >= 230 && source.ucharAt(124,102 * source.channels() + 2) >= 230)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'12장')
+                        }
+                      //13장
+                      else if(
+                          (source.ucharAt(119,99 * source.channels()    ) >= 230 && source.ucharAt(118,101 * source.channels()    ) >= 230) &&
+                          (source.ucharAt(119,99 * source.channels() + 1) >= 230 && source.ucharAt(118,101 * source.channels() + 1) >= 230) &&
+                          (source.ucharAt(119,99 * source.channels() + 2) >= 230 && source.ucharAt(118,101 * source.channels() + 2) >= 230)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'13장')
+                        }
+                      //14장
+                      else if(
+                          (source.ucharAt(117,101 * source.channels()    ) >= 230 && source.ucharAt(121,101 * source.channels()    ) >= 230) &&
+                          (source.ucharAt(117,101 * source.channels() + 1) >= 230 && source.ucharAt(121,101 * source.channels() + 1) >= 230) &&
+                          (source.ucharAt(117,101 * source.channels() + 2) >= 230 && source.ucharAt(121,101 * source.channels() + 2) >= 230)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'14장')
+                        }
+                      //15장
+                      else if(
+                          (source.ucharAt(119,100 * source.channels()    ) >= 210 && source.ucharAt(118,98 * source.channels()    ) >= 220) &&
+                          (source.ucharAt(119,100 * source.channels() + 1) >= 210 && source.ucharAt(118,98 * source.channels() + 1) >= 220) &&
+                          (source.ucharAt(119,100 * source.channels() + 2) >= 210 && source.ucharAt(118,98 * source.channels() + 2) >= 220)
+                        ){
+                          console.log(cardlist[Object.keys(cardlist)[i]],'15장')
+                        }
+                      //10장
+                      else{
+                        console.log(cardlist[Object.keys(cardlist)[i]],'10장')
+                      }
+                  
+                    // 카드 개수 X
+                    }else{ 
+                      console.log(cardlist[Object.keys(cardlist)[i]],'0장')
+                    }
+                  */
                   lastI = i;
                   thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
                   document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
