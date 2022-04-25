@@ -374,7 +374,7 @@
                 return false;
               }
             })
-            
+
             recommendCard[targetTri].forEach(function(g){
               if(Object.keys(g)[0] == targetSetName){
                 list = g[Object.keys(g)[0]];
@@ -382,24 +382,25 @@
               }
             });
 
-            tooltipcontent = ""
+            tooltipcontent = "<FONT SIZE='5pt'>"
             tempdict = {};
             for (var j = 0; j < list.length; j++) {
-              if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = 0;
-              plus = tempdict[list[j][0]];
-              plus++;
-              tempdict[list[j][0]] = plus; 
+              if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
+              needcard = tempdict[list[j][0]][1] + (cardLevelUpExp[cardgrade[list[j][0]]].indexOf(list[j][1]) + 1);
+              star = tempdict[list[j][0]][0];
+              star++;
+              tempdict[list[j][0]] = [star,needcard]; 
             }
 
             for (var j = 0; j < Object.keys(tempdict).length; j++) {
-              tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]]}강<br>`;
+              tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
             }
 
             tippy(this, {
               allowHTML: true, 
               content: tooltipcontent,
               theme: 'light', 
-              placement: 'top', 
+              placement: 'top',
             });
           })
 
@@ -780,80 +781,82 @@
                     }
                   }
                   /*
+                  thrshholdsource = new cv.Mat();
+                  cv.threshold(source, thrshholdsource, 200, 255, cv.THRESH_BINARY);
                   // 9장 이하 카드개수
                   if(
                       (
-                        source.ucharAt(120,86 * source.channels()     ) >= 230 &&
-                        source.ucharAt(120,86 * source.channels() + 1 ) >= 230 &&
-                        source.ucharAt(120,86 * source.channels() + 2 ) >= 230
+                        thrshholdsource.ucharAt(120,86 * thrshholdsource.channels()     ) == 255 &&
+                        thrshholdsource.ucharAt(120,86 * thrshholdsource.channels() + 1 ) == 255 &&
+                        thrshholdsource.ucharAt(120,86 * thrshholdsource.channels() + 2 ) == 255
                       ) &&
                       (
-                        (source.ucharAt(115,57 * source.channels()    ) >= 130 && source.ucharAt(115,57 * source.channels()    ) <= 158) &&
-                        (source.ucharAt(115,57 * source.channels() + 1) >= 224 && source.ucharAt(115,57 * source.channels() + 1) <= 246) &&
-                        (source.ucharAt(115,57 * source.channels() + 2) >= 214 && source.ucharAt(115,57 * source.channels() + 2) <= 242)
+                        thrshholdsource.ucharAt(115,57 * thrshholdsource.channels()    ) == 0   &&
+                        thrshholdsource.ucharAt(115,57 * thrshholdsource.channels() + 1) == 255 &&
+                        thrshholdsource.ucharAt(115,57 * thrshholdsource.channels() + 2) == 255
                       )
                     ){
                       //8장
                       if(
-                          (source.ucharAt(120,93 * source.channels()    ) >= 210 && source.ucharAt(124,94 * source.channels()    ) >= 210 && source.ucharAt(115,94 * source.channels()    ) >= 220) &&
-                          (source.ucharAt(120,93 * source.channels() + 1) >= 210 && source.ucharAt(124,94 * source.channels() + 1) >= 210 && source.ucharAt(115,94 * source.channels() + 1) >= 220) &&
-                          (source.ucharAt(120,93 * source.channels() + 2) >= 210 && source.ucharAt(124,94 * source.channels() + 2) >= 210 && source.ucharAt(115,94 * source.channels() + 2) >= 220)
+                          (thrshholdsource.ucharAt(120,93 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(115,94 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(120,93 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(115,94 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(120,93 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(115,94 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'8장')
                         }
                       //3장
                       else if(
-                          (source.ucharAt(116,97 * source.channels()    ) >= 210 && source.ucharAt(115,96 * source.channels()    ) >= 210 && source.ucharAt(119,95 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(116,97 * source.channels() + 1) >= 210 && source.ucharAt(115,96 * source.channels() + 1) >= 210 && source.ucharAt(119,95 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(116,97 * source.channels() + 2) >= 210 && source.ucharAt(115,96 * source.channels() + 2) >= 210 && source.ucharAt(119,95 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(116,97 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(115,96 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(119,95 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(116,97 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(115,96 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(119,95 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(116,97 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(115,96 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(119,95 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'3장')
                         }
                       //6장
                       else if(
-                          (source.ucharAt(115,96 * source.channels()    ) >= 210 && source.ucharAt(124,96 * source.channels()    ) >= 210 && source.ucharAt(119,93 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(115,96 * source.channels() + 1) >= 210 && source.ucharAt(124,96 * source.channels() + 1) >= 210 && source.ucharAt(119,93 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(115,96 * source.channels() + 2) >= 210 && source.ucharAt(124,96 * source.channels() + 2) >= 210 && source.ucharAt(119,93 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(115,96 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(124,96 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(119,93 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(115,96 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(124,96 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(119,93 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(115,96 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(124,96 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(119,93 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'6장')
                         }
                       //9장
                       else if(
-                          (source.ucharAt(124,94 * source.channels()    ) >= 210 && source.ucharAt(120,97 * source.channels()    ) >= 210 && source.ucharAt(115,96 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(124,94 * source.channels() + 1) >= 210 && source.ucharAt(120,97 * source.channels() + 1) >= 210 && source.ucharAt(115,96 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(124,94 * source.channels() + 2) >= 210 && source.ucharAt(120,97 * source.channels() + 2) >= 210 && source.ucharAt(115,96 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(124,94 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(120,97 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(116,97 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(120,97 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(116,97 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(120,97 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(116,97 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'9장')
                         }
                       //7장
                       else if(
-                          (source.ucharAt(115,93 * source.channels()    ) >= 210 && source.ucharAt(115,97 * source.channels()    ) >= 210 && source.ucharAt(124,94 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(115,93 * source.channels() + 1) >= 210 && source.ucharAt(115,97 * source.channels() + 1) >= 210 && source.ucharAt(124,94 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(115,93 * source.channels() + 2) >= 210 && source.ucharAt(115,97 * source.channels() + 2) >= 210 && source.ucharAt(124,94 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(115,93 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(115,97 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(115,93 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(115,97 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(115,93 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(115,97 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(124,94 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'7장')
                         }
                       //4장
                       else if(
-                          (source.ucharAt(121,93 * source.channels()    ) >= 210 && source.ucharAt(121,97 * source.channels()    ) >= 210 && source.ucharAt(116,96 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(121,93 * source.channels() + 1) >= 210 && source.ucharAt(121,97 * source.channels() + 1) >= 210 && source.ucharAt(116,96 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(121,93 * source.channels() + 2) >= 210 && source.ucharAt(121,97 * source.channels() + 2) >= 210 && source.ucharAt(116,96 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(121,93 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(121,97 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(116,96 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(121,93 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(121,97 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(116,96 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(121,93 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(121,97 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(116,96 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'4장')
                         }
                       //2장
                       else if(
-                          (source.ucharAt(115,95 * source.channels()    ) >= 210 && source.ucharAt(124,93 * source.channels()    ) >= 210 && source.ucharAt(124,97 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(115,95 * source.channels() + 1) >= 210 && source.ucharAt(124,93 * source.channels() + 1) >= 210 && source.ucharAt(124,97 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(115,95 * source.channels() + 2) >= 210 && source.ucharAt(124,93 * source.channels() + 2) >= 210 && source.ucharAt(124,97 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(115,95 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(124,93 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(124,97 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(115,95 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(124,93 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(124,97 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(115,95 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(124,93 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(124,97 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'2장')
                         }
                       //1장
                       else if(
-                          (source.ucharAt(116,95 * source.channels()    ) >= 210 && source.ucharAt(116,94 * source.channels()    ) >= 210) &&
-                          (source.ucharAt(116,95 * source.channels() + 1) >= 210 && source.ucharAt(116,94 * source.channels() + 1) >= 210) &&
-                          (source.ucharAt(116,95 * source.channels() + 2) >= 210 && source.ucharAt(116,94 * source.channels() + 2) >= 210)
+                          (thrshholdsource.ucharAt(116,95 * thrshholdsource.channels()    ) == 255 && thrshholdsource.ucharAt(116,94 * thrshholdsource.channels()    ) == 255) &&
+                          (thrshholdsource.ucharAt(116,95 * thrshholdsource.channels() + 1) == 255 && thrshholdsource.ucharAt(116,94 * thrshholdsource.channels() + 1) == 255) &&
+                          (thrshholdsource.ucharAt(116,95 * thrshholdsource.channels() + 2) == 255 && thrshholdsource.ucharAt(116,94 * thrshholdsource.channels() + 2) == 255)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'1장')
                         }
@@ -865,53 +868,53 @@
                     //10장 이상 카드개수
                     }else if(
                       (
-                        source.ucharAt(120,82 * source.channels()     )>= 230 &&  
-                        source.ucharAt(120,82 * source.channels() + 1 )>= 230 &&
-                        source.ucharAt(120,82 * source.channels() + 2 )>= 230
+                        thrshholdsource.ucharAt(120,82 * thrshholdsource.channels()     ) >= 230 &&  
+                        thrshholdsource.ucharAt(120,82 * thrshholdsource.channels() + 1 ) >= 230 &&
+                        thrshholdsource.ucharAt(120,82 * thrshholdsource.channels() + 2 ) >= 230
                       ) &&
                       (
-                        (source.ucharAt(115,53 * source.channels()    )>= 130 && source.ucharAt(115,53 * source.channels()    )<= 158) &&
-                        (source.ucharAt(115,53 * source.channels() + 1)>= 224 && source.ucharAt(115,53 * source.channels() + 1)<= 246) &&
-                        (source.ucharAt(115,53 * source.channels() + 2)>= 214 && source.ucharAt(115,53 * source.channels() + 2)<= 242)
+                        (thrshholdsource.ucharAt(115,53 * thrshholdsource.channels()    ) >= 130 && thrshholdsource.ucharAt(115,53 * thrshholdsource.channels()    ) <= 158) &&
+                        (thrshholdsource.ucharAt(115,53 * thrshholdsource.channels() + 1) >= 224 && thrshholdsource.ucharAt(115,53 * thrshholdsource.channels() + 1) <= 246) &&
+                        (thrshholdsource.ucharAt(115,53 * thrshholdsource.channels() + 2) >= 214 && thrshholdsource.ucharAt(115,53 * thrshholdsource.channels() + 2) <= 242)
                       )
                     ){
                       //11장
                       if(
-                          (source.ucharAt(116,99 * source.channels()    ) >= 230 && source.ucharAt(116,100 * source.channels()    ) >= 230) &&
-                          (source.ucharAt(116,99 * source.channels() + 1) >= 230 && source.ucharAt(116,100 * source.channels() + 1) >= 230) &&
-                          (source.ucharAt(116,99 * source.channels() + 2) >= 230 && source.ucharAt(116,100 * source.channels() + 2) >= 230)
+                          (thrshholdsource.ucharAt(116,99 * thrshholdsource.channels()    ) >= 230 && thrshholdsource.ucharAt(116,100 * thrshholdsource.channels()    ) >= 230) &&
+                          (thrshholdsource.ucharAt(116,99 * thrshholdsource.channels() + 1) >= 230 && thrshholdsource.ucharAt(116,100 * thrshholdsource.channels() + 1) >= 230) &&
+                          (thrshholdsource.ucharAt(116,99 * thrshholdsource.channels() + 2) >= 230 && thrshholdsource.ucharAt(116,100 * thrshholdsource.channels() + 2) >= 230)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'11장')
                         }
                       //12장
                       else if(
-                          (source.ucharAt(124,97 * source.channels()    ) >= 230 && source.ucharAt(124,102 * source.channels()    ) >= 230) &&
-                          (source.ucharAt(124,97 * source.channels() + 1) >= 230 && source.ucharAt(124,102 * source.channels() + 1) >= 230) &&
-                          (source.ucharAt(124,97 * source.channels() + 2) >= 230 && source.ucharAt(124,102 * source.channels() + 2) >= 230)
+                          (thrshholdsource.ucharAt(124,97 * thrshholdsource.channels()    ) >= 230 && thrshholdsource.ucharAt(124,102 * thrshholdsource.channels()    ) >= 230) &&
+                          (thrshholdsource.ucharAt(124,97 * thrshholdsource.channels() + 1) >= 230 && thrshholdsource.ucharAt(124,102 * thrshholdsource.channels() + 1) >= 230) &&
+                          (thrshholdsource.ucharAt(124,97 * thrshholdsource.channels() + 2) >= 230 && thrshholdsource.ucharAt(124,102 * thrshholdsource.channels() + 2) >= 230)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'12장')
                         }
                       //13장
                       else if(
-                          (source.ucharAt(119,99 * source.channels()    ) >= 230 && source.ucharAt(118,101 * source.channels()    ) >= 230) &&
-                          (source.ucharAt(119,99 * source.channels() + 1) >= 230 && source.ucharAt(118,101 * source.channels() + 1) >= 230) &&
-                          (source.ucharAt(119,99 * source.channels() + 2) >= 230 && source.ucharAt(118,101 * source.channels() + 2) >= 230)
+                          (thrshholdsource.ucharAt(119,99 * thrshholdsource.channels()    ) >= 230 && thrshholdsource.ucharAt(118,101 * thrshholdsource.channels()    ) >= 230) &&
+                          (thrshholdsource.ucharAt(119,99 * thrshholdsource.channels() + 1) >= 230 && thrshholdsource.ucharAt(118,101 * thrshholdsource.channels() + 1) >= 230) &&
+                          (thrshholdsource.ucharAt(119,99 * thrshholdsource.channels() + 2) >= 230 && thrshholdsource.ucharAt(118,101 * thrshholdsource.channels() + 2) >= 230)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'13장')
                         }
                       //14장
                       else if(
-                          (source.ucharAt(117,101 * source.channels()    ) >= 230 && source.ucharAt(121,101 * source.channels()    ) >= 230) &&
-                          (source.ucharAt(117,101 * source.channels() + 1) >= 230 && source.ucharAt(121,101 * source.channels() + 1) >= 230) &&
-                          (source.ucharAt(117,101 * source.channels() + 2) >= 230 && source.ucharAt(121,101 * source.channels() + 2) >= 230)
+                          (thrshholdsource.ucharAt(117,101 * thrshholdsource.channels()    ) >= 230 && thrshholdsource.ucharAt(121,101 * thrshholdsource.channels()    ) >= 230) &&
+                          (thrshholdsource.ucharAt(117,101 * thrshholdsource.channels() + 1) >= 230 && thrshholdsource.ucharAt(121,101 * thrshholdsource.channels() + 1) >= 230) &&
+                          (thrshholdsource.ucharAt(117,101 * thrshholdsource.channels() + 2) >= 230 && thrshholdsource.ucharAt(121,101 * thrshholdsource.channels() + 2) >= 230)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'14장')
                         }
                       //15장
                       else if(
-                          (source.ucharAt(119,100 * source.channels()    ) >= 210 && source.ucharAt(118,98 * source.channels()    ) >= 220) &&
-                          (source.ucharAt(119,100 * source.channels() + 1) >= 210 && source.ucharAt(118,98 * source.channels() + 1) >= 220) &&
-                          (source.ucharAt(119,100 * source.channels() + 2) >= 210 && source.ucharAt(118,98 * source.channels() + 2) >= 220)
+                          (thrshholdsource.ucharAt(119,100 * thrshholdsource.channels()    ) >= 210 && thrshholdsource.ucharAt(118,98 * thrshholdsource.channels()    ) >= 220) &&
+                          (thrshholdsource.ucharAt(119,100 * thrshholdsource.channels() + 1) >= 210 && thrshholdsource.ucharAt(118,98 * thrshholdsource.channels() + 1) >= 220) &&
+                          (thrshholdsource.ucharAt(119,100 * thrshholdsource.channels() + 2) >= 210 && thrshholdsource.ucharAt(118,98 * thrshholdsource.channels() + 2) >= 220)
                         ){
                           console.log(cardlist[Object.keys(cardlist)[i]],'15장')
                         }
@@ -924,6 +927,7 @@
                     }else{ 
                       console.log(cardlist[Object.keys(cardlist)[i]],'0장')
                     }
+                  thrshholdsource.delete();
                   */
                   lastI = i;
                   thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
