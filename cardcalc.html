@@ -7,6 +7,7 @@
   
   <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
   <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -83,10 +84,6 @@
     }
     #fileElem {
       display: none;
-    }
-    .tippy-box[data-theme~='light'] {
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
     }
   </style>
   <link href="css/cover.css" rel="stylesheet">
@@ -273,7 +270,8 @@
                   <button type="button" class="btn btn-outline-light btn-lg mb-1">기계</button>
                   <button type="button" class="btn btn-outline-light btn-lg mb-1">곤충</button>
                 </div>
-                <p class="mt-2">각 도감 수치에 커서를 올리면 다음 각성<br>단계까지 최선의 강화 방법을 표시합니다.</p>
+                <p class="mt-2" style="font-size: 0.9rem!important;">※ 각 도감 수치에 커서를 올리면 다음 각성단계까지 최선의 강화 방법을 표시합니다.</p>
+                <p class="mt-2" style="font-size: 0.9rem!important;">※ 완성한 도감을 클릭하면 다시 계산합니다.</p>
                 <table class="table table-dark float-end table-hover col">
                   <thead>
                     <tr>
@@ -287,8 +285,6 @@
                 </table>
               </div>
             </div>
-
-
 
           </div>
         </div>
@@ -352,6 +348,7 @@
           return;
         }
 
+        var tooltipcontent;
         for (var i = 0; i < targetLength; i++) {
           tr = document.createElement('tr');
           tdsetname = document.createElement('td');
@@ -363,51 +360,79 @@
           tdsetname.textContent = Object.keys(recommendExp[this.innerText][i]);
           tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
 
-          tdsetexp.addEventListener('mouseover',function(){
-            targetSetName = this.parentNode.firstChild.innerText;
-            targetTri = "";
-            let list;
+          targetTri = "";
+          let list;
 
-            document.querySelectorAll('#bonusdamageBtns button').forEach(function(g){
-              if(g.classList.contains('active')){
-                targetTri = g.innerText;
-                return false;
-              }
-            })
-
-            recommendCard[targetTri].forEach(function(g){
-              if(Object.keys(g)[0] == targetSetName){
-                list = g[Object.keys(g)[0]];
-                return false;
-              }
-            });
-
-            tooltipcontent = "<FONT SIZE='5pt'>"
-            tempdict = {};
-            for (var j = 0; j < list.length; j++) {
-              if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
-              needcard = tempdict[list[j][0]][1] + (cardLevelUpExp[cardgrade[list[j][0]]].indexOf(list[j][1]) + 1);
-              star = tempdict[list[j][0]][0];
-              star++;
-              tempdict[list[j][0]] = [star,needcard]; 
+          document.querySelectorAll('#bonusdamageBtns button').forEach(function(g){
+            if(g.classList.contains('active')){
+              targetTri = g.innerText;
+              return false;
             }
-
-            for (var j = 0; j < Object.keys(tempdict).length; j++) {
-              tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
-            }
-
-            tippy(this, {
-              allowHTML: true, 
-              content: tooltipcontent,
-              theme: 'light', 
-              placement: 'top',
-            });
           })
+
+          recommendCard[targetTri].forEach(function(g){
+            if(Object.keys(g)[0] == tdsetname.innerText){
+              list = g[Object.keys(g)[0]];
+              return false;
+            }
+          });
+
+          tooltipcontent = "<FONT SIZE='5pt'>"
+          tempdict = {};
+          for (var j = 0; j < list.length; j++) {
+            if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
+            needcard = tempdict[list[j][0]][1] + (cardLevelUpExp[cardgrade[list[j][0]]].indexOf(list[j][1]) + 1);
+            star = tempdict[list[j][0]][0];
+            star++;
+            tempdict[list[j][0]] = [star,needcard]; 
+          }
+
+          for (var j = 0; j < Object.keys(tempdict).length; j++) {
+            tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
+          }
+
+          tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
+          tr.setAttribute('data',JSON.stringify(tempdict));
 
           tr.append(tdsetname);
           tr.append(tdsetexp);
+          tr.style.cursor = 'pointer';
           target.appendChild(tr);
         }
+        
+        tippy('#bookstbody > tr > td:nth-child(2)', {
+          allowHTML: true, 
+          content(reference) {
+            return reference.getAttribute('tooltipcontent');
+          },
+          theme: 'light', 
+          placement: 'top',
+        });
+
+        document.querySelectorAll('#bookstbody > tr').forEach(function(e){
+          e.addEventListener('click', function(){
+            data = this.getAttribute('data');
+            parsedata = JSON.parse(data);
+
+            for (var i = 0; i < Object.keys(parsedata).length; i++) {
+              carddeck[Object.keys(parsedata)[i]] = carddeck[Object.keys(parsedata)[i]] + parsedata[Object.keys(parsedata)[i]][0];
+            }
+
+            cardsetcalcstart();
+
+            target = document.querySelector('#bookstbody');
+            while (target.hasChildNodes()) {
+              target.removeChild(target.firstChild);
+            }
+
+            bonusDamageBtns.forEach(function(f){
+              if(f.classList.contains('active')){
+                f.classList.remove('active');
+                return false;
+              }
+            });
+          });
+        })
       })
     });
 
@@ -497,7 +522,6 @@
       var nextUpSetLevel;
       recommendExp = {};
       recommendCard = {};
-      console.log(cardeffectlength)
       for (var i = 0; i < cardeffectlength; i++) {
         leveltotal = 0;
         nextlevels = [];
@@ -1035,6 +1059,7 @@
       formData.append('file', file)
       xhr.send(formData)
     }
+  
   </script>
   <div class="modal fade bd-example-modal-lg" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
