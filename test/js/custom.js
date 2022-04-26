@@ -7,7 +7,7 @@ if(local){
     url = "http://127.0.0.1:5000";
 }else{
     cookie = $.cookie('indata');
-    url = "https://lochart.ga";
+    url = "https://api.loachart.com";
 }
 
 function clickToCopy(element){
