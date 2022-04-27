@@ -1,5 +1,6 @@
 var recommendExp;
 var recommendCard;
+var carddeck = {};
 var cardqty = {};
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -9,6 +10,15 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 document.querySelector('#reconBtn').addEventListener('click', function(){
     document.cookie = 'savecarddeck=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 });
+
+if(document.cookie.indexOf('savecarddeck=') != -1){
+    console.log(document.cookie)    
+    start = 'savecarddeck='.length;
+    var end = document.cookie.indexOf(';', start); 
+    if(end == -1)end = document.cookie.length;
+    cValue = document.cookie.substring(start, end);
+    console.log(cValue);
+}
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
 bonusDamageBtns.forEach(function(e){
@@ -122,7 +132,6 @@ function bonusdamagelistup(tri){
     })
 }
 
-var carddeck = {};
 document.querySelector('#helpbtn').addEventListener('click', function(){
     var helpimage = document.createElement('img');
     helpimage.src = "img/card1.jpg";
