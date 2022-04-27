@@ -9,11 +9,12 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 document.querySelector('#reconBtn').addEventListener('click', function(){
     document.cookie = 'savecarddeck=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    location.reload();
 });
 
 try{
-    cookie = document.cookie;
-    //cookie = `adfit_sdk_id=27d22d86-20ea-4aad-a8d3-4a177872f498; inputmethod=keypad; savecarddeck={"1":5,"2":3,"5":1}`;
+    //cookie = document.cookie;
+    cookie = `adfit_sdk_id=27d22d86-20ea-4aad-a8d3-4a177872f498; inputmethod=keypad; savecarddeck={"1":5,"2":1,"3":4,"4":5,"5":3,"6":5,"7":2,"8":3,"9":0,"10":5,"11":5,"12":2,"13":0,"14":5,"15":3,"16":2,"17":0,"18":5,"19":0,"20":0,"21":5,"22":1,"23":5,"24":2,"25":0,"26":0,"27":0,"28":0,"29":0,"30":0,"31":0,"32":0,"33":0,"34":1,"35":3,"36":5,"37":0,"38":5,"39":0,"40":0}`;
 }catch{}
 if(cookie.indexOf('savecarddeck=') != -1){
     start = cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
@@ -22,11 +23,15 @@ if(cookie.indexOf('savecarddeck=') != -1){
     cValue = cookie.substring(start, end);
     cObject = JSON.parse(cValue);
 
-    for (var i = 0; i < Object.keys(cObject).length; i++) {
+        for (var i = 0; i < Object.keys(cObject).length; i++) {
         key = (Object.keys(cObject)[i])-1;
-        value = cObject[Object.keys(cObject)[i]];
+        value = cObject[Object.keys(cObject)[i]][0];
+        qty = cObject[Object.keys(cObject)[i]][1];
         carddeck[Object.keys(cardnum)[key]] = value;
+        cardqty[Object.keys(cardnum)[key]] = qty
     }
+
+    console.log(carddeck)
 
     cardsetcalcstart();
 }
@@ -305,7 +310,7 @@ async function cardsetcalcstart(){
     expire.setDate(expire.getDate() + 365);
     cookie = "{";
     for (var i = 0; i < Object.keys(carddeck).length; i++) {
-        cookie += `"${cardnum[Object.keys(carddeck)[i]]}":${carddeck[Object.keys(carddeck)[i]]},`;
+        cookie += `"${cardnum[Object.keys(carddeck)[i]]}":[${carddeck[Object.keys(carddeck)[i]]},${cardqty[Object.keys(carddeck)[i]]}],`;
     }
     cookie += "}";
     cookie = cookie.replace(',}','}');
