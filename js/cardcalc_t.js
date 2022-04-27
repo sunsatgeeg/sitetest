@@ -283,7 +283,7 @@ async function cardsetcalcstart(){
 
     var expire = new Date();
     expire.setDate(expire.getDate() + 365);
-    document.cookie = 'savecarddeck=' + escape(carddeck) + '; path=/; expires=' + expire.toGMTString() + ';';
+    document.cookie = 'savecarddeck=' + escape(JSON.stringify(carddeck)) + '; path=/; expires=' + expire.toGMTString() + ';';
 }
 
 document.querySelector('#finishno').addEventListener('click', function(){
