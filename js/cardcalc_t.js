@@ -23,7 +23,7 @@ if(cookie.indexOf('savecarddeck=') != -1){
     cValue = cookie.substring(start, end);
     cObject = JSON.parse(cValue);
 
-        for (var i = 0; i < Object.keys(cObject).length; i++) {
+    for (var i = 0; i < Object.keys(cObject).length; i++) {
         key = (Object.keys(cObject)[i])-1;
         value = cObject[Object.keys(cObject)[i]][0];
         qty = cObject[Object.keys(cObject)[i]][1];
