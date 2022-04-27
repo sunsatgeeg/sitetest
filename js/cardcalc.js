@@ -1,10 +1,38 @@
 var recommendExp;
 var recommendCard;
+var carddeck = {};
 var cardqty = {};
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+document.querySelector('#reconBtn').addEventListener('click', function(){
+    document.cookie = 'savecarddeck=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    location.reload();
+});
+
+try{
+    cookie = document.cookie;
+    //cookie = savecarddeck={"1":[5,0],"2":[1,11],"3":[4,3],"4":[5,0],"5":[3,3],"6":[5,0],"7":[2,5],"8":[3,9],"9":[0,2],"10":[5,0],"11":[5,0],"12":[2,2],"13":[0,1],"14":[5,0],"15":[3,9],"16":[2,2],"17":[0,5],"18":[5,0],"19":[0,9],"20":[0,6],"21":[1,6],"22":[1,7],"23":[1,4],"24":[2,4],"25":[0,14],"26":[0,8],"27":[0,6],"28":[0,6],"29":[0,5],"30":[0,1],"31":[0,5],"32":[0,11],"33":[0,11],"34":[1,6],"35":[3,6],"36":[5,0],"37":[0,5],"38":[2,123],"39":[0,2],"40":[0,9]}`;
+}catch{}
+if(cookie.indexOf('savecarddeck=') != -1){
+    start = cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
+    var end = cookie.indexOf(';', start); 
+    if(end == -1)end = cookie.length;
+    cValue = cookie.substring(start, end);
+    cObject = JSON.parse(cValue);
+
+    for (var i = 0; i < Object.keys(cObject).length; i++) {
+        key = (Object.keys(cObject)[i])-1;
+        value = cObject[Object.keys(cObject)[i]][0];
+        qty = cObject[Object.keys(cObject)[i]][1];
+        carddeck[Object.keys(cardnum)[key]] = value;
+        cardqty[Object.keys(cardnum)[key]] = qty
+    }
+
+    cardsetcalcstart();
+}
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
 bonusDamageBtns.forEach(function(e){
@@ -118,7 +146,6 @@ function bonusdamagelistup(tri){
     })
 }
 
-var carddeck = {};
 document.querySelector('#helpbtn').addEventListener('click', function(){
     var helpimage = document.createElement('img');
     helpimage.src = "img/card1.jpg";
@@ -151,11 +178,8 @@ document.querySelector('#finishyes').addEventListener('click', function(){
 async function cardsetcalcstart(){
     document.querySelector('#matchfinish').style.display = 'none';
     document.querySelector('#matchstatus').style.display = '';
-
-    document.querySelector('#matchingment').textContent = '여기까지 테스트';
-
-    //return;
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
+    
     var head = document.querySelector('head');
     var cardeffectscript = document.createElement('script');
     cardeffectscript.type = 'text/javascript';
@@ -266,15 +290,6 @@ async function cardsetcalcstart(){
         })
     }
 
-    //console.log('과거에 카드 삭제한번이라도 했으면 오차 있을수 있음(카드 삭제를 해도 도감에서는 수집 유무로 효과가 올라가기 때문에)');
-    //console.log('권장강화카드');
-    //console.log(recommendCard);
-    //console.log('권장강화카드에 필요한 카드경험치');
-    //console.log(recommendExp);
-    //console.log(stat)
-    //console.log(bonusDamage);
-
-    
     for (var i = 0; i < Object.keys(stat).length; i++) {
         document.querySelectorAll('#'+Object.keys(stat)[i]).forEach(e => {
             e.textContent = stat[Object.keys(stat)[i]];
@@ -288,6 +303,16 @@ async function cardsetcalcstart(){
 
     document.querySelector('#matchzone').style.display="none";
     document.querySelector('#mycard').style.display="";
+
+    var expire = new Date();
+    expire.setDate(expire.getDate() + 365);
+    cookie = "{";
+    for (var i = 0; i < Object.keys(carddeck).length; i++) {
+        cookie += `"${cardnum[Object.keys(carddeck)[i]]}":[${carddeck[Object.keys(carddeck)[i]]},${cardqty[Object.keys(carddeck)[i]]}],`;
+    }
+    cookie += "}";
+    cookie = cookie.replace(',}','}');
+    document.cookie = 'savecarddeck=' + cookie + '; path=/; expires=' + expire.toGMTString() + ';';
 }
 
 document.querySelector('#finishno').addEventListener('click', function(){
@@ -623,7 +648,6 @@ var Module = {
     document.querySelector('#matchfinish').style.display = "";
     }
 }
-
 
 function preventDefaults (e) {
     e.preventDefault()
