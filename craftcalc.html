@@ -409,6 +409,29 @@
   </style>
   <script src="js/craft_recipe.js" > </script>
   <script>
+    `
+    .pricehide {
+      white-space: pre;
+      display: inline-block;
+      visibility: hidden;
+    }
+
+    function hasClass(elem, className) {
+      return elem.className.split(' ').indexOf(className) > -1;
+    }
+
+    document.querySelector('.fresh-table').addEventListener('input', function(e) {
+      if(hasClass(e.target, 'pricetxt')) {
+        e.target.parentNode.firstChild.innerText = e.target.value;
+        e.target.style.width = String(e.target.parentNode.firstChild.offsetWidth + 16) + "px";
+        e.target.parentNode.firstChild.innerText = "";
+      }
+    });
+
+    <td><span class="pricehide"></span><input class="pricetxt" type="text" value="1" style="width:25.5px"></td>
+    <th scope="col">제작개수</th>
+    `
+
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
       helpimage.src = "img/wisdom.png";
