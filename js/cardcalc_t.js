@@ -284,15 +284,11 @@ async function cardsetcalcstart(){
     var expire = new Date();
     expire.setDate(expire.getDate() + 365);
     cookie = "{";
-    for (var i = 0; i < carddeck.length; i++) {
-        console.log(carddeck[i][1]);
-        console.log(carddeck[i][0]);
-        console.log(cardgrade.indexOf(carddeck[i][0]));
-        cookie += `"${cardgrade.indexOf(carddeck[i][0])}":${carddeck[i][1]},`;
+    for (var i = 0; i < Object.keys(carddeck).length; i++) {
+        cookie += `${cardnum[Object.keys(carddeck)[i]]}:${carddeck[Object.keys(carddeck)[i]]},`;
     }
     cookie += "}";
-    console.log(cookie)
-    document.cookie = 'savecarddeck=' + escape(cookie) + '; path=/; expires=' + expire.toGMTString() + ';';
+    document.cookie = 'savecarddeck=' + cookie + '; path=/; expires=' + expire.toGMTString() + ';';
 }
 
 document.querySelector('#finishno').addEventListener('click', function(){
