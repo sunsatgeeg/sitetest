@@ -11,21 +11,24 @@ document.querySelector('#reconBtn').addEventListener('click', function(){
     document.cookie = 'savecarddeck=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 });
 
-if(document.cookie.indexOf('savecarddeck=') != -1){
-    console.log(document.cookie)
-    start = document.cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
-    var end = document.cookie.indexOf(';', start); 
-    if(end == -1)end = document.cookie.length;
-    cValue = document.cookie.substring(start, end);
-    console.log(cValue)
+try{
+    cookie = document.cookie;
+    //cookie = `adfit_sdk_id=27d22d86-20ea-4aad-a8d3-4a177872f498; inputmethod=keypad; savecarddeck={"1":5,"2":3,"5":1}`;
+}catch{}
+if(cookie.indexOf('savecarddeck=') != -1){
+    start = cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
+    var end = cookie.indexOf(';', start); 
+    if(end == -1)end = cookie.length;
+    cValue = cookie.substring(start, end);
     cObject = JSON.parse(cValue);
-    console.log(cObject)
 
     for (var i = 0; i < Object.keys(cObject).length; i++) {
-        key = Object.keys(cObject)[i];;
-        value = cObject(Object.keys(cObject)[i]);
-        console.log(Object.keys(cardnum)[key],':',value)
+        key = (Object.keys(cObject)[i])-1;
+        value = cObject[Object.keys(cObject)[i]];
+        carddeck[Object.keys(cardnum)[key]] = value;
     }
+
+    cardsetcalcstart();
 }
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
@@ -302,9 +305,10 @@ async function cardsetcalcstart(){
     expire.setDate(expire.getDate() + 365);
     cookie = "{";
     for (var i = 0; i < Object.keys(carddeck).length; i++) {
-        cookie += `${cardnum[Object.keys(carddeck)[i]]}:${carddeck[Object.keys(carddeck)[i]]},`;
+        cookie += `"${cardnum[Object.keys(carddeck)[i]]}":${carddeck[Object.keys(carddeck)[i]]},`;
     }
     cookie += "}";
+    cookie = cookie.replace(',}','}');
     document.cookie = 'savecarddeck=' + cookie + '; path=/; expires=' + expire.toGMTString() + ';';
 }
 
