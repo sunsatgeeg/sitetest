@@ -13,11 +13,10 @@ document.querySelector('#reconBtn').addEventListener('click', function(){
 
 if(document.cookie.indexOf('savecarddeck=') != -1){
     console.log(document.cookie)    
-    start = 'savecarddeck='.length;
+    start = ocument.cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
     var end = document.cookie.indexOf(';', start); 
     if(end == -1)end = document.cookie.length;
     cValue = document.cookie.substring(start, end);
-    console.log(cValue);
 }
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
