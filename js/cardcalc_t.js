@@ -12,11 +12,20 @@ document.querySelector('#reconBtn').addEventListener('click', function(){
 });
 
 if(document.cookie.indexOf('savecarddeck=') != -1){
-    console.log(document.cookie)    
+    console.log(document.cookie)
     start = document.cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
     var end = document.cookie.indexOf(';', start); 
     if(end == -1)end = document.cookie.length;
     cValue = document.cookie.substring(start, end);
+    console.log(cValue)
+    cObject = JSON.parse(cValue);
+    console.log(cObject)
+
+    for (var i = 0; i < Object.keys(cObject).length; i++) {
+        key = Object.keys(cObject)[i];;
+        value = cObject(Object.keys(cObject)[i]);
+        console.log(Object.keys(cardnum)[key],':',value)
+    }
 }
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
