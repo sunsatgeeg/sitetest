@@ -283,7 +283,13 @@ async function cardsetcalcstart(){
 
     var expire = new Date();
     expire.setDate(expire.getDate() + 365);
-    document.cookie = 'savecarddeck=' + escape(JSON.stringify(carddeck)) + '; path=/; expires=' + expire.toGMTString() + ';';
+    cookie = "{";
+    for (var i = 0; i < carddeck.length; i++) {
+        cookie += `"${cardgrade.indexOf(carddeck[i][0])}":${carddeck[i][1]},`;
+    }
+    cookie += "}";
+    console.log(cookie)
+    document.cookie = 'savecarddeck=' + escape(cookie) + '; path=/; expires=' + expire.toGMTString() + ';';
 }
 
 document.querySelector('#finishno').addEventListener('click', function(){
