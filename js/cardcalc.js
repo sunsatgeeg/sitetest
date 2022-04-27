@@ -11,120 +11,112 @@ bonusDamageBtns.forEach(function(e){
     e.addEventListener('click', function(){
         bonusDamageBtns.forEach(function(f){
             if(f.classList.contains('active')){
-            f.classList.remove('active');
-            return false;
+                f.classList.remove('active');
+                return false;
             }
         })
         e.classList.add('active');
 
-        target = document.querySelector('#bookstbody');
-        while (target.hasChildNodes()) {
-            target.removeChild(target.firstChild);
-        }
-
-        try{
-            targetLength = recommendExp[this.innerText].length;
-        }catch{
-            return;
-        }
-
-        var tooltipcontent;
-        for (var i = 0; i < targetLength; i++) {
-            unable = 0;
-            tr = document.createElement('tr');
-            tdsetname = document.createElement('td');
-            tdsetexp = document.createElement('td');
-
-            exp = recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])];
-            if(exp == 0) continue;
-            
-            tdsetname.textContent = Object.keys(recommendExp[this.innerText][i]);
-            tdsetexp.textContent = (recommendExp[this.innerText][i][Object.keys(recommendExp[this.innerText][i])]).toLocaleString();
-
-            targetTri = "";
-            let list;
-
-            document.querySelectorAll('#bonusdamageBtns button').forEach(function(g){
-                if(g.classList.contains('active')){
-                    targetTri = g.innerText;
-                    return false;
-                }
-            })
-
-            recommendCard[targetTri].forEach(function(g){
-                if(Object.keys(g)[0] == tdsetname.innerText){
-                    list = g[Object.keys(g)[0]];
-                    return false;
-                }
-            });
-
-            tooltipcontent = "<FONT SIZE='5pt'>"
-            tempdict = {};
-            for (var j = 0; j < list.length; j++) {
-                if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
-                console.log(list[j][0])
-                needcard = tempdict[list[j][0]][1] + (cardLevelUpExp[cardgrade[list[j][0]]].indexOf(list[j][1]) + 1);
-                star = tempdict[list[j][0]][0];
-                star++;
-                tempdict[list[j][0]] = [star,needcard]; 
-                if(needcard >= cardqty[list[j][0]]){
-                    unable++;
-                }
-            }
-
-            for (var j = 0; j < Object.keys(tempdict).length; j++) {
-                tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
-            }
-
-            tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
-            tr.setAttribute('data',JSON.stringify(tempdict));
-
-            if(unable == 0){
-                tr.style.color = 'green';
-            }
-
-            tr.append(tdsetname);
-            tr.append(tdsetexp);
-            tr.style.cursor = 'pointer';
-            target.appendChild(tr);
-        }
-        
-
-        tippy('#bookstbody > tr > td:nth-child(2)', {
-            allowHTML: true, 
-            content(reference) {
-                return reference.getAttribute('tooltipcontent');
-            },
-            theme: 'light', 
-            placement: 'top',
-        });
-
-        document.querySelectorAll('#bookstbody > tr').forEach(function(e){
-            e.addEventListener('click', function(){
-                data = this.getAttribute('data');
-                parsedata = JSON.parse(data);
-
-                for (var i = 0; i < Object.keys(parsedata).length; i++) {
-                    carddeck[Object.keys(parsedata)[i]] = carddeck[Object.keys(parsedata)[i]] + parsedata[Object.keys(parsedata)[i]][0];
-                }
-
-                cardsetcalcstart();
-
-                target = document.querySelector('#bookstbody');
-                while (target.hasChildNodes()) {
-                    target.removeChild(target.firstChild);
-                }
-
-                bonusDamageBtns.forEach(function(f){
-                    if(f.classList.contains('active')){
-                        f.classList.remove('active');
-                        return false;
-                    }
-                });
-            });
-        })
+        bonusdamagelistup(this.innerText);
     })
 });
+
+function bonusdamagelistup(tri){
+    target = document.querySelector('#bookstbody');
+    while (target.hasChildNodes()) {
+        target.removeChild(target.firstChild);
+    }
+
+    try{
+        targetLength = recommendExp[tri].length;
+    }catch{
+        return;
+    }
+
+    var tooltipcontent;
+    for (var i = 0; i < targetLength; i++) {
+        unable = 0;
+        tr = document.createElement('tr');
+        tdsetname = document.createElement('td');
+        tdsetexp = document.createElement('td');
+
+        exp = recommendExp[tri][i][Object.keys(recommendExp[tri][i])];
+        if(exp == 0) continue;
+        
+        tdsetname.textContent = Object.keys(recommendExp[tri][i]);
+        tdsetexp.textContent = (recommendExp[tri][i][Object.keys(recommendExp[tri][i])]).toLocaleString();
+
+        targetTri = "";
+        let list;
+
+        document.querySelectorAll('#bonusdamageBtns button').forEach(function(g){
+            if(g.classList.contains('active')){
+                targetTri = g.innerText;
+                return false;
+            }
+        })
+
+        recommendCard[targetTri].forEach(function(g){
+            if(Object.keys(g)[0] == tdsetname.innerText){
+                list = g[Object.keys(g)[0]];
+                return false;
+            }
+        });
+
+        tooltipcontent = "<FONT SIZE='5pt'>"
+        tempdict = {};
+        for (var j = 0; j < list.length; j++) {
+            if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
+            needcard = tempdict[list[j][0]][1] + (cardLevelUpExp[cardgrade[list[j][0]]].indexOf(list[j][1]) + 1);
+            star = tempdict[list[j][0]][0];
+            star++;
+            tempdict[list[j][0]] = [star,needcard]; 
+            if(needcard >= cardqty[list[j][0]]){
+                unable++;
+            }
+        }
+
+        for (var j = 0; j < Object.keys(tempdict).length; j++) {
+            tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
+        }
+
+        tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
+        tr.setAttribute('data',JSON.stringify(tempdict));
+
+        if(unable == 0){
+            tr.style.color = 'green';
+        }
+
+        tr.append(tdsetname);
+        tr.append(tdsetexp);
+        tr.style.cursor = 'pointer';
+        target.appendChild(tr);
+    }
+
+    
+    tippy('#bookstbody > tr > td:nth-child(2)', {
+        allowHTML: true, 
+        content(reference) {
+            return reference.getAttribute('tooltipcontent');
+        },
+        theme: 'light', 
+        placement: 'top',
+    });
+    
+    document.querySelectorAll('#bookstbody > tr').forEach(function(e){
+        e.addEventListener('click', async function(){
+            data = this.getAttribute('data');
+            parsedata = JSON.parse(data);
+            for (var i = 0; i < Object.keys(parsedata).length; i++) {
+                carddeck[Object.keys(parsedata)[i]] = carddeck[Object.keys(parsedata)[i]] + parsedata[Object.keys(parsedata)[i]][0];
+            }
+
+            await cardsetcalcstart();
+
+            bonusdamagelistup(tri);
+        });
+    })
+}
 
 var carddeck = {};
 document.querySelector('#helpbtn').addEventListener('click', function(){
