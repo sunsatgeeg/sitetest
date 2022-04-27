@@ -285,6 +285,9 @@ async function cardsetcalcstart(){
     expire.setDate(expire.getDate() + 365);
     cookie = "{";
     for (var i = 0; i < carddeck.length; i++) {
+        console.log(carddeck[i][1]);
+        console.log(carddeck[i][0]);
+        console.log(cardgrade.indexOf(carddeck[i][0]));
         cookie += `"${cardgrade.indexOf(carddeck[i][0])}":${carddeck[i][1]},`;
     }
     cookie += "}";
