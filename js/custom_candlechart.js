@@ -263,13 +263,13 @@ am5.ready(function() {
     candledict = {"item":name, "unit":unit};
     var unitCount = 0;
     //30분, 1시간, 3시간, 6시간, 12시간, 1일, 1주, 1달
-    /*if(unit == '30m'){                              너무 느려서 추후 활성화
+    if(unit == '30m'){
       unit = "minute";
       unitCount = 30;
     }else if(unit == '1h'){
       unit = "hour";
       unitCount = 1;
-    }else */if(unit == '3h'){
+    }else if(unit == '3h'){
       unit = "hour";
       unitCount = 3;
     }else if(unit == '6h'){
