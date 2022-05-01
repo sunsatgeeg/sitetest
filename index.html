@@ -105,7 +105,7 @@
           <div>
             <!-- dropdown -->
             <div class="dropdown itemList">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">아이템 추가 / 제거
+              <button class="btn btn-primary me-2 dropdown-toggle" type="button" data-bs-toggle="dropdown">아이템 추가 / 제거
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li><input class="form-control" id="myInput" type="text" placeholder="검색..." autocomplete="off"></li>
@@ -127,39 +127,45 @@
             </div>
           </div>
         </div>
-
-        <!-- amchart -->
+        
         <div id="candlechart" style="display:none;">
+          <!-- Chart Tools -->
+          <div class="candleChartTools pt-3 clearfix" style="background-color: black;">
+            <div class="float-start">
+              <div class="ms-2 candleBtn" id="candleBtn">
+                <button type="button" class="btn btn-info" id="30m">30분</button>
+                <button type="button" class="btn btn-info" id="1h">1시</button>
+                <button type="button" class="btn btn-info" id="3h">3시</button>
+                <button type="button" class="btn btn-info" id="6h">6시</button>
+                <button type="button" class="btn btn-info" id="12h">12시</button>
+                <button type="button" class="btn btn-outline-info" id="1d">1일</button>
+                <button type="button" class="btn btn-info" id="1w">1주</button>
+                <button type="button" class="btn btn-info" id="1M">1달</button>
+              </div>
+            </div>
+            <div class="float-end">
+              <div class="dropdown float-end candleitemList">
+                <button type="button" class="btn btn-primary dropdown-toggle me-2" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
+                <ul class="dropdown-menu" id="itemUl">
+                  <li><input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- amchart -->
           <div>
             <div class="mb-3" id="candlechartdiv"></div>
           </div>
 
-          <!-- Chart Tools -->
-          <div class="candleChartTools mb-3 clearfix">
+          <div class="chartTools mb-3 clearfix">
             <div class="float-start">
-              <div class="btn-group dropup candleitemList">
-                <button type="button" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" aria-expanded="false">선택</button>
-                <ul class="dropdown-menu w-100" id="itemUl">
-                  <li><input class="form-control" id="candlemyInput" type="text" placeholder="검색..." autocomplete="off"></li>
-                </ul>
-              </div>
               <button type="button" class="btn btn-primary" id="candlemaBtn" data-bs-toggle="modal" data-bs-target="#candleMA">이동평균선</button>
-            </div>
-            <div class="mx-2 float-start candleBtn" id="candleBtn">
-              <button type="button" class="btn btn-info" id="30m">30분</button>
-              <button type="button" class="btn btn-info" id="1h">1시</button>
-              <button type="button" class="btn btn-info" id="3h">3시</button>
-              <button type="button" class="btn btn-info" id="6h">6시</button>
-              <button type="button" class="btn btn-info" id="12h">12시</button>
-              <button type="button" class="btn btn-outline-info" id="1d">1일</button>
-              <button type="button" class="btn btn-info" id="1w">1주</button>
-              <button type="button" class="btn btn-info" id="1M">1달</button>
             </div>
 
             <div class="float-end">
               <button type="button" class="btn btn-primary" id="candlewideview">넓게보기</button>
             </div>
-          </div>
         </div>
       </div>
     </main>

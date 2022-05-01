@@ -80,11 +80,6 @@ html{
     margin-top: 6rem;
 }
 
-.candleitemList.dropdown{
-    float: right;
-    margin-top: 17px;
-}
-
 .candleitemList #candlemyInput {
     margin-top: -6px;
     border: 0;
