@@ -409,13 +409,13 @@ var Module = {
             cavasimage = new Image();
             cavasimage.src = screenimg[m].src;
             await new Promise(r => {
-            cavasimage.onload = r
+                cavasimage.onload = r
             })
             canvas = cv.imread(cavasimage);
             
             if(canvas.cols != 1920 || canvas.rows != 1080){
-            alert('해상도가 1920 X 1080이 아닙니다.');
-            return;
+                alert('해상도가 1920 X 1080이 아닙니다.');
+                return;
             }
 
             mask    = new cv.Mat();
@@ -445,196 +445,171 @@ var Module = {
             lastI = 0;
             
             for (var j = 0; j < 4; j++) {
-            y = startY + (j * 182);
-            for (var k = 0; k < 10; k++) {
-                dst = new cv.Mat();
-                mask = new cv.Mat();
-                rect = new cv.Rect(0,0,0,0);
+                y = startY + (j * 182);
+                for (var k = 0; k < 10; k++) {
+                    dst = new cv.Mat();
+                    mask = new cv.Mat();
+                    rect = new cv.Rect(0,0,0,0);
 
-                x = startX + (k * 118);
-                
-                rect = new cv.Rect(x, y, 116, 164);
-                source = canvas.roi(rect);
-
-                for (var i = lastI; i < Object.keys(cardlist).length; i++) {
-                templateimage = new Image();
-                templateimage.src = Object.keys(cardlist)[i];
-                await new Promise(r => {
-                    templateimage.onload = r
-                })
-                template = cv.imread(templateimage);
-
-                result_cols =   source.cols - template.cols + 1;
-                result_rows =   source.rows - template.rows + 1;
-
-                result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
-
-                cv.matchTemplate(source, template, result, method, mask);
-
-                cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
-
-                minMaxLoc   =   cv.minMaxLoc(result);
-
-                if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
-                    matchLoc  = minMaxLoc.minLoc;
-                }else{
-                    matchLoc  = minMaxLoc.maxLoc;
-                }
-
-                if(matchLoc.x == 38 && matchLoc.y == 38){
-                    //솔 그랑데, 지휘관 솔 이미지 똑같아서 조건 추가
-                    if(cardlist[Object.keys(cardlist)[i]] == '솔 그랑데' && source.ucharAt(21, 41 * source.channels() + 2) < 130){
-                    continue;
-                    }
-                    //기드온, 투란 오인식
-                    if(cardlist[Object.keys(cardlist)[i]] == '기드온' && source.ucharAt(61, 32 * source.channels()) < 150){
-                    continue;
-                    }
-                    //비아키스, 레나 오인식
-                    if(cardlist[Object.keys(cardlist)[i]] == '비아키스' && source.ucharAt(43, 30 * source.channels() + 2) > 90){
-                    continue;
-                    }
-                    //레퓌스, 난민 파밀리아 오인식
-                    if(cardlist[Object.keys(cardlist)[i]] == '레퓌스' && source.ucharAt(73, 34 * source.channels()) > 170){
-                    continue;
-                    }
-                    //사일러스, 하눈 오인식
-                    if(cardlist[Object.keys(cardlist)[i]] == '사일러스' && source.ucharAt(42, 28 * source.channels()) > 50){
-                    continue;
-                    }
-                    //하누마탄, 한이 서린 여인 오인식
-                    if(cardlist[Object.keys(cardlist)[i]] == '하누마탄' && source.ucharAt(50, 54 * source.channels()) < 200){
-                    continue;
-                    }
-
-                    for (var l = 5; l > 0; l--) {
-                        if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
-                            carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
-                            l=0;
-                        }else if(l==1){
-                            carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
-                        }
-                    }
-
-                    thrshholdsource = new cv.Mat();
-                    cv.threshold(source, thrshholdsource, 240, 255, cv.THRESH_BINARY);
-
-                    function colorcheck(row1,col1,row2,col2){
-                        return (
-                            thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels()    ) == 255 ||
-                            thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels() + 1) == 255 ||
-                            thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels() + 2) == 255
-                        )&&
-                        (
-                            thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels()    ) == 255 ||
-                            thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels() + 1) == 255 ||
-                            thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels() + 2) == 255
-                        )
-                    }
+                    x = startX + (k * 118);
                     
-                    // 9장 이하 카드개수
-                    if(
-                        (
-                        source.ucharAt(120,86 * source.channels()     ) >= 230 &&
-                        source.ucharAt(120,86 * source.channels() + 1 ) >= 230 &&
-                        source.ucharAt(120,86 * source.channels() + 2 ) >= 230
-                        ) &&
-                        (
-                        (source.ucharAt(115,57 * source.channels()    ) >= 130 && source.ucharAt(115,57 * source.channels()    ) <= 158) &&
-                        (source.ucharAt(115,57 * source.channels() + 1) >= 224 && source.ucharAt(115,57 * source.channels() + 1) <= 246) &&
-                        (source.ucharAt(115,57 * source.channels() + 2) >= 214 && source.ucharAt(115,57 * source.channels() + 2) <= 242)
-                        )
-                    ){
-                        //1장
-                        if(colorcheck(116,94,116,95)){
-                            qty = 1;
-                        }
-                        //2장
-                        else if(colorcheck(115,94,124,97)){
-                            qty = 2;
-                        }
-                        //4장
-                        else if(colorcheck(121,97,116,96)){
-                            qty = 4;
-                        }
-                        //7장
-                        else if(colorcheck(115,97,115,93)){
-                            qty = 7;
-                        }
-                        //8장
-                        else if(colorcheck(120,93,119,94)){
-                            qty = 8;
-                        }
-                        //9장
-                        else if(colorcheck(120,95,120,97)){
-                            qty = 9;
-                        }
-                        //6장
-                        else if(colorcheck(115,96,119,93)){
-                            qty = 6;
-                        }
-                        //5장
-                        else if(colorcheck(124,95,115,95)){
-                            qty = 5;
-                        }
-                        //3장
-                        else{
-                            qty = 3;
-                        }
-                    //10장 이상 카드개수
-                    }else if(
-                        (
-                            source.ucharAt(120,82 * source.channels()     ) >= 230 &&
-                            source.ucharAt(120,82 * source.channels() + 1 ) >= 230 &&
-                            source.ucharAt(120,82 * source.channels() + 2 ) >= 230
-                        ) &&
-                        (
-                            (source.ucharAt(115,53 * source.channels()    ) >= 130 && source.ucharAt(115,53 * source.channels()    ) <= 158) &&
-                            (source.ucharAt(115,53 * source.channels() + 1) >= 224 && source.ucharAt(115,53 * source.channels() + 1) <= 246) &&
-                            (source.ucharAt(115,53 * source.channels() + 2) >= 214 && source.ucharAt(115,53 * source.channels() + 2) <= 242)
-                        )
-                    ){
-                        //11장
-                        if(colorcheck(117,100,118,100)){
-                            qty = 11;
-                        }
-                        //12장
-                        else if(colorcheck(121,99,124,102)){
-                            qty = 123;
-                        }
-                        //13장
-                        else if(colorcheck(118,101,123,102)){
-                            qty = 13;
-                        }
-                        //14장
-                        else if(colorcheck(117,99,118,99)){
-                            qty = 14;
-                        }
-                        //15장
-                        else if(colorcheck(117,98,118,98)){
-                            qty = 15;
-                        }
-                        //10장
-                        else{
-                            qty = 10;
-                        }
-                    
-                    // 카드 개수 X
-                    }else{ 
-                        qty = 0;
-                    }
-                    cardqty[cardlist[Object.keys(cardlist)[i]]] = qty;
-                    thrshholdsource.delete();
+                    rect = new cv.Rect(x, y, 116, 164);
+                    source = canvas.roi(rect);
 
-                    lastI = i;
-                    thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
-                    document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
+                    for (var i = lastI; i < Object.keys(cardlist).length; i++) {
+                        templateimage = new Image();
+                        templateimage.src = Object.keys(cardlist)[i];
+                        await new Promise(r => {
+                            templateimage.onload = r
+                        })
+                        template = cv.imread(templateimage);
 
-                    delete cardlist[Object.keys(cardlist)[i]];
+                        result_cols =   source.cols - template.cols + 1;
+                        result_rows =   source.rows - template.rows + 1;
 
-                    i=Object.keys(cardlist).length;
-                }
-                template.delete();result.delete();
+                        result      =   new cv.Mat(result_rows, result_rows, cv.CV_32FC1);
+
+                        cv.matchTemplate(source, template, result, method, mask);
+
+                        cv.normalize(result, result, 0, 1, cv.NORM_MINMAX, -1, new cv.Mat() );
+
+                        minMaxLoc   =   cv.minMaxLoc(result);
+
+                        if(method == cv.TM_SQDIFF || method == cv.TM_SQDIFF_NORMED){
+                            matchLoc  = minMaxLoc.minLoc;
+                        }else{
+                            matchLoc  = minMaxLoc.maxLoc;
+                        }
+
+                        if(matchLoc.x == 30 && matchLoc.y == 20){
+                            for (var l = 5; l > 0; l--) {
+                                if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
+                                    carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
+                                    l=0;
+                                }else if(l==1){
+                                    carddeck[cardlist[Object.keys(cardlist)[i]]] = 0;
+                                }
+                            }
+
+                            thrshholdsource = new cv.Mat();
+                            cv.threshold(source, thrshholdsource, 240, 255, cv.THRESH_BINARY);
+
+                            function colorcheck(row1,col1,row2,col2){
+                                return (
+                                    thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels()    ) == 255 ||
+                                    thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels() + 1) == 255 ||
+                                    thrshholdsource.ucharAt(row1,col1 * thrshholdsource.channels() + 2) == 255
+                                )&&
+                                (
+                                    thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels()    ) == 255 ||
+                                    thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels() + 1) == 255 ||
+                                    thrshholdsource.ucharAt(row2,col2 * thrshholdsource.channels() + 2) == 255
+                                )
+                            }
+                            
+                            // 9장 이하 카드개수
+                            if(
+                                (
+                                source.ucharAt(120,86 * source.channels()     ) >= 230 &&
+                                source.ucharAt(120,86 * source.channels() + 1 ) >= 230 &&
+                                source.ucharAt(120,86 * source.channels() + 2 ) >= 230
+                                ) &&
+                                (
+                                (source.ucharAt(115,57 * source.channels()    ) >= 130 && source.ucharAt(115,57 * source.channels()    ) <= 158) &&
+                                (source.ucharAt(115,57 * source.channels() + 1) >= 224 && source.ucharAt(115,57 * source.channels() + 1) <= 246) &&
+                                (source.ucharAt(115,57 * source.channels() + 2) >= 214 && source.ucharAt(115,57 * source.channels() + 2) <= 242)
+                                )
+                            ){
+                                //1장
+                                if(colorcheck(116,94,116,95)){
+                                    qty = 1;
+                                }
+                                //2장
+                                else if(colorcheck(115,94,124,97)){
+                                    qty = 2;
+                                }
+                                //4장
+                                else if(colorcheck(121,97,116,96)){
+                                    qty = 4;
+                                }
+                                //7장
+                                else if(colorcheck(115,97,115,93)){
+                                    qty = 7;
+                                }
+                                //8장
+                                else if(colorcheck(120,93,119,94)){
+                                    qty = 8;
+                                }
+                                //9장
+                                else if(colorcheck(120,95,120,97)){
+                                    qty = 9;
+                                }
+                                //6장
+                                else if(colorcheck(115,96,119,93)){
+                                    qty = 6;
+                                }
+                                //5장
+                                else if(colorcheck(124,95,115,95)){
+                                    qty = 5;
+                                }
+                                //3장
+                                else{
+                                    qty = 3;
+                                }
+                            //10장 이상 카드개수
+                            }else if(
+                                (
+                                    source.ucharAt(120,82 * source.channels()     ) >= 230 &&
+                                    source.ucharAt(120,82 * source.channels() + 1 ) >= 230 &&
+                                    source.ucharAt(120,82 * source.channels() + 2 ) >= 230
+                                ) &&
+                                (
+                                    (source.ucharAt(115,53 * source.channels()    ) >= 130 && source.ucharAt(115,53 * source.channels()    ) <= 158) &&
+                                    (source.ucharAt(115,53 * source.channels() + 1) >= 224 && source.ucharAt(115,53 * source.channels() + 1) <= 246) &&
+                                    (source.ucharAt(115,53 * source.channels() + 2) >= 214 && source.ucharAt(115,53 * source.channels() + 2) <= 242)
+                                )
+                            ){
+                                //11장
+                                if(colorcheck(117,100,118,100)){
+                                    qty = 11;
+                                }
+                                //12장
+                                else if(colorcheck(121,99,124,102)){
+                                    qty = 123;
+                                }
+                                //13장
+                                else if(colorcheck(118,101,123,102)){
+                                    qty = 13;
+                                }
+                                //14장
+                                else if(colorcheck(117,99,118,99)){
+                                    qty = 14;
+                                }
+                                //15장
+                                else if(colorcheck(117,98,118,98)){
+                                    qty = 15;
+                                }
+                                //10장
+                                else{
+                                    qty = 10;
+                                }
+                            
+                            // 카드 개수 X
+                            }else{ 
+                                qty = 0;
+                            }
+                            cardqty[cardlist[Object.keys(cardlist)[i]]] = qty;
+                            thrshholdsource.delete();
+
+                            lastI = i;
+                            thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
+                            document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
+
+                            delete cardlist[Object.keys(cardlist)[i]];
+
+                            i=Object.keys(cardlist).length;
+                        }
+                        template.delete();result.delete();
                 }
                 source.delete();mask.delete();
             }
