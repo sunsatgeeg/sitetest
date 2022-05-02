@@ -307,7 +307,13 @@ am5.ready(function() {
         dateAxis.zoom(0, 1, 0);
         nowname = name;
         toast.hideToast();
-        
+
+
+        enddate = data[data.length-60].date;
+        valueSeries.events.once("datavalidated", function(ev, target) {
+          dateAxis.zoomToDates(new Date(), new Date(enddate))
+        })
+
         loadingdata = 0;
       }
     });
@@ -390,7 +396,7 @@ am5.ready(function() {
     });
 
     series.data.setAll(toolData);
-}
+  }
 
   $("#candleMA #candlemake").on("click", function(e){
     var targetSeries = $('#candleMA #candleseries').text();
