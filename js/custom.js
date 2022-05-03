@@ -28,7 +28,7 @@ function clickToCopy(element){
     }).showToast();
 }
 
-$(function(){
+document.addEventListener('DOMContentLoaded', function(){
     var servererror = false;
     if((servererror)){
         var head = document.querySelector('head');
