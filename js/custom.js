@@ -1,4 +1,4 @@
-local = false
+local = true
 var url;
 var cookie;
 var nocommu = ['bidcalc','cardcalc']
