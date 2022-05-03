@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     $('#reset').on("click", function(){
-        $.removeCookie('indata', { path: '/' });
+        delCookie('indata');
         location.reload();
     });
 
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                     makeSeries(json['item'], 1);
 
                                     indata.push(json['item'].replace("null,","").trim());
-                                    getCookie('indata', indata, 365);
+                                    setCookie('indata', indata, 365);
 
                                     toast.hideToast();
                                 }
