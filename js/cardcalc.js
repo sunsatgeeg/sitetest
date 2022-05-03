@@ -2,10 +2,6 @@ var recommendExp;
 var recommendCard;
 var carddeck = {};
 var cardqty = {};
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-})
 
 document.querySelector('#reconBtn').addEventListener('click', function(){
     document.cookie = 'savecarddeck=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';

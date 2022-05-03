@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('DOMContentLoaded', function(){
     function calc(price){
         $('.card').filter(function(){
             exgold = parseInt(($(this).find('#itemamount').text() / (100 * 0.95)) * price);
@@ -26,9 +26,7 @@ $(function(){
         price = parseInt($(this).val());
         calc(price);
     });
-});
 
-$(function(){
     $.ajax({
         type: 'POST',
         url: url + '/mari',
