@@ -161,9 +161,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
                 f.style.display = 'none';
             });
-            try{
-                document.querySelector('#' + this.value).style.display = '';
-            }catch{}
+            document.querySelector('#' + this.value).style.display = '';
         });
     })
 
