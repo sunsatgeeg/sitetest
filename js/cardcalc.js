@@ -382,7 +382,7 @@ var Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         let mask;
-        var method = cv.TM_CCOEFF_NORMED;
+        var method = cv.TM_CCOEFF;
         let result_cols;
         let result_rows;
         var result;
@@ -477,7 +477,7 @@ var Module = {
                             matchLoc  = minMaxLoc.maxLoc;
                         }
 
-                        if(matchLoc.x == 30 && matchLoc.y == 20){
+                        if(matchLoc.x == 8 && matchLoc.y == 35){
                             for (var l = 5; l > 0; l--) {
                                 if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
                                     carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
