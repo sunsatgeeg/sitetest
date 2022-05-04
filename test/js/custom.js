@@ -87,13 +87,16 @@ document.querySelectorAll('header .nav-link').forEach(function(e){
         e.classList.add('active');
         return;
     }
+});
+
+(()=>{
+    if(nocommu.indexOf(here) != -1){
+        bodydata = new FormData();
+        bodydata.append(here,"")
+        fetch(url + '/visitor', {
+            method: 'POST',
+            body: bodydata
+        });
+    }
 })
 
-if(nocommu.indexOf(here) != -1){
-    bodydata = new FormData();
-    bodydata.append(here,"")
-    fetch(url + '/visitor', {
-        method: 'POST',
-        body: bodydata
-    });
-}
