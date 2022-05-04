@@ -1,7 +1,11 @@
+local = true
 var url;
 var nocommu = ['bidcalc','cardcalc']
-//url = "http://127.0.0.1:5000";    "https://api.loachart.com";
-url = "https://api.loachart.com";
+if(local){
+    url = "http://127.0.0.1:5000";
+}else{
+    url = "https://api.loachart.com";
+}
 
 function delCookie(cname){
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -68,17 +72,6 @@ if(servererror){
     `;
 }
 
-async ()=>{
-    if(nocommu.indexOf(here) != -1){
-        bodydata = new FormData();
-        bodydata.append(here,"")
-        fetch(url + '/visitor', {
-            method: 'POST',
-            body: bodydata
-        });
-    }
-}
-
 document.querySelector('header .nav').innerHTML = `          
     <a class="nav-link" aria-current="page" href="/">차트</a>
     <a class="nav-link" aria-current="page" href="mari">마리샵</a>
@@ -95,3 +88,12 @@ document.querySelectorAll('header .nav-link').forEach(function(e){
         return;
     }
 })
+
+if(nocommu.indexOf(here) != -1){
+    bodydata = new FormData();
+    bodydata.append(here,"")
+    fetch(url + '/visitor', {
+        method: 'POST',
+        body: bodydata
+    });
+}
