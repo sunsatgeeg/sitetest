@@ -450,35 +450,40 @@ document.addEventListener('DOMContentLoaded', function(){
                     $("#MA").modal('hide');
                 });
                 
-                if(getCookie('indata') != ""){
-                    cookie = getCookie('indata');
-                    if(cookie == undefined){
-                        return;
-                    }
-
-                    var array = cookie.split(",");
-                    indata = array;
+                if(!(getCookie('indata') == ""  || getCookie('indata') == undefined)){
+                    cookiestr = getCookie('indata');
                     $.ajax({
                         type: 'POST',
                         url: url + '/tickchart_data',
-                        data:{'item':cookie},
+                        data:{'item':cookiestr},
                         success:function(json) {
                             try{
-                                var array = json.item.split(",");
+                                jsonarray = json.item.split(",");
                             } catch{
                                 return;
                             }
 
                             generateChartData(json.data);
 
-                            for (var i = 1; i < array.length; i++) {
-                                makeSeries(array[i], i);
+                            for (var i = 1; i < jsonarray.length; i++) {
+                                makeSeries(jsonarray[i], i);
                             }
 
                             cookietoast.hideToast();
                         }
                     });
-                } 
+                } else{
+                    $.ajax({
+                        type: 'POST',
+                        url: url + '/tickchart_data',
+                        data:{'item':'명예의 파편 주머니(대)'},
+                        success:function(json) {
+                            generateChartData(json.data);
+                            makeSeries('null,명예의 파편 주머니(대)', 1);
+                            indata.push('명예의 파편 주머니(대)');
+                        }
+                    });
+                }
 
                 // Make stuff animate on load
                 // https://www.amcharts.com/docs/v5/concepts/animations/
