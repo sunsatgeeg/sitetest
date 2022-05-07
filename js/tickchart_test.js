@@ -480,6 +480,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         success:function(json) {
                             generateChartData(json.data);
                             makeSeries('null,명예의 파편 주머니(대)', 1);
+                            indata.push('명예의 파편 주머니(대)');
                         }
                     });
                 }
