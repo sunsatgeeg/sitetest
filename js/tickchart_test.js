@@ -452,7 +452,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 
                 if(!(getCookie('indata') == ""  || getCookie('indata') == undefined)){
                     cookiestr = getCookie('indata');
-                    indata = array;
                     $.ajax({
                         type: 'POST',
                         url: url + '/tickchart_data',
@@ -480,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         data:{'item':'명예의 파편 주머니(대)'},
                         success:function(json) {
                             generateChartData(json.data);
-                            makeSeries(jsonarray[1], 1);
+                            makeSeries(json[1], 1);
                         }
                     });
                 }
