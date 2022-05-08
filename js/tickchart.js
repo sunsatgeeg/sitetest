@@ -37,10 +37,6 @@ document.addEventListener('DOMContentLoaded', function(){
             ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
         ]
     });
-    
-    $('li').filter(function(){
-        $(this).css("cursor", "pointer");
-    });
 
     $('.sp-colorize').on("click", function(){
         $('#color-picker').spectrum("toggle");
@@ -71,9 +67,8 @@ document.addEventListener('DOMContentLoaded', function(){
             db_time = String(json['db_refresh_time']);
 
             for (var i = 0; i < json['items'].length; i++) {
-                $('.itemList .dropdown-menu').append('<li><a class="dropdown-item">' + json['items'][i] + '</a></li>');
-                $('#itemUl').append('<li ev><a class="dropdown-item">' + json['items'][i] + '</a></li>');
-                $('#itemUl').css("cursor", "pointer");
+                $('.itemList .dropdown-menu').append('<li><a class="dropdown-item" href="javascript:void(0);">' + json['items'][i] + '</a></li>');
+                $('#itemUl').append('<li><a class="dropdown-item" href="javascript:void(0);">' + json['items'][i] + '</a></li>');
             }
 
             am5.ready(function() {
@@ -314,10 +309,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     });
                 });
 
-                $(".itemList .dropdown-menu li").on("mouseover", function(){
-                    $(this).css("cursor", "pointer");
-                });
-
                 var indata = [];
                 $(".itemList .dropdown-menu li").filter(function() {
                     if($(this).children().prop('tagName') == 'INPUT'){
@@ -382,8 +373,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     $('#MA #length').val("2");
                     $('#MA #width').val("1");
                     for (var i = 0; i < indata.length; i++) {
-                        dropdownMenu.append('<li><a class="dropdown-item">' + indata[i].trim() + '</a></li>');
-                        dropdownMenu.css("cursor", "pointer");
+                        dropdownMenu.append('<li><a class="dropdown-item" href="javascript:void(0);">' + indata[i].trim() + '</a></li>');
                     }
 
                     $("#MA li").filter(function() {
