@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
       <loc>https://loachart.com/</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/mari</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/secretmap</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/bidcalc</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/craftcalc</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/rewardcalc</loc>
+    </url>
+    <url>
       <loc>https://loachart.com/cardcalc</loc>
     </url>
 </urlset>
