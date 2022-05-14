@@ -482,7 +482,7 @@ var Module = {
                         
                         findx = 23
                         findy = 23
-                        console.log(cardlist[Object.keys(cardlist)[i]]);console.log(minMaxLoc)
+                        //console.log(cardlist[Object.keys(cardlist)[i]]);console.log(minMaxLoc)
                         if(cardlist[Object.keys(cardlist)[i]] == "코니"){
                             findx = 14;
                             findy = 8;
