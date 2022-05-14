@@ -482,14 +482,14 @@ var Module = {
                         
                         findx = 23
                         findy = 23
-                        console.log(cardlist[Object.keys(cardlist)[i]]);console.log(minMaxLoc)
+                        //console.log(cardlist[Object.keys(cardlist)[i]]);console.log(minMaxLoc)
                         if(cardlist[Object.keys(cardlist)[i]] == "코니"){
                             findx = 14;
                             findy = 8;
-                        }else if(cardlist[Object.keys(cardlist)[i]] == "벨루마테"){
-                            matchLoc = minMaxLoc.minLoc;
-                            findx = 20;
-                            findy = 78;
+                        }else if(cardlist[Object.keys(cardlist)[i]] == "샐리"){
+                            matchLoc  = minMaxLoc.minLoc;
+                            findx = 37;
+                            findy = 58;
                         }
                         if(matchLoc.x == findx && matchLoc.y == findy){
                             for (var l = 5; l > 0; l--) {
