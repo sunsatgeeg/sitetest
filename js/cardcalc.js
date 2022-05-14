@@ -171,7 +171,7 @@ document.querySelector('#finishyes').addEventListener('click', function(){
     cardsetcalcstart();
     setTimeout(() => {
         document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
-    }, 1);
+    }, 2);
 }, false)
 
 async function cardsetcalcstart(){
