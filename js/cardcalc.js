@@ -169,6 +169,9 @@ document.querySelector('#helpbtn').addEventListener('click', function(){
 
 document.querySelector('#finishyes').addEventListener('click', function(){
     cardsetcalcstart();
+    setTimeout(() => {
+        document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
+    }, 1);
 }, false)
 
 async function cardsetcalcstart(){
@@ -476,8 +479,14 @@ var Module = {
                         }else{
                             matchLoc  = minMaxLoc.maxLoc;
                         }
-
-                        if(matchLoc.x == 8 && matchLoc.y == 35){
+                        
+                        findx = 23
+                        findy = 23
+                        if(cardlist[Object.keys(cardlist)[i]] == "코니"){
+                            findx = 14
+                            findy = 8
+                        }
+                        if(matchLoc.x == findx && matchLoc.y == findy){
                             for (var l = 5; l > 0; l--) {
                                 if(source.ucharAt(135, (91 - (Math.abs(l-5) * 15)) * source.channels()) > 150){
                                     carddeck[cardlist[Object.keys(cardlist)[i]]] = l;
