@@ -106,8 +106,9 @@ function bonusdamagelistup(tri){
 
         tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
         tr.setAttribute('data',JSON.stringify(tempdict));
-
+        
         if(unable == 0){
+            tr.classList.add('green');
             tr.style.color = 'green';
         }
 

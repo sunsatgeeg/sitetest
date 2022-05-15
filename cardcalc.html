@@ -86,6 +86,14 @@
     #fileElem {
       display: none;
     }
+    .table-hover>tbody>tr:hover>*{
+      --bs-table-accent-bg: var(--bs-table-hover-bg);
+      color: white;
+    }
+    .table-hover>tbody>tr.green:hover>*{
+      --bs-table-accent-bg: var(--bs-table-hover-bg);
+      color: green;
+    }
   </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
