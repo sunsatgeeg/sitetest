@@ -167,11 +167,9 @@ document.querySelector('#helpbtn').addEventListener('click', function(){
     document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
 }, false);
 
-document.querySelector('#finishyes').addEventListener('click', function(){
-    cardsetcalcstart();
-    setTimeout(() => {
-        document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
-    }, 2);
+document.querySelector('#finishyes').addEventListener('click', async function(){
+    await cardsetcalcstart();
+    document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
 }, false)
 
 async function cardsetcalcstart(){
