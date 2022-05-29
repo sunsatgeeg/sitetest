@@ -58,6 +58,7 @@ function bonusdamagelistup(tri){
     }
 
     var tooltipcontent;
+    var clickcontent;
     for (var i = 0; i < targetLength; i++) {
         unable = 0;
         tr = document.createElement('tr');
@@ -88,6 +89,7 @@ function bonusdamagelistup(tri){
         });
 
         tooltipcontent = "<FONT SIZE='5pt'>"
+        clickcontent = "";
         tempdict = {};
         for (var j = 0; j < list.length; j++) {
             if(tempdict[list[j][0]] == undefined) tempdict[list[j][0]] = [0,0];
@@ -102,9 +104,11 @@ function bonusdamagelistup(tri){
 
         for (var j = 0; j < Object.keys(tempdict).length; j++) {
             tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
+            clickcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각, `
         }
 
         tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
+        tdsetexp.setAttribute('clickcontent',clickcontent);
         tr.setAttribute('data',JSON.stringify(tempdict));
         
         if(unable == 0){
@@ -126,6 +130,12 @@ function bonusdamagelistup(tri){
         },
         theme: 'light', 
         placement: 'top',
+    });
+
+    document.querySelectorAll('#bookstbody > tr > td:nth-child(2)').forEach(function(e){
+        e.addEventListener('mousedown', function(){
+            navigator.clipboard.writeText(e.getAttribute('clickcontent'));
+        })
     });
     
     document.querySelectorAll('#bookstbody > tr').forEach(function(e){
