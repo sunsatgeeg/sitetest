@@ -61,7 +61,7 @@ html{
     border-bottom-left-radius: 0!important;
     border-left: 0!important;
 }
-#ads-left{position:fixed;left:50%;margin-left:-810px;overflow:hidden}
+#ads-left{position:fixed;left:50%;margin-left:-950px;overflow:hidden}
 #ads-right{position:fixed;left:50%;margin-left:650px;overflow:hidden}
 #ads-left.sticky,#ads-right.sticky{position:fixed;top:20px!important}
 
