@@ -133,7 +133,8 @@ function bonusdamagelistup(tri){
     });
 
     document.querySelectorAll('#bookstbody > tr > td:nth-child(2)').forEach(function(e){
-        e.addEventListener('mousedown', function(){
+        e.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
             navigator.clipboard.writeText(e.getAttribute('clickcontent'));
         })
     });
