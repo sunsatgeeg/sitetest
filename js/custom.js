@@ -53,14 +53,7 @@ function clickToCopy(){
 }
 
 var servererror = false;
-if(!(servererror)){
-    var head = document.querySelector('head');
-    var adfitscript = document.createElement('script');
-    adfitscript.type = 'text/javascript';
-    adfitscript.defer = true;
-    adfitscript.src = '//t1.daumcdn.net/kas/static/ba.min.js';
-    head.appendChild(adfitscript);
-}else{
+if(servererror){
     document.querySelector('body').removeChild(document.querySelector('body').firstChild)
     document.querySelector('main').innerHTML = `
     <hr>
