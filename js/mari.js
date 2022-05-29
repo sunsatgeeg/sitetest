@@ -6,15 +6,18 @@ function calc(price){
         profitper = ((profit/totalgold)*100).toFixed(1);
 
         if(profit >= 0){
-            profitcolor = "00ff00";
+            profitcolor = "#00ff00";
         }else if(profit < 0){
-            profitcolor = "ff6b6b";
+            profitcolor = "#ff6b6b";
         }
 
         e.querySelector('#exgold').innerText = exgold.toLocaleString();
         e.querySelector('#totalgold').innerText = totalgold.toLocaleString();
         e.querySelector('#profit').innerText = profit.toLocaleString();
         e.querySelector('#profitper').innerText = "(" + profitper + "%)";
+        
+        e.querySelector('#profit').style.color = profitcolor;
+        e.querySelector('#profitper').style.color = profitcolor;
     });
 }
 
