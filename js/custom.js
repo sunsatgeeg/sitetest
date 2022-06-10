@@ -81,12 +81,16 @@ document.querySelectorAll('header .nav-link').forEach(function(e){
     }
 });
 
-if(nocommu.indexOf(here) != -1){
-    bodydata = new FormData();
-    bodydata.append(here,"")
-    fetch(url + '/visitor', {
-        method: 'POST',
-        body: bodydata
-    });
+try{
+    if(nocommu.indexOf(here) != -1){
+        bodydata = new FormData();
+        bodydata.append(here,"")
+        fetch(url + '/visitor', {
+            method: 'POST',
+            body: bodydata
+        });
+    }
+}catch{
+    
 }
 

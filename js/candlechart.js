@@ -306,11 +306,13 @@ document.addEventListener('DOMContentLoaded', function(){
           nowname = name;
           toast.hideToast();
 
+          if(data.length > 60){
+            enddate = data[data.length-60].date;
 
-          enddate = data[data.length-60].date;
-          valueSeries.events.once("datavalidated", function(ev, target) {
-            dateAxis.zoomToDates(new Date(), new Date(enddate))
-          })
+            valueSeries.events.once("datavalidated", function(ev, target) {
+              dateAxis.zoomToDates(new Date(), new Date(enddate))
+            })
+          }
 
           loadingdata = 0;
         }
@@ -339,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }else{
           return;
         }
-        if(curitem == "선택"){
+        if(curitem == "아이템 선택"){
           return;
         }
         loadData(currentUnit, curitem);
