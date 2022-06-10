@@ -78,6 +78,17 @@ html{
     margin-top: 6rem;
 }
 
+.hr{
+    text-align:left;
+    width: 100%;
+    height: 4rem;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    font-family: 'NanumSquare', sans-serif !important;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
 .candleitemList #candlemyInput {
     margin-top: -6px;
     border: 0;

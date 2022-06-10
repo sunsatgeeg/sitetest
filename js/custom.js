@@ -65,7 +65,8 @@ if(servererror){
 }
 
 document.querySelector('header .nav').innerHTML = `          
-    <a class="nav-link" aria-current="page" href="/">차트</a>
+    <a class="nav-link" aria-current="page" href="/">Home</a>
+    <a class="nav-link" aria-current="page" href="chart">차트</a>
     <a class="nav-link" aria-current="page" href="mari">마리샵</a>
     <a class="nav-link" aria-current="page" href="secretmap">비밀지도</a>
     <a class="nav-link" aria-current="page" href="bidcalc">경매 계산기</a>
