@@ -2,11 +2,17 @@ var recommendExp;
 var recommendCard;
 var carddeck = {};
 var cardqty = {};
+var cardalllist = [];
+var pushbuttonindex = 0;
 
 document.querySelector('#reconBtn').addEventListener('click', function(){
     delCookie('savecarddeck');
     location.reload();
 });
+
+for (let i = 0; i < Object.keys(cardnum).length; i++) {
+    cardalllist.push(Object.keys(cardnum)[i]);
+}
 
 try{
     cookie = document.cookie;
@@ -185,6 +191,15 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
 }, false)
 
 async function cardsetcalcstart(){
+    //카드 수동 추가
+    if(document.querySelector("#cardpushzone").childElementCount >= 1){
+        cardpushlength = document.querySelector("#cardpushzone").childElementCount;
+        for (let i = 0; i < cardpushlength; i++) {
+            carddeck[document.querySelector(`#cardname${i}`).value] = parseInt(document.querySelector(`#cardstar${i}`).value);
+            cardqty[document.querySelector(`#cardname${i}`).value] = parseInt(document.querySelector(`#cardqty${i}`).value);
+        }
+    }
+
     document.querySelector('#matchfinish').style.display = 'none';
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
@@ -290,6 +305,7 @@ async function cardsetcalcstart(){
             recommendExp[set[3]] = [({[setname]:nextLevelExp})];
         }
     }
+
     //카드 삭제한번이라도 했으면 오차 있을수 있음
     document.querySelector('#matchingment').textContent = `계산 완료(임시로 콘솔창에서 확인)`;
 
@@ -322,11 +338,93 @@ async function cardsetcalcstart(){
     cookie += "}";
     cookie = cookie.replace(',}','}');
     document.cookie = 'savecarddeck=' + cookie + '; path=/; expires=' + expire.toGMTString() + ';';
-}
+};
 
 document.querySelector('#finishno').addEventListener('click', function(){
     alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
-}, false)
+});
+
+function cardpushbuttoncreate(){
+    cardpushelement = document.createElement('div');
+    cardpushelement.setAttribute('class','input-group mb-3');
+    
+    tempelement = document.createElement('button');
+    tempelement.setAttribute('class','btn btn-outline-secondary');
+    tempelement.setAttribute('type','button');
+    tempelement.setAttribute('onClick','cardpushbuttoncreate();');
+    tempelement.innerText = '+';
+    cardpushelement.appendChild(tempelement);
+    
+    //카드이름
+    tempelement = document.createElement('select');
+    tempelement.setAttribute('class','form-select');
+    tempelement.setAttribute('id',`cardname${pushbuttonindex}`);
+    for (let i = 0; i < cardalllist.length; i++) {
+        continuesign = false;
+
+        if(document.querySelector("#cardpushzone").childElementCount >= 1){
+            cardpushlength = document.querySelector("#cardpushzone").childElementCount;
+            for (let j = 0; j < cardpushlength; j++) {
+                if(cardalllist[i] === document.querySelector(`#cardname${j}`).value){
+                    continuesign = true;
+                }
+            }
+        }
+        if(continuesign){
+            continue;
+        }
+        console.log(i)
+
+        tempelement2 = document.createElement('option');
+        if(i==0){
+            tempelement2.setAttribute('value', cardalllist[i]);
+            tempelement2.innerText = cardalllist[i];
+        }else{
+            tempelement2.setAttribute('value', cardalllist[i]);
+            tempelement2.innerText = cardalllist[i];
+        }
+        tempelement.appendChild(tempelement2);
+    }
+    if(tempelement.childElementCount == 0){
+        return;
+    }
+    cardpushelement.appendChild(tempelement);
+
+    //카드각성
+    tempelement = document.createElement('select');
+    tempelement.setAttribute('class','form-select');
+    tempelement.setAttribute('id',`cardstar${pushbuttonindex}`);
+    for (let i = 0; i <= 5; i++) {
+        tempelement2 = document.createElement('option');
+        tempelement2.setAttribute('value', i);
+        tempelement2.innerText = i;
+        tempelement.appendChild(tempelement2);
+    }
+    cardpushelement.appendChild(tempelement);
+
+    //카드보유장수
+    tempelement = document.createElement('select');
+    tempelement.setAttribute('class','form-select');
+    tempelement.setAttribute('id',`cardqty${pushbuttonindex}`);
+    for (let i = 0; i <= 15; i++) {
+        tempelement2 = document.createElement('option');
+        tempelement2.setAttribute('value', i);
+        tempelement2.innerText = i;
+        tempelement.appendChild(tempelement2);
+    }
+    cardpushelement.appendChild(tempelement);
+    
+    document.querySelector("#cardpushzone").appendChild(cardpushelement);
+    pushbuttonindex++;
+}
+
+document.querySelector('#cardpush').addEventListener('click', function(){
+    if(cardalllist.length === 0){
+        alert('추가할 카드가 없습니다.');
+        return;
+    }
+    cardpushbuttoncreate();
+});
 
 // ************************ Drag and drop ***************** //
 let dropArea = document.getElementById("drop-area")
@@ -349,9 +447,7 @@ let dropArea = document.getElementById("drop-area")
 // Handle dropped files
 dropArea.addEventListener('drop', handleDrop, false)
 
-document.querySelector('#matchstart').addEventListener('click', gomatching, false)
-
-function gomatching(){
+document.querySelector("#matchstart").addEventListener('click', function(){
     if(document.querySelectorAll('#gallery > img').length == 0){
         alert('사진을 선택해주세요')
         return;
@@ -374,7 +470,7 @@ function gomatching(){
     head.appendChild(opencvscript);
     head.appendChild(cardlistscript);
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
-}
+});
 
 var Module = {
     async onRuntimeInitialized() { 
@@ -453,8 +549,10 @@ var Module = {
 
             lastI = 0;
             
+            document.querySelector('#searchingcardlist').innerHTML += `<br><br>${screenimg[m].getAttribute('filename')}[<span id="page${m}"></span>장]`;
             for (var j = 0; j < 4; j++) {
                 y = startY + (j * 182);
+                thislinecardlist = [];
                 for (var k = 0; k < 10; k++) {
                     dst = new cv.Mat();
                     mask = new cv.Mat();
@@ -622,7 +720,9 @@ var Module = {
                             thrshholdsource.delete();
 
                             lastI = i;
+                            cardalllist.splice(cardalllist.indexOf(cardlist[Object.keys(cardlist)[i]]),1);
                             thispagecardlist.push(cardlist[Object.keys(cardlist)[i]]);
+                            thislinecardlist.push(cardlist[Object.keys(cardlist)[i]]);
                             document.querySelector('#matchingment').textContent=`인식된 카드 ${Object.keys(carddeck).length}장`;
 
                             delete cardlist[Object.keys(cardlist)[i]];
@@ -633,8 +733,15 @@ var Module = {
                 }
                 source.delete();mask.delete();
             }
+            thislinecolor = '';
+            if(thislinecardlist.length != 10){
+                thislinecolor = 'red';
+            }
+            document.querySelector('#searchingcardlist').innerHTML += `<br>${j+1}줄[<span style="color:${thislinecolor}">${thislinecardlist.length}장</span>] : ${thislinecardlist}`;
+            
+            document.querySelector("#page"+m).textContent = thispagecardlist.length;
         }
-        document.querySelector('#searchingcardlist').innerHTML += `<br><br>${screenimg[m].getAttribute('filename')}[${thispagecardlist.length}장] : ${thispagecardlist}`;
+        
     }
     canvas.delete(),cardremove.delete();  
     document.querySelector('#matchwhich').textContent=``;
@@ -660,31 +767,11 @@ function unhighlight(e) {
 function handleDrop(e) {
     var dt = e.dataTransfer
     var files = dt.files
-
     handleFiles(files)
-}
-
-let uploadProgress = []
-let progressBar = document.getElementById('progress-bar')
-
-function initializeProgress(numFiles) {
-    progressBar.value = 0
-    uploadProgress = []
-
-    for(let i = numFiles; i > 0; i--) {
-    uploadProgress.push(0)
-    }
-}
-
-function updateProgress(fileNumber, percent) {
-    uploadProgress[fileNumber] = percent
-    let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
-    progressBar.value = total
 }
 
 function handleFiles(files) {
     files = [...files]
-    initializeProgress(files.length)
     files.forEach(previewFile)
 }
 
