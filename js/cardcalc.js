@@ -397,7 +397,7 @@ function cardpushbuttoncreate(){
     for (let i = 0; i <= 5; i++) {
         tempelement2 = document.createElement('option');
         tempelement2.setAttribute('value', i);
-        tempelement2.innerText = i;
+        tempelement2.innerText = i+'각';
         tempelement.appendChild(tempelement2);
     }
     cardpushelement.appendChild(tempelement);
@@ -409,7 +409,7 @@ function cardpushbuttoncreate(){
     for (let i = 0; i <= 15; i++) {
         tempelement2 = document.createElement('option');
         tempelement2.setAttribute('value', i);
-        tempelement2.innerText = i;
+        tempelement2.innerText = i+'장';
         tempelement.appendChild(tempelement2);
     }
     cardpushelement.appendChild(tempelement);
@@ -740,6 +740,12 @@ var Module = {
             document.querySelector('#searchingcardlist').innerHTML += `<br>${j+1}줄[<span style="color:${thislinecolor}">${thislinecardlist.length}장</span>] : ${thislinecardlist}`;
             
             document.querySelector("#page"+m).textContent = thispagecardlist.length;
+            console.log(thispagecardlist.length)
+            if(thispagecardlist.length != 40){
+                document.querySelector("#page"+m).style.color = 'red';
+            }else{
+                document.querySelector("#page"+m).style.color ='';
+            }
         }
         
     }
