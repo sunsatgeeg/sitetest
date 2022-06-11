@@ -219,48 +219,144 @@ var reward_bonus_array = [
                                 "phaserewarditem":[3,4,3,4,3,5],
                                 "phasebonusrewarditem":[
                                                         [
-                                                        ["수호강석",240],
-                                                        ["파괴강석",120],
-                                                        ["명예의 파편",1600],
-                                                        ["경이로운 명예의 돌파석",8],
-                                                        ["몽환의 사념",3]
+                                                            ["수호강석",240],
+                                                            ["파괴강석",120],
+                                                            ["명예의 파편",1600],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["몽환의 사념",3]
                                                         ],
                                                         [
-                                                        ["수호강석",360],
-                                                        ["파괴강석",180],
-                                                        ["명예의 파편",2000],
-                                                        ["경이로운 명예의 돌파석",8],
-                                                        ["몽환의 사념",4]
+                                                            ["수호강석",360],
+                                                            ["파괴강석",180],
+                                                            ["명예의 파편",2000],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["몽환의 사념",4]
                                                         ],
                                                         [
-                                                        ["수호강석",360],
-                                                        ["파괴강석",180],
-                                                        ["명예의 파편",1600],
-                                                        ["경이로운 명예의 돌파석",8],
-                                                        ["몽환의 사념",3]
+                                                            ["수호강석",360],
+                                                            ["파괴강석",180],
+                                                            ["명예의 파편",1600],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["몽환의 사념",3]
                                                         ],
                                                         [
-                                                        ["수호강석",480],
-                                                        ["파괴강석",240],
-                                                        ["명예의 파편",2000],
-                                                        ["경이로운 명예의 돌파석",8],
-                                                        ["몽환의 사념",4]
+                                                            ["수호강석",480],
+                                                            ["파괴강석",240],
+                                                            ["명예의 파편",2000],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["몽환의 사념",4]
                                                         ],
                                                         [
-                                                        ["수호강석",600],
-                                                        ["파괴강석",300],
-                                                        ["명예의 파편",2400],
-                                                        ["경이로운 명예의 돌파석",10],
-                                                        ["몽환의 사념",3]
+                                                            ["수호강석",600],
+                                                            ["파괴강석",300],
+                                                            ["명예의 파편",2400],
+                                                            ["경이로운 명예의 돌파석",10],
+                                                            ["몽환의 사념",3]
                                                         ],
                                                         [
-                                                        ["수호강석",900],
-                                                        ["파괴강석",450],
-                                                        ["명예의 파편",3000],
-                                                        ["경이로운 명예의 돌파석",15],
-                                                        ["몽환의 사념",5]
+                                                            ["수호강석",900],
+                                                            ["파괴강석",450],
+                                                            ["명예의 파편",3000],
+                                                            ["경이로운 명예의 돌파석",15],
+                                                            ["몽환의 사념",5]
                                                         ]
-                                                    ]
+                                                        ]
+                            },
+                            {
+                                "bossname":"카양겔(노말)",
+                                "bossitem":"시련의 빛",
+                                "phase":['넬라시아','요람'],
+                                "phaserewardgold":[0,0],
+                                "phasebonusrewardgold":[400,600],
+                                "phaserewarditem":[8,12],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["수호석 결정",840],
+                                                            ["파괴석 결정",420],
+                                                            ["명예의 파편",1400],
+                                                            ["위대한 명예의 돌파석",12],
+                                                            ["시련의 빛",8]
+                                                        ],
+                                                        [
+                                                            ["수호석 결정",240],
+                                                            ["파괴석 결정",120],
+                                                            ["명예의 파편",1600],
+                                                            ["위대한 명예의 돌파석",12],
+                                                            ["시련의 빛",12]
+                                                        ]
+                                                        ]
+                            },
+                            {
+                                "bossname":"카양겔(하드Ⅰ)",
+                                "bossitem":"시련의 빛",
+                                "phase":['넬라시아','요람'],
+                                "phaserewardgold":[0,0],
+                                "phasebonusrewardgold":[700,800],
+                                "phaserewarditem":[13,17],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["수호강석",200],
+                                                            ["파괴강석",100],
+                                                            ["명예의 파편",1400],
+                                                            ["경이로운 명예의 돌파석",4],
+                                                            ["시련의 빛",13]
+                                                        ],
+                                                        [
+                                                            ["수호강석",280],
+                                                            ["파괴강석",140],
+                                                            ["명예의 파편",1600],
+                                                            ["경이로운 명예의 돌파석",6],
+                                                            ["시련의 빛",17]
+                                                        ]
+                                                        ]
+                            },
+                            {
+                                "bossname":"카양겔(하드Ⅱ)",
+                                "bossitem":"시련의 빛",
+                                "phase":['넬라시아','요람'],
+                                "phaserewardgold":[0,0],
+                                "phasebonusrewardgold":[900,1100],
+                                "phaserewarditem":[18,22],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["수호강석",360],
+                                                            ["파괴강석",180],
+                                                            ["명예의 파편",1600],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["시련의 빛",18]
+                                                        ],
+                                                        [
+                                                            ["수호강석",480],
+                                                            ["파괴강석",240],
+                                                            ["명예의 파편",2000],
+                                                            ["경이로운 명예의 돌파석",8],
+                                                            ["시련의 빛",22]
+                                                        ]
+                                                        ]
+                            },
+                            {
+                                "bossname":"카양겔(하드Ⅲ)",
+                                "bossitem":"시련의 빛",
+                                "phase":['넬라시아','요람'],
+                                "phaserewardgold":[0,0],
+                                "phasebonusrewardgold":[1100,1400],
+                                "phaserewarditem":[20,30],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["수호강석",600],
+                                                            ["파괴강석",300],
+                                                            ["명예의 파편",2400],
+                                                            ["경이로운 명예의 돌파석",10],
+                                                            ["시련의 빛",20]
+                                                        ],
+                                                        [
+                                                            ["수호강석",900],
+                                                            ["파괴강석",450],
+                                                            ["명예의 파편",3000],
+                                                            ["경이로운 명예의 돌파석",15],
+                                                            ["시련의 빛",30]
+                                                        ]
+                                                        ]
                             }
                         ];
     
@@ -278,13 +374,14 @@ var reward_bonus_array = [
             db_min = datatime.slice(10,12);
             document.querySelector('#date').innerText = db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min;
 
-            var iteminfo = {"수호석 결정":10,
-                            "파괴석 결정":10,
-                            "명예의 파편":1,
-                            "위대한 명예의 돌파석":1,
-                            "수호강석":10,
-                            "파괴강석":10,
-                            "경이로운 명예의 돌파석":1
+            var iteminfo = {
+                                "수호석 결정":10,
+                                "파괴석 결정":10,
+                                "명예의 파편":1,
+                                "위대한 명예의 돌파석":1,
+                                "수호강석":10,
+                                "파괴강석":10,
+                                "경이로운 명예의 돌파석":1
                             };
             var totalbonusrewardgold = 0;
             reward_bonus_array.forEach(function(boss, index){
@@ -311,79 +408,95 @@ var reward_bonus_array = [
             </tr>
         </thead>
     `;
-            for (var i = 0; i < boss['phase']; i++) {
+            if(Array.isArray(boss['phase'])){
+                var phasecount = boss['phase'].length;
+            }else{
+                var phasecount = boss['phase'];
+            }
+
+            for (var i = 0; i < phasecount; i++) {
                 content += 
     `
         <tbody class="align-middle">
             <tr>
-            <th scope="row">${i+1}관문</th>
-            <td>
-                <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
-            </td>
-            <td>
-                <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
-            </td>
+    `;
+                if(Array.isArray(boss['phase'])){
+                    content += '<th scope="row">' + boss['phase'][i]; + '</th>'
+                }else{
+                    content += '<th scope="row">' + String(i+1) + '관문'; + '</th>'
+                }
+
+                content +=
+    `
+                <td>
+                    <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                </td>
+                <td>
+                    <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                </td>
     `;
                 if(boss['bossitem'] != ""){
-                content +=
+                    content +=
     `
-            <td><span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span></td>
+                <td>
+                    <span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span>
+                </td>
     `;
                 }else{
-                content +=
+                    content +=
     `
-            <td></td>
+                <td></td>
     `;
                 }
-                content += 
+                    content += 
     `
-            <td>
+                <td>
     `;
                 for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                content += `<p><span id="rewarditemname">${boss['phasebonusrewarditem'][i][j][0]}</span> × <span id="rewarditemqty">${boss['phasebonusrewarditem'][i][j][1]}</span></p>`;
+                    content += `<p><span id="rewarditemname">${boss['phasebonusrewarditem'][i][j][0]}</span> × <span id="rewarditemqty">${boss['phasebonusrewarditem'][i][j][1]}</span></p>`;
                 }
                 content += 
     `
-            </td>
-            <td>
+                </td>
+                <td>
     `;
                 totalbonusrewardgold = 0;
                 for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                if(boss['bossitem'] == boss['phasebonusrewarditem'][i][j][0]){
-                    content += `<p>　</p>`;
-                    continue;
-                }
+                    if(boss['bossitem'] == boss['phasebonusrewarditem'][i][j][0]){
+                        content += `<p>　</p>`;
+                        continue;
+                    }
 
-                tempA = marketdata[boss['phasebonusrewarditem'][i][j][0]];
-                tempB = boss['phasebonusrewarditem'][i][j][1] / iteminfo[boss['phasebonusrewarditem'][i][j][0]];
-                tempcalc = tempA * tempB;
+                    tempA = marketdata[boss['phasebonusrewarditem'][i][j][0]];
+                    tempB = boss['phasebonusrewarditem'][i][j][1] / iteminfo[boss['phasebonusrewarditem'][i][j][0]];
+                    tempcalc = tempA * tempB;
 
-                tempAtoShow = tempA;
-                if(boss['phasebonusrewarditem'][i][j][0].indexOf("의 파편") != -1){
-                    tempAtoShow = tempA.toFixed(3);
-                }
+                    tempAtoShow = tempA;
+                    if(boss['phasebonusrewarditem'][i][j][0].indexOf("의 파편") != -1){
+                        tempAtoShow = tempA.toFixed(3);
+                    }
 
-                content += `<p><span id="rewarditemname">${tempAtoShow}</span> × <span id="rewarditemqty">${tempB}</span> = <span>${parseInt(tempcalc)}</span></p>`;
-                totalbonusrewardgold += tempcalc;
+                    content += `<p><span id="rewarditemname">${tempAtoShow}</span> × <span id="rewarditemqty">${tempB}</span> = <span>${parseInt(tempcalc)}</span></p>`;
+                    totalbonusrewardgold += tempcalc;
                 }
                 content +=
     `
-            </td>
-            <td class="fw-bold">
-            <p><span>${parseInt(totalbonusrewardgold)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
+                </td>
+                <td class="fw-bold">
+                <p><span>${parseInt(totalbonusrewardgold)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
     `;
                 tempresult = parseInt(totalbonusrewardgold) - boss['phasebonusrewardgold'][i];
                 temptextcolor = "#00ff00";
                 if(tempresult <= 0){
-                temptextcolor = "#ff6b6b";
+                    temptextcolor = "#ff6b6b";
                 }
                 content +=
     `
-            <p><span style="color:${temptextcolor}">${tempresult}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
+                <p><span style="color:${temptextcolor}">${tempresult}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
     `;
                 content +=
     `
-            </td>
+                </td>
             </tr>
         </tbody>
     `;
