@@ -373,7 +373,6 @@ function cardpushbuttoncreate(){
         if(continuesign){
             continue;
         }
-        console.log(i)
 
         tempelement2 = document.createElement('option');
         if(i==0){
@@ -740,7 +739,6 @@ var Module = {
             document.querySelector('#searchingcardlist').innerHTML += `<br>${j+1}줄[<span style="color:${thislinecolor}">${thislinecardlist.length}장</span>] : ${thislinecardlist}`;
             
             document.querySelector("#page"+m).textContent = thispagecardlist.length;
-            console.log(thispagecardlist.length)
             if(thispagecardlist.length != 40){
                 document.querySelector("#page"+m).style.color = 'red';
             }else{
