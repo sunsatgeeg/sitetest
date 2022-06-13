@@ -186,11 +186,6 @@ document.querySelector('#helpbtn').addEventListener('click', function(){
 }, false);
 
 document.querySelector('#finishyes').addEventListener('click', async function(){
-    await cardsetcalcstart();
-    document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
-}, false)
-
-async function cardsetcalcstart(){
     //카드 수동 추가
     if(document.querySelector("#cardpushzone").childElementCount >= 1){
         cardpushlength = document.querySelector("#cardpushzone").childElementCount;
@@ -199,7 +194,11 @@ async function cardsetcalcstart(){
             cardqty[document.querySelector(`#cardname${i}`).value] = parseInt(document.querySelector(`#cardqty${i}`).value);
         }
     }
+    await cardsetcalcstart();
+    document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
+}, false)
 
+async function cardsetcalcstart(){
     document.querySelector('#matchfinish').style.display = 'none';
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
