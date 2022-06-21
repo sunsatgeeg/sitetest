@@ -90,8 +90,9 @@
         </div>
       
       <div class="pt-5">
-        <p>
-          아직 데이터를 자동으로 크롤하는 것을 안만들었습니다만 2022-03-21 18:28 이전 게시글까지는 다 조회가능합니다.
+        <p style="font-size: 0.9rem!important;">
+          아직 데이터를 자동으로 크롤하는 것을 안만들었습니다만 2022-03-21 18:28 이전 게시글까지는 다 조회가능하며<br>
+          지금도 계속 반자동으로 크롤중이여서 23일 12시쯤에는 최신 게시글까지 조회가능합니다.
           <br>
         </p>
         <p>
@@ -104,20 +105,36 @@
           <input type="text" class="form-control text-center" id="charname">
           <button class="btn btn-outline-light" type="button" id="find">검색</button>
         </div>
-        
-        <table class="table table-dark float-end table-hover col mb-3" style="display:none">
-          <thead>
-            <tr>
-              <th scope="col" class="align-middle">작성일</th>
-              <th scope="col" class="align-middle">글 제목</th>
-              <th scope="col" class="align-middle">요청</th>
-            </tr>
-          </thead>
-          <tbody id="sasagewritelist">
-          </tbody>
-        </table>
-          <p>만약 박제 됐었는데 인벤 이의제기를 신청하였거나, 합의(?)하여 게시글이 삭제 되었을 경우<br>
-            [재확인]을 누르시면 서버 데이터에서 삭제됩니다.</p>
+        <div id="loading" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="50" cy="50" r="0" fill="none" stroke="#ffffff" stroke-width="2">
+              <animate attributeName="r" repeatCount="indefinite" dur="1s" values="0;40" keyTimes="0;1" keySplines="0 0.2 0.8 1" calcMode="spline" begin="0s"></animate>
+              <animate attributeName="opacity" repeatCount="indefinite" dur="1s" values="1;0" keyTimes="0;1" keySplines="0.2 0 0.8 1" calcMode="spline" begin="0s"></animate>
+            </circle><circle cx="50" cy="50" r="0" fill="none" stroke="#ffffff" stroke-width="2">
+              <animate attributeName="r" repeatCount="indefinite" dur="1s" values="0;40" keyTimes="0;1" keySplines="0 0.2 0.8 1" calcMode="spline" begin="-0.5s"></animate>
+              <animate attributeName="opacity" repeatCount="indefinite" dur="1s" values="1;0" keyTimes="0;1" keySplines="0.2 0 0.8 1" calcMode="spline" begin="-0.5s"></animate>
+            </circle>
+          </svg>
+        </div>
+        <div id="findlistzone" style="display:none">
+          <table class="table table-dark float-end table-hover col mb-3">
+            <thead>
+              <tr>
+                <th scope="col" class="align-middle">작성일</th>
+                <th scope="col" class="align-middle">글 제목</th>
+                <th scope="col" class="align-middle">요청</th>
+              </tr>
+            </thead>
+            <tbody id="sasagewritelist">
+            </tbody>
+          </table>
+            <p class="text-end" style="font-size: 0.9rem!important;">
+              ※ 클릭하시면 그 게시글 창을 띄웁니다.
+            </p>
+            <p class="text-end" style="font-size: 0.9rem!important;">※ 만약 박제 됐었는데 인벤 이의제기를 신청하였거나, 합의(?)하여 게시글이 삭제 되었을 경우<br>
+              [재확인]을 누르시면 서버 데이터에서 삭제됩니다.
+            </p>
+        </div>
         </div>
     </main>
 
@@ -140,6 +157,7 @@
   </div>
 
   <script>
+    var nowcharname = ""
     document.querySelector("#find").addEventListener('click', sasagefind);
     document.querySelector("#charname").addEventListener('keyup', (e)=>{
       if(e.keyCode === 13){
@@ -187,11 +205,19 @@
     }
 
     function sasagefind(){
+      charnamevalue = document.querySelector("#charname").value.replace(' ','');
+      if(nowcharname == charnamevalue){
+        return
+      }
+      nowcharname = charnamevalue;
+
+      document.querySelector("#findlistzone").style.display = 'none';
+      document.querySelector("#loading").style.display = '';
+
       target = document.querySelector('#sasagewritelist');
       while (target.hasChildNodes()) {
           target.removeChild(target.firstChild);
       }
-      charnamevalue = document.querySelector("#charname").value.replace(' ','');
 
       if(charnamevalue.length <= 1){
         Toastify({
@@ -218,7 +244,8 @@
             target.removeChild(target.firstChild);
         }
 
-        document.querySelector("body > div > main > div > div.pt-5 > table").style.display = '';
+        document.querySelector("#findlistzone").style.display = '';
+        document.querySelector("#loading").style.display = 'none';
 
         if(data.length === 0){
           tr = document.createElement('tr');
@@ -250,7 +277,8 @@
           tdconfirm.textContent = '재확인'
           tddate.textContent = date;
           tdtitle.textContent = data[i]['title'];
-
+          
+          tdconfirm.style.backgroundColor = '#4d4d4d'
           tdconfirm.setAttribute('onClick','confirm(this)');
           tdconfirm.setAttribute('idx',idx);
           tddate.setAttribute("onClick",`window.open("https://www.inven.co.kr/board/lostark/5355/${idx}")`);
