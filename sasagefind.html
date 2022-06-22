@@ -211,9 +211,6 @@
       }
       nowcharname = charnamevalue;
 
-      document.querySelector("#findlistzone").style.display = 'none';
-      document.querySelector("#loading").style.display = '';
-
       target = document.querySelector('#sasagewritelist');
       while (target.hasChildNodes()) {
           target.removeChild(target.firstChild);
@@ -229,6 +226,9 @@
         }).showToast();
         return;
       }
+
+      document.querySelector("#findlistzone").style.display = 'none';
+      document.querySelector("#loading").style.display = '';
 
       bodydata = new FormData();
       bodydata.append('charname', charnamevalue.toLowerCase());
