@@ -157,7 +157,10 @@
   </div>
 
   <script>
-    var nowcharname = ""
+    var lastcharname = ""
+
+    document.querySelector("#charname").focus();
+
     document.querySelector("#find").addEventListener('click', sasagefind);
     document.querySelector("#charname").addEventListener('keyup', (e)=>{
       if(e.keyCode === 13){
@@ -204,21 +207,23 @@
       setCookie('sasageconfirmdate',`${nextdate.getDate()+1}일 ${nextdate.getHours()}시 ${nextdate.getMinutes()}분`, 1)
     }
 
+    const regex = /[ㄱ-ㅎ|ㅏ-ㅣ ]/g;
     function sasagefind(){
-      charnamevalue = document.querySelector("#charname").value.replace(' ','');
-      if(nowcharname == charnamevalue){
+      charnamevalue = document.querySelector("#charname").value;
+      if(lastcharname == charnamevalue){
         return
       }
-      nowcharname = charnamevalue;
+      lastcharname = charnamevalue;
 
       target = document.querySelector('#sasagewritelist');
       while (target.hasChildNodes()) {
           target.removeChild(target.firstChild);
       }
 
-      if(charnamevalue.length <= 1){
+      // 올바르지 않은 문자열
+      if(charnamevalue.length <= 1 || charnamevalue.match(regex)){
         Toastify({
-          text: '검색어는 최소 두자 이상 입력하셔야 합니다.',
+          text: '검색어가 최소 두자 이하이거나, 올바르지 않은 문자열입니다.',
           position: "center",
           gravity: "bottom",
           duration: 3000,
