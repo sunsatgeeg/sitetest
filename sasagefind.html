@@ -205,7 +205,7 @@
       setCookie('sasageconfirmdate',`${nextdate.getDate()+1}일 ${nextdate.getHours()}시 ${nextdate.getMinutes()}분`, 1)
     }
 
-    const regex = /[ㄱ-ㅎ|ㅏ-ㅣ ]/g;
+    const regex = /[^가-힣a-zA-Z0-9]/g; 
     function sasagefind(){
       charnamevalue = document.querySelector("#charname").value;
       if(lastcharname == charnamevalue){
