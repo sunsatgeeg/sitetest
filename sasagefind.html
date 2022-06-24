@@ -97,6 +97,15 @@
         </div>
       
       <div class="pt-5">
+        <div id="ratezone" style="display: none;">
+          <p>
+            커뮤반응 중 부정적인 반응도 많아 이 기능에 대해 여러분이 어떻게 생각하는지 알려주세요
+          </p>
+          <img id="up" src="img/up.png" width="100px" alt="" style="margin-right: 100px; cursor: pointer;">
+          <img id="down" src="img/down.png" width="100px" alt="" style="cursor: pointer;">
+          <br>
+          <br>
+        </div>
         <p>
           조사해보니 몇몇 게시글에서는 원하는 단어를 못찾는 경우가 있어 다시 수집하는 코드를 수정하였고<br>
           처음부터 다시 수집해야해서 그 전까진 몇몇 누락되는 박제글도 보이긴 할것입니다.<br>
@@ -199,6 +208,48 @@
   </div>
 
   <script>
+    document.querySelector('#up').addEventListener('click', rating);
+    document.querySelector('#down').addEventListener('click', rating);
+    
+    setTimeout(() => {
+      if(getCookie('voted') != '1'){
+        document.querySelector('#ratezone').style.display = '';
+      }
+    },500);
+    
+    function rating(e){
+      whatrating = e.path[0].getAttribute('id');
+
+      ratedata = new FormData();
+      ratedata.append('updown', whatrating);
+      fetch(url + '/sasagerating', {
+          method: 'post',
+          body: ratedata
+      }).then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        if(data=='vote'){
+          Toastify({
+            text: '참여해주셔서 감사합니다.',
+            position: "center",
+            gravity: "bottom",
+            duration: 3000,
+            close: false
+          }).showToast();
+        }else if(data=='voted'){
+          Toastify({
+            text: '이미 참여하셨습니다.',
+            position: "center",
+            gravity: "bottom",
+            duration: 3000,
+            close: false
+          }).showToast();
+        }
+        setCookie('voted', `1`, 1);
+        document.querySelector('#ratezone').style.display = 'none';
+      })
+    }
+
     var lastcharname = ""
 
     document.querySelector("#charname").focus();
