@@ -193,48 +193,6 @@
   </div>
 
   <script>
-    document.querySelector('#up').addEventListener('click', rating);
-    document.querySelector('#down').addEventListener('click', rating);
-    
-    setTimeout(() => {
-      if(getCookie('voted') != '1'){
-        document.querySelector('#ratezone').style.display = '';
-      }
-    },500);
-    
-    function rating(e){
-      whatrating = e.path[0].getAttribute('id');
-
-      ratedata = new FormData();
-      ratedata.append('updown', whatrating);
-      fetch(url + '/sasagerating', {
-          method: 'post',
-          body: ratedata
-      }).then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        if(data=='vote'){
-          Toastify({
-            text: '참여해주셔서 감사합니다.',
-            position: "center",
-            gravity: "bottom",
-            duration: 3000,
-            close: false
-          }).showToast();
-        }else if(data=='voted'){
-          Toastify({
-            text: '이미 참여하셨습니다.',
-            position: "center",
-            gravity: "bottom",
-            duration: 3000,
-            close: false
-          }).showToast();
-        }
-        setCookie('voted', `1`, 1);
-        document.querySelector('#ratezone').style.display = 'none';
-      })
-    }
-
     var lastcharname = ""
 
     document.querySelector("#charname").focus();
