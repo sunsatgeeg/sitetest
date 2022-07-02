@@ -257,9 +257,9 @@
       }
 
       // 올바르지 않은 문자열
-      if(charnamevalue.length <= 1 || charnamevalue.match(regex)){
+      if(charnamevalue.length <= 1 || charnamevalue.length >= 13 || charnamevalue.match(regex)){
         Toastify({
-          text: '검색어가 최소 두자 이하이거나, 올바르지 않은 문자열입니다.',
+          text: '검색어가 두자 이하, 열두글자 이상이거나 올바르지 않은 문자열입니다.',
           position: "center",
           gravity: "bottom",
           duration: 3000,
