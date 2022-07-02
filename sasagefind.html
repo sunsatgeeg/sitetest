@@ -34,13 +34,26 @@
 
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/custom.css">
-  <script async src="js/custom.js"></script>
+  <script src="js/custom.js"></script>
   <link href="css/cover.css" rel="stylesheet">
   <style>
     @media (max-width: 992px) {
       .w-50 {
         width: 100% !important;
       }
+    }
+
+    .list-group-custom {
+      position: relative;
+      display: block;
+      padding: .5rem 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+    }
+
+    .boxtitle{
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -95,6 +108,7 @@
             </div>
           </div>
         </div>
+      </div>
       
       <div class="pt-5">
         <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
@@ -135,7 +149,30 @@
               [재확인]을 누르시면 서버 데이터에서 삭제됩니다.
             </p>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="" style="border: 2px dashed #ccc; border-radius: 20px; width: 90%; margin: 50px auto;">
+            <h4 class="boxtitle">이번 달 검색어 순위</h4>
+            <ul id="rankmonth" class="list-group list-group-flush">
+            </ul>
+          </div>
         </div>
+        <div class="col-lg-4">
+          <div class="" style="border: 2px dashed #ccc;border-radius: 20px;width: 90%;margin: 50px auto;">
+            <h4 class="boxtitle">패치 후 검색어 순위</h4>
+            <ul id="rankweek" class="list-group list-group-flush">
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="" style="border: 2px dashed #ccc;border-radius: 20px;width: 90%;margin: 50px auto;">
+            <h4 class="boxtitle">금일 검색어 순위</h4>
+            <ul id="rankday" class="list-group list-group-flush">
+            </ul>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="mt-5 text-white-50">
@@ -333,6 +370,98 @@
         }
       })
     }
+
+    fetch(url + '/sasagerank ', {
+      method: 'post'
+    })
+    .then((response) => response.json())
+    .then((rankdata) => {
+      console.log(rankdata)
+      try{
+        sasagerankday = rankdata[0];
+        sasagerankweek = rankdata[1];
+        sasagerankmon = rankdata[2];
+      }catch{}
+
+      for (var i = 0; i < sasagerankday.length; i++) {
+        try{
+          liElement = document.createElement('li');
+          liElement.className = 'list-group-custom';
+          rowElement = document.createElement('div');
+          rowElement.className = "row";
+
+          colElement = document.createElement('div');
+          colElement.className = "col text-start";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `${i+1}. ${sasagerankday[i]['who']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          colElement = document.createElement('div');
+          colElement.className = "col-3 text-end";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `+ ${sasagerankday[i]['cnt']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          liElement.append(rowElement);
+          document.querySelector('#rankday').append(liElement);
+        }catch{}
+      }
+
+      for (var i = 0; i < sasagerankweek.length; i++) {
+        try{
+          liElement = document.createElement('li');
+          liElement.className = 'list-group-custom';
+          rowElement = document.createElement('div');
+          rowElement.className = "row";
+
+          colElement = document.createElement('div');
+          colElement.className = "col text-start";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `${i+1}. ${sasagerankweek[i]['who']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          colElement = document.createElement('div');
+          colElement.className = "col-3 text-end";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `+ ${sasagerankweek[i]['cnt']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          liElement.append(rowElement);
+          document.querySelector('#rankweek').append(liElement);
+        }catch{}
+      }
+
+      for (var i = 0; i < sasagerankmon.length; i++) {
+        try{
+          liElement = document.createElement('li');
+          liElement.className = 'list-group-custom';
+          rowElement = document.createElement('div');
+          rowElement.className = "row";
+
+          colElement = document.createElement('div');
+          colElement.className = "col text-start";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `${i+1}. ${sasagerankmon[i]['who']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          colElement = document.createElement('div');
+          colElement.className = "col-3 text-end";
+          spanElement = document.createElement('span');
+          spanElement.textContent = `+ ${sasagerankmon[i]['cnt']}`;
+          colElement.append(spanElement);
+          rowElement.append(colElement);
+
+          liElement.append(rowElement);
+          document.querySelector('#rankmonth').append(liElement);
+        }catch{}
+      }
+    });
+
   </script>
   
   <!-- toastify -->
