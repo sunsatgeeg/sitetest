@@ -34,7 +34,7 @@
 
   <!-- custom -->
   <link rel="stylesheet" type="text/css" href="css/custom.css">
-  <script src="js/custom.js"></script>
+  <script async src="js/custom.js"></script>
   <link href="css/cover.css" rel="stylesheet">
   <style>
     @media (max-width: 992px) {
@@ -371,12 +371,11 @@
       })
     }
 
-    fetch(url + '/sasagerank ', {
+    fetch('https://api.loachart.com/sasagerank', {
       method: 'post'
     })
     .then((response) => response.json())
     .then((rankdata) => {
-      console.log(rankdata)
       try{
         sasagerankday = rankdata[0];
         sasagerankweek = rankdata[1];
