@@ -114,6 +114,7 @@
         <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
         <br>
         <br>
+        <p>※ 원정대 내 보유 캐릭터들까지 같이 찾아주는 기능을 추가하였습니다. ※</p>
         <div class="input-group w-50 mx-auto input-group-lg mb-3">
           <span class="input-group-text">검색어</span>
           <input type="text" class="form-control text-center" id="charname">
@@ -135,6 +136,7 @@
             <thead>
               <tr>
                 <th scope="col" class="align-middle">작성일</th>
+                <th scope="col" class="align-middle">캐릭터</th>
                 <th scope="col" class="align-middle">글 제목</th>
                 <th scope="col" class="align-middle">요청</th>
               </tr>
@@ -337,11 +339,26 @@
           return;
         }
 
+        //날짜순 정렬
+        data = data.sort(function(a, b){
+          return a.idx - b.idx
+        });
+
+        //부캐 중복 제거
+        data = data.filter((item, i) => {
+          return (
+            data.findIndex((item2, j) => {
+              return item.idx === item2.idx;
+            }) === i
+          );
+        });
+
         for (var i = 0; i < data.length; i++) {
           tr = document.createElement('tr');
           tdconfirm = document.createElement('td');
           tddate = document.createElement('td');
           tdtitle = document.createElement('td');
+          tdwisdomcharacter = document.createElement('td');
 
           idx = data[i]['idx'];
           date = data[i]['date'];
@@ -355,6 +372,7 @@
           tdconfirm.textContent = '재확인'
           tddate.textContent = date;
           tdtitle.textContent = data[i]['title'];
+          tdwisdomcharacter.textContent = data[i]['name'];
           
           tdconfirm.style.backgroundColor = '#4d4d4d'
           tdconfirm.setAttribute('onClick','confirm(this)');
@@ -363,6 +381,7 @@
           tdtitle.setAttribute("onClick",`window.open("https://www.inven.co.kr/board/lostark/5355/${idx}")`);
 
           tr.append(tddate);
+          tr.append(tdwisdomcharacter);
           tr.append(tdtitle);
           tr.append(tdconfirm);
           tr.style.cursor = 'pointer';
