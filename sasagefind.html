@@ -339,11 +339,6 @@
           return;
         }
 
-        //날짜순 정렬
-        data = data.sort(function(a, b){
-          return a.idx - b.idx
-        });
-
         //부캐 중복 제거
         data = data.filter((item, i) => {
           return (
@@ -351,6 +346,11 @@
               return item.idx === item2.idx;
             }) === i
           );
+        });
+
+        //날짜순 정렬
+        data = data.sort(function(a, b){
+          return b.idx - a.idx
         });
 
         for (var i = 0; i < data.length; i++) {
