@@ -132,6 +132,15 @@
           </svg>
         </div>
         <div id="findlistzone" style="display:none">
+          <div class="text-start">
+            <div class="dropdown" id="filterzone">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="filterdropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                필터
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="filterdropdownMenuButton" id="filterselect">
+              </ul>
+            </div>
+          </div>
           <table class="table table-dark float-end table-hover col mb-3">
             <thead>
               <tr>
@@ -246,6 +255,7 @@
       }
     });
 
+    var data = {};
     function confirm(e){
       if(getCookie('sasageconfirmdate') != ''){
         Toastify({
@@ -283,6 +293,21 @@
 
       nextdate = new Date();
       setCookie('sasageconfirmdate',`${nextdate.getDate()+1}일 ${nextdate.getHours()}시 ${nextdate.getMinutes()}분`, 1)
+    }
+
+    function listfilter(){
+      filternames = []
+      for (var i = 0; i < document.querySelectorAll("#filterzone > span").length; i++) {
+        filternames.push(document.querySelectorAll("#filterzone > span")[i].innerText);
+      }
+      for (var i = 0; i < document.querySelectorAll("#sasagewritelist > tr").length; i++) {
+        document.querySelectorAll("#sasagewritelist > tr")[i].removeAttribute('hidden')
+        for (var j = 0; j < filternames.length; j++) {
+          if(document.querySelectorAll("#sasagewritelist > tr")[i].querySelectorAll('td')[0].innerText == filternames[j].replace('　×','')){
+            document.querySelectorAll("#sasagewritelist > tr")[i].setAttribute('hidden','')
+          }
+        }
+      }
     }
 
     const regex = /[^가-힣a-zA-Z0-9]/g; 
@@ -356,6 +381,7 @@
           return b.idx - a.idx
         });
 
+        var filtertemparr = [];
         for (var i = 0; i < data.length; i++) {
           tr = document.createElement('tr');
           tdconfirm = document.createElement('td');
@@ -376,6 +402,8 @@
           tddate.textContent = date;
           tdtitle.textContent = data[i]['title'];
           tdwisdomcharacter.textContent = data[i]['name'];
+
+          filtertemparr.push(data[i]['name']);
           
           tdconfirm.style.backgroundColor = '#4d4d4d'
           tdconfirm.setAttribute('onClick','confirm(this)');
@@ -391,6 +419,40 @@
           tr.style.cursor = 'pointer';
           document.querySelector("#sasagewritelist").appendChild(tr);
         }
+          
+        selecttarget = document.querySelector('#filterselect');
+        while (selecttarget.hasChildNodes()) {
+          selecttarget.removeChild(selecttarget.firstChild);
+        }
+
+        filterarr =  [...new Set(filtertemparr)];
+        for (var i = 0; i < filterarr.length; i++) {
+          filterliElement = document.createElement('li');
+
+          filterliElement.className = "dropdown-item";
+          filterliElement.textContent = filterarr[i];
+          filterliElement.style.cursor = 'pointer';
+
+          selecttarget.append(filterliElement);
+        }
+
+        document.querySelector('#filterzone ul').addEventListener('click', (e)=>{
+          for (var i = 0; i < document.querySelectorAll("#filterzone > span").length; i++) {
+            if(e.target.innerText == document.querySelectorAll("#filterzone > span")[i].innerText.replace('　×','')){
+              return;
+            }
+          }
+
+          filterspanlement = document.createElement('span');
+
+          filterspanlement.className = "badge bg-light text-dark ms-2";
+          filterspanlement.textContent = e.target.innerText + '　×';
+          filterspanlement.style.cursor = 'pointer';
+          filterspanlement.setAttribute('onClick','javascript:this.remove(); listfilter()')
+
+          document.querySelector('#filterzone').append(filterspanlement);
+          listfilter();
+        });
       })
     }
 
