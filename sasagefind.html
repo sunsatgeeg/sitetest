@@ -434,8 +434,8 @@
           tddate.textContent = date;
           tdwisdomcharacter.textContent = data[i]['name'];
           tdtag.textContent = data[i]['tag'].toString();
-          if(data[i]['title'].indexOf(charnamevalue) != -1){
-            namepos = data[i]['title'].indexOf(charnamevalue);
+          if(data[i]['title'].indexOf(charnamevalue.toLowerCase()) != -1){
+            namepos = data[i]['title'].indexOf(charnamevalue.toLowerCase());
             tdtitle.innerHTML = data[i]['title'].slice(0,namepos) + '<span style="background-color:yellow; color:black">' + data[i]['title'].slice(namepos,namepos+charnamevalue.length) + '</span>' + data[i]['title'].slice(namepos+charnamevalue.length);
           }else{
             tdtitle.textContent = data[i]['title'];
