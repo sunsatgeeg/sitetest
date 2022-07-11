@@ -428,9 +428,7 @@
           db_year = date.slice(0,4);
           db_mon = date.slice(4,6);
           db_day = date.slice(6,8);
-          db_hour = date.slice(8,10);
-          db_min = date.slice(10,12);
-          date = db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min;
+          date = db_year + "-" + db_mon + "-" + db_day;
 
           tdconfirm.textContent = '요청'
           tddate.textContent = date;
