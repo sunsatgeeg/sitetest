@@ -425,16 +425,22 @@
 
           idx = data[i]['idx'];
           date = data[i]['date'];
-          db_year = date.slice(0,4);
+          db_year = date.slice(2,4);
           db_mon = date.slice(4,6);
           db_day = date.slice(6,8);
           date = db_year + "-" + db_mon + "-" + db_day;
 
           tdconfirm.textContent = '요청'
           tddate.textContent = date;
-          tdtitle.textContent = data[i]['title'];
           tdwisdomcharacter.textContent = data[i]['name'];
           tdtag.textContent = data[i]['tag'].toString();
+          if(data[i]['title'].indexOf(charnamevalue) != -1){
+            namepos = data[i]['title'].indexOf(charnamevalue);
+            tdtitle.innerHTML = data[i]['title'].slice(0,namepos) + '<span style="background-color:yellow; color:black">' + data[i]['title'].slice(namepos,namepos+charnamevalue.length) + '</span>' + data[i]['title'].slice(namepos+charnamevalue.length);
+          }else{
+            tdtitle.textContent = data[i]['title'];
+          }
+
 
           filtertemparr.push(data[i]['name']);
           
