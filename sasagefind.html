@@ -116,8 +116,13 @@
         <br>
         <p>※ 원정대 내 보유 캐릭터들 이름까지 같이 검색해주는 기능을 추가하였습니다. ※</p>
         <p style="color: #ff5555;">이 '검색기'는 인벤 검색에서 지원하지 않는 단어 단위 검색을 지원하는 '검색기'일 뿐<br>박제된 캐릭터를 정확히 찾는 검색기가 아닙니다!! 이 점 꼭! 참고 바랍니다.</p>
-        <div class="input-group w-50 mx-auto input-group-lg mb-3">
-          <span class="input-group-text">검색어</span>
+        <div class="input-group w-50 mx-auto input-group-lg mb-3" id="searchinputbox">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" value="title">제목</button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item" value="title" style="cursor: pointer;">제목</li>
+            <li class="dropdown-item" value="content" style="cursor: pointer;">내용</li>
+            <li class="dropdown-item" value="titlecontent" style="cursor: pointer;">제목+내용</li>
+          </ul>
           <input type="text" class="form-control text-center" id="charname">
           <button class="btn btn-outline-light" type="button" id="find"><img src="img/search.png" alt="검색"></button>
         </div>
@@ -148,21 +153,26 @@
                 <th scope="col" class="align-middle">검색어</th>
                 <th scope="col" class="align-middle">작성일</th>
                 <th scope="col" class="align-middle">글 제목</th>
-                <th scope="col" class="align-middle">요청</th>
+                <th scope="col" class="align-middle">키워드</th>
+                <th scope="col" class="align-middle">삭제<br>요청</th>
               </tr>
             </thead>
             <tbody id="sasagewritelist">
             </tbody>
           </table>
-            <p class="text-end" style="font-size: 0.9rem!important;">
-              ※ 캐릭터 닉네임 탭을 클릭하면 전투정보실을 띄웁니다.
-            </p>
-            <p class="text-end" style="font-size: 0.9rem!important;">
-              ※ 글 제목 탭을 클릭하시면 그 게시글 창을 띄웁니다.
-            </p>
-            <p class="text-end" style="font-size: 0.9rem!important;">※ 만약 박제 됐었는데 인벤 이의제기를 신청하였거나, 합의(?)하여 게시글이 삭제 되었을 경우<br>
-              [재확인]을 누르시면 서버 데이터에서 삭제됩니다.
-            </p>
+          <p class="text-end" style="font-size: 0.9rem!important;">
+            ※ 캐릭터 검색어 탭을 클릭하면 전투정보실을 띄웁니다.
+          </p>
+          <p class="text-end" style="font-size: 0.9rem!important;">
+            ※ 글 제목 탭을 클릭하시면 그 게시글 창을 띄웁니다.
+          </p>
+          <p class="text-end" style="font-size: 0.9rem!important;">※ 만약 박제 됐었는데 인벤 이의제기를 신청하였거나, 합의(?)하여 게시글이 삭제 되었을 경우<br>
+            [재확인]을 누르시면 서버 데이터에서 삭제됩니다.
+          </p>
+          <p class="text-end" style="font-size: 0.9rem!important;">
+            키워드 : 쌀먹,패드립,욕설,사기,숙코,무개념,잠수,세팅,먹튀,빤스런,비방,인성,탈주<br>
+            이외에 추가를 원하는 키워드를 알려주세요
+          </p>
         </div>
       </div>
       <div class="row">
@@ -235,6 +245,30 @@
   </div>
 
   <script>
+    let name = 'sasagetype' + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        typecookie = c.substring(name.length, c.length);
+        document.querySelector('#searchinputbox > button').setAttribute('value', typecookie);
+        if(typecookie == "title"){
+          typecookiestring = "제목"
+        }else if(typecookie == "content"){
+          typecookiestring = "내용"
+        }else if(typecookie == "titlecontent"){
+          typecookiestring = "제목+내용"
+        }
+          document.querySelector('#searchinputbox > button').innerText = typecookiestring;
+      }
+    }
+  </script>
+
+  <script>
     var lastcharname = ""
 
     document.querySelector("#charname").focus();
@@ -244,6 +278,12 @@
       if(e.keyCode === 13){
         sasagefind();
       }
+    });
+
+    document.querySelector('#searchinputbox > ul').addEventListener('click', (e)=>{
+      document.querySelector('#searchinputbox > button').setAttribute('value', e.target.getAttribute('value'));
+      document.querySelector('#searchinputbox > button').innerText = e.target.innerText;
+      setCookie('sasagetype', e.target.getAttribute('value'), 30)
     });
 
     var data = {};
@@ -331,6 +371,7 @@
 
       bodydata = new FormData();
       bodydata.append('charname', charnamevalue.toLowerCase());
+      bodydata.append('type', document.querySelector("#searchinputbox > button").getAttribute('value'));
       fetchurl = url + '/sasagefind';
       fetch(fetchurl, {
           method: 'post',
@@ -338,6 +379,7 @@
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         target = document.querySelector('#sasagewritelist');
         while (target.hasChildNodes()) {
             target.removeChild(target.firstChild);
@@ -351,7 +393,7 @@
           emptytd = document.createElement('td');
 
           emptytd.textContent = `[${charnamevalue}]에 대한 검색결과가 없습니다.`;
-          emptytd.setAttribute('colspan','4');
+          emptytd.setAttribute('colspan','5');
 
           tr.append(emptytd);
           document.querySelector("#sasagewritelist").appendChild(tr);
@@ -379,6 +421,7 @@
           tddate = document.createElement('td');
           tdtitle = document.createElement('td');
           tdwisdomcharacter = document.createElement('td');
+          tdtag = document.createElement('td');
 
           idx = data[i]['idx'];
           date = data[i]['date'];
@@ -389,10 +432,11 @@
           db_min = date.slice(10,12);
           date = db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min;
 
-          tdconfirm.textContent = '재확인'
+          tdconfirm.textContent = '요청'
           tddate.textContent = date;
           tdtitle.textContent = data[i]['title'];
           tdwisdomcharacter.textContent = data[i]['name'];
+          tdtag.textContent = data[i]['tag'].toString();
 
           filtertemparr.push(data[i]['name']);
           
@@ -401,11 +445,13 @@
           tdconfirm.setAttribute('idx',idx);
           tddate.setAttribute("onClick",`window.open("https://www.inven.co.kr/board/lostark/5355/${idx}")`);
           tdtitle.setAttribute("onClick",`window.open("https://www.inven.co.kr/board/lostark/5355/${idx}")`);
+          tdtag.setAttribute("onClick",`window.open("https://www.inven.co.kr/board/lostark/5355/${idx}")`);
           tdwisdomcharacter.setAttribute("onClick",`window.open("https://lostark.game.onstove.com/Profile/Character/${data[i]['name']}")`);
 
           tr.append(tdwisdomcharacter);
           tr.append(tddate);
           tr.append(tdtitle);
+          tr.append(tdtag);
           tr.append(tdconfirm);
           tr.style.cursor = 'pointer';
           document.querySelector("#sasagewritelist").appendChild(tr);
