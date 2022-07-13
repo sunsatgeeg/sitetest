@@ -61,7 +61,8 @@ html{
     border-left: 0!important;
 }
 #ads-top, #ads-left, #ads-right, #ads-bottom{
-    background-color: rgb(182, 182, 182);
+    /*background-color: rgb(182, 182, 182);*/
+    background-color: transparent;
 }
 
 #ads-left{
