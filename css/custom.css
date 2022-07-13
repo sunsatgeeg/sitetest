@@ -4,11 +4,10 @@ html{
     overflow-x: hidden;
 }
 
-.ad .ad_left{
-    position:   fixed;
-    left:       0;
-    bottom:     0;
-    width:      100%;
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1140px !important;
+    }
 }
 
 .itemList.dropdown{
@@ -61,9 +60,33 @@ html{
     border-bottom-left-radius: 0!important;
     border-left: 0!important;
 }
-#ads-left{position:fixed;left:50%;margin-left:-950px;overflow:hidden}
-#ads-right{position:fixed;left:50%;margin-left:650px;overflow:hidden}
-#ads-left.sticky,#ads-right.sticky{position:fixed;top:20px!important}
+#ads-top, #ads-left, #ads-right, #ads-bottom{
+    background-color: rgb(182, 182, 182);
+}
+
+#ads-left{
+    box-sizing: border-box;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    margin-left: -895px;
+    width: 100%;
+    max-width: 300px;
+    max-height: 600px;
+    height: 100%;
+}
+
+#ads-right{
+    box-sizing: border-box;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    margin-left: 595px;
+    max-width: 300px;
+    width: 100%;
+    max-height: 600px;
+    height: 100%;
+}
 
 .tick_chart, .candle_chart{
     text-align:left;
