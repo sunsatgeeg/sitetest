@@ -60,9 +60,10 @@ html{
     border-bottom-left-radius: 0!important;
     border-left: 0!important;
 }
+
 #ads-top, #ads-left, #ads-right, #ads-bottom{
-    /*background-color: rgb(182, 182, 182);*/
-    /*background-color: transparent;*/
+    /*      rgb(182, 182, 182);     */
+    /*      transparent;            */
     background-color: transparent;
 }
 
