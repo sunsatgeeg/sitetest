@@ -62,6 +62,7 @@ html{
 }
 #ads-top, #ads-left, #ads-right, #ads-bottom{
     /*background-color: rgb(182, 182, 182);*/
+    /*background-color: transparent;*/
     background-color: transparent;
 }
 
