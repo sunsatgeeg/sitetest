@@ -254,14 +254,14 @@
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
     crossorigin="anonymous"></script>
-  <script>
-      document.addEventListener('scroll', ()=>{
-        var scrollTop = document.documentElement.scrollTop;
-        scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
-        console.log(scrollTop)
-        document.querySelector('#ads-right').style.top = `${scrollTop}px`
-        document.querySelector('#ads-left').style.top = `${scrollTop}px`
-      })
+  <script async>
+    document.addEventListener('scroll', ()=>{
+      var scrollTop = document.documentElement.scrollTop;
+      scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
+      console.log(scrollTop)
+      document.querySelector('#ads-right').style.top = `${scrollTop}px`
+      document.querySelector('#ads-left').style.top = `${scrollTop}px`
+    })
     </script>
  
   <!-- Global site tag (gtag.js) - Google Analytics -->
