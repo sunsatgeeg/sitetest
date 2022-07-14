@@ -1,11 +1,4 @@
-local = false
-var url;
 var nocommu = ['bidcalc','cardcalc','/']
-if(local){
-    url = "http://127.0.0.1:5000";
-}else{
-    url = "https://api.loachart.com";
-}
 
 function delCookie(cname){
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
