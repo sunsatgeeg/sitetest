@@ -66,7 +66,7 @@ document.querySelector('header .nav').innerHTML = `
     <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
     <a class="nav-link" aria-current="page" href="cardcalc">도감작 계산기</a>
-    <a class="nav-link" aria-current="page" href="sasagefind">사사게 검색기(중단)</a>
+    <a class="nav-link" aria-current="page" href="sasagefind">사사게 검색기(재운영)</a>
 `;
 
 document.querySelectorAll('header .nav-link').forEach(function(e){
