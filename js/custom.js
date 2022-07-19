@@ -71,7 +71,7 @@ document.querySelector('header .nav').innerHTML = `
 `;
 
 document.querySelectorAll('header .nav-link').forEach(function(e){
-    if(e.getAttribute('href') == here){
+    if(e.getAttribute('href') == `/${here}`){
         e.classList.add('active');
         return;
     }
