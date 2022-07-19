@@ -122,7 +122,6 @@
     document.addEventListener('scroll', ()=>{
       var scrollTop = document.documentElement.scrollTop;
       scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
-      console.log(scrollTop)
       document.querySelector('#ads-right').style.top = `${scrollTop}px`
       document.querySelector('#ads-left').style.top = `${scrollTop}px`
     })

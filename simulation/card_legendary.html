@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>카드 시뮬레이션 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="로스트아크 카드 시뮬레이션">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,시뮬레이션,보석,카드,갓차,갓챠,뽑기,랜덤,10렙,멸화,홍염" />
+  <meta property="og:title" content="로아 카드 시뮬레이션 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 카드 시뮬레이션"/>
+  <meta property="og:url" content="https://loachart.com/simulation/card_legendary"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "simulation_card_legendary";</script>
+  
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <!-- custom -->
+  <link rel="stylesheet" type="text/css" href="/css/custom.css">
+  <script async src="/js/custom.js"></script>
+  <link href="/css/cover.css" rel="stylesheet">
+  <style>
+    .dynamic, map:hover{
+      cursor: url('/img/simulation/cursor_hover.png'), auto;
+    }
+
+    .results, .allresults{
+      background: #00000099;
+      height: 80px;
+      border: 1px solid;
+      border-radius: 8px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+
+  </style>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-3">
+      <div>
+        <a href="/"><h3 class="float-md-start mb-0 text-white">LoaChart</h3></a>
+        <nav class="nav nav-masthead justify-content-center float-md-end"></nav>
+      </div>
+    </header>
+
+    <main class="pt-5 px-3">
+      <div class="row">
+        <div class="col">
+          <div id="ads-top" class="mb-3">
+            <div class="text-center">
+              <!-- loachart_top -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:728px;height:90px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="1957033553"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+          <div id="ads-left" >
+            <div>
+              <!-- loachart_left -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:300px;height:600px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="8271407887"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+          <div id="ads-right">
+            <div>
+              <!-- loachart_right -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:300px;height:600px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="5453672853"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-5">
+        <div style="cursor: url('/img/simulation/cursor.png'), auto;">
+          <div id="simulation_zone">
+            <div class="row mb-3">
+              <div class="col text-start"><span class="dynamic" style="font-size: 1.75rem;" id="back"><< 뒤로가기</span></div>
+              <div class="col text-end"><span style="font-size: 1.75rem;"><span id="challenge_count">0</span>번</span></div>
+            </div>
+            
+            <div>
+              <div class="allresults container justify-content-center mb-3 row" style="height: auto;">
+              </div>
+
+              <div class="mx-auto mb-3" style="width:692px;height:642px;user-select:none;">
+                <div style="display: block; user-select:none;">
+                  <div class="mx-auto" style="position: relative; background-color: #0b0e0b; background-size: 100%;background-position: 0 0; height: 642px; width: 408px;">
+                    <div class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_top.png'); background-size: 100%; background-position: 0 0; height: 137px; width: 408px;"></div>
+                    <div id="deck_left" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_left.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 26px; top:137px;"></div>
+                    <div id="cardlist" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/legendary.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 361px; top:137px; left: 26px;"></div>
+                    <div id="deck_right" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_right.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 21px; top:137px; left: 387px;"></div>
+                    
+                    <div class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_bottom.png'); background-size: 100%; background-position: 0 0; height: 143px; width: 408px; top: 499px;"></div>
+                    <div value="10" class="mx-auto card_open dynamic" style="position: absolute; background-size: 100%; background-position: 0 0; height: 27px; width: 94px; top: 602px; left:60px;"></div>
+                    <div value="1" class="mx-auto card_open dynamic" style="position: absolute; background-size: 100%; background-position: 0 0; height: 27px; width: 94px; top: 602px; left:160px;"></div>
+
+                    <div id="chest_bottom" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/chest_bottom.png');background-size: 100%;background-position: 0 0;height: 90px;width: 377px;top: 507px;left: 14px;"></div>
+                    <div id="chest_top" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/chest_top.png');background-size: 100%;background-position: 0 0;height: 87px;width: 377px;top: 52px;left: 16px;"></div>
+                  </div>
+                  <map name="buttom_map">
+                    <area shape="rect" coords="0,0,129,153">
+                  </map>
+                </div>
+              </div>
+              <div class="results container justify-content-center" style="height: 500px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="mt-5 text-white-50">
+      <div id="ads-bottom" class="mb-5">
+        <div>
+          <!-- loachart_bottom -->
+          <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-4936470262963011"
+              data-ad-slot="8129420230"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+  </div>
+
+  <script async>
+    resultselement = document.querySelector('.results');
+
+    document.querySelector('#back').addEventListener('click',()=>{
+      location = '/simulation';
+    });
+    
+    let cardnamelist = ['웨이','실리안','바훈투르','니나브','아제나 이난나','샨디','카단','시엔','베아트리스','일리아칸','갈라투르','광기잃은 쿠크','루테란','진저웨일','데런 아만','카마인','가디언 루','아만','국왕 실리안']
+    let cardengnamelist = ['way','silian','bahun','nav','azena','shandi','kadan','sien','bea','ili','gala','nerd_kuk','ruteran','jinju','devil_aman','camain','ru','aman','kuksil']
+    let cardimglist = ['1_0','0_1','2_1','2_6','2_0','0_4','2_7','2_4','1_6','1_2','2_5','9_2','2_3','0_5','0_6','1_3','2_2','0_0','0_3']
+    let cardratelist = [5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26,5.26]
+    
+    for (var i = 0; i < cardnamelist.length; i++) {
+      tempdiv = document.createElement('div');
+      tempdiv.className = 'my-2';
+      if(cardnamelist[i] != '광기잃은 쿠크'){
+        tempdiv.style.backgroundImage = `url('https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Card_Legend/Card_Legend_0${cardimglist[i]}.png')`
+      }else{
+        tempdiv.style.backgroundImage = `url('https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Card_Epic/Card_Epic_0${cardimglist[i]}.png')`
+      }
+      tempdiv.style.backgroundSize = '100%';
+      tempdiv.style.backgroundPosition = '0 -11px';
+      tempdiv.style.height = '64px';
+
+      temptempdiv = document.createElement('div');
+      temptempdiv.style.position = 'absolute';
+      temptempdiv.style.width = '64px';
+      temptempdiv.style.height = '64px';
+      temptempdiv.append(tempdiv);
+
+      childdiv1 = document.createElement('div');
+      childdiv1.className = 'col-auto';
+      childdiv1.style.width = '86px';
+      childdiv1.append(temptempdiv);
+
+      tempspan = document.createElement('span');
+      tempspan.style.fontSize = '1.75rem';
+      tempspan.id = cardengnamelist[i];
+      tempspan.textContent = '0';
+
+      temptempspan = document.createElement('span');
+      temptempspan.style.fontSize = '1.75rem';
+      temptempspan.textContent = `${cardnamelist[i]} X `;
+      temptempspan.append(tempspan);
+
+      childdiv2 = document.createElement('div');
+      childdiv2.className = 'col text-start my-auto';
+      childdiv2.append(temptempspan);
+
+      parentdiv = document.createElement('div');
+      parentdiv.className = 'col-4 row';
+      parentdiv.style.color = 'orange';
+      parentdiv.style.height = '79px';
+      
+      parentdiv.append(childdiv1);
+      parentdiv.append(childdiv2);
+
+      document.querySelector('.allresults').append(parentdiv);
+    }
+
+
+    function createresultitem(content, color){
+      tempeletment = document.createElement('div');
+      tempeletment.className = 'ms-3 result-item animate__animated animate__flash';
+      tempeletment.textContent = content;
+      tempeletment.style.color = color;
+  
+      return tempeletment;
+    }
+    
+    function challenge(length){
+      var count = parseInt(document.querySelector('#challenge_count').textContent);
+      document.querySelector('#challenge_count').textContent = count + parseInt(length);
+    }
+    
+    //<div class="mx-auto" style="position: relative;background-image: url('/img/simulation/card/chest_open.gif');background-size: 100%;background-position: 0 0; height: 361px; width: 562px;">
+
+    var running = false;
+    document.querySelectorAll(".card_open").forEach((e)=>{
+      e.addEventListener('click', async(f)=>{
+        document.querySelectorAll(".card_open").forEach((g)=>{
+          g.style.display = 'none';
+        });
+
+        jewelpuseimage = new Image();
+        jewelpuseimage.src = '/img/simulation/card/chest_open.gif';
+        await new Promise(r => {
+          jewelpuseimage.onload = r
+        })
+
+        var audio = new Audio('/audio/card_open.m4a');
+        audio.play();
+        
+        for (var i = 0; i < 97; i++) {
+          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) + 2}px`;
+          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) - 2}px`;
+          document.querySelector("#cardlist").style.filter = `opacity(${(100-(i+4))/100})`
+
+          await new Promise(r => {
+            setTimeout(r, 1.2)
+          });
+        }
+          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) - 1}px`;
+          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) + 3}px`;
+
+        
+        document.querySelector("#chest_top").style.display = "none";
+        document.querySelector("#chest_bottom").style.display = "none";
+    
+        document.querySelector("#deck_left").style.backgroundImage = "url('/img/simulation/card/chest_open.gif')";
+        document.querySelector("#deck_left").style.height = '362px';
+        document.querySelector("#deck_left").style.width = '562px';
+        document.querySelector("#deck_left").style.left = '-77px';
+
+        document.querySelector("#cardlist").style.display = "none";
+        document.querySelector("#deck_right").style.display = "none";
+        
+        setTimeout(async ()=>{
+          document.querySelector("#chest_top").style.display = "";
+          document.querySelector("#chest_bottom").style.display = "";
+      
+          document.querySelector("#deck_left").style.backgroundImage = "url('/img/simulation/card/deck_left.png')";
+          document.querySelector("#deck_left").style.height = '362px';
+          document.querySelector("#deck_left").style.width = '26px';
+          document.querySelector("#deck_left").style.left = '0px';
+
+          document.querySelector("#cardlist").style.display = "";
+          document.querySelector("#deck_right").style.display = "";
+        },1080)
+
+        setTimeout(async ()=>{
+          for (var i = 0; i < 97; i++) {
+            document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) - 2}px`;
+            document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) + 2}px`;
+            document.querySelector("#cardlist").style.filter = `opacity(${(i+4)/100})`
+            
+            await new Promise(r => {
+              setTimeout(r, 1.2)
+            });
+          }
+          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) + 1}px`;
+          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) - 3}px`;
+  
+          var opencount = parseInt(f.target.getAttribute('value'));
+          for (var i = 0; i < opencount; i++) {
+            for (var n = 100 * Math.random(), r = 0, o = cardratelist[0], s = 0; s < cardnamelist.length; s++) {
+              if (n >= r && n < o) {
+                resultselement.append(createresultitem(cardnamelist[s], 'orange'));
+                document.querySelector(`#${cardengnamelist[s]}`).textContent = parseInt(document.querySelector(`#${cardengnamelist[s]}`).textContent) + 1;
+                document.querySelector(`#${cardengnamelist[s]}`).parentElement.parentElement.className += ' animate__animated animate__flash';
+                break;
+              }
+              r = o, o += cardratelist[s + 1]
+            }
+          }
+
+          challenge(opencount);
+          
+          document.querySelector(".results").scrollTop = document.querySelector(".results").scrollHeight;
+
+          setTimeout(async ()=>{
+            document.querySelectorAll('.animate__animated').forEach((x)=>{
+              x.classList.remove('animate__animated', 'animate__flash');
+            })
+          }, 1000);
+
+          document.querySelectorAll(".card_open").forEach((g)=>{
+            g.style.display = '';
+          });
+        }, 2000)
+        
+
+      });
+    })
+  </script>
+
+  <!-- google ADSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
+    crossorigin="anonymous"></script>
+  <script async>
+    document.addEventListener('scroll', ()=>{
+      var scrollTop = document.documentElement.scrollTop;
+      scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
+      document.querySelector('#ads-right').style.top = `${scrollTop}px`
+      document.querySelector('#ads-left').style.top = `${scrollTop}px`
+    })
+  </script>
+    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" type="text/css">
+</body>
+</html>

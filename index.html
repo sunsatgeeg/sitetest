@@ -137,9 +137,9 @@
             </a>
           </div>
           <div class="col-lg-3">
-            <a href="sasagefind" style="color: white; text-decoration: none;">
-              <img src="\img\warning.png" alt="사사게 검색기" width="240" height="240">
-              <h2>사사게 검색기</h2>
+            <a href="simulation" style="color: white; text-decoration: none;">
+              <img src="\img\simulation.png" alt="사사게 검색기" width="240" height="240">
+              <h2>시뮬레이션</h2>
             </a>
           </div>
 
@@ -193,7 +193,6 @@
     document.addEventListener('scroll', ()=>{
       var scrollTop = document.documentElement.scrollTop;
       scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
-      console.log(scrollTop)
       document.querySelector('#ads-right').style.top = `${scrollTop}px`
       document.querySelector('#ads-left').style.top = `${scrollTop}px`
     })
