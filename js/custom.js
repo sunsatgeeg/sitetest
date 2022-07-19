@@ -1,4 +1,5 @@
-var nocommu = ['bidcalc','cardcalc','/']
+var nocommu = ['bidcalc','cardcalc','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
+'simulation_card_LegendaryToEpic','simulation_card_LegendaryToRare','simulation_card_LegendaryToUncommon','simulation_card_all']
 
 function delCookie(cname){
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -66,6 +67,7 @@ document.querySelector('header .nav').innerHTML = `
     <a class="nav-link" aria-current="page" href="craftcalc">제작 계산기</a>
     <a class="nav-link" aria-current="page" href="rewardcalc">더보기 계산기</a>
     <a class="nav-link" aria-current="page" href="cardcalc">도감작 계산기</a>
+    <a class="nav-link" aria-current="page" href="simulation">시뮬레이션</a>
     <a class="nav-link" aria-current="page" href="sasagefind">사사게 검색기(재운영)</a>
 `;
 
