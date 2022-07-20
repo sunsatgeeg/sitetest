@@ -1,8 +1,18 @@
 document.querySelector("#crystalprice").addEventListener('mouseover', ()=>{
     document.querySelector("#crystalprice").focus()
 })
+document.querySelector("#crystalprice").addEventListener('mouseout', ()=>{
+    document.querySelector("#crystalprice").blur()
+})
+document.querySelector('#crystalprice').addEventListener('input', ()=>{
+    calc()
+});
 
 function calc(price){
+    price = parseInt(document.querySelector("#crystalprice").value);
+    if(price == 0){
+        return;
+    }
     document.querySelectorAll('.card').forEach(function(e){
         exgold = parseInt((e.querySelector('#itemamount').innerText / (100 * 0.95)) * price);
         totalgold = (e.querySelector('#itemprice').innerText*((e.querySelector('#itempackcount').value*e.querySelector('#itemqty').value)/e.querySelector('#itemtradecount').innerText));
@@ -39,21 +49,6 @@ function findFirstChild(parentNode) {
     }
     return firstNode;
 }
-
-function crtystalpriceeditevent(e){
-    if(e.value == ""){
-        return;
-    }
-    price = parseInt(e.value);
-    calc(price);
-}
-
-document.querySelector('#crystalprice').addEventListener('change', function(){
-    crtystalpriceeditevent(this);
-});
-document.querySelector('#crystalprice').addEventListener('keyup', function(){
-    crtystalpriceeditevent(this);
-});
 
 fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then((response) =>{
     json = response;
