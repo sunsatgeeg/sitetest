@@ -8,7 +8,7 @@ function calc(price){
         if(profit >= 0){
             profitcolor = "#00ff00";
         }else if(profit < 0){
-            profitcolor = "#ff6b6b";
+            profitcolor = "#9f1111";
         }
 
         e.querySelector('#exgold').innerText = exgold.toLocaleString();
@@ -143,7 +143,7 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
         if(profit >= 0){
             profitcolor = "00ff00";
         }else if(profit < 0){
-            profitcolor = "ff6b6b";
+            profitcolor = "9f1111";
         }
 
         content = `
@@ -158,40 +158,43 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
                                 <input id="itemqty" value="${itemqty}" hidden>
                                 <input id="itempackcount" value="${itempackcount}" hidden>
                                 <div class="container">
-                                    <div class="row row-cols-2 g-0">
-                                        <div class="col-md-5 px-0 text-nowrap text-start">
-                                            <p class="my-0">크리스탈(골드) : </p>
+                                    <div class="row g-0">
+                                        <div class="col-auto me-auto px-0 text-nowrap text-start my-auto">
+                                            <span class="my-auto">크리스탈(골드) :</span>
                                         </div>
-                                        <div class="col-md-7 px-0 text-end fw-bold">
-                                            <p class="my-0">
-                                                <span id="itemamount">${itemamount}<img src="img/crystal.png" class="ms-1 img-crystal"></span>
-                                                <span>(</span><span id="exgold">${exgold.toLocaleString()}</span><span><img src="img/gold.png" class="ms-1 img-gold">)</span>
-                                                
-                                            </p>
+                                        <div class="col-auto px-0 text-end fw-bold my-auto">
+                                            <span class="my-auto align-middle" id="itemamount">${itemamount}</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:19px; height:21px; background-position: -1287px -220px; display: inline-block;"></div>
+                                            <span class="my-auto align-middle">(</span><span class="my-auto align-middle" id="exgold">${exgold.toLocaleString()}</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1339px -98px; display: inline-block;"></div><span class="my-auto align-middle">)</span>
                                         </div>
-
-                                        <div class="col-md-5 px-0 text-nowrap text-start">
-                                            <p class="my-0">시세[<span id="itemtradecount">${itemtradecount}</span>개 단위] : </p>
+                                    </div>
+                                    <div class="row g-0">
+                                        <div class="col-auto me-auto px-0 text-nowrap text-start my-auto">
+                                            <span class="my-auto">시세[<span id="itemtradecount">${itemtradecount}</span>개 단위] :</span>
                                         </div>
-                                        <div class="col-md-7 px-0 text-end fw-bold">
-                                            <p class="my-0" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}<img src="img/gold.png" class="ms-1 img-gold"></p>
+                                        <div class="col-auto px-0 text-end fw-bold my-auto">
+                                            <span class="my-auto align-middle" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1339px -98px; display: inline-block;"></div>
                                         </div>
-
-                                        <div class="col-md-5 px-0 text-nowrap text-start">
-                                            <p class="my-0">합계 : </p>
+                                    </div>
+                                    <div class="row g-0">
+                                        <div class="col-auto me-auto px-0 text-nowrap text-start my-auto">
+                                            <span class="my-auto">합계 :</span>
                                         </div>
-                                        <div class="col-md-7 px-0 text-end fw-bold">
-                                            <span class="my-0" id="totalgold">${totalgold.toLocaleString()}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                                        <div class="col-auto px-0 text-end fw-bold my-auto">
+                                            <span class="my-auto align-middle" id="totalgold">${totalgold.toLocaleString()}</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1339px -98px; display: inline-block;"></div>
                                         </div>
-
-                                        <div class="col-md-5 px-0 text-nowrap text-start">
-                                            <p class="my-0">이익(%) : </p>
+                                    </div>
+                                    <div class="row g-0">
+                                        <div class="col-auto me-auto px-0 text-nowrap text-start my-auto">
+                                            <span class="my-auto">이익(%) :</span>
                                         </div>
-                                        <div class="col-md-7 px-0 text-end fw-bold">
-                                            <p class="my-0" style="color:#${profitcolor};">
-                                                <span id="profit">${profit.toLocaleString()}</span><img src="img/gold.png" class="ms-1 img-gold">
-                                                <span id="profitper">(${profitper}%)</span>
-                                            </p>
+                                        <div class="col-auto px-0 text-end fw-bold my-auto" style="color:#${profitcolor};">
+                                            <span class="my-auto align-middle" id="profit">${profit.toLocaleString()}</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1339px -98px; display: inline-block;"></div>
+                                            <span class="my-auto align-middle" id="profitper">(${profitper}%)</span>
                                         </div>
                                     </div>
                                 </div>
