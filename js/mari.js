@@ -1,3 +1,7 @@
+document.querySelector("#crystalprice").addEventListener('mouseover', ()=>{
+    document.querySelector("#crystalprice").focus()
+})
+
 function calc(price){
     document.querySelectorAll('.card').forEach(function(e){
         exgold = parseInt((e.querySelector('#itemamount').innerText / (100 * 0.95)) * price);
