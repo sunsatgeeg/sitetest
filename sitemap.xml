@@ -24,4 +24,28 @@
     <url>
       <loc>https://loachart.com/cardcalc</loc>
     </url>
+    <url>
+      <loc>https://loachart.com/simulation</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/jewel</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_legendary</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_legendary_dark</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_LegendaryToEpic</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_LegendaryToRare</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_LegendaryToUncommon</loc>
+    </url>
+    <url>
+      <loc>https://loachart.com/simulation/card_all</loc>
+    </url>
 </urlset>
