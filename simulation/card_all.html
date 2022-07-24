@@ -39,18 +39,19 @@
   <link href="/css/cover.css" rel="stylesheet">
   <style>
     .dynamic, map:hover{
-      cursor: url('/img/simulation/cursor_hover.png'), auto;
+      cursor: url('/img/simulation/cursor_hover.png'), auto !important;
     }
-
     .results, .allresults{
       background: #00000099;
       height: 80px;
       border: 1px solid;
       border-radius: 8px;
-      overflow-y: hidden;
+      overflow-y: scroll;
       overflow-x: hidden;
     }
-
+    .results::-webkit-scrollbar, .allresults::-webkit-scrollbar{
+      display: none;
+    }
   </style>
 </head>
 
@@ -114,53 +115,35 @@
               <div class="col text-end"><span style="font-size: 1.75rem;"><span id="challenge_count">0</span>번</span></div>
             </div>
             
-            <div>
-              
-              <div class="allresults container justify-content-center mb-3" style="height: auto;">  
-                <div style="color: orange;">
-                  <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_252.png" alt="">
-                  <span style="font-size: 1.75rem;">전설 카드 팩Ⅱ X <span style="font-size: 1.75rem;" id="legendary">0</span></span>
-                </div>
-                <div style="color: blueviolet;">
-                  <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_253.png" alt="">
-                  <span style="font-size: 1.75rem;">영웅 카드 팩 X <span style="font-size: 1.75rem;" id="epic">0</span></span>
-                </div>
-                <div style="color: cornflowerblue;">
-                  <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_254.png" alt="">
-                  <span style="font-size: 1.75rem;">희귀 카드 팩 X <span style="font-size: 1.75rem;" id="rare">0</span></span>
-                </div>
-                <div style="color: chartreuse;">
-                  <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_255.png" alt="">
-                  <span style="font-size: 1.75rem;">고급 카드 팩 X <span style="font-size: 1.75rem;" id="uncommon">0</span></span>
-                </div>
-                <div style="color: white;">
-                  <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_1.png" alt="">
-                  <span style="font-size: 1.75rem;">일반 카드 팩 X <span style="font-size: 1.75rem;" id="common">0</span></span>
-                </div>
+            <div class="allresults container justify-content-center mb-3" style="height: auto;">  
+              <div style="color: orange;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_252.png" alt="">
+                <span style="font-size: 1.75rem;">전설 카드 팩Ⅱ X <span style="font-size: 1.75rem;" id="legendary">0</span></span>
               </div>
-
-              <div class="mx-auto mb-3" style="width:692px;height:642px;user-select:none;">
-                <div style="display: block; user-select:none;">
-                  <div class="mx-auto" style="position: relative; background-color: #0b0e0b; background-size: 100%;background-position: 0 0; height: 642px; width: 408px;">
-                    <div class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_top.png'); background-size: 100%; background-position: 0 0; height: 137px; width: 408px;"></div>
-                    <div id="deck_left" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_left.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 26px; top:137px;"></div>
-                    <div id="cardlist" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/all.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 361px; top:137px; left: 26px;"></div>
-                    <div id="deck_right" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_right.png'); background-size: 100%; background-position: 0 0; height: 362px; width: 21px; top:137px; left: 387px;"></div>
-                    
-                    <div class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/deck_bottom.png'); background-size: 100%; background-position: 0 0; height: 143px; width: 408px; top: 499px;"></div>
-                    <div value="10" class="mx-auto card_open dynamic" style="position: absolute; background-size: 100%; background-position: 0 0; height: 27px; width: 94px; top: 602px; left:60px;"></div>
-                    <div value="1" class="mx-auto card_open dynamic" style="position: absolute; background-size: 100%; background-position: 0 0; height: 27px; width: 94px; top: 602px; left:160px;"></div>
-
-                    <div id="chest_bottom" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/chest_bottom.png');background-size: 100%;background-position: 0 0;height: 90px;width: 377px;top: 507px;left: 14px;"></div>
-                    <div id="chest_top" class="mx-auto" style="position: absolute;background-image: url('/img/simulation/card/chest_top.png');background-size: 100%;background-position: 0 0;height: 87px;width: 377px;top: 52px;left: 16px;"></div>
-                  </div>
-                  <map name="buttom_map">
-                    <area shape="rect" coords="0,0,129,153">
-                  </map>
-                </div>
+              <div style="color: blueviolet;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_253.png" alt="">
+                <span style="font-size: 1.75rem;">영웅 카드 팩 X <span style="font-size: 1.75rem;" id="epic">0</span></span>
               </div>
-              <div class="results container justify-content-center text-start" style="height: 500px;"></div>
+              <div style="color: cornflowerblue;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_254.png" alt="">
+                <span style="font-size: 1.75rem;">희귀 카드 팩 X <span style="font-size: 1.75rem;" id="rare">0</span></span>
+              </div>
+              <div style="color: chartreuse;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_255.png" alt="">
+                <span style="font-size: 1.75rem;">고급 카드 팩 X <span style="font-size: 1.75rem;" id="uncommon">0</span></span>
+              </div>
+              <div style="color: white;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_1.png" alt="">
+                <span style="font-size: 1.75rem;">일반 카드 팩 X <span style="font-size: 1.75rem;" id="common">0</span></span>
+              </div>
             </div>
+            
+            <div class="mb-3">
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic card_open" value="10">10개 열기</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic card_open" value="1">1개 열기</button>
+            </div>
+
+            <div class="results container justify-content-center text-start" style="height: 300px;"></div>
           </div>
         </div>
       </div>
@@ -192,122 +175,53 @@
       location = '/simulation';
     });
     
-    let namelist = ['전설 카드 팩 Ⅱ','영웅 카드 팩','희귀 카드 팩','고급 카드 팩','일반 카드 팩']
-    let colorlist = ['orange','blueviolet','cornflowerblue','chartreuse','white']
-    let engnamelist = ['legendary','epic','rare','uncommon','common']
-    let ratelist = [0.5,9.5,40,30,20]
+    const namelist = ['전설 카드 팩 Ⅱ','영웅 카드 팩','희귀 카드 팩','고급 카드 팩','일반 카드 팩']
+    const colorlist = ['orange','blueviolet','cornflowerblue','chartreuse','white']
+    const engnamelist = ['legendary','epic','rare','uncommon','common']
+    const ratelist = [0.5,9.5,40,30,20]
+    let runcount = 0
 
     function createresultitem(content, color){
       tempeletment = document.createElement('div');
       tempeletment.className = 'ms-3 result-item animate__animated animate__flash';
       tempeletment.textContent = content;
       tempeletment.style.color = color;
-  
+
       return tempeletment;
     }
     
     function challenge(length){
-      var count = parseInt(document.querySelector('#challenge_count').textContent);
-      document.querySelector('#challenge_count').textContent = count + parseInt(length);
+      runcount += length;
+      document.querySelector('#challenge_count').textContent = runcount;
     }
-    
-    //<div class="mx-auto" style="position: relative;background-image: url('/img/simulation/card/chest_open.gif');background-size: 100%;background-position: 0 0; height: 361px; width: 562px;">
 
-    var running = false;
     document.querySelectorAll(".card_open").forEach((e)=>{
       e.addEventListener('click', async(f)=>{
-        document.querySelectorAll(".card_open").forEach((g)=>{
-          g.style.display = 'none';
-        });
-
-        jewelpuseimage = new Image();
-        jewelpuseimage.src = '/img/simulation/card/chest_open.gif';
-        await new Promise(r => {
-          jewelpuseimage.onload = r
-        })
-
+        var opencount = parseInt(f.target.getAttribute('value'));
         var audio = new Audio('/audio/card_open.m4a');
+        
         audio.play();
         
-        for (var i = 0; i < 97; i++) {
-          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) + 2}px`;
-          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) - 2}px`;
-          document.querySelector("#cardlist").style.filter = `opacity(${(100-(i+4))/100})`
-
-          await new Promise(r => {
-            setTimeout(r, 1.2)
-          });
-        }
-          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) - 1}px`;
-          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) + 3}px`;
-
-        
-        document.querySelector("#chest_top").style.display = "none";
-        document.querySelector("#chest_bottom").style.display = "none";
-    
-        document.querySelector("#deck_left").style.backgroundImage = "url('/img/simulation/card/chest_open.gif')";
-        document.querySelector("#deck_left").style.height = '362px';
-        document.querySelector("#deck_left").style.width = '562px';
-        document.querySelector("#deck_left").style.left = '-77px';
-
-        document.querySelector("#cardlist").style.display = "none";
-        document.querySelector("#deck_right").style.display = "none";
-        
-        setTimeout(async ()=>{
-          document.querySelector("#chest_top").style.display = "";
-          document.querySelector("#chest_bottom").style.display = "";
-      
-          document.querySelector("#deck_left").style.backgroundImage = "url('/img/simulation/card/deck_left.png')";
-          document.querySelector("#deck_left").style.height = '362px';
-          document.querySelector("#deck_left").style.width = '26px';
-          document.querySelector("#deck_left").style.left = '0px';
-
-          document.querySelector("#cardlist").style.display = "";
-          document.querySelector("#deck_right").style.display = "";
-        },1080)
-
-        setTimeout(async ()=>{
-          for (var i = 0; i < 97; i++) {
-            document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) - 2}px`;
-            document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) + 2}px`;
-            document.querySelector("#cardlist").style.filter = `opacity(${(i+4)/100})`
-            
-            await new Promise(r => {
-              setTimeout(r, 1.2)
-            });
-          }
-          document.querySelector('#chest_top').style.top = `${parseInt(document.querySelector('#chest_top').style.top) + 1}px`;
-          document.querySelector('#chest_bottom').style.top = `${parseInt(document.querySelector('#chest_bottom').style.top) - 3}px`;
-  
-          var opencount = parseInt(f.target.getAttribute('value'));
-          for (var i = 0; i < opencount; i++) {
-            for (var n = 100 * Math.random(), r = 0, o = ratelist[0], s = 0; s < namelist.length; s++) {
-              if (n >= r && n < o) {
-                resultselement.append(createresultitem(namelist[s], colorlist[s]));
-                document.querySelector(`#${engnamelist[s]}`).textContent = parseInt(document.querySelector(`#${engnamelist[s]}`).textContent) + 1;
-                document.querySelector(`#${engnamelist[s]}`).parentElement.parentElement.className += ' animate__animated animate__flash';
-                break;
-              }
-              r = o, o += ratelist[s + 1]
+        for (var i = 0; i < opencount; i++) {
+          for (var n = 100 * Math.random(), r = 0, o = ratelist[0], s = 0; s < namelist.length; s++) {
+            if (n >= r && n < o) {
+              resultselement.append(createresultitem(namelist[s], colorlist[s]));
+              document.querySelector(`#${engnamelist[s]}`).textContent = parseInt(document.querySelector(`#${engnamelist[s]}`).textContent) + 1;
+              document.querySelector(`#${engnamelist[s]}`).parentElement.parentElement.className += ' animate__animated animate__flash';
+              break;
             }
+            r = o, o += ratelist[s + 1]
           }
+        }
+        resultselement.innerHTML += '<br>';
+        challenge(opencount);
+        resultselement.scrollTop = resultselement.scrollHeight;
 
-          challenge(opencount);
-          
-          document.querySelector(".results").scrollTop = document.querySelector(".results").scrollHeight;
-
-          setTimeout(async ()=>{
-            document.querySelectorAll('.animate__animated').forEach((x)=>{
-              x.classList.remove('animate__animated', 'animate__flash');
-            })
-          }, 1000);
-
-          document.querySelectorAll(".card_open").forEach((g)=>{
-            g.style.display = '';
-          });
-        }, 2000)
-        
-
+        setTimeout(()=>{
+          document.querySelectorAll('.animate__animated').forEach(async (x)=>{
+            x.classList.remove('animate__animated', 'animate__flash');
+          })
+        }, 1000);
       });
     })
   </script>

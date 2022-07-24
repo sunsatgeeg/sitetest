@@ -39,18 +39,19 @@
   <link href="/css/cover.css" rel="stylesheet">
   <style>
     .dynamic, map:hover{
-      cursor: url('/img/simulation/cursor_hover.png'), auto;
+      cursor: url('/img/simulation/cursor_hover.png'), auto !important;
     }
-
     .results, .allresults{
       background: #00000099;
       height: 80px;
       border: 1px solid;
       border-radius: 8px;
-      overflow-y: hidden;
+      overflow-y: scroll;
       overflow-x: hidden;
     }
-
+    .results::-webkit-scrollbar, .allresults::-webkit-scrollbar{
+      display: none;
+    }
   </style>
 </head>
 
@@ -126,19 +127,11 @@
                 </div>
               </div>
 
-              <div class="mb-3" style="user-select:none;">
-                <div class="mx-auto" style="width: 692px; height: 642px; display: block;">
-                  <img id="jewel_top" src="\img\simulation\jewel\top.png" alt="">
-                  <div>
-                    <img id="jewel_left" src="\img\simulation\jewel\left.png"><img id="jewel_ready_img" src="\img\simulation\jewel\ready.gif"><img id="jewel_right" src="\img\simulation\jewel\right.png">
-                  </div>
-                  <img id="jewel_bottom" src="\img\simulation\jewel\bottom.png" usemap="#buttom_map">
-                  <map name="buttom_map">
-                    <area shape="rect" coords="208,155,385,192">
-                  </map>
-                </div>
+              <div class="mb-3">
+                <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse" value="1">합성</button>
               </div>
-              <div class="results container justify-content-center text-start"></div>
+  
+              <div class="results container justify-content-center text-start" style="height: 300px;"></div>
             </div>
           </div>
         </div>
@@ -171,6 +164,8 @@
       location = '/simulation';
     });
     
+    let runcount = 0
+    
     function createresultitem(content, color){
       tempeletment = document.createElement('div');
       tempeletment.className = 'ms-3 result-item animate__animated animate__flash';
@@ -181,54 +176,33 @@
     }
     
     function challenge(length){
-      var count = parseInt(document.querySelector('#challenge_count').textContent);
-      document.querySelector('#challenge_count').textContent = count + parseInt(length);
+      runcount += length;
+      document.querySelector('#challenge_count').textContent = runcount;
     }
     
-    document.querySelector("map area").addEventListener('click', async()=>{
-      jewelpuseimage = new Image();
-      jewelpuseimage.src = '/img/simulation/jewel/puse.gif';
-      await new Promise(r => {
-        jewelpuseimage.onload = r
-      })
-  
-      document.querySelector("#jewel_top").style.display = "none";
-      document.querySelector("#jewel_left").style.display = "none";
-      document.querySelector("#jewel_right").style.display = "none";
-      document.querySelector("#jewel_bottom").style.display = "none";
-  
-      document.querySelector("#jewel_ready_img").src = jewelpuseimage.src;
-  
+    document.querySelector(".puse").addEventListener('click', async()=>{
       var audio = new Audio('/audio/puse.m4a');
-      audio.play();
-  
-      setTimeout(()=>{
-        document.querySelector("#jewel_ready_img").src = '/img/simulation/jewel/ready.gif';
-        document.querySelector("#jewel_top").style.display = "";
-        document.querySelector("#jewel_left").style.display = "";
-        document.querySelector("#jewel_right").style.display = "";
-        document.querySelector("#jewel_bottom").style.display = "";
 
-        var n = 100 * Math.random();
-        if(n >= 50){
-          resultselement.append(createresultitem('10레벨 멸화의 보석', 'orange'));
-          document.querySelector('#myul').textContent = parseInt(document.querySelector('#myul').textContent) + 1;
-          document.querySelector('#myul').parentElement.className += ' animate__animated animate__flash';
-        }else{
-          resultselement.append(createresultitem('10레벨 홍염의 보석', 'orange'));
-          document.querySelector('#hong').textContent = parseInt(document.querySelector('#hong').textContent) + 1;
-          document.querySelector('#hong').parentElement.className += ' animate__animated animate__flash';
-        }
-        challenge(1);
-        
-        document.querySelector(".results").scrollTop = document.querySelector(".results").scrollHeight;
-        
-        setTimeout(async ()=>{
-          document.querySelectorAll('.animate__animated').forEach((x)=>{
-            x.classList.remove('animate__animated', 'animate__flash');
-          })
-        }, 1000);
-      }, 1160)
+      audio.play();
+
+      var n = 100 * Math.random();
+      if(n >= 50){
+        resultselement.append(createresultitem('10레벨 멸화의 보석', 'orange'));
+        document.querySelector('#myul').textContent = parseInt(document.querySelector('#myul').textContent) + 1;
+        document.querySelector('#myul').parentElement.className += ' animate__animated animate__flash';
+      }else{
+        resultselement.append(createresultitem('10레벨 홍염의 보석', 'orange'));
+        document.querySelector('#hong').textContent = parseInt(document.querySelector('#hong').textContent) + 1;
+        document.querySelector('#hong').parentElement.className += ' animate__animated animate__flash';
+      }
+      challenge(1);
+      resultselement.scrollTop = resultselement.scrollHeight;
+      
+      setTimeout(async ()=>{
+        document.querySelectorAll('.animate__animated').forEach((x)=>{
+          x.classList.remove('animate__animated', 'animate__flash');
+        })
+      }, 1000);
     });
   </script>
   
