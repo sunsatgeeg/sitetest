@@ -1,5 +1,6 @@
 var nocommu = ['bidcalc','cardcalc','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
-'simulation_card_LegendaryToEpic','simulation_card_LegendaryToRare','simulation_card_LegendaryToUncommon','simulation_card_all']
+'simulation_card_LegendaryToEpic','simulation_card_LegendaryToRare','simulation_card_LegendaryToUncommon','simulation_card_all','simulation_stone'
+]
 
 function delCookie(cname){
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
