@@ -235,6 +235,7 @@
         ts=document.createElement('script');ts.async=1;ts.src="/js/dolpago.js";ty=document.getElementsByTagName('script')[0];ty.parentNode.insertBefore(ts,ty);hasdolpagoscript=true;await new Promise((r) => ts.onload=r);
       }
       reset();
+      newstone();
 
       if(document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent == '중지'){
         dolpagostop = true;
