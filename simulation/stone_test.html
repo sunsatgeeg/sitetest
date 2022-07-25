@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>세공 시뮬레이션 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="로스트아크 세공 시뮬레이션">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,시뮬레이션,보석,카드,갓차,갓챠,뽑기,랜덤,10렙,멸화,홍염,돌깍,돌깎,세공"/>
+  <meta property="og:title" content="로아 세공 시뮬레이션 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 세공 시뮬레이션"/>
+  <meta property="og:url" content="https://loachart.com/simulation/card_legendary"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "simulation_stone";</script>
+  
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <!-- custom -->
+  <link rel="stylesheet" type="text/css" href="/css/custom.css">
+  <script async src="/js/custom.js"></script>
+  <link href="/css/cover.css" rel="stylesheet">
+  <style>
+    .dynamic, map:hover{
+      cursor: url('/img/simulation/cursor_hover.png'), auto !important;
+    }
+    .results, .allresults{
+      background: #00000099;
+      height: 80px;
+      border: 1px solid;
+      border-radius: 8px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .results::-webkit-scrollbar, .allresults::-webkit-scrollbar{
+      display: none;
+    }
+    .slot{
+      display: flex;
+      position: absolute;
+      background: url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/bg_equipment_slot_engrave.png?883579bbd600f7e985381d76cc61845a') no-repeat 0 0;
+      width: 58px;
+      height: 58px;
+      align-items: center;
+      justify-content: center;
+    }
+    .slot::before{
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 58px;
+      height: 58px;
+      content: "";
+      background: url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/bg_equipment_slot_engrave_over.png?dfa049c7fe18a5887b24c846db7b2dcc') no-repeat 0 0;
+    }
+    .box {
+      --g:var(--c,deepskyblue) calc(49.5% - 3px), var(--l,deepskyblue) calc(49.5% - 2px),var(--l,deepskyblue) 49.5%, transparent 50%;
+      background:
+       linear-gradient(to top right   ,var(--g)) top right,
+       linear-gradient(to top left    ,var(--g)) top left,
+       linear-gradient(to bottom right,var(--g)) bottom right,
+       linear-gradient(to bottom left ,var(--g)) bottom left;
+      background-size:50% 50%;
+      background-repeat:no-repeat;
+      
+      width:40px; 
+      display:inline-block;
+      margin:5px;
+    }
+    .box_d {
+      --g:var(--c,darkred) calc(49.5% - 3px),var(--l,darkred) calc(49.5% - 2px),var(--l,darkred) 49.5%, transparent 50%;
+      background:
+       linear-gradient(to top right   ,var(--g)) top right,
+       linear-gradient(to top left    ,var(--g)) top left,
+       linear-gradient(to bottom right,var(--g)) bottom right,
+       linear-gradient(to bottom left ,var(--g)) bottom left;
+      background-size:50% 50%;
+      background-repeat:no-repeat;
+      
+      width:40px; 
+      display:inline-block;
+      margin:5px;
+    }
+    .box:before, .box_d:before {
+      content:"";
+      display:block;
+      padding-top:100%;
+    }
+    
+  </style>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-3">
+      <div>
+        <a href="/"><h3 class="float-md-start mb-0 text-white">LoaChart</h3></a>
+        <nav class="nav nav-masthead justify-content-center float-md-end"></nav>
+      </div>
+    </header>
+
+    <main class="pt-5 px-3">
+      <div class="row">
+        <div class="col">
+          <div id="ads-top" class="mb-3">
+            <div class="text-center">
+              <!-- loachart_top -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:728px;height:90px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="1957033553"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+          <div id="ads-left" >
+            <div>
+              <!-- loachart_left -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:300px;height:600px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="8271407887"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+          <div id="ads-right">
+            <div>
+              <!-- loachart_right -->
+              <ins class="adsbygoogle"
+                  style="display:inline-block;width:300px;height:600px"
+                  data-ad-client="ca-pub-4936470262963011"
+                  data-ad-slot="5453672853"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-5">
+        <div style="cursor: url('/img/simulation/cursor.png'), auto;">
+          <div id="simulation_zone">
+            <div class="row mb-3">
+              <div class="col text-start"><span class="dynamic" style="font-size: 1.75rem;" id="back"><< 뒤로가기</span></div>
+              <div class="col text-end">
+                <span style="font-size: 1.75rem;"><span id="challenge_count">0</span>번</span>
+                <span style="font-size: 1.75rem;">(<span id="siling">0</span>실링)</span>
+              </div>
+            </div>
+            
+            <div class="container" style="background-color: black;">
+              <div class="row text-end py-2">
+                <h1 id="rate">75%</h1>
+              </div>
+              <div class="row">
+                <div class="col-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
+                  <div class="slot" style="top: 0px;">
+                    <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_71.png" style="border-radius: 50%; width: 46px; height: 46px;">
+                  </div>
+                </div>
+                <div class="col-auto my-auto mx-auto text-start">
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                </div>
+                <div class="col d-grid gap-2" style="user-select: none;">
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="원한" skillidx="1">원한</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
+                  <div class="slot" style="top: 0px;">
+                    <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_235.png" style="border-radius: 50%; width: 46px; height: 46px;">
+                  </div>
+                </div>
+                <div class="col-auto my-auto mx-auto text-start">
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                  <div class="box ms-3" style="--c:transparent;"></div>
+                </div>
+                <div class="col d-grid gap-2" style="user-select: none;">
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="아드" skillidx="2">아드</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto mx-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
+                  <div class="slot" style="top: 0px;">
+                    <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_218.png" style="border-radius: 50%; width: 46px; height: 46px;">
+                  </div>
+                </div>
+                <div class="col-auto my-auto text-start">
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                  <div class="box_d ms-3" style="--c:transparent;"></div>
+                </div>
+                <div class="col d-grid gap-2" style="user-select: none;">
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="감소" skillidx="3">감소</button>
+                </div>
+              </div>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2" onclick="newstone()">새로운 돌 깎기</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2 ms-2" onclick="dolpago()">로파고[97돌]</button>
+            </div>
+
+            <div class="mt-3 results container justify-content-center text-start" style="height: 300px;"></div>
+
+            <div class="text-end">
+              <small>
+                <br>로파고 제작자님께 감사드리며 모든 소스코드는 공개됩니다.
+                <br>로파고 제작자님의 동의하에 서비스 됩니다.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="mt-5 text-white-50">
+      <div id="ads-bottom" class="mb-5">
+        <div>
+          <!-- loachart_bottom -->
+          <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-4936470262963011"
+              data-ad-slot="8129420230"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+      <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+  </div>
+
+  <script>
+    let hasdolpagoscript = false;
+    let dolpagorunning = false;
+    let dolpagostop = false;
+
+    async function dolpago(){
+      dolpagorunning = true;
+      dolpagostop = false;
+
+      //돌파고 스크립트 import
+      if(!(hasdolpagoscript)){
+        ts=document.createElement('script');ts.async=1;ts.src="/js/dolpago.js";ty=document.getElementsByTagName('script')[0];ty.parentNode.insertBefore(ts,ty);hasdolpagoscript=true;await new Promise((r) => ts.onload=r);
+      }
+
+      if(document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent == '중지'){
+        dolpagostop = true;
+      }
+      document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '중지';
+      
+      reset();
+      while(true){
+        if(dolpagostop){
+          document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
+          break;
+        }
+
+        await new Promise((r) => setTimeout(r, 4));
+        line1 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(2) > div.col.d-grid.gap-2 > button").value);
+        line2 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(3) > div.col.d-grid.gap-2 > button").value);
+        line3 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(4) > div.col.d-grid.gap-2 > button").value);
+
+        if(line1 >= 9 && line1 + line2 >= 16 && line3 <= 4){
+          dolpagorunning = false;
+          document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
+          break;
+        }
+        set_ui();
+      }
+    }
+  </script>
+
+  <script async>
+    resultselement = document.querySelector('.results');
+
+    document.querySelector('#back').addEventListener('click',()=>{
+      location = '/simulation';
+    });
+    
+    let runcount = 0
+    let siling = 0
+    let facetrate = 75
+
+    function newstone(){
+      resultitemcontent = '[';
+      challenge(1)
+
+      document.querySelectorAll('.box').forEach((e)=>{
+        e.setAttribute('style', '--c:transparent;')
+      })
+      document.querySelectorAll('.box_d').forEach((e)=>{
+        e.setAttribute('style', '--c:transparent;')
+      })
+
+      document.querySelectorAll('.facet').forEach((e)=> {
+        resultitemcontent += e.getAttribute('value');
+        resultitemcontent += ', '
+
+        e.classList.remove('disabled')
+        e.setAttribute('value', '0');
+        e.textContent = e.getAttribute('skill');
+      })
+      resultitemcontent += ']';
+      resultitemcontent = resultitemcontent.replace(', ]', ']')
+
+      resultselement.scrollTop = resultselement.scrollHeight;
+      resultselement.append(createresultitem(resultitemcontent, 'orange'));
+      facetrate = 75;
+      document.querySelector('#rate').textContent = `${facetrate}%`;
+    }
+
+    
+    function createresultitem(content, color){
+      tempeletment = document.createElement('div');
+      tempeletment.className = 'ms-3 result-item animate__animated animate__flash';
+      tempeletment.textContent = content;
+      tempeletment.style.color = color;
+  
+      return tempeletment;
+    }
+    
+    function challenge(length){
+      runcount += length;
+      document.querySelector('#challenge_count').textContent = runcount;
+    }
+    
+    document.querySelectorAll('.facet').forEach((e)=>{
+      e.addEventListener('click', async(f)=>{
+        if(!(dolpagorunning)){
+          var audio = new Audio('/audio/facet.m4a');
+          audio.play();
+        }
+
+        var n = 100 * Math.random();
+        result = 1
+        if(facetrate >= n){
+          for(var i=0; i < f.target.parentNode.parentNode.children[1].children.length; i++){
+            if(f.target.parentNode.parentNode.children[1].children[i].getAttribute('style') == '--c:transparent;'){
+              f.target.parentNode.parentNode.children[1].children[i].removeAttribute('style');
+              f.target.setAttribute('value', parseInt(f.target.getAttribute('value')) + 1);
+
+              break;
+            }
+          }
+          if(facetrate > 25){
+            facetrate -= 10;
+          }
+        }else{
+          for(var i=0; i < f.target.parentNode.parentNode.children[1].children.length; i++){
+            if(f.target.parentNode.parentNode.children[1].children[i].getAttribute('style') == '--c:transparent;'){
+              f.target.parentNode.parentNode.children[1].children[i].setAttribute('style','--c:#8d8d8d; --l:#8d8d8d;');
+              result = 0
+              break;
+            }
+          }
+          if(facetrate < 75){
+            facetrate += 10;
+          }
+        }
+        if(i == 9){
+          f.target.className += ' disabled'
+        }
+        f.target.textContent = `${f.target.getAttribute('skill')} +${f.target.getAttribute('value')}`;
+        document.querySelector('#rate').textContent = `${facetrate}%`;
+        siling += 1680;
+        document.querySelector('#siling').textContent = (siling).toLocaleString();
+        if(hasdolpagoscript){
+          
+          do_attempt(parseInt(f.target.getAttribute('skillidx')), result);
+        }
+        
+      });
+    });
+  </script>
+
+  <!-- google ADSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
+    crossorigin="anonymous"></script>
+  <script async>
+    document.addEventListener('scroll', ()=>{
+      var scrollTop = document.documentElement.scrollTop;
+      scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
+      document.querySelector('#ads-right').style.top = `${scrollTop}px`
+      document.querySelector('#ads-left').style.top = `${scrollTop}px`
+    })
+  </script>
+    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" type="text/css">
+</body>
+</html>
