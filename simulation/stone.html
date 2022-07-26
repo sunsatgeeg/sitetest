@@ -171,16 +171,16 @@
             </div>
             
             <div class="container" style="background-color: black;">
-              <div class="row text-end">
+              <div class="row text-end py-2">
                 <h1 id="rate">75%</h1>
               </div>
               <div class="row">
-                <div class="col-auto mx-auto" style="position: relative; height: 58px; width: 58px;">
+                <div class="col-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
                   <div class="slot" style="top: 0px;">
                     <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Buff/Buff_71.png" style="border-radius: 50%; width: 46px; height: 46px;">
                   </div>
                 </div>
-                <div class="col-auto my-auto text-start">
+                <div class="col-auto my-auto mx-auto text-start">
                   <div class="box ms-3" style="--c:transparent;"></div>
                   <div class="box ms-3" style="--c:transparent;"></div>
                   <div class="box ms-3" style="--c:transparent;"></div>
@@ -193,16 +193,16 @@
                   <div class="box ms-3" style="--c:transparent;"></div>
                 </div>
                 <div class="col d-grid gap-2" style="user-select: none;">
-                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="원한">원한</button>
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="원한" skillidx="1">원한</button>
                 </div>
               </div>
               <div class="row">
-                <div class="col-auto  mx-auto" style="position: relative; height: 58px; width: 58px;">
+                <div class="col-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
                   <div class="slot" style="top: 0px;">
                     <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_235.png" style="border-radius: 50%; width: 46px; height: 46px;">
                   </div>
                 </div>
-                <div class="col-auto my-auto text-start">
+                <div class="col-auto my-auto mx-auto text-start">
                   <div class="box ms-3" style="--c:transparent;"></div>
                   <div class="box ms-3" style="--c:transparent;"></div>
                   <div class="box ms-3" style="--c:transparent;"></div>
@@ -215,11 +215,11 @@
                   <div class="box ms-3" style="--c:transparent;"></div>
                 </div>
                 <div class="col d-grid gap-2" style="user-select: none;">
-                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="아드">아드</button>
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="아드" skillidx="2">아드</button>
                 </div>
               </div>
               <div class="row">
-                <div class="col-auto  mx-auto" style="position: relative; height: 58px; width: 58px;">
+                <div class="col-auto mx-auto mx-auto px-0" style="position: relative; height: 58px; width: 58px;">
                   <div class="slot" style="top: 0px;">
                     <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Ability/Ability_218.png" style="border-radius: 50%; width: 46px; height: 46px;">
                   </div>
@@ -237,13 +237,21 @@
                   <div class="box_d ms-3" style="--c:transparent;"></div>
                 </div>
                 <div class="col d-grid gap-2" style="user-select: none;">
-                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="감소">감소</button>
+                  <button type="button" class="btn btn-lg btn-outline-light dynamic facet" value="0" skill="감소" skillidx="3">감소</button>
                 </div>
               </div>
-              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse" onclick="newstone()">새로운 돌 깎기</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2" onclick="newstone()">새로운 돌 깎기</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2 ms-2" onclick="lopago()">로파고[97돌]</button>
             </div>
 
             <div class="mt-3 results container justify-content-center text-start" style="height: 300px;"></div>
+
+            <div class="text-end">
+              <small>
+                <br>로파고 버튼같은경우 로파고 웹버전 제작자님의 소스코드를 사용하였습니다.
+                <br><a href="https://heehoon.kim/dolpago" target="_blank" style="color:var(--bs-white-rgb);">heehoon.kim/dolpago</a>
+              </small>
+            </div>
           </div>
         </div>
       </div>
@@ -267,6 +275,49 @@
       <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
     </footer>
   </div>
+
+  <script>
+    let haslopagoscript = false;
+    let lopagorunning = false;
+    let lopagostop = false;
+
+    async function lopago(){
+      lopagorunning = true;
+      lopagostop = false;
+
+      //로파고 스크립트 import
+      if(!(haslopagoscript)){
+        ts=document.createElement('script');ts.async=1;ts.src="/js/lopago.js";ty=document.getElementsByTagName('script')[0];ty.parentNode.insertBefore(ts,ty);haslopagoscript=true;await new Promise((r) => ts.onload=r);
+      }
+      reset();
+      newstone();
+
+      if(document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent == '중지'){
+        lopagostop = true;
+      }
+      document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '중지';
+      
+      while(true){
+        if(lopagostop){
+          document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
+          lopagorunning = false;
+          break;
+        }
+
+        await new Promise((r) => setTimeout(r, 4));
+        line1 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(2) > div.col.d-grid.gap-2 > button").value);
+        line2 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(3) > div.col.d-grid.gap-2 > button").value);
+        line3 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(4) > div.col.d-grid.gap-2 > button").value);
+
+        if(line1 >= 9 && line1 + line2 >= 16 && line3 <= 4){
+          lopagorunning = false;
+          document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
+          break;
+        }
+        set_ui();
+      }
+    }
+  </script>
 
   <script async>
     resultselement = document.querySelector('.results');
@@ -324,16 +375,19 @@
     
     document.querySelectorAll('.facet').forEach((e)=>{
       e.addEventListener('click', async(f)=>{
-        var audio = new Audio('/audio/facet.m4a');
-
-        audio.play();
+        if(!(lopagorunning)){
+          var audio = new Audio('/audio/facet.m4a');
+          audio.play();
+        }
 
         var n = 100 * Math.random();
+        result = 1
         if(facetrate >= n){
           for(var i=0; i < f.target.parentNode.parentNode.children[1].children.length; i++){
             if(f.target.parentNode.parentNode.children[1].children[i].getAttribute('style') == '--c:transparent;'){
               f.target.parentNode.parentNode.children[1].children[i].removeAttribute('style');
-              f.target.setAttribute('value', parseInt(f.target.getAttribute('value')) + 1)
+              f.target.setAttribute('value', parseInt(f.target.getAttribute('value')) + 1);
+
               break;
             }
           }
@@ -343,7 +397,8 @@
         }else{
           for(var i=0; i < f.target.parentNode.parentNode.children[1].children.length; i++){
             if(f.target.parentNode.parentNode.children[1].children[i].getAttribute('style') == '--c:transparent;'){
-              f.target.parentNode.parentNode.children[1].children[i].setAttribute('style','--c:#8d8d8d; --l:#8d8d8d;')
+              f.target.parentNode.parentNode.children[1].children[i].setAttribute('style','--c:#8d8d8d; --l:#8d8d8d;');
+              result = 0
               break;
             }
           }
@@ -354,11 +409,14 @@
         if(i == 9){
           f.target.className += ' disabled'
         }
-
         f.target.textContent = `${f.target.getAttribute('skill')} +${f.target.getAttribute('value')}`;
         document.querySelector('#rate').textContent = `${facetrate}%`;
         siling += 1680;
         document.querySelector('#siling').textContent = (siling).toLocaleString();
+        if(haslopagoscript){
+          
+          do_attempt(parseInt(f.target.getAttribute('skillidx')), result);
+        }
         
       });
     });
