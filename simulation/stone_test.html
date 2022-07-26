@@ -207,8 +207,9 @@
 
             <div class="text-end">
               <small>
-                <br>로파고 제작자님께 감사드리며 모든 소스코드는 공개됩니다.
-                <br>로파고 제작자님의 동의하에 서비스 됩니다.
+                <br>로파고 웹버전 제작자님께 감사드리며 모든 소스코드는 공개됩니다.
+                <br>로파고 웹버전 제작자님의 동의하에 서비스 됩니다.
+                <br><a href="https://heehoon.kim/dolpago" target="_blank" style="color:var(--bs-white-rgb);">heehoon.kim/dolpago</a>
               </small>
             </div>
           </div>
@@ -245,6 +246,7 @@
       while(true){
         if(lopagostop){
           document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
+          lopagorunning = false;
           break;
         }
 
