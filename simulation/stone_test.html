@@ -200,7 +200,7 @@
                 </div>
               </div>
               <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2" onclick="newstone()">새로운 돌 깎기</button>
-              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2 ms-2" onclick="dolpago()">로파고[97돌]</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic puse my-2 ms-2" onclick="lopago()">로파고[97돌]</button>
             </div>
 
             <div class="mt-3 results container justify-content-center text-start" style="height: 300px;"></div>
@@ -222,28 +222,28 @@
   </div>
 
   <script>
-    let hasdolpagoscript = false;
-    let dolpagorunning = false;
-    let dolpagostop = false;
+    let haslopagoscript = false;
+    let lopagorunning = false;
+    let lopagostop = false;
 
-    async function dolpago(){
-      dolpagorunning = true;
-      dolpagostop = false;
+    async function lopago(){
+      lopagorunning = true;
+      lopagostop = false;
 
-      //돌파고 스크립트 import
-      if(!(hasdolpagoscript)){
-        ts=document.createElement('script');ts.async=1;ts.src="/js/dolpago.js";ty=document.getElementsByTagName('script')[0];ty.parentNode.insertBefore(ts,ty);hasdolpagoscript=true;await new Promise((r) => ts.onload=r);
+      //로파고 스크립트 import
+      if(!(haslopagoscript)){
+        ts=document.createElement('script');ts.async=1;ts.src="/js/lopago.js";ty=document.getElementsByTagName('script')[0];ty.parentNode.insertBefore(ts,ty);haslopagoscript=true;await new Promise((r) => ts.onload=r);
       }
       reset();
       newstone();
 
       if(document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent == '중지'){
-        dolpagostop = true;
+        lopagostop = true;
       }
       document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '중지';
       
       while(true){
-        if(dolpagostop){
+        if(lopagostop){
           document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
           break;
         }
@@ -254,7 +254,7 @@
         line3 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(4) > div.col.d-grid.gap-2 > button").value);
 
         if(line1 >= 9 && line1 + line2 >= 16 && line3 <= 4){
-          dolpagorunning = false;
+          lopagorunning = false;
           document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
           break;
         }
@@ -319,7 +319,7 @@
     
     document.querySelectorAll('.facet').forEach((e)=>{
       e.addEventListener('click', async(f)=>{
-        if(!(dolpagorunning)){
+        if(!(lopagorunning)){
           var audio = new Audio('/audio/facet.m4a');
           audio.play();
         }
@@ -357,7 +357,7 @@
         document.querySelector('#rate').textContent = `${facetrate}%`;
         siling += 1680;
         document.querySelector('#siling').textContent = (siling).toLocaleString();
-        if(hasdolpagoscript){
+        if(haslopagoscript){
           
           do_attempt(parseInt(f.target.getAttribute('skillidx')), result);
         }
