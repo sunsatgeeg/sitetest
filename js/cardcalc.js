@@ -10,30 +10,38 @@ document.querySelector('#reconBtn').addEventListener('click', function(){
     location.reload();
 });
 
-for (let i = 0; i < Object.keys(cardnum).length; i++) {
-    cardalllist.push(Object.keys(cardnum)[i]);
+if(getCookie('savecarddeck') != ''){
+    (async ()=>{
+        cObject = JSON.parse(getCookie('savecarddeck'));
+
+        await cardnumscriptimport();
+
+        for (var i = 0; i < Object.keys(cObject).length; i++) {
+            key = (Object.keys(cObject)[i])-1;
+            value = cObject[Object.keys(cObject)[i]][0];
+            qty = cObject[Object.keys(cObject)[i]][1];
+            carddeck[Object.keys(cardnum)[key]] = value;
+            cardqty[Object.keys(cardnum)[key]] = qty
+        }
+
+        cardsetcalcstart();
+    })();
 }
 
-try{
-    cookie = document.cookie;
-    //cookie = `savecarddeck={"1":[5,0],"2":[1,11],"3":[4,3],"4":[5,0],"5":[3,3],"6":[5,0],"7":[2,5],"8":[3,9],"9":[0,2],"10":[5,0],"11":[5,0],"12":[2,2],"13":[0,1],"14":[5,0],"15":[3,9],"16":[2,2],"17":[0,5],"18":[5,0],"19":[0,9],"20":[0,6],"21":[1,6],"22":[1,7],"23":[1,4],"24":[2,4],"25":[0,14],"26":[0,8],"27":[0,6],"28":[0,6],"29":[0,5],"30":[0,1],"31":[0,5],"32":[0,11],"33":[0,11],"34":[1,6],"35":[3,6],"36":[5,0],"37":[0,5],"38":[2,123],"39":[0,2],"40":[0,9]}`;
-}catch{}
-if(cookie.indexOf('savecarddeck=') != -1){
-    start = cookie.indexOf('savecarddeck=') + 'savecarddeck='.length;
-    var end = cookie.indexOf(';', start); 
-    if(end == -1)end = cookie.length;
-    cValue = cookie.substring(start, end);
-    cObject = JSON.parse(cValue);
+async function cardnumscriptimport(){
+    var cardnumscript = document.createElement('script');
+    cardnumscript.type = 'text/javascript';
+    cardnumscript.async = true;
+    cardnumscript.src = 'js/cardnum.js';
+    document.querySelector('script').appendChild(cardnumscript);
 
-    for (var i = 0; i < Object.keys(cObject).length; i++) {
-        key = (Object.keys(cObject)[i])-1;
-        value = cObject[Object.keys(cObject)[i]][0];
-        qty = cObject[Object.keys(cObject)[i]][1];
-        carddeck[Object.keys(cardnum)[key]] = value;
-        cardqty[Object.keys(cardnum)[key]] = qty
+    await new Promise(r => {
+        cardnumscript.onload = r
+    })
+    
+    for (let i = 0; i < Object.keys(cardnum).length; i++) {
+        cardalllist.push(Object.keys(cardnum)[i]);
     }
-
-    cardsetcalcstart();
 }
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
@@ -483,7 +491,7 @@ let dropArea = document.getElementById("drop-area")
 // Handle dropped files
 dropArea.addEventListener('drop', handleDrop, false)
 
-document.querySelector("#matchstart").addEventListener('click', function(){
+document.querySelector("#matchstart").addEventListener('click', async function(){
     if(document.querySelectorAll('#gallery > img').length == 0){
         alert('사진을 선택해주세요')
         return;
@@ -493,6 +501,7 @@ document.querySelector("#matchstart").addEventListener('click', function(){
     document.querySelector('#helpbtn').style.display = 'none';
     document.querySelector('#matchstatus').style.display = '';
     
+    document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
 
     var head = document.querySelector('head');
     var opencvscript = document.createElement('script');
@@ -505,7 +514,16 @@ document.querySelector("#matchstart").addEventListener('click', function(){
     cardlistscript.src = 'js/cardlist.js';
     head.appendChild(opencvscript);
     head.appendChild(cardlistscript);
-    document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
+
+    await cardnumscriptimport();
+    await new Promise(r => {
+        opencvscript.onload = r
+    })
+    await new Promise(r => {
+        cardlistscript.onload = r
+    })
+
+
 });
 
 var Module = {
