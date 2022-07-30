@@ -83,7 +83,7 @@ function bonusdamagelistup(tri){
         if(exp == 0) continue;
         
         tdsetname.textContent = Object.keys(recommendExp[tri][i]);
-        tdsetexp.textContent = (recommendExp[tri][i][Object.keys(recommendExp[tri][i])]).toLocaleString();
+        tdsetexp.textContent = (exp).toLocaleString();
 
         targetTri = "";
         let list;
@@ -111,7 +111,7 @@ function bonusdamagelistup(tri){
             star = tempdict[list[j][0]][0];
             star++;
             tempdict[list[j][0]] = [star,needcard]; 
-            if(needcard >= cardqty[list[j][0]]){
+            if(needcard > cardqty[list[j][0]]){
                 unable++;
             }
         }
@@ -125,7 +125,7 @@ function bonusdamagelistup(tri){
                 noweffectstar += carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]
             }
             for (var j = Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4]).length-1; j >= 0; j--) {
-                if(parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j]) < noweffectstar){
+                if(parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j]) <= noweffectstar){
                     targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j+1]);
                     break;
                 }else if(j==0){
@@ -135,40 +135,64 @@ function bonusdamagelistup(tri){
 
             tempdict = {}
             simuleffectstar = noweffectstar;
+            nextlevels = [];
             for (var j = 0; j < cardeffect[Object.keys(recommendExp[tri][i])][0].length; j++) {
-                //console.log(targeteffectstar)
-                //console.log(simuleffectstar)
                 tempqty = parseInt(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]);
                 tempk = 0;
-                //console.log(tempqty)
                 for (var k = parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])+1; k < 5+1; k++) {
-                    console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
                     if(tempqty >= k){
                         tempk += k;
                         tempqty -= k;
+                        //console.log(cardLevelUpExp[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])
+                        nextlevels.push([cardeffect[Object.keys(recommendExp[tri][i])][0][j], cardLevelUpExp[cardgrade[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]][k-1]]);
                         if(k != 5){
                             continue;
                         }
                         simuleffectstar += (k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]));
-                        tempdict[cardeffect[Object.keys(recommendExp[tri][i])][0][j]] = [(k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])), tempk]; 
-
                     }else{
                         simuleffectstar += (k - (parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])) - 1);
-                        tempdict[cardeffect[Object.keys(recommendExp[tri][i])][0][j]] = [(k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]))-1, tempk]; 
                         break;
                     }
                 }
-                
-                if(simuleffectstar >= targeteffectstar){
-                    tr.style.color = 'orange';
+            }
+            
+            nextlevels.sort(function(a,b){
+                return a[1] - b[1];
+            })
+
+            star = null;
+            needcard = null;
+            nextLevelExp = 0;
+            for (var j = 0; j < nextlevels.length; j++) {
+                if(noweffectstar >= targeteffectstar){
                     break;
                 }
-                //console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
-                //console.log(simuleffectstar)
+                noweffectstar += 1;
 
-                //console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
-                //console.log(targeteffectstar)
-                //console.log(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])
+                nextLevelExp += nextlevels[j][1];
+                
+                try{
+                    star = tempdict[nextlevels[j][0]][0] + 1;
+                }catch{
+                    star = 1;
+                }
+                try{
+                    needcard = tempdict[nextlevels[j][0]][1] + (cardLevelUpExp[cardgrade[nextlevels[j][0]]].indexOf(nextlevels[j][1]) + 1);
+                }catch{
+                    needcard = (cardLevelUpExp[cardgrade[nextlevels[j][0]]].indexOf(nextlevels[j][1])) + 1;
+                }
+                tempdict[nextlevels[j][0]] = [star,needcard];
+            }
+            
+            if(simuleffectstar >= targeteffectstar){
+                for (var l = 0; l < recommendExp[targetTri].length; l++) {
+                    if(Object.keys(recommendExp[targetTri][l])[0] == Object.keys(recommendExp[tri][i])){
+                        recommendExp[targetTri][l] = {[Object.keys(recommendExp[tri][i])]:nextLevelExp};
+                        break;
+                    }
+                }
+
+                tr.style.color = 'orange';
             }
         }
         
@@ -186,6 +210,20 @@ function bonusdamagelistup(tri){
         tr.style.cursor = 'pointer';
         target.appendChild(tr);
     }
+
+    var regex = /[^0-9]/g;
+    var tagarr = Array.from(document.querySelectorAll("#bookstbody tr"));
+    document.querySelector("#bookstbody").innerHTML = "";
+    tagarr.sort(function (a, b) {
+        var val1 = parseInt(a.querySelectorAll('td')[1].textContent.replace(regex,""));
+        var val2 = parseInt(b.querySelectorAll('td')[1].textContent.replace(regex,""));
+        return (val2 > val1) ? -1 : (val2 < val1) ? 1 : 0;
+    });
+
+    for (var i = 0; i < tagarr.length; i++) {
+        document.querySelector("#bookstbody").append(tagarr[i])
+    }
+        
     
     tippy('#bookstbody > tr > td:nth-child(2)', {
         allowHTML: true, 
@@ -365,12 +403,6 @@ async function cardsetcalcstart(){
 
     //카드 삭제한번이라도 했으면 오차 있을수 있음
     document.querySelector('#matchingment').textContent = `계산 완료(임시로 콘솔창에서 확인)`;
-
-    for (var i = 0; i < Object.keys(recommendExp).length; i++) {
-        recommendExp[Object.keys(recommendExp)[i]].sort(function(a,b){
-            return a[Object.keys(a)[0]] - b[Object.keys(b)[0]];
-        })
-    }
 
     for (var i = 0; i < Object.keys(stat).length; i++) {
         document.querySelectorAll('#'+Object.keys(stat)[i]).forEach(e => {
