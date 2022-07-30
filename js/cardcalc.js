@@ -132,7 +132,7 @@ function bonusdamagelistup(tri){
                     targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[0]);
                 }
             }
-
+            originaltempdit = tempdict;
             tempdict = {}
             simuleffectstar = noweffectstar;
             nextlevels = [];
@@ -193,6 +193,8 @@ function bonusdamagelistup(tri){
                 }
 
                 tr.style.color = 'orange';
+            }else{
+                tempdict = originaltempdit;
             }
         }
         
