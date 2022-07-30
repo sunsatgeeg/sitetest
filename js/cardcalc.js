@@ -115,45 +115,63 @@ function bonusdamagelistup(tri){
                 unable++;
             }
         }
-
-        noweffectstar = 0;
-        tempstopsign = true;
-        for (var j = 0; j < cardeffect[Object.keys(recommendExp[tri][i])][0].length; j++) {
-            noweffectstar += carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]
-        }
-        for (var j = Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4]).length-1; j >= 0; j--) {
-            if(parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j]) < noweffectstar){
-                targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j+1]);
-            }else if(j==0){
-                targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[0]);
+        
+        if(unable == 0){
+            tr.style.color = 'green';
+        }else{
+            noweffectstar = 0;
+            tempstopsign = true;
+            for (var j = 0; j < cardeffect[Object.keys(recommendExp[tri][i])][0].length; j++) {
+                noweffectstar += carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]
             }
-        }
-
-
-        rightawayable = false;
-        simuleffectstar = noweffectstar;
-        for (var j = 0; j < cardeffect[Object.keys(recommendExp[tri][i])][0].length; j++) {
-            if(simuleffectstar >= targeteffectstar){
-                rightawayable = true;
-                break;
-            }
-            tempqty = parseInt(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]);
-            for (var k = parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])+1; k < 5+1; k++) {
-                if(tempqty >= k){
-                    tempqty -= k;
-                    if(k==5){
-                        simuleffectstar = simuleffectstar + k
-                    }
-                }else{
-                    simuleffectstar += k - 1
+            for (var j = Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4]).length-1; j >= 0; j--) {
+                if(parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j]) < noweffectstar){
+                    targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[j+1]);
                     break;
+                }else if(j==0){
+                    targeteffectstar = parseInt(Object.keys(cardeffect[Object.keys(recommendExp[tri][i])][4])[0]);
                 }
             }
-            //console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
-            //console.log(targeteffectstar)
-            //console.log(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])
-        }
 
+            tempdict = {}
+            simuleffectstar = noweffectstar;
+            for (var j = 0; j < cardeffect[Object.keys(recommendExp[tri][i])][0].length; j++) {
+                //console.log(targeteffectstar)
+                //console.log(simuleffectstar)
+                tempqty = parseInt(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]);
+                tempk = 0;
+                //console.log(tempqty)
+                for (var k = parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])+1; k < 5+1; k++) {
+                    console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
+                    if(tempqty >= k){
+                        tempk += k;
+                        tempqty -= k;
+                        if(k != 5){
+                            continue;
+                        }
+                        simuleffectstar += (k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]));
+                        tempdict[cardeffect[Object.keys(recommendExp[tri][i])][0][j]] = [(k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])), tempk]; 
+
+                    }else{
+                        simuleffectstar += (k - (parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])) - 1);
+                        tempdict[cardeffect[Object.keys(recommendExp[tri][i])][0][j]] = [(k - parseInt(carddeck[cardeffect[Object.keys(recommendExp[tri][i])][0][j]]))-1, tempk]; 
+                        break;
+                    }
+                }
+                
+                if(simuleffectstar >= targeteffectstar){
+                    tr.style.color = 'orange';
+                    break;
+                }
+                //console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
+                //console.log(simuleffectstar)
+
+                //console.log(cardeffect[Object.keys(recommendExp[tri][i])][0][j])
+                //console.log(targeteffectstar)
+                //console.log(cardqty[cardeffect[Object.keys(recommendExp[tri][i])][0][j]])
+            }
+        }
+        
         for (var j = 0; j < Object.keys(tempdict).length; j++) {
             tooltipcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각(${tempdict[Object.keys(tempdict)[j]][1]}장)<br>`;
             clickcontent += `${Object.keys(tempdict)[j]} +${tempdict[Object.keys(tempdict)[j]][0]}각, `
@@ -162,12 +180,6 @@ function bonusdamagelistup(tri){
         tdsetexp.setAttribute('tooltipcontent',tooltipcontent);
         tdsetexp.setAttribute('clickcontent',clickcontent);
         tr.setAttribute('data',JSON.stringify(tempdict));
-        
-        if(unable == 0){
-            tr.style.color = 'green';
-        }else if(rightawayable){
-            tr.style.color = 'orange';
-        }
 
         tr.append(tdsetname);
         tr.append(tdsetexp);
