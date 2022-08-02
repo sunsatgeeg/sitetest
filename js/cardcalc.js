@@ -537,6 +537,7 @@ let dropArea = document.getElementById("drop-area")
 // Handle dropped files
 dropArea.addEventListener('drop', handleDrop, false)
 
+var cardremoveimage = new Image();
 document.querySelector("#matchstart").addEventListener('click', async function(){
     if(document.querySelectorAll('#gallery > img').length == 0){
         alert('사진을 선택해주세요')
@@ -563,13 +564,12 @@ document.querySelector("#matchstart").addEventListener('click', async function()
 
     await cardnumscriptimport();
     await new Promise(r => {
-        opencvscript.onload = r
-    })
-    await new Promise(r => {
         cardlistscript.onload = r
     })
-
-
+    cardremoveimage.src = cardremovebase64;
+    await new Promise(r => {
+        opencvscript.onload = r
+    })
 });
 
 var Module = {
@@ -577,11 +577,6 @@ var Module = {
         document.querySelector('#matchingment').textContent='카드 인식 시작';
         var cavasimage;
         var canvas;
-        var cardremoveimage = new Image();
-        cardremoveimage.src = cardremovebase64;
-        await new Promise(r => {
-            cardremoveimage.onload = r
-        })
         var cardremove = cv.imread(cardremoveimage);
         var screenimg = document.querySelectorAll('#gallery > img');
         screenimg = [...screenimg];
