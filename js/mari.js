@@ -165,7 +165,7 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
                                             <span class="my-auto align-middle" id="itemamount">${itemamount}</span>
                                             <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:19px; height:21px; background-position: -414px -302px; display: inline-block;"></div>
                                             <span class="my-auto align-middle">(</span><span class="my-auto align-middle" id="exgold">${exgold.toLocaleString()}</span>
-                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 1px; display: inline-block;"></div><span class="my-auto align-middle">)</span>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 0px; display: inline-block;"></div><span class="my-auto align-middle">)</span>
                                         </div>
                                     </div>
                                     <div class="row g-0">
@@ -174,7 +174,7 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
                                         </div>
                                         <div class="col-auto px-0 text-end fw-bold my-auto">
                                             <span class="my-auto align-middle" id="itemprice">${marketdata[itemoriginaltitle].toLocaleString()}</span>
-                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 1px; display: inline-block;"></div>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 0px; display: inline-block;"></div>
                                         </div>
                                     </div>
                                     <div class="row g-0">
@@ -183,7 +183,7 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
                                         </div>
                                         <div class="col-auto px-0 text-end fw-bold my-auto">
                                             <span class="my-auto align-middle" id="totalgold">${totalgold.toLocaleString()}</span>
-                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 1px; display: inline-block;"></div>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 0px; display: inline-block;"></div>
                                         </div>
                                     </div>
                                     <div class="row g-0">
@@ -192,7 +192,7 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
                                         </div>
                                         <div class="col-auto px-0 text-end fw-bold my-auto" style="color:#${profitcolor};">
                                             <span class="my-auto align-middle" id="profit">${profit.toLocaleString()}</span>
-                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 1px; display: inline-block;"></div>
+                                            <div  class="my-0 align-middle" style="background-image:url('https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/sprite/sprite.png'); width:18px; height:19px; background-position: -1268px 0px; display: inline-block;"></div>
                                             <span class="my-auto align-middle" id="profitper">(${profitper}%)</span>
                                         </div>
                                     </div>
