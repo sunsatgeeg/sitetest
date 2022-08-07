@@ -1,9 +1,6 @@
 document.querySelector("#crystalprice").addEventListener('mouseover', ()=>{
     document.querySelector("#crystalprice").focus()
 })
-document.querySelector("#crystalprice").addEventListener('mouseout', ()=>{
-    document.querySelector("#crystalprice").blur()
-})
 document.querySelector('#crystalprice').addEventListener('input', ()=>{
     calc()
 });
@@ -80,7 +77,6 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
         findFirstChild(findLastChild(parenttable)).innerHTML += '<td id="lasttimelist"></td>';
     }
     if(prevtime.length != 0){
-        console.log()
         findFirstChild(findFirstChild(parenttable)).innerHTML += '<th id="prevtime" width="33.33%"></th>';
         findFirstChild(findLastChild(parenttable)).innerHTML += '<td id="prevtimelist"></td>';
     }
