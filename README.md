@@ -14,6 +14,6 @@
 
 일일 페이지뷰 : 3.2천건
 
-<div align="left"><img src"/img/readme/1.png"></div>
-<div align="left"><img src"/img/readme/2.png"></div>
-<div align="left"><img src"/img/readme/3.png"></div>
+<div align="left"><img src"/img/readme/1.PNG"></div>
+<div align="left"><img src"/img/readme/2.PNG"></div>
+<div align="left"><img src"/img/readme/3.PNG"></div>
