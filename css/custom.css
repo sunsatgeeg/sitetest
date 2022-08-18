@@ -9,6 +9,11 @@ html{
         max-width: 1140px !important;
     }
 }
+@media (max-width:1400px){
+    #ads-left,#ads-right{
+        display:none;
+    }
+}
 
 .itemList.dropdown{
     z-index: 1;
