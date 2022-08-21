@@ -309,7 +309,16 @@
 
       html += `</td>
       <td>`;
+
       // 재료 총 가격
+      type = row['dict']['분류'];
+      if(type == '배틀아이템'){
+        type = "b";
+      }else if(type == "요리"){
+        type = "c";
+      }else if(type == "특수"){
+        type = "s";
+      }
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         thisitemname = Object.keys(row['dict'])[i];
         if(thisitemname.lastIndexOf('(') != -1){
