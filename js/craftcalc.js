@@ -38,7 +38,11 @@
 
       ele.parentElement.parentElement.querySelectorAll('.dynamic-calc').forEach((e)=>{
         if(e.getAttribute('origin-value').includes('.')){
-          e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)).toFixed(2);
+          if(Number.isInteger((parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)))){
+            e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value));
+          }else{
+            e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)).toFixed(2);
+          }
         }else{
           e.textContent = parseInt(e.getAttribute('origin-value')) * parseInt(ele.value);
         }
