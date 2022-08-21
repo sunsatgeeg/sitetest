@@ -21,6 +21,30 @@
     <th scope="col">제작개수</th>
     `
 
+    function createqtyperset(event,ele){
+      event.preventDefault();
+      event.stopPropagation();
+      if(event.deltaY<0){
+        if(ele.value == ""){
+          ele.value = 0;
+        }
+        ele.value = parseInt(ele.value) + 1;
+      }else if(event.deltaY>0){
+        ele.value = parseInt(ele.value) - 1;
+      } 
+      if(parseInt(ele.value) <= 1){
+        ele.value = 1;
+      }
+
+      ele.parentElement.parentElement.querySelectorAll('.dynamic-calc').forEach((e)=>{
+        if(e.getAttribute('origin-value').includes('.')){
+          e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)).toFixed(2);
+        }else{
+          e.textContent = parseInt(e.getAttribute('origin-value')) * parseInt(ele.value);
+        }
+      });
+    }
+
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
       helpimage.src = "img/wisdom.png";
@@ -235,9 +259,9 @@
     
     html += `
     <tr>
-      <td>${row['buyprice']}</td>
-      <td id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
-      <td id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
+      <td class="dynamic-calc" origin-value="${row['buyprice']}">${row['buyprice']}</td>
+      <td class="dynamic-calc" origin-value="${Math.ceil(row['buyprice'] * 0.05)}" id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
+      <td class="dynamic-calc" origin-value="${(row['craftprice'] / row['dict']['수량']).toFixed(2)}" id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
       <td>`;
       // 재료
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
@@ -304,7 +328,7 @@
          qty = row['dict'][Object.keys(row['dict'])[i]]; 
         }
 
-        html += `<p>${qty}</p>`;
+        html += `<p class="dynamic-calc" origin-value="${qty}">${qty}</p>`;
       }
 
       html += `</td>
@@ -351,12 +375,12 @@
             }
           }
         }
-        html += `<p>${calcprice}</p>`;
+        html += `<p class="dynamic-calc" origin-value="${calcprice}">${calcprice}</p>`;
       }
-      html +=`<td>${row['craftprice']}</td>
-      <td>${row['dict']['활동력']}<br>(${row['es']})</td>
-      <td>${row['dict']['수량']}<br>(${row['gsqty']} <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { content: '기본 대성공 5%에서 영지효과 곱연산',theme: 'light', placement: 'bottom', });"></i>)</td>
-      <td>${row['profit']}</td>
+      html +=`<td class="dynamic-calc" origin-value="${row['craftprice']}">${row['craftprice']}</td>
+      <td> <span class="dynamic-calc" origin-value="${row['dict']['활동력']}">${row['dict']['활동력']}</span><br>(<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>)</td>
+      <td> <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span><br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { content: '기본 대성공 5%에서 영지효과 곱연산',theme: 'light', placement: 'bottom', });"></i>)<br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" oninput="createqtyperset(event,this)" onmousewheel="createqtyperset(event,this)" type="text" value="1">Set</td>
+      <td class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</td>
     </tr>
   </tbody>
 </table>`;
