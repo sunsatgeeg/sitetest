@@ -32,9 +32,7 @@
       }else if(event.deltaY>0){
         ele.value = parseInt(ele.value) - 1;
       } 
-      if(parseInt(ele.value) <= 1){
-        ele.value = 1;
-      }
+      if(parseInt(ele.value) <= -1) ele.value = 0;
 
       ele.parentElement.parentElement.querySelectorAll('.dynamic-calc').forEach((e)=>{
         if(e.getAttribute('origin-value').includes('.')){
@@ -382,8 +380,15 @@
         html += `<p class="dynamic-calc" origin-value="${calcprice}">${calcprice}</p>`;
       }
       html +=`<td class="dynamic-calc" origin-value="${row['craftprice']}">${row['craftprice']}</td>
-      <td> <span class="dynamic-calc" origin-value="${row['dict']['활동력']}">${row['dict']['활동력']}</span><br>(<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>)</td>
-      <td> <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span><br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { content: '기본 대성공 5%에서 영지효과 곱연산',theme: 'light', placement: 'bottom', });"></i>)<br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" oninput="createqtyperset(event,this)" onmousewheel="createqtyperset(event,this)" type="text" value="1">Set</td>
+      <td>
+        <span class="dynamic-calc" origin-value="${row['dict']['활동력']}">${row['dict']['활동력']}</span>
+        <br>(<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>)
+      </td>
+      <td onmousewheel="createqtyperset(event,this.querySelector('.pricetxt'))">
+        <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span>
+        <br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { content: '기본 대성공 5%에서 영지효과 곱연산',theme: 'light', placement: 'bottom', });"></i>)
+        <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">Set
+      </td>
       <td class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</td>
     </tr>
   </tbody>
@@ -521,6 +526,8 @@
             $(this).val(0);
             thiseffectval = 0;
           }
+          $(this).val(parseInt($(this).val()));
+
           setCookie(thiseffectname, thiseffectval, 365);
           recipecalc();
         });
