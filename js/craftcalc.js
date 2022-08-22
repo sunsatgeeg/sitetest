@@ -39,7 +39,7 @@
           if(Number.isInteger((parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)))){
             e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value));
           }else{
-            e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)).toFixed(2);
+            e.textContent = (parseFloat(e.getAttribute('origin-value')) * parseInt(ele.value)).toFixed((e.getAttribute('origin-value').substr(e.getAttribute('origin-value').indexOf('.')+1)).length);
           }
         }else{
           e.textContent = parseInt(e.getAttribute('origin-value')) * parseInt(ele.value);
@@ -261,9 +261,9 @@
     
     html += `
     <tr>
-      <td class="dynamic-calc" origin-value="${row['buyprice']}">${row['buyprice']}</td>
-      <td class="dynamic-calc" origin-value="${Math.ceil(row['buyprice'] * 0.05)}" id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
-      <td class="dynamic-calc" origin-value="${(row['craftprice'] / row['dict']['수량']).toFixed(2)}" id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
+      <td>${row['buyprice']}</td>
+      <td id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
+      <td id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
       <td>`;
       // 재료
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
