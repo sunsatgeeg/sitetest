@@ -47,6 +47,26 @@
       });
     }
 
+    tippy('.bi', {
+      allowHTML: true, 
+      onShow(instance) {
+        instance.setContent(instance.reference.getAttribute('tooltipcontent'));
+      },
+      theme: 'light', 
+      placement: 'right',
+    });
+
+    function newtippy(index, row, $detail){
+      tippy($detail[0].querySelectorAll('.bi'), {
+        allowHTML: true, 
+        onShow(instance) {
+          instance.setContent(instance.reference.getAttribute('tooltipcontent'));
+        },
+        theme: 'light', 
+        placement: 'top',
+      });
+    }
+
     document.querySelector('#helpbtn').addEventListener('click', function(){
       var helpimage = document.createElement('img');
       helpimage.src = "img/wisdom.png";
@@ -386,7 +406,7 @@
       </td>
       <td onmousewheel="createqtyperset(event,this.querySelector('.pricetxt'))">
         <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span>
-        <br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { content: '기본 대성공 5%에서 영지효과 곱연산',theme: 'light', placement: 'bottom', });"></i>)
+        <br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산"></i>)
         <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">Set
       </td>
       <td class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</td>
@@ -494,6 +514,7 @@
         striped: true,
         pageSize: 10,
         pageList: [10, 25, 50, 100],
+        onExpandRow: newtippy,
 
         formatShowingRows: function(pageFrom, pageTo, totalRows){
           return ''
