@@ -57,7 +57,7 @@
     });
 
     function newtippy(index, row, $detail){
-      tippy($detail[0].querySelectorAll('.bi'), {
+      tippy($detail[0].querySelectorAll('.hasTooltip'), {
         allowHTML: true, 
         onShow(instance) {
           instance.setContent(instance.reference.getAttribute('tooltipcontent'));
@@ -103,6 +103,8 @@
           type = "c";
         }else if(type == "특수"){
           type = "s";
+        }else if(type == "생활도구"){
+          type = "lt";
         }
         qty = recipe['수량'];
         e = recipe['활동력'];
@@ -267,9 +269,9 @@
       <th scope="col">필요<br>개수</th>
       <th scope="col">합계</th>
       <th scope="col">제작비용</th>
-      <th scope="col">활동력<br>(영지효과)</th>
-      <th scope="col">제작 수량<br>(영지효과)</th>
-      <th scope="col">이익</th>
+      <th scope="col">활동력<br>[영지효과]</th>
+      <th scope="col">제작 수량<br>[영지효과]</th>
+      <th scope="col">이익<br>(세트당)</th>
     </tr>
   </thead>
   <tbody>`;
@@ -364,6 +366,8 @@
         type = "c";
       }else if(type == "특수"){
         type = "s";
+      }else if(type == "생활도구"){
+        type = "lt";
       }
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
         thisitemname = Object.keys(row['dict'])[i];
@@ -402,14 +406,15 @@
       html +=`<td class="dynamic-calc" origin-value="${row['craftprice']}">${row['craftprice']}</td>
       <td>
         <span class="dynamic-calc" origin-value="${row['dict']['활동력']}">${row['dict']['활동력']}</span>
-        <br>(<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>)
+        <br>[<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>]
       </td>
       <td onmousewheel="createqtyperset(event,this.querySelector('.pricetxt'))">
         <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span>
-        <br>(<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산"></i>)
-        <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">Set
+        <br>[<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산"></i>]
+        <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">세트
       </td>
-      <td class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</td>
+      <td>
+        <span class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="((${row['buyprice']} - ${Math.ceil(row['buyprice'] * 0.05)}) X ${row['gsqty']}) - ${row['craftprice']}<br>((개당 시세 - 개당 수수료) X 제작 수량) - 제작 비용"></i></td>
     </tr>
   </tbody>
 </table>`;
@@ -467,7 +472,7 @@
     function profitperenergyFormatter(value, row){
       
       if(waringitemarr.indexOf(row['item']) != -1){
-        return value + ` <i class="bi bi-exclamation-circle-fill" onmouseover="tippy($(this)[0], { content: '제작 활동력이 1이라서 비상식적인 이득으로 나온 것입니다. 실제론 활동력 1만 못 녹입니다.',theme: 'light', placement: 'bottom', });"></i>`;
+        return value + ` <i class="bi bi-exclamation-circle-fill" style="color:red;" onmouseover="tippy($(this)[0], { content: '제작 활동력이 1이라서 비상식적인 이득이 나온 것입니다. 실제론 활동력 1만 못 녹입니다.',theme: 'light', placement: 'bottom', });"></i>`;
       }else{
         return value;
       }

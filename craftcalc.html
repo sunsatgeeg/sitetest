@@ -179,6 +179,7 @@
                         <th scope="col">배틀아이템</th>
                         <th scope="col">요리</th>
                         <th scope="col">특수</th>
+                        <th scope="col">생활도구</th>
                       </tr>
                     </thead>
                     <tbody class="align-middle" id="wisdomeffect">
@@ -213,6 +214,12 @@
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="gs_lt" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
                       </tr>
                       <tr>
                         <td colspan="5">제작 수수료 감소율</td>
@@ -242,6 +249,12 @@
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="cc_lt" value="0">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
                       </tr>
                       <tr>
                         <td colspan="5">활동력 감소율</td>
@@ -268,6 +281,12 @@
                         <th>
                           <div class="input-group">
                             <input type="number" class="input_box" id="e_s" value="0" max="100">
+                            <span class="input-group-text">%</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box" id="e_lt" value="0" max="100">
                             <span class="input-group-text">%</span>
                           </div>
                         </th>
@@ -304,7 +323,7 @@
         </div>
         
         <div class="text-end">
-          줄을 클릭하시면 자세한 제작정보가 표시됩니다.
+          제작하고 싶은 아이템을 클릭하면 자세한 상세내역 탭이 출력됩니다.
         </div>
       </div>
     </main>
