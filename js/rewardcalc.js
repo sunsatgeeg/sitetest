@@ -339,22 +339,85 @@ var reward_bonus_array = [
                                 "phaserewarditem":[2,3],
                                 "phasebonusrewarditem":[
                                                         [
-                                                            ["수호강석",600],
-                                                            ["파괴강석",300],
+                                                            ["정제된 수호강석",150],
+                                                            ["정제된 파괴강석",75],
                                                             ["명예의 파편",2400],
-                                                            ["경이로운 명예의 돌파석",10],
+                                                            ["찬란한 명예의 돌파석",3],
                                                             ["관조의 빛무리",2]
                                                         ],
                                                         [
-                                                            ["수호강석",900],
-                                                            ["파괴강석",450],
+                                                            ["정제된 수호강석",230],
+                                                            ["정제된 파괴강석",115],
                                                             ["명예의 파편",3000],
-                                                            ["경이로운 명예의 돌파석",15],
+                                                            ["찬란한 명예의 돌파석",4],
                                                             ["관조의 빛무리",3]
                                                         ]
                                                         ]
-                            }
+                            },
+                            {
+                                "bossname":"일리아칸(노말)",
+                                "bossitem":"쇠락한 눈동자",
+                                "phase":3,
+                                "phaserewardgold":[1500,1750,2250],
+                                "phasebonusrewardgold":[900,1100,1500],
+                                "phaserewarditem":[3,3,5],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["정제된 수호강석",240],
+                                                            ["정제된 파괴강석",120],
+                                                            ["명예의 파편",3000],
+                                                            ["찬란한 명예의 돌파석",6],
+                                                            ["쇠락한 눈동자",3]
+                                                        ],
+                                                        [
+                                                            ["정제된 수호강석",320],
+                                                            ["정제된 파괴강석",160],
+                                                            ["명예의 파편",3000],
+                                                            ["찬란한 명예의 돌파석",8],
+                                                            ["쇠락한 눈동자",3]
+                                                        ],
+                                                        [
+                                                            ["정제된 수호강석",480],
+                                                            ["정제된 파괴강석",240],
+                                                            ["명예의 파편",4200],
+                                                            ["찬란한 명예의 돌파석",11],
+                                                            ["쇠락한 눈동자",5]
+                                                        ],
+                                                        ]
+                            },
+                            {
+                                "bossname":"일리아칸(하드)",
+                                "bossitem":"쇠락한 눈동자",
+                                "phase":3,
+                                "phaserewardgold":[1750,2000,2750],
+                                "phasebonusrewardgold":[1200,1400,1900],
+                                "phaserewarditem":[7,7,8],
+                                "phasebonusrewarditem":[
+                                                        [
+                                                            ["정제된 수호강석",400],
+                                                            ["정제된 파괴강석",200],
+                                                            ["명예의 파편",4000],
+                                                            ["찬란한 명예의 돌파석",9],
+                                                            ["쇠락한 눈동자",7]
+                                                        ],
+                                                        [
+                                                            ["정제된 수호강석",480],
+                                                            ["정제된 파괴강석",240],
+                                                            ["명예의 파편",4000],
+                                                            ["찬란한 명예의 돌파석",12],
+                                                            ["쇠락한 눈동자",7]
+                                                        ],
+                                                        [
+                                                            ["정제된 수호강석",720],
+                                                            ["정제된 파괴강석",360],
+                                                            ["명예의 파편",5500],
+                                                            ["찬란한 명예의 돌파석",18],
+                                                            ["쇠락한 눈동자",8]
+                                                        ],
+                                                        ]
+                            },
                         ];
+    var bossColor = {"아르고스":"#ffffff", "발탄":"#5f9ea0", "비아키스":"#ff1493", "쿠크세이튼":"#ff703b", "아브렐슈드":"#8a2be2", "카양겔":"#ffd700", "일리아칸":"#006400"}
     
     var content = "";
 
@@ -366,7 +429,10 @@ var reward_bonus_array = [
                         "위대한 명예의 돌파석":1,
                         "수호강석":10,
                         "파괴강석":10,
-                        "경이로운 명예의 돌파석":1
+                        "경이로운 명예의 돌파석":1,
+                        "정제된 수호강석":10,
+                        "정제된 파괴강석":10,
+                        "찬란한 명예의 돌파석":1
                     };
     document.addEventListener("DOMContentLoaded", function(){
         fetch(url + '/rewardcalc', {method: 'POST'}).then((response) => response.json()).then((data) =>{
@@ -397,7 +463,7 @@ var reward_bonus_array = [
 `
 <div class="accordion-item">
 <h2 class="accordion-header" id="heading${index}">
-<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+<button class="accordion-button collapsed fw-bold" type="button" style="color:${bossColor[boss['bossname'].substring(0, boss['bossname'].indexOf('('))]}" data-bs-target="#collapse${index}" aria-controls="collapse${index}" data-bs-toggle="collapse" aria-expanded="false">
     ${boss['bossname']}
 </button>
 </h2>
@@ -530,7 +596,7 @@ var reward_bonus_array = [
         })
     }
 
-    var filteritemlist = []
+    var filteritemlist = ['혼돈의 돌']
     document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
         e.addEventListener('click', (td)=>{
             if(td.target.className == "form-check-label" || td.target.className == "btn btn-outline-light btn-lg") return;

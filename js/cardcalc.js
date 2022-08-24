@@ -4,6 +4,7 @@ var carddeck = {};
 var cardqty = {};
 var cardalllist = [];
 var pushbuttonindex = 0;
+var updateversiontime = "08241750";
 
 document.querySelector('#reconBtn').addEventListener('click', function(){
     delCookie('savecarddeck');
@@ -32,7 +33,7 @@ async function cardnumscriptimport(){
     var cardnumscript = document.createElement('script');
     cardnumscript.type = 'text/javascript';
     cardnumscript.async = true;
-    cardnumscript.src = 'js/cardnum.js';
+    cardnumscript.src = `js/cardnum.js?v=${updateversiontime}`;
     document.querySelector('script').appendChild(cardnumscript);
 
     await new Promise(r => {
@@ -305,7 +306,7 @@ async function cardsetcalcstart(){
     var cardeffectscript = document.createElement('script');
     cardeffectscript.type = 'text/javascript';
     cardeffectscript.defer = true;
-    cardeffectscript.src = 'js/cardeffect.js';
+    cardeffectscript.src = `js/cardeffect.js?v=${updateversiontime}`;
     head.appendChild(cardeffectscript);
     await new Promise(r => {
         cardeffectscript.onload = r
@@ -558,7 +559,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
     opencvscript.defer = true;
     cardlistscript.defer = true;
     opencvscript.src = 'js/opencv.js';
-    cardlistscript.src = 'js/cardlist.js';
+    cardlistscript.src = `js/cardlist.js?v=${updateversiontime}`;
     head.appendChild(opencvscript);
     head.appendChild(cardlistscript);
 
