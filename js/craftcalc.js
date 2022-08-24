@@ -560,6 +560,7 @@
 
           if(parseFloat(thiseffectval) <= 0){
             $(this).val('');
+            thiseffectval = '';
           }
 
           setCookie(thiseffectname, thiseffectval, 365);
