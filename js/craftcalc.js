@@ -21,6 +21,11 @@
     <th scope="col">제작개수</th>
     `
 
+    function isEmptyValue(value){
+      if(isNaN(value)) return 0;
+      return value;
+    }
+
     function createqtyperset(event,ele){
       event.preventDefault();
       event.stopPropagation();
@@ -120,7 +125,7 @@
           if(thisitemname == '실링'){
             calcprice = 0;
           }else if(thisitemname == "골드"){
-            thissale = parseInt($('#cc_' + type).val()) + parseInt($('#cc_all').val());
+            thissale = isEmptyValue(parseFloat($('#cc_' + type).val())) + isEmptyValue(parseFloat($('#cc_all').val()));
             if(thissale == 0){
               calcprice = thisitmeqty;
             }else{
@@ -153,19 +158,19 @@
           thisbuyprice = jsonsave[itemname.substr(0, itemname.lastIndexOf('('))];
         }
 
-        thisgs = parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val()) + 5;
+        thisgs = isEmptyValue(parseFloat($('#gs_' + type).val())) + isEmptyValue(parseFloat($('#gs_all').val())) + 5;
         if(thisgs <= 5){
           gsqty = qty;
         }else{
-          gsqty = ((((((parseInt($('#gs_' + type).val()) + parseInt($('#gs_all').val())) / 10) / 2) + 5) * qty) / 100) + qty;
+          gsqty = ((((((isEmptyValue(parseFloat($('#gs_' + type).val())) + isEmptyValue(parseFloat($('#gs_all').val()))) / 10) / 2) + 5) * qty) / 100) + qty;
         }
         thisprofit = ((thisbuyprice - Math.ceil(thisbuyprice * 0.05)) * gsqty - craftprice);
 
-        this_e = parseInt($('#e_' + type).val()) + parseInt($('#e_all').val());
+        this_e = isEmptyValue(parseFloat($('#e_' + type).val())) + isEmptyValue(parseFloat($('#e_all').val()));
         if(this_e == 0){
           es = e;
         }else{
-          es = e - (e * (this_e / 100));
+          es = parseInt(e - (e * (this_e / 100)));
           if(es == 0){
             es = 1;
           }
@@ -377,7 +382,7 @@
         if(thisitemname == "실링"){
           calcprice = 0;
         }else if(thisitemname == "골드"){
-          thissale = parseInt($('#cc_' + type).val()) + parseInt($('#cc_all').val());
+          thissale = isEmptyValue(parseFloat($('#cc_' + type).val())) + isEmptyValue(parseFloat($('#cc_all').val()));
           if(thissale == 0){
             calcprice = row['dict'][Object.keys(row['dict'])[i]];
           }else{
@@ -531,8 +536,8 @@
 
       $('#wisdomeffectclear').on('click', function(){
         $('#wisdomeffect').find('input').filter(function(){
-          $(this).val(0);
-          setCookie($(this).attr('id'), 0, 365);
+          $(this).val('');
+          setCookie($(this).attr('id'), '', 365);
           recipecalc();
         });
       });
@@ -540,19 +545,22 @@
       $('#wisdomeffect').find('input').filter(function(){
         givemeid = $(this).attr('id');
         if(getCookie(givemeid) == undefined || getCookie(givemeid) == ''){
-          $(this).val(0);
+          $(this).val('');
         }else {
           $(this).val(getCookie(givemeid));
         }
 
+        $(this).hover(()=>{
+          $(this).focus();
+        })
+
         $(this).on('input', function(){
           thiseffectname = $(this).attr('id');
           thiseffectval = $(this).val();
-          if(thiseffectval == undefined || thiseffectval == '' || parseInt(thiseffectval) < 0){
-            $(this).val(0);
-            thiseffectval = 0;
+
+          if(parseFloat(thiseffectval) <= 0){
+            $(this).val('');
           }
-          $(this).val(parseInt($(this).val()));
 
           setCookie(thiseffectname, thiseffectval, 365);
           recipecalc();
