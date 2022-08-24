@@ -770,49 +770,6 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"요리","수량":1,"활동력":288,"생선":80,"두툼한 생고기":96,"붉은 살 생선":40,"다듬은 생고기":48,"오레하 태양 잉어":10,"오레하 두툼한 생고기":12,"골드":50},
-  "명인의 쫄깃한 꼬치구이 [10개 단위 판매]":{"key":{
-      "Element_000": {
-        "type": "NameTagBox",
-        "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>명인의 쫄깃한 꼬치구이</FONT></P>"
-      },
-      "Element_001": {
-        "type": "ItemTitle",
-        "value": {
-          "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 요리</FONT></FONT>",
-          "leftStr1": "",
-          "leftStr2": "",
-          "rightStr0": "",
-          "slotData": {
-            "iconGrade": 1,
-            "iconPath": "EFUI_IconAtlas/Use/Use_8_171.png",
-          }
-        }
-      },
-      "Element_002": {
-        "type": "MultiTextBox",
-        "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>1302</FONT></FONT>"
-      },
-      "Element_003": {
-        "type": "SingleTextBox",
-        "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
-      },
-      "Element_004": {
-        "type": "MultiTextBox",
-        "value": "|거래가능"
-      },
-      "Element_005": {
-        "type": "SingleTextBox",
-        "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>마늘을 꽂아 구운 꼬치. 알싸한 맛이 스며든다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>3000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>24%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
-      },
-      "Element_006": {
-        "type": "SingleTextBox",
-        "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
-      },
-      "Element_007": {
-        "type": "SingleTextBox",
-        "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
-      }
-    },"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":35},
 "명인의 쫄깃한 꼬치구이 [10개 단위 판매]":{"key":{
     "Element_000": {
       "type": "NameTagBox",
@@ -855,7 +812,7 @@ var recipedata = {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
-  },"분류":"요리","수량":1,"활동력":216,"생선":52,"두툼한 생고기":57,"붉은 살 생선":27,"다듬은 생고기":30,"오레하 태양 잉어":22,"오레하 두툼한 생고기":24,"골드":35},
+  },"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":35},
 "대가의 양념 꼬치구이 [10개 단위 판매]":{"key":{
   "Element_000": {
     "type": "NameTagBox",
@@ -898,7 +855,7 @@ var recipedata = {
     "type": "SingleTextBox",
     "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
   }
-},"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":50},
+},"분류":"요리","수량":1,"활동력":216,"생선":52,"두툼한 생고기":57,"붉은 살 생선":27,"다듬은 생고기":30,"오레하 태양 잉어":22,"오레하 두툼한 생고기":24,"골드":50},
 "각성 물약":{"key":{
     "Element_000": {
       "type": "NameTagBox",
