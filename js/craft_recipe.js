@@ -613,21 +613,20 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"특수","수량":20,"활동력":288,"고대 유물":94,"희귀한 유물":29,"오레하 유물":16,"골드":250},
-"장인의 마늘 스테이크 정식 [10개 단위 판매]":{"key":{
+"최상급 오레하 융화 재료(수렵)":{"key":{
     "Element_000": {
       "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>장인의 마늘 스테이크 정식</FONT></P>"
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#ce43fc'>최상급 오레하 융화 재료</FONT></P>"
     },
     "Element_001": {
       "type": "ItemTitle",
       "value": {
-        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
-        "leftStr1": "",
+        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
         "rightStr0": "",
         "slotData": {
-          "iconGrade": 2,
-          "iconPath": "EFUI_IconAtlas/Use/Use_8_213.png",
+          "iconGrade": 3,
+          "iconPath": "EFUI_IconAtlas/Use/Use_11_29.png",
         }
       }
     },
@@ -641,7 +640,7 @@ var recipedata = {
     },
     "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>잘 키운 소의 특수부위를 구워 만든 스테이크. 안심과 등심이 균형있게 잘 익었다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>1000</FONT>, 체력이 <FONT COLOR='#99ff99'>1500</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>8%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+      "value": "<font color='#E2C87A'><font size='12'>매우 희귀한 재료로써 장비의 최고 한계까지 그 힘을 이끌어 낼수 있다. 장비에 극한의 제련까지 사용된다.<br><br><font color='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</font><br><font color='#FFD200'>거래소에서 거래 가능합니다.</font></font></font>"
     },
     "Element_005": {
       "type": "SingleTextBox",
@@ -649,52 +648,85 @@ var recipedata = {
     },
     "Element_006": {
       "type": "SingleTextBox",
-      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
-  },"분류":"요리","수량":1,"활동력":288,"생선":60,"두툼한 생고기":60,"붉은 살 생선":38,"다듬은 생고기":38,"실링":2500},
-"달인의 버터 스테이크 정식 [10개 단위 판매]":{"key":{
+  },"분류":"특수","수량":15,"활동력":360,"두툼한 생고기":142,"오레하 두툼한 생고기":52,"질긴 가죽":69,"골드":300},
+"최상급 오레하 융화 재료(낚시)":{"key":{
     "Element_000": {
       "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>달인의 버터 스테이크 정식</FONT></P>"
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#ce43fc'>최상급 오레하 융화 재료</FONT></P>"
     },
     "Element_001": {
       "type": "ItemTitle",
       "value": {
-        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
-        "leftStr1": "",
+        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
         "leftStr2": "",
         "rightStr0": "",
         "slotData": {
-          "iconGrade": 2,
-          "iconPath": "EFUI_IconAtlas/Use/Use_8_214.png",
+          "iconGrade": 3,
+          "iconPath": "EFUI_IconAtlas/Use/Use_11_29.png",
         }
       }
     },
     "Element_002": {
-      "type": "MultiTextBox",
-      "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>802</FONT></FONT>"
-    },
-    "Element_003": {
       "type": "SingleTextBox",
       "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
     },
-    "Element_004": {
+    "Element_003": {
       "type": "MultiTextBox",
       "value": "|거래가능"
     },
-    "Element_005": {
+    "Element_004": {
       "type": "SingleTextBox",
-      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>오리고기와 다진 소고기 그리고 돼지의 목살을 덩어리쨰 넣어 만든 고급 스테이크. 기운이 솟아나는 느낌이다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>2000</FONT>, 체력이 <FONT COLOR='#99ff99'>3000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>16%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+      "value": "<font color='#E2C87A'><font size='12'>매우 희귀한 재료로써 장비의 최고 한계까지 그 힘을 이끌어 낼수 있다. 장비에 극한의 제련까지 사용된다.<br><br><font color='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</font><br><font color='#FFD200'>거래소에서 거래 가능합니다.</font></font></font>"
     },
-    "Element_006": {
+    "Element_005": {
       "type": "SingleTextBox",
       "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
     },
-    "Element_007": {
+    "Element_006": {
       "type": "SingleTextBox",
-      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
-  },"분류":"요리","수량":1,"활동력":288,"생선":80,"두툼한 생고기":80,"붉은 살 생선":40,"다듬은 생고기":40,"칼다르 태양 잉어":10,"칼다르 두툼한 생고기":10,"골드":25},
+  },"분류":"특수","수량":20,"활동력":360,"생선":142,"오레하 태양 잉어":52,"자연산 진주":69,"골드":300},
+"최상급 오레하 융화 재료(고고학)":{"key":{
+    "Element_000": {
+      "type": "NameTagBox",
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#ce43fc'>최상급 오레하 융화 재료</FONT></P>"
+    },
+    "Element_001": {
+      "type": "ItemTitle",
+      "value": {
+        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 장비 재련 재료</FONT></FONT>",
+        "leftStr2": "",
+        "rightStr0": "",
+        "slotData": {
+          "iconGrade": 3,
+          "iconPath": "EFUI_IconAtlas/Use/Use_11_29.png",
+        }
+      }
+    },
+    "Element_002": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+    },
+    "Element_003": {
+      "type": "MultiTextBox",
+      "value": "|거래가능"
+    },
+    "Element_004": {
+      "type": "SingleTextBox",
+      "value": "<font color='#E2C87A'><font size='12'>매우 희귀한 재료로써 장비의 최고 한계까지 그 힘을 이끌어 낼수 있다. 장비에 극한의 제련까지 사용된다.<br><br><font color='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</font><br><font color='#FFD200'>거래소에서 거래 가능합니다.</font></font></font>"
+    },
+    "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+    },
+    "Element_006": {
+      "type": "SingleTextBox",
+      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+    }
+  },"분류":"특수","수량":20,"활동력":360,"고대 유물":107,"희귀한 유물":51,"오레하 유물":52,"골드":300},
 "명인의 허브 스테이크 정식 [10개 단위 판매]":{"key":{
     "Element_000": {
       "type": "NameTagBox",
@@ -738,6 +770,135 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"요리","수량":1,"활동력":288,"생선":80,"두툼한 생고기":96,"붉은 살 생선":40,"다듬은 생고기":48,"오레하 태양 잉어":10,"오레하 두툼한 생고기":12,"골드":50},
+  "명인의 쫄깃한 꼬치구이 [10개 단위 판매]":{"key":{
+      "Element_000": {
+        "type": "NameTagBox",
+        "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>명인의 쫄깃한 꼬치구이</FONT></P>"
+      },
+      "Element_001": {
+        "type": "ItemTitle",
+        "value": {
+          "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 요리</FONT></FONT>",
+          "leftStr1": "",
+          "leftStr2": "",
+          "rightStr0": "",
+          "slotData": {
+            "iconGrade": 1,
+            "iconPath": "EFUI_IconAtlas/Use/Use_8_171.png",
+          }
+        }
+      },
+      "Element_002": {
+        "type": "MultiTextBox",
+        "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>1302</FONT></FONT>"
+      },
+      "Element_003": {
+        "type": "SingleTextBox",
+        "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+      },
+      "Element_004": {
+        "type": "MultiTextBox",
+        "value": "|거래가능"
+      },
+      "Element_005": {
+        "type": "SingleTextBox",
+        "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>마늘을 꽂아 구운 꼬치. 알싸한 맛이 스며든다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>3000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>24%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+      },
+      "Element_006": {
+        "type": "SingleTextBox",
+        "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+      },
+      "Element_007": {
+        "type": "SingleTextBox",
+        "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+      }
+    },"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":35},
+"명인의 쫄깃한 꼬치구이 [10개 단위 판매]":{"key":{
+    "Element_000": {
+      "type": "NameTagBox",
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>명인의 쫄깃한 꼬치구이</FONT></P>"
+    },
+    "Element_001": {
+      "type": "ItemTitle",
+      "value": {
+        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 요리</FONT></FONT>",
+        "leftStr1": "",
+        "leftStr2": "",
+        "rightStr0": "",
+        "slotData": {
+          "iconGrade": 1,
+          "iconPath": "EFUI_IconAtlas/Use/Use_8_171.png",
+        }
+      }
+    },
+    "Element_002": {
+      "type": "MultiTextBox",
+      "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>1302</FONT></FONT>"
+    },
+    "Element_003": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+    },
+    "Element_004": {
+      "type": "MultiTextBox",
+      "value": "|거래가능"
+    },
+    "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>마늘을 꽂아 구운 꼬치. 알싸한 맛이 스며든다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>3000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>24%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+    },
+    "Element_006": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+    },
+    "Element_007": {
+      "type": "SingleTextBox",
+      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+    }
+  },"분류":"요리","수량":1,"활동력":216,"생선":52,"두툼한 생고기":57,"붉은 살 생선":27,"다듬은 생고기":30,"오레하 태양 잉어":22,"오레하 두툼한 생고기":24,"골드":35},
+"대가의 양념 꼬치구이 [10개 단위 판매]":{"key":{
+  "Element_000": {
+    "type": "NameTagBox",
+    "value": "<P ALIGN='CENTER'><FONT COLOR='#8DF901'>[일품] 대가의 양념 꼬치구이</FONT></P>"
+  },
+  "Element_001": {
+    "type": "ItemTitle",
+    "value": {
+      "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 요리</FONT></FONT>",
+      "leftStr1": "",
+      "leftStr2": "",
+      "rightStr0": "",
+      "slotData": {
+        "iconGrade": 1,
+        "iconPath": "EFUI_IconAtlas/Use/Use_8_178.png",
+      }
+    }
+  },
+  "Element_002": {
+    "type": "MultiTextBox",
+    "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>1580</FONT></FONT>"
+  },
+  "Element_003": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+  },
+  "Element_004": {
+    "type": "MultiTextBox",
+    "value": "|거래가능"
+  },
+  "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>잘 익은 고기와 다양한 야채를 꽃아 만든 매콤한 양념이 일품인 꼬치구이. 알싸한 맛과 풍미가 전해져 온다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>4000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>24%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+  },
+  "Element_006": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+  },
+  "Element_007": {
+    "type": "SingleTextBox",
+    "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+  }
+},"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":50},
 "각성 물약":{"key":{
     "Element_000": {
       "type": "NameTagBox",
