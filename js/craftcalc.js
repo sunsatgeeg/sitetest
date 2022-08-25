@@ -252,6 +252,68 @@
 
       $table.bootstrapTable('load', tabledata);
     }
+    
+    $('#accordionitemprice').on('click', function(){
+      $accord = $('#accordionitemprice').find('.row');
+
+      ([...new Set(temp)].sort()).forEach(function(e){
+        originE = e;
+        try{
+          grade = iteminfo[e][1];
+          image = iteminfo[e][0];
+        }catch{
+          if(e.indexOf('빛나는 ') != -1){
+            behindE = e.substr(4);
+            try{behindE = behindE.replace("정령의 회복약", "정가");}catch{}
+            grade = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconPath;
+          }else{
+            try{e = e.replace("융화 재료", "융화 재료(고고학)");}catch{}
+            grade = recipedata[e].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[e].key.Element_001.value.slotData.iconPath;
+          }
+        }
+        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${originE.substr(0,14)}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
+      });
+
+      $(this).off('click');
+      $('.pricetxt').filter(function(){
+        $(this).parent().find('.pricehide').text($(this).val());
+        $(this).width($(this).parent().find('.pricehide').width() + 16);
+
+        $(this).on("mousewheel",function(event,delta){
+          event.preventDefault();
+          event.stopPropagation();
+          if(delta>0){
+            $(this).val(parseInt($(this).val()) + 1);
+            $(this).parent().find('.pricehide').text($(this).val());
+          }else if(delta<0){
+            if($(this).val() == 0){return;}
+            $(this).val(parseInt($(this).val()) - 1);
+            $(this).parent().find('.pricehide').text($(this).val());
+          } 
+          
+          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
+          recipecalc();
+        });
+
+        $(this).on('input', function(){
+          $(this).parent().find('.pricehide').text($(this).val());
+          $(this).width($(this).parent().find('.pricehide').width() + 16);
+
+          if($(this).val() == ''){
+            $(this).val(0);
+            $(this).parent().find('.pricehide').text(0);
+          }
+          if($(this).val().indexOf('0') == 0 && $(this).val().length >= 2){
+            $(this).val($(this).val().substr(1));
+          }
+          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
+          recipecalc();
+        })
+
+      });
+    });
 
     function detailFormatter(index, row) {
       html = "";

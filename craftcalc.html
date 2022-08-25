@@ -146,9 +146,22 @@
       </div>
       
       <div class="mx-auto w-100 pt-5 pb-5">
-        <div class="text-end">
-          아이템 값 : 
-          <span id="markettime"></span>
+        <div class="accordion" id="accordionitemprice">
+          <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="heading1" style="margin-top:0px;">
+              <button style="background-color: #000 important;" class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                [클릭] 재료 시세 탭(수정 가능) <span id="markettime"></span>
+              </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionitemprice" style="">
+              <div class="accordion-body p-0" style="background-color: #212529;">
+                <div class="container">
+                  <div class="row" >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="fresh-table full-color-custom">
           <div class="toolbar text-start">
@@ -306,9 +319,10 @@
             <tbody style="cursor:pointer"></tbody>
           </table>
         </div>
+        
         <div class="text-end">
           제작하고 싶은 아이템을 클릭하면 자세한 상세내역 탭이 출력됩니다.
-          <br>상세내역 탭에서 아이템 가격을 수정할 수 있습니다.
+          <br>상세내역 탭에서도 아이템 가격을 수정할 수 있습니다.
         </div>
       </div>
     </main>
@@ -461,8 +475,8 @@
 
   <!-- custom -->
   <script src="js/custom.js"></script>
-  <script src="js/craft_recipe.js?v=08260554"></script>
-  <script src="js/craftcalc.js?v=08260554"></script>
+  <script src="js/craft_recipe.js?v=08241750"></script>
+  <script src="js/craftcalc.js?v=08260606"></script>
 
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
