@@ -46,7 +46,9 @@ var iteminfo = {
   "모닥불":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_12.png",2], 
   "도발 허수아비":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_45.png",2], 
   "성스러운 부적":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png",2], 
-  "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2]
+  "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2],
+  "골드":["EFUI_IconAtlas/money/money_4.png",0],
+  "실링":["EFUI_IconAtlas/etc/etc_14.png",0]
 };
 var itemunit = {
   "수줍은 들꽃":10,

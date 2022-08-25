@@ -61,7 +61,7 @@
       placement: 'right',
     });
 
-    function newtippy(index, row, $detail){
+    function newRow(index, row, $detail){
       tippy($detail[0].querySelectorAll('.hasTooltip'), {
         allowHTML: true, 
         onShow(instance) {
@@ -70,6 +70,64 @@
         theme: 'light', 
         placement: 'top',
       });
+      
+      $detail[0].querySelectorAll('.pricetxt').forEach((e)=>{
+        e.previousSibling.textContent = e.value;
+
+        e.previousSibling.style.display = 'unset';
+        e.style.width = `${e.previousSibling.offsetWidth + 16}px`;
+        e.previousSibling.style.display = 'none';
+    
+        if(e.value == ''){
+          e.value = 0;
+          e.previousSibling.textContent = 0;
+        }
+        if(e.value.indexOf('0') == 0 && e.value.length >= 2){
+          e.value = e.value.substr(1);
+        }
+        e.addEventListener('change', ()=>{
+          e.previousSibling.textContent = e.value;
+
+          e.previousSibling.style.display = 'unset';
+          e.style.width = `${e.previousSibling.offsetWidth + 16}px`;
+          e.previousSibling.style.display = 'none';
+      
+          if(e.value == ''){
+            e.value = 0;
+            e.previousSibling.textContent = 0;
+          }
+          if(e.value.indexOf('0') == 0 && e.value.length >= 2){
+            e.value = e.value.substr(1);
+          }
+        })
+      })
+      
+      $detail[0].querySelectorAll('.ableEditPrice').forEach((e)=>{
+        e.addEventListener('change', (ele)=>{
+          jsonsave[e.getAttribute('item')] = parseInt(e.value);
+
+          var detailElement = e;
+          while(true){
+            if(detailElement.className == "detail-view") break;
+            detailElement = detailElement.parentElement;
+          }
+          var targetitemname = detailElement.previousSibling.childNodes[1].textContent;
+
+          recipecalc();
+          $table.bootstrapTable('selectPage', 1)
+          var pagewhilestopsign = false;
+          while(true){
+            document.querySelectorAll("#fresh-table > tbody > tr > td.text-start").forEach((e)=>{
+              if(e.textContent == targetitemname){
+                $table.bootstrapTable('toggleDetailView', parseInt(e.parentElement.getAttribute('data-index')));
+                pagewhilestopsign = true;
+              }
+            })
+            if(pagewhilestopsign) break;
+            $table.bootstrapTable('nextPage');
+          }
+        })
+      })
     }
 
     document.querySelector('#helpbtn').addEventListener('click', function(){
@@ -88,8 +146,6 @@
     var $table = $('#fresh-table');
 
     function recipecalc(){
-      $table.bootstrapTable('load', []);
-
       tabledata = [];
       temp = [];
       Object.keys(recipedata).forEach(function(item){
@@ -197,69 +253,6 @@
       $table.bootstrapTable('load', tabledata);
     }
 
-    
-    $('#accordionitemprice').on('click', function(){
-      $accord = $('#accordionitemprice').find('.row');
-
-      ([...new Set(temp)].sort()).forEach(function(e){
-        originE = e;
-        try{
-          grade = iteminfo[e][1];
-          image = iteminfo[e][0];
-        }catch{
-          if(e.indexOf('빛나는 ') != -1){
-            behindE = e.substr(4);
-            try{behindE = behindE.replace("정령의 회복약", "정가");}catch{}
-            grade = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconGrade;
-            image = recipedata[e + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconPath;
-          }else{
-            try{e = e.replace("융화 재료", "융화 재료(고고학)");}catch{}
-            grade = recipedata[e].key.Element_001.value.slotData.iconGrade;
-            image = recipedata[e].key.Element_001.value.slotData.iconPath;
-          }
-        }
-        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${originE.substr(0,14)}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
-      });
-
-      $(this).off('click');
-      $('.pricetxt').filter(function(){
-        $(this).parent().find('.pricehide').text($(this).val());
-        $(this).width($(this).parent().find('.pricehide').width() + 16);
-
-        $(this).on("mousewheel",function(event,delta){
-          event.preventDefault();
-          event.stopPropagation();
-          if(delta>0){
-            $(this).val(parseInt($(this).val()) + 1);
-            $(this).parent().find('.pricehide').text($(this).val());
-          }else if(delta<0){
-            if($(this).val() == 0){return;}
-            $(this).val(parseInt($(this).val()) - 1);
-            $(this).parent().find('.pricehide').text($(this).val());
-          } 
-          
-          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
-          recipecalc();
-        });
-
-        $(this).on('input', function(){
-          $(this).parent().find('.pricehide').text($(this).val());
-          $(this).width($(this).parent().find('.pricehide').width() + 16);
-
-          if($(this).val() == ''){
-            $(this).val(0);
-            $(this).parent().find('.pricehide').text(0);
-          }
-          if($(this).val().indexOf('0') == 0 && $(this).val().length >= 2){
-            $(this).val($(this).val().substr(1));
-          }
-          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
-          recipecalc();
-        })
-
-      });
-    });
-
     function detailFormatter(index, row) {
       html = "";
       html += `<table class="table" style="cursor:auto;">
@@ -282,19 +275,38 @@
   <tbody>`;
 
     rowitemname = row['item'];
-    if(rowitemname.lastIndexOf('제작)') != -1){
+    if(rowitemname.lastIndexOf('제작)') != -1 || rowitemname.lastIndexOf('융화 재료(') != -1){
       rowitemname = rowitemname.substr(0, rowitemname.lastIndexOf('('));
     }
-    
+
     html += `
     <tr>
-      <td>${row['buyprice']}</td>
+      <td><span class="pricehide"></span><input class="pricetxt ableEditPrice" item="${rowitemname}" type="text" value="${row['buyprice']}"></td>
       <td id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
       <td id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
       <td>`;
       // 재료
       for (var i = 4; i < Object.keys(row['dict']).length; i++) {
-        html += `<p>${Object.keys(row['dict'])[i]}</p>`;
+        thisitemname = Object.keys(row['dict'])[i];
+        if(thisitemname.lastIndexOf('(') != -1){
+          thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
+        }
+        try{
+          grade = iteminfo[thisitemname][1];
+          image = iteminfo[thisitemname][0];
+        }catch{
+          if(thisitemname.indexOf('빛나는 ') != -1){
+            behindE = thisitemname.substr(4);
+            try{behindE = behindE.replace("정령의 회복약", "정가");}catch{}
+            grade = recipedata[thisitemname + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[thisitemname + '('+behindE+' 구매)'].key.Element_001.value.slotData.iconPath;
+          }else{
+            try{thisitemname = thisitemname.replace("융화 재료", "융화 재료(고고학)");}catch{}
+            grade = recipedata[thisitemname].key.Element_001.value.slotData.iconGrade;
+            image = recipedata[thisitemname].key.Element_001.value.slotData.iconPath;
+          }
+        }
+        html += `<p><img class="item-image" data-grade="${grade}" style="width:24px; height:24px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> ${Object.keys(row['dict'])[i]}</p>`;
       }
 
       html += `</td>
@@ -306,23 +318,25 @@
         if(thisitemname.lastIndexOf('(') != -1){
           thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
         }
+
         if(thisitemname == "실링"){
-          price = 0;
+          html += `<p>0</p>`;
         }else if(thisitemname == "골드"){
-          price = row['dict'][Object.keys(row['dict'])[i]];
+          html += `<p>${row['dict'][Object.keys(row['dict'])[i]]}</p>`;
         }else{
-          price = jsonsave[thisitemname];
           if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
             for (var j = 0; j < tabledata.length; j++) {
               if(tabledata[j]['item'] == thisitemname){
                 price = ((tabledata[j]['craftprice'] * row['dict'][Object.keys(row['dict'])[i]]) / tabledata[j]['dict']['수량']) / row['dict'][Object.keys(row['dict'])[i]];
                 price = price.toFixed(2);
+                html += `<p>${price}</p>`;
                 break;
               }
             }
+          }else{
+            html += `<p><span class="pricehide"></span><input class="pricetxt ableEditPrice" type="text" item="${thisitemname}" value="${jsonsave[thisitemname]}"></p>`;
           }
         }
-        html += `<p>${price}</p>`;
       }
 
       html += `</td>
@@ -524,7 +538,7 @@
         striped: true,
         pageSize: 10,
         pageList: [10, 25, 50, 100],
-        onExpandRow: newtippy,
+        onExpandRow: newRow,
 
         formatShowingRows: function(pageFrom, pageTo, totalRows){
           return ''
