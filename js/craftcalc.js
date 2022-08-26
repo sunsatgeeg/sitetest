@@ -337,7 +337,7 @@
   <tbody>`;
 
     rowitemname = row['item'];
-    if(rowitemname.lastIndexOf('제작)') != -1 || rowitemname.lastIndexOf('융화 재료(') != -1){
+    if(rowitemname.lastIndexOf('(') != -1){
       rowitemname = rowitemname.substr(0, rowitemname.lastIndexOf('('));
     }
 
