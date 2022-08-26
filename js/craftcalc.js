@@ -61,6 +61,53 @@
       placement: 'right',
     });
 
+    function reloadPriceTXT(){
+      document.querySelectorAll('.pricetxt').forEach((e)=>{
+        e.previousSibling.textContent = e.value;
+
+        e.previousSibling.style.display = 'unset';
+        e.style.width = `${e.previousSibling.offsetWidth + 16}px`;
+        e.previousSibling.style.display = 'none';
+    
+        if(e.value == ''){
+          e.value = 0;
+          e.previousSibling.textContent = 0;
+        }
+        if(e.value.indexOf('0') == 0 && e.value.length >= 2){
+          e.value = e.value.substr(1);
+        }
+
+
+        e.addEventListener('click', ()=>{
+          $table.bootstrapTable('toggleDetailView', e.parentElement.parentElement.getAttribute('data-index'));
+        })
+
+        e.addEventListener('change', ()=>{
+          e.previousSibling.textContent = e.value;
+
+          e.previousSibling.style.display = 'unset';
+          e.style.width = `${e.previousSibling.offsetWidth + 16}px`;
+          e.previousSibling.style.display = 'none';
+      
+          if(e.value == ''){
+            e.value = 0;
+            e.previousSibling.textContent = 0;
+          }
+          if(e.value.indexOf('0') == 0 && e.value.length >= 2){
+            e.value = e.value.substr(1);
+          }
+
+          temprowitemname = e.parentElement.parentElement.childNodes[1].textContent;
+          if(temprowitemname.indexOf('(') != -1){
+            temprowitemname = temprowitemname.substr(0, temprowitemname.indexOf('('))
+          }
+
+          jsonsave[temprowitemname] = parseInt(e.value);
+          recipecalc();
+        })
+      });
+    }
+
     function newRow(index, row, $detail){
       tippy($detail[0].querySelectorAll('.hasTooltip'), {
         allowHTML: true, 
@@ -85,6 +132,7 @@
         if(e.value.indexOf('0') == 0 && e.value.length >= 2){
           e.value = e.value.substr(1);
         }
+        
         e.addEventListener('change', ()=>{
           e.previousSibling.textContent = e.value;
 
@@ -515,6 +563,10 @@
       return '<img data-key="' + JSON.stringify(row.dict.key).replace(/"/gi, "&quot;") + '" class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/' + image + '" onmouseover="tooltip_item_show(this);" onmouseout="tooltip_item_hide(this);" style="width: 64px;">'
     }
 
+    function buypriceFormatter(value, row) {
+      return `<span class="pricehide"></span><input class="pricetxt" type="text" value="${value}">`;
+    }
+
     function tooltip_item_show(e){
       offtop = $(e).offset().top;
       offleft = $(e).offset().left + 75;
@@ -601,6 +653,7 @@
         pageSize: 10,
         pageList: [10, 25, 50, 100],
         onExpandRow: newRow,
+        onPostBody: reloadPriceTXT,
 
         formatShowingRows: function(pageFrom, pageTo, totalRows){
           return ''
