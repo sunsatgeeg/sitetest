@@ -10,7 +10,7 @@ var iteminfo = {
   "두툼한 생고기":["EFUI_IconAtlas/Use/Use_2_192.png",0],
   "오레하 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_67.png",2], 
   "질긴 가죽":["EFUI_IconAtlas/Use/Use_2_204.png",1], 
-  "생선":["EFUI_IconAtlas/Use/Use_1_142.png",2], 
+  "생선":["EFUI_IconAtlas/Use/Use_1_142.png",0], 
   "오레하 태양 잉어":["EFUI_IconAtlas/Use/Use_8_74.png",2], 
   "고대 유물":["EFUI_IconAtlas/Use/Use_9_3.png",0], 
   "희귀한 유물":["EFUI_IconAtlas/Use/Use_9_4.png",1], 
@@ -815,6 +815,49 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"요리","수량":1,"활동력":216,"생선":40,"두툼한 생고기":48,"붉은 살 생선":20,"다듬은 생고기":24,"오레하 태양 잉어":5,"오레하 두툼한 생고기":6,"골드":35},
+"대가의 안심 스테이크 정식 [10개 단위 판매]":{"key":{
+  "Element_000": {
+    "type": "NameTagBox",
+    "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>[일품] 대가의 안심 스테이크 정식</FONT></P>"
+  },
+  "Element_001": {
+    "type": "ItemTitle",
+    "value": {
+      "leftStr0": "<FONT SIZE='12'><FONT COLOR='#00B0FA'>희귀 요리</FONT></FONT>",
+      "leftStr1": "",
+      "leftStr2": "",
+      "rightStr0": "",
+      "slotData": {
+        "iconGrade": 2,
+        "iconPath": "EFUI_IconAtlas/Use/Use_8_208.png",
+      }
+    }
+  },
+  "Element_002": {
+    "type": "MultiTextBox",
+    "value": "|<FONT COLOR='#AAAAAA'>필요 아이템 레벨</FONT> <FONT COLOR='#FFFED7'><FONT COLOR='#C24B46'>1580</FONT></FONT>"
+  },
+  "Element_003": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+  },
+  "Element_004": {
+    "type": "MultiTextBox",
+    "value": "|거래가능"
+  },
+  "Element_005": {
+    "type": "SingleTextBox",
+    "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>매우 진귀한 부위를 구워 만든 정통 스테이크, 대가의 손길이 느껴지는 천상의 스테이크로 부드럽고 진한 육즙의 맛과 향이 음미할수록 탄성을 자아낸다.<BR><BR>힘, 민첩, 지능이 <FONT COLOR='#99ff99'>8000</FONT>, 체력이 <FONT COLOR='#99ff99'>6000</FONT>, 전투자원 자연 회복량이 <FONT COLOR='#99ff99'>24%</FONT> 증가합니다.<BR><BR><FONT COLOR='#FFFFFFAC'>한번에 한 개의 음식만 먹을 수 있습니다.</FONT></FONT></FONT>"
+  },
+  "Element_006": {
+    "type": "SingleTextBox",
+    "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+  },
+  "Element_007": {
+    "type": "SingleTextBox",
+    "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
+  }
+},"분류":"요리","수량":1,"활동력":288,"생선":98,"두툼한 생고기":106,"붉은 살 생선":52,"다듬은 생고기":63,"오레하 태양 잉어":50,"오레하 두툼한 생고기":52,"골드":65},
 "대가의 양념 꼬치구이 [10개 단위 판매]":{"key":{
   "Element_000": {
     "type": "NameTagBox",
