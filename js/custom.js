@@ -59,13 +59,6 @@ if(servererror){
     `;
 }
 
-document.querySelectorAll('header .nav-link').forEach(function(e){
-    if(e.getAttribute('href') == `/${here}`){
-        e.classList.add('active');
-        return;
-    }
-});
-
 try{
     if(nocommu.indexOf(here) != -1){
         bodydata = new FormData();
