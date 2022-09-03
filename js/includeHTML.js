@@ -1,0 +1,1 @@
+function includeHTML(tagname){fetch(`includes/${tagname}.html`).then(response=>{return response.text()}).then(data=>{document.getElementsByTagName(tagname)[0].innerHTML=data;});}
