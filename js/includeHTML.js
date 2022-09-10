@@ -1,5 +1,5 @@
 function includeHTML(tagname) {
-    fetch(`includes/${tagname}.html`).then(response => {
+    fetch(`/includes/${tagname}.html`).then(response => {
         return response.text()
     }).then(data => {
         if(data.includes('script')){
