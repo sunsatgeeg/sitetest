@@ -47,6 +47,27 @@ async function loadJavascript(name){
     }
 }
 
+function wideCheck(){
+    let firstImg = document.querySelectorAll('#gallery > img')[0];
+
+    let canvas = document.createElement('canvas');
+    canvas.width = firstImg.naturalWidth;
+    canvas.height = firstImg.naturalHeight;
+    canvas.getContext('2d').drawImage(firstImg, 0, 0, firstImg.naturalWidth, firstImg.naturalHeight);
+
+    let topPixelData = canvas.getContext('2d').getImageData(firstImg.naturalWidth/2, 0,                         1, 10).data;
+    let botPixelData = canvas.getContext('2d').getImageData(firstImg.naturalWidth/2, firstImg.naturalHeight-10, 1, 10).data;
+
+    let topPixel = 0;
+    let botPixel = 0;
+    for (let i = 0, n = topPixelData.length; i < n; i += 4) {
+        topPixel += topPixelData[i+0] + topPixelData[i+1] + topPixelData[i+2];
+        botPixel += botPixelData[i+0] + botPixelData[i+1] + botPixelData[i+2];
+    }
+
+    return topPixel + botPixel == 0 ? true : false;
+}
+
 // ************************ Drag and drop ***************** //
 let dropArea = document.getElementById("drop-area");
 
@@ -77,15 +98,19 @@ function alert(txt, dura){
 
 document.querySelector("#matchstart").addEventListener('click', async function(){
     if(document.querySelectorAll('#gallery > img').length == 0){
-        alert("인식할 이미지를 선택해주세요", 3000);
+        alert("인식할 이미지를 선택해 주세요.", 3000);
         return;
     }
     if([1051,1411].includes(document.querySelectorAll('#gallery > img')[0].naturalHeight)){
-        alert("[창 모드] 스크린샷 이미지 입니다.\n[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 한번 시도해 주세요", 5000)
+        alert("[창 모드] 스크린샷 이미지 입니다.\n[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
         return;
     }
     if(document.querySelectorAll('#gallery > img')[0].naturalHeight > 1440){
         alert("현재 FHD(1920x1080), QHD(2560x1440)만 지원하고있습니다. 죄송합니다.",5000)
+        return;
+    }
+    if(wideCheck()){
+        alert("21:9 비율 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
         return;
     }
 
