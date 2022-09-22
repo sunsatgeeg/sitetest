@@ -1,4 +1,4 @@
-var nocommu = ['bidcalc','cardcalc','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
+var nocommu = ['bidcalc','cardcalc','cardcalc_old','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
 'simulation_card_LegendaryToEpic','simulation_card_LegendaryToRare','simulation_card_LegendaryToUncommon','simulation_card_all','simulation_stone'
 ]
 
