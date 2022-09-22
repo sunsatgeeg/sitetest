@@ -1,4 +1,4 @@
-loadJavascript('js/opencv');
+loadJavascript('js/cardcalc/opencv.js');
 
 async function putBaseIntoImageTag(basetext){
     let image = new Image();
@@ -73,7 +73,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/allCardImages');
+        await loadJavascript('js/cardcalc/allCardImages.js');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;

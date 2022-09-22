@@ -33,7 +33,7 @@ async function cardnumscriptimport(){
     var cardnumscript = document.createElement('script');
     cardnumscript.type = 'text/javascript';
     cardnumscript.async = true;
-    cardnumscript.src = `js/cardnum.js?v=${updateversiontime}`;
+    cardnumscript.src = `js/cardcalc/old/cardnum.js?v=${updateversiontime}`;
     document.querySelector('script').appendChild(cardnumscript);
 
     await new Promise(r => {
@@ -306,7 +306,7 @@ async function cardsetcalcstart(){
     var cardeffectscript = document.createElement('script');
     cardeffectscript.type = 'text/javascript';
     cardeffectscript.defer = true;
-    cardeffectscript.src = `js/cardeffect.js?v=${updateversiontime}`;
+    cardeffectscript.src = `js/cardcalc/old/cardeffect.js?v=${updateversiontime}`;
     head.appendChild(cardeffectscript);
     await new Promise(r => {
         cardeffectscript.onload = r
@@ -559,8 +559,8 @@ document.querySelector("#matchstart").addEventListener('click', async function()
     cardlistscript.type = 'text/javascript';
     opencvscript.defer = true;
     cardlistscript.defer = true;
-    opencvscript.src = 'js/opencv.js';
-    cardlistscript.src = `js/cardlist.js?v=${updateversiontime}`;
+    opencvscript.src = 'js/cardcalc/opencv.js';
+    cardlistscript.src = `js/cardcalc/old/cardlist.js?v=${updateversiontime}`;
     head.appendChild(opencvscript);
     head.appendChild(cardlistscript);
 
