@@ -548,6 +548,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
     document.querySelector('#drop-area').style.display="none";
     document.querySelector('#helpbtn').style.display = 'none';
     document.querySelector('#matchstatus').style.display = '';
+    document.querySelector('#notice').style.display = "none";
     
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
 

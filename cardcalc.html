@@ -47,9 +47,6 @@
     body {
       font-family: sans-serif;
     }
-    a {
-      color: #369;
-    }
     .note {
       width: 500px;
       margin: 50px auto;
@@ -108,8 +105,13 @@
       <div class="pt-5">
         <div id="matchzone">
           <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">설명서</button>
-          <br>
-          ※ 영상 추가 ※
+          <div id="notice">
+            <a href="/cardcalc_new" style="color: white !important;">
+              <small>
+                ※ QHD 지원하는 New 계산기! (클릭)※
+              </small>
+            </a>
+          </div>
           <div id="drop-area">
             <form class="my-form">
               <p>사진들을 드래그해서 선택할 수도 있어요<br>(컨트롤[ctrl]키를 누르면서 사진을 선택하면 다중선택을 할 수 있습니다.)</p>
@@ -335,7 +337,7 @@
           </p>
           
           <br><h3>※ <font COLOR='orange'>방법</font> ※</h3>
-          <p>1. 인게임 내 스크린샷 기능(Insert키 위에있는 PrintScreenCapture키)으로 찍은 사진
+            <p>1. 인게임 내 스크린샷 기능(<kbd>Insert</kbd>키 위에있는 <kbd>PrintScreenCapture</kbd>키)으로 찍은 사진
             <br>일반적인 스크린샷 위치 : C:\Program Files (x86)\Smilegate\Games\LOSTARK\EFGame\Screenshots</p>
           <p>2. 각 사진마다 중복없이(오인식 방지)
             <br>예) 첫번째 사진에서 마지막 카드 '반다' 까지 찍혔으면<br>그 바로 밑에줄인 '베르투스'부터 시작해서 끝까지 찍기 반복</p>
