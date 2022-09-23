@@ -151,7 +151,7 @@ if(getCookie('savecarddeck') != ''){
 
         cObject = JSON.parse(getCVal);
 
-        await loadJavascript('js/cardcalc/cardeffect_new.js');
+        await loadJavascript('js/cardcalc/cardeffect.js');
 
         for (let i = 0; i < Object.keys(cObject).length; i++) {
             cNum = Object.keys(cObject)[i]
