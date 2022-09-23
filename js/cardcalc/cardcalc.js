@@ -109,6 +109,10 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         alert("현재 FHD(1920x1080), QHD(2560x1440)만 지원하고있습니다. 죄송합니다.",5000)
         return;
     }
+    if(![1080,1440].includes(document.querySelectorAll('#gallery > img')[0].naturalHeight)){
+        alert("설명서를 읽고 다시 시도해주세요.", 5000)
+        return;
+    }
     if(wideCheck()){
         alert("21:9 비율 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
         return;
