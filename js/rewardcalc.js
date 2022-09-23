@@ -1,4 +1,4 @@
-var reward_bonus_array = [
+let reward_bonus_array = [
                             {
                                 "bossname":"아르고스",
                                 "bossitem":"",
@@ -416,84 +416,105 @@ var reward_bonus_array = [
                                                         ],
                                                         ]
                             },
-                        ];
-    var bossColor = {"아르고스":"#ffffff", "발탄":"#5f9ea0", "비아키스":"#ff1493", "쿠크세이튼":"#ff703b", "아브렐슈드":"#8a2be2", "카양겔":"#ffd700", "일리아칸":"#006400"}
-    
-    var content = "";
+];
 
-    var marketdata = {}
-    var iteminfo = {
-                        "수호석 결정":10,
-                        "파괴석 결정":10,
-                        "명예의 파편":1,
-                        "위대한 명예의 돌파석":1,
-                        "수호강석":10,
-                        "파괴강석":10,
-                        "경이로운 명예의 돌파석":1,
-                        "정제된 수호강석":10,
-                        "정제된 파괴강석":10,
-                        "찬란한 명예의 돌파석":1
-                    };
-    document.addEventListener("DOMContentLoaded", function(){
-        fetch(url + '/rewardcalc', {method: 'POST'}).then((response) => response.json()).then((data) =>{
-            data['명예의 파편'] = data['명예의 파편 주머니(대)']/1500;
+const bossColor = {"아르고스":"#ffffff", "발탄":"#5f9ea0", "비아키스":"#ff1493", "쿠크세이튼":"#ff703b", "아브렐슈드":"#8a2be2", "카양겔":"#ffd700", "일리아칸":"#006400"};
+const iteminfo = {
+    "수호석 결정":10,
+    "파괴석 결정":10,
+    "명예의 파편":1,
+    "위대한 명예의 돌파석":1,
+    "수호강석":10,
+    "파괴강석":10,
+    "경이로운 명예의 돌파석":1,
+    "정제된 수호강석":10,
+    "정제된 파괴강석":10,
+    "찬란한 명예의 돌파석":1
+};
 
-            marketdata = data;
+Number.prototype.toFixedNumber = function(x, base){
+    let pow = Math.pow(base||10,x);
+    return Math.round(this*pow) / pow;
+}
 
-            datatime = data['date'];
-            db_year = datatime.slice(0,4);
-            db_mon = datatime.slice(4,6);
-            db_day = datatime.slice(6,8);
-            db_hour = datatime.slice(8,10);
-            db_min = datatime.slice(10,12);
-            document.querySelector('#date').innerText = db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min;
+function itemMaterialTradeName(itemname){
+    if(document.querySelector('#material').value >= 2){
+        if(itemname == '수호석 결정') itemname = `수호강석`;
+        if(itemname == '파괴석 결정') itemname = `파괴강석`;
+        if(itemname == '위대한 명예의 돌파석') itemname = `경이로운 명예의 돌파석`;
+    }
+    if(document.querySelector('#material').value >= 3){
+        if(itemname == '수호강석') itemname = `정제된 수호강석`
+        if(itemname == '파괴강석') itemname = `정제된 파괴강석`
+        if(itemname == '경이로운 명예의 돌파석') itemname = `찬란한 명예의 돌파석`;
+    }
 
-            calcreward();
-        })
-    });
-
-    function calcreward(){
-        target = document.querySelector('#bossaccordion');
-        while (target.hasChildNodes()) {
-            target.removeChild(target.firstChild);
+    return itemname;
+}
+function itemMaterialTradeQty(itemname, itemqty){
+    if(document.querySelector('#material').value == 2){
+        if(itemname == '수호석 결정' || itemname == '파괴석 결정' || itemname == '위대한 명예의 돌파석'){
+            itemqty = itemqty / 5;
         }
+    }
+    else if(document.querySelector('#material').value == 3){
+        if(itemname == '수호석 결정' || itemname == '파괴석 결정' || itemname == '위대한 명예의 돌파석'){
+            itemqty = itemqty / 25;
+        }
+        if(itemname == '수호강석' || itemname == '파괴강석' || itemname == '경이로운 명예의 돌파석'){
+            itemqty = itemqty / 5;
+        }
+    }
 
-        reward_bonus_array.forEach(function(boss, index){
-            content = 
-`
-<div class="accordion-item">
-<h2 class="accordion-header" id="heading${index}">
-<button class="accordion-button collapsed fw-bold" type="button" style="color:${bossColor[boss['bossname'].substring(0, boss['bossname'].indexOf('('))]}" data-bs-target="#collapse${index}" aria-controls="collapse${index}" data-bs-toggle="collapse" aria-expanded="false">
-    ${boss['bossname']}
-</button>
-</h2>
-<div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#bossaccordion">
-<div class="accordion-body p-0">
-    <table class="table table-dark table-hover mb-0">
-    <thead>
-        <tr>
-        <th scope="col">관문</th>
-        <th scope="col">획득 골드</th>
-        <th scope="col">더보기 비용</th>
-        <th scope="col">기본 보상</th>
-        <th scope="col">더보기 보상</th>
-        <th scope="col">/</th>
-        <th scope="col">이익</th>
-        </tr>
-    </thead>
-`;
+    return Number.isInteger(itemqty) ? itemqty : itemqty.toFixed(1)
+}
+
+let content = "";
+let marketdata = {}
+function calcreward(){
+    target = document.querySelector('#bossaccordion');
+    while (target.hasChildNodes()) {
+        target.removeChild(target.firstChild);
+    }
+
+    reward_bonus_array.forEach(function(boss, index){
+        content = 
+            `
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="heading${index}">
+                <button class="accordion-button collapsed fw-bold" type="button" style="color:${bossColor[boss['bossname'].substring(0, boss['bossname'].indexOf('('))]}" data-bs-target="#collapse${index}" aria-controls="collapse${index}" data-bs-toggle="collapse" aria-expanded="false">
+                    ${boss['bossname']}
+                </button>
+                </h2>
+                <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#bossaccordion">
+                <div class="accordion-body p-0">
+                    <table class="table table-dark table-hover mb-0">
+                    <thead>
+                        <tr>
+                        <th scope="col">관문</th>
+                        <th scope="col">획득 골드</th>
+                        <th scope="col">더보기 비용</th>
+                        <th scope="col">기본 보상</th>
+                        <th scope="col">더보기 보상</th>
+                        <th scope="col">/</th>
+                        <th scope="col">이익</th>
+                        </tr>
+                    </thead>
+            `;
+        let phasecount = null;
         if(Array.isArray(boss['phase'])){
-            var phasecount = boss['phase'].length;
+            phasecount = boss['phase'].length;
         }else{
-            var phasecount = boss['phase'];
+            phasecount = boss['phase'];
         }
 
-        for (var i = 0; i < phasecount; i++) {
+        for (let i = 0; i < phasecount; i++) {
             content += 
-`
-    <tbody class="align-middle">
-        <tr>
-`;
+                `
+                    <tbody class="align-middle">
+                        <tr>
+                `;
+
             if(Array.isArray(boss['phase'])){
                 content += '<th scope="row">' + boss['phase'][i]; + '</th>'
             }else{
@@ -501,142 +522,168 @@ var reward_bonus_array = [
             }
 
             content +=
-`
-            <td>
-                <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
-            </td>
-            <td>
-                <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
-            </td>
-`;
+                `
+                    <td>
+                        <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                    </td>
+                    <td>
+                        <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                    </td>
+                `;
+
             if(boss['bossitem'] != ""){
                 content +=
-`
-            <td>
-                <span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span>
-            </td>
-`;
+                    `
+                        <td>
+                            <span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span>
+                        </td>
+                    `;
             }else{
                 content +=
-`
-            <td></td>
-`;
+                    `
+                        <td></td>
+                    `;
             }
-                content += 
-`
-            <td>
-`;
-            for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                content += `<p><span id="rewarditemname">${boss['phasebonusrewarditem'][i][j][0]}</span> × <span id="rewarditemqty">${boss['phasebonusrewarditem'][i][j][1]}</span></p>`;
-            }
+
             content += 
-`
-            </td>
-            <td>
-`;
-            totalbonusrewardgold = 0;
-            for (var j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                if(filteritemlist.includes(boss['phasebonusrewarditem'][i][j][0])){
+                `
+                    <td>
+                `;
+
+            for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
+                let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
+                let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
+                content += `<p><span id="rewarditemname">${itemName}</span> × <span id="rewarditemqty">${itemQty}</span></p>`;
+            }
+
+            content += 
+                `
+                    </td>
+                    <td>
+                `;
+            let totalbonusrewardgold = 0.0;
+            for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
+                let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
+                let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
+
+                if(filteritemlist.includes(itemName)){
                     content += `<p>　</p>`;
                     continue;
                 }
-                if(boss['bossitem'] == boss['phasebonusrewarditem'][i][j][0]){
+                if(boss['bossitem'] == itemName){
                     if(filteritemlist.includes('혼돈의 돌')){
                         content += `<p>　</p>`;
                         continue;
                     }
-                    content += `<p><span id="rewarditemname">100</span> × <span id="rewarditemqty">${boss['phasebonusrewarditem'][i][j][1]}</span> = <span>${parseInt(100 * boss['phasebonusrewarditem'][i][j][1])}</span></p>`;
-                    totalbonusrewardgold += (100 * boss['phasebonusrewarditem'][i][j][1]);
+                    content += `<p><span id="rewarditemname">100</span> × <span id="rewarditemqty">${itemQty}</span> = <span>${parseInt(100 * itemQty)}</span></p>`;
+                    totalbonusrewardgold += (100 * itemQty);
                     continue;
                 }
 
-                tempA = marketdata[boss['phasebonusrewarditem'][i][j][0]];
-                tempB = boss['phasebonusrewarditem'][i][j][1] / iteminfo[boss['phasebonusrewarditem'][i][j][0]];
-                tempcalc = tempA * tempB;
+                let itemGold = Number.isInteger(marketdata[itemName]) ? marketdata[itemName] : marketdata[itemName].toFixedNumber(3);
+                let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]) ? itemQty / iteminfo[itemName] : (itemQty / iteminfo[itemName]).toFixedNumber(1);
+                let thiscalcgold = Number.isInteger(itemGold * itemTradeQty) ? itemGold * itemTradeQty : (itemGold * itemTradeQty).toFixedNumber(1);
 
-                tempAtoShow = tempA;
-                if(boss['phasebonusrewarditem'][i][j][0].indexOf("의 파편") != -1){
-                    tempAtoShow = tempA.toFixed(3);
-                }
-
-                content += `<p><span id="rewarditemname">${tempAtoShow}</span> × <span id="rewarditemqty">${tempB}</span> = <span>${parseInt(tempcalc)}</span></p>`;
-                totalbonusrewardgold += tempcalc;
+                content += `<p><span id="rewarditemname">${itemGold}</span> × <span id="rewarditemqty">${itemTradeQty}</span> = <span>${thiscalcgold}</span></p>`;
+                totalbonusrewardgold += thiscalcgold;
             }
             content +=
-`
-            </td>
-            <td class="fw-bold">
-            <p><span>${parseInt(totalbonusrewardgold)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
-`;
-            tempresult = parseInt(totalbonusrewardgold) - boss['phasebonusrewardgold'][i];
+                `
+                    </td>
+                    <td class="fw-bold">
+                        <p><span>${Number.isInteger(totalbonusrewardgold) ? totalbonusrewardgold : totalbonusrewardgold.toFixed(1)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
+                `;
+            let tempresult = 0;
+            tempresult = totalbonusrewardgold - boss['phasebonusrewardgold'][i];
             temptextcolor = "#00ff00";
             if(tempresult <= 0){
                 temptextcolor = "#ff6b6b";
             }
             content +=
-`
-            <p><span style="color:${temptextcolor}">${tempresult}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
-`;
+                `
+                    <p><span style="color:${temptextcolor}">${Number.isInteger(tempresult) ? tempresult : tempresult.toFixed(1)}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
+                `;
             content +=
-`
-            </td>
-        </tr>
-    </tbody>
-`;
+                `
+                            </td>
+                        </tr>
+                    </tbody>
+                `;
+        }
+            
+        content +=
+            `
+                </table>
+            </div>
+            </div>
+            </div>
+            `;
+        document.querySelector('#bossaccordion').innerHTML += content;
+    })
+}
+
+let filteritemlist = ['혼돈의 돌']
+document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
+    e.addEventListener('click', (td)=>{
+        if(td.target.className == "form-check-label" || td.target.className == "btn btn-outline-light btn-lg") return;
+        try{
+            if(td.target.querySelector('.form-check-input').checked){
+                td.target.querySelector('.form-check-input').checked = false;
+            }else{
+                td.target.querySelector('.form-check-input').checked = true;
+            }
+        }catch{}
+
+        filteritemlist = []
+        document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
+            if(e.checked){
+                filteritemlist.push(e.value)
+            }
+        });
+        calcreward();
+    });
+});
+
+document.querySelector('#material').addEventListener('change', ()=>{
+    calcreward();
+});
+
+document.querySelector('#itemaccordion').querySelectorAll('.btn-outline-light').forEach((e)=>{
+    e.addEventListener('click', (button)=>{
+        if(button.target.id == "allcheck"){
+            document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((f)=>{
+                f.checked = true;
+            });
+        }else{
+            document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((f)=>{
+                f.checked = false;
+            });
         }
         
-        content +=
-`
-    </table>
-</div>
-</div>
-</div>
-`;
-        document.querySelector('#bossaccordion').innerHTML += content;
-        })
-    }
-
-    var filteritemlist = ['혼돈의 돌']
-    document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
-        e.addEventListener('click', (td)=>{
-            if(td.target.className == "form-check-label" || td.target.className == "btn btn-outline-light btn-lg") return;
-            try{
-                if(td.target.querySelector('.form-check-input').checked){
-                    td.target.querySelector('.form-check-input').checked = false;
-                }else{
-                    td.target.querySelector('.form-check-input').checked = true;
-                }
-            }catch{}
-
-            filteritemlist = []
-            document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
-                if(e.checked){
-                    filteritemlist.push(e.value)
-                }
-            });
-            calcreward();
-        });
-    });
-
-
-    document.querySelector('#itemaccordion').querySelectorAll('.btn-outline-light').forEach((e)=>{
-        e.addEventListener('click', (button)=>{
-            if(button.target.id == "allcheck"){
-                document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((f)=>{
-                    f.checked = true;
-                });
-            }else{
-                document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((f)=>{
-                    f.checked = false;
-                });
+        filteritemlist = []
+        document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
+            if(e.checked){
+                filteritemlist.push(e.value)
             }
-            
-            filteritemlist = []
-            document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
-                if(e.checked){
-                    filteritemlist.push(e.value)
-                }
-            });
-            calcreward();
         });
+        calcreward();
     });
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+    fetch(url + '/rewardcalc', {method: 'POST'}).then((response) => response.json()).then((data) =>{
+        data['명예의 파편'] = parseFloat(data['명예의 파편 주머니(대)']/1500);
+
+        marketdata = data;
+
+        datatime = data['date'];
+        db_year = datatime.slice(0,4);
+        db_mon = datatime.slice(4,6);
+        db_day = datatime.slice(6,8);
+        db_hour = datatime.slice(8,10);
+        db_min = datatime.slice(10,12);
+        document.querySelector('#date').innerText = db_year + "-" + db_mon + "-" + db_day + " " + db_hour + ":" + db_min;
+
+        calcreward();
+    })
+});
