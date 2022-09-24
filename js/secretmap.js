@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", function(){
             for(var i = 0; i < droplist.length; i++) {
                 totalgain += callback[droplist[i]] * droplistqty[continent][droplist[i]];
                 tax += Math.ceil(callback[droplist[i]] * 0.05) * droplistqty[continent][droplist[i]];
-                taxtooltip += "(" + String(callback[droplist[i]]) + " x 0.05) = " + String(Math.ceil(callback[droplist[i]] * 0.05)) + " x " + droplistqty[continent][droplist[i]] + " = " + Math.ceil(callback[droplist[i]] * 0.05) * droplistqty[continent][droplist[i]] + "<br>"
+                if(droplist[i] == "3T 보석 1레벨"){
+                    taxtooltip += "(<FONT color='orange'>" + String(callback[droplist[i]]) + "</FONT> x 0.05) = " + String(Math.ceil(callback[droplist[i]] * 0.05)) + " x " + droplistqty[continent][droplist[i]] + " = " + Math.ceil(callback[droplist[i]] * 0.05) * droplistqty[continent][droplist[i]] + "<br>"
+                }
+                else taxtooltip += "(" + String(callback[droplist[i]]) + " x 0.05) = " + String(Math.ceil(callback[droplist[i]] * 0.05)) + " x " + droplistqty[continent][droplist[i]] + " = " + Math.ceil(callback[droplist[i]] * 0.05) * droplistqty[continent][droplist[i]] + "<br>"
                 temptr = document.createElement('tr');
                 temptd = document.createElement('td');
                 tempimg = document.createElement('img');
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 tempimg.setAttribute('data-grade', droplistgrades[droplist[i]]);
                 temptd.append(tempimg);
                 temptr.append(temptd);
+
                 temptd = document.createElement('td');
                 temptd.classList.add('text-start');
                 temptd.classList.add('item-name');
@@ -45,36 +49,47 @@ document.addEventListener("DOMContentLoaded", function(){
                 temptd.setAttribute('data-grade', droplistgrades[droplist[i]]);
                 temptd.innerText = droplist[i];
                 temptr.append(temptd);
+                
                 temptd = document.createElement('td');
                 temptd.innerText = callback[droplist[i]];
                 temptr.append(temptd);
+
+                temptd = document.createElement('td');
+                temptd.innerText = droplistqty[continent][droplist[i]];
+                temptr.append(temptd)
+
                 temptd = document.createElement('td');
                 temptd.innerText = callback[droplist[i]] * droplistqty[continent][droplist[i]];
                 temptr.append(temptd);
+
                 table.append(temptr)
             }
-            taxtooltip += "(소수점 첫째 자리에서 올림)<br><span class='fw-bold'>(단, 보석의 경우<br>합성이 있어 오차 있음)</span>";
+            taxtooltip += "(소수점 올림)<br><span class='fw-bold'>(단, <FONT color='orange'>보석</FONT>의 경우<br>합성이 있어 오차 있음)</span>";
 
             document.querySelector('#th_continent').innerText = continent;
 
             document.querySelector('#total').innerText = totalgain;
             document.querySelector('#tax').innerText = "- " + tax;
             document.querySelector('#tax').setAttribute('tooltipcontent', taxtooltip);
-            var distribution = parseInt((totalgain-tax) / 30);
+
+            var distribution = Math.floor(totalgain / 29);
             document.querySelector('#distribution').innerText = "- " + distribution;
-            document.querySelector('#distribution').setAttribute('tooltipcontent', "" + String(totalgain) + " - " + String(tax) + " = " + String(totalgain - tax) + " ÷ 30");
-            var breakpoint = totalgain - tax - distribution;
+            document.querySelector('#distribution').setAttribute('tooltipcontent', `${totalgain} / 29[인]<br>(소수점 버림)`);
+
+            var breakpoint = Math.floor((totalgain-tax)*(29/30));
             document.querySelector('#breakpoint').innerText = breakpoint;
-            document.querySelector('#breakpoint').setAttribute('tooltipcontent', String(totalgain) + " - " + String(tax) + " - " + String(distribution));
+            document.querySelector('#breakpoint').setAttribute('tooltipcontent', `${totalgain} - ${tax} = <FONT color='orange'>${totalgain-tax}</FONT><br>29[인] / 30[인] = <FONT color='green'>0.966...·</FONT><br><FONT color='orange'>${totalgain-tax}</FONT> x <FONT color='green'>0.966...·</FONT> = ${breakpoint}<br>(소수점 버림)`);
             document.querySelector('#breakpoint').removeEventListener("click", arguments.callee);
             document.querySelector('#breakpoint').addEventListener("click", clickToCopy);
             document.querySelector('#breakpoint').style.cursor = "pointer";
+
             var fairprice = parseInt(breakpoint*100/(110));
             document.querySelector('#fairprice').innerText = fairprice;
             document.querySelector('#fairprice').setAttribute('tooltipcontent', String(breakpoint) + " ÷ 1.1");
             document.querySelector('#fairprice').removeEventListener("click", arguments.callee);
             document.querySelector('#fairprice').addEventListener("click", clickToCopy);
             document.querySelector('#fairprice').style.cursor = "pointer";
+
             var giveme = parseInt(fairprice*100/(110));
             document.querySelector('#giveme').innerText = giveme;
             document.querySelector('#giveme').setAttribute('tooltipcontent', String(fairprice) + " ÷ 1.1");

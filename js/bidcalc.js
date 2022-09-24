@@ -41,18 +41,22 @@ function calc(){
     price = document.querySelector('#price').value;
     var tax = Math.ceil(price * 0.05);
     document.querySelector('#tax').innerText = "- " + tax;
-    document.querySelector('#tax').setAttribute('tooltipcontent', String(price) + " x 0.05");
-    var distribution = parseInt((price-tax) / personcount);
+    document.querySelector('#tax').setAttribute('tooltipcontent', String(price) + " x 0.05<br>(소수점 올림)");
+
+    var distribution = Math.floor(price / (personcount-1));
     document.querySelector('#distribution').innerText = "- " + distribution;
-    document.querySelector('#distribution').setAttribute('tooltipcontent', "" + String(price) + " - " + String(tax) + " = " + String(price - tax) + " ÷ " + String(personcount));
-    var breakpoint = price - tax - distribution;
+    document.querySelector('#distribution').setAttribute('tooltipcontent', `${price} / ${personcount-1}[인]<br>(소수점 버림)`);
+
+    var breakpoint = Math.floor((price-tax)*((personcount-1)/personcount));
     document.querySelector('#breakpoint').innerText = breakpoint;
-    document.querySelector('#breakpoint').setAttribute('tooltipcontent', String(price) + " - " + String(tax) + " - " + String(distribution));
+    document.querySelector('#breakpoint').setAttribute('tooltipcontent', `${price} - ${tax} = <FONT color='orange'>${price-tax}</FONT><br>${personcount-1}[인] / ${personcount}[인] = <FONT color='green'>${(personcount-1)/personcount}</FONT><br><FONT color='orange'>${price-tax}</FONT> x <FONT color='green'>${(personcount-1)/personcount}</FONT> = ${breakpoint}<br>(소수점 버림)`);
     document.querySelector('#breakpoint').style.cursor = "pointer";
+
     var fairprice = parseInt(breakpoint*100/(110));
     document.querySelector('#fairprice').innerText = fairprice;
     document.querySelector('#fairprice').setAttribute('tooltipcontent', String(breakpoint) + " ÷ 1.1");
     document.querySelector('#fairprice').style.cursor = "pointer";
+
     var giveme = parseInt(fairprice*100/(110));
     document.querySelector('#giveme').innerText = giveme;
     document.querySelector('#giveme').setAttribute('tooltipcontent', String(fairprice) + " ÷ 1.1");
