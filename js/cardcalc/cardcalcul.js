@@ -1,4 +1,4 @@
-let updateversiontime = "08241750";
+const allCardTotalExp = 50225200;
 
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
 bonusDamageBtns.forEach(function(e){
@@ -20,6 +20,8 @@ document.querySelector('#reconBtn').addEventListener('click', function(){
     location.reload();
 });
 
+let thisTriCardList = {};
+
 let recommendExp = null;
 let recommendCard = null;
 async function cardsetcalcstart(){
@@ -27,7 +29,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
     
-    await loadJavascript('js/cardcalc/cardeffect.js');
+    await loadJavascript('js/cardcalc/cardeffect.js?v=09262006');
 
     document.querySelector('#matchingment').textContent = '도감작 계산 시작';
     let myStat = {
@@ -76,8 +78,14 @@ async function cardsetcalcstart(){
         for (j = 0; j < setcardlist.length; j++) {
             let unitName = setcardlist[j];
             let unitLevel = null;
-            try{unitLevel = hasCardDeck[unitName][0];}
-            catch{break;}
+
+            try{
+                if(!thisTriCardList[setBonusDmgInfo].includes(unitName)) thisTriCardList[setBonusDmgInfo].push(unitName);
+            }catch{thisTriCardList[setBonusDmgInfo] = [unitName];}
+
+            try{
+                unitLevel = hasCardDeck[unitName][0];
+            }catch{break;}
 
             leveltotal += unitLevel;
 
@@ -188,6 +196,7 @@ function bonusdamagelistup(tri){
             try{tempMyHasQty = parseInt(hasCardDeck[cardname$][1]);}
             catch{continue;}
             
+
             let tempk = 0;
             for (let k = parseInt(hasCardDeck[cardname$][0])+1; k < 6; k++) {
                 if(tempMyHasQty >= k){
@@ -272,6 +281,31 @@ function bonusdamagelistup(tri){
         tr.style.cursor = 'pointer';
         target.appendChild(tr);
     }
+
+    let myAllCardTotalExp = 0;
+    let myThisTriTotalExp = 0;
+    let thisTriTotalExp = 0;
+    for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
+        let myCardName = Object.keys(hasCardDeck)[i];
+        let myCardStar = hasCardDeck[myCardName][0];
+        myAllCardTotalExp += cardNeedExp[cardgrade[myCardName]][myCardStar];
+    }
+    for (let i = 0; i < thisTriCardList[tri].length; i++) {
+        let myCardName = thisTriCardList[tri][i];
+        let myCardStar = null;
+        thisTriTotalExp += cardNeedExp[cardgrade[myCardName]][5];
+        try{
+            myCardStar = hasCardDeck[myCardName][0];
+        }catch{continue;}
+
+        myThisTriTotalExp += cardNeedExp[cardgrade[myCardName]][myCardStar];
+    }
+
+    document.querySelector('#all-exp-progress-bar').textContent = `${(myAllCardTotalExp).toLocaleString()} / ${(allCardTotalExp).toLocaleString()} [${((myAllCardTotalExp / allCardTotalExp) * 100).toFixed(3)}%]`
+    document.querySelector('#all-exp-progress-bar').previousElementSibling.style.width = `${(myAllCardTotalExp / allCardTotalExp) * 100}%`;
+    document.querySelector('#this-exp-progress-bar').textContent = `${(myThisTriTotalExp).toLocaleString()} / ${(thisTriTotalExp).toLocaleString()} [${((myThisTriTotalExp / thisTriTotalExp) * 100).toFixed(3)}%]`
+    document.querySelector('#this-exp-progress-bar').previousElementSibling.style.width = `${(myThisTriTotalExp / thisTriTotalExp) * 100}%`;
+    document.querySelector('#this-progress').textContent = `${tri.substring(0,1)}추피 각성률`
 
     let regex = /[^0-9]/g;
     let tagarr = Array.from(document.querySelectorAll("#bookstbody tr"));

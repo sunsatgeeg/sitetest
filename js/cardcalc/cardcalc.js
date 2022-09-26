@@ -136,7 +136,7 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
             hasCardDeck[document.querySelector(`#cardname${i}`).value] = [parseInt(document.querySelector(`#cardstar${i}`).value),parseInt(document.querySelector(`#cardqty${i}`).value)]
         }
     }
-    await loadJavascript('js/cardcalc/cardcalcul.js');
+    await loadJavascript('js/cardcalc/cardcalcul.js?v=09262015');
     await cardsetcalcstart();
     document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
 }, false)
@@ -155,14 +155,14 @@ if(getCookie('savecarddeck') != ''){
 
         cObject = JSON.parse(getCVal);
 
-        await loadJavascript('js/cardcalc/cardeffect.js');
+        await loadJavascript('js/cardcalc/cardeffect.js?v=09262006');
 
         for (let i = 0; i < Object.keys(cObject).length; i++) {
             cNum = Object.keys(cObject)[i]
             hasCardDeck[Object.keys(cardgrade)[Object.keys(cObject)[i]]] = cObject[cNum];
         }
 
-        await loadJavascript('js/cardcalc/cardcalcul.js');
+        await loadJavascript('js/cardcalc/cardcalcul.js?v=09262015');
         cardsetcalcstart();
     })();
 }
