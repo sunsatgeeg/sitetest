@@ -1,0 +1,68 @@
+<div id="my-space-top" class="mx-auto mb-3" style="display: none; width: 728px; height: 90px; background-color: aliceblue;">
+    <div class="text-black">
+        나만의 공간
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div id="ads-top" class="mb-3">
+            <div class="text-center">
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-4936470262963011"
+                    data-ad-slot="1957033553"></ins>
+            </div>
+        </div>
+        <div id="ads-left">
+            <div>
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:600px"
+                    data-ad-client="ca-pub-4936470262963011"
+                    data-ad-slot="8271407887"></ins>
+            </div>
+        </div>
+        <div id="ads-right">
+            <div>
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:600px"
+                    data-ad-client="ca-pub-4936470262963011"
+                    data-ad-slot="5453672853"></ins>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+    document.addEventListener('scroll', ()=>{
+        let scrollTop = document.documentElement.scrollTop;
+        scrollTop = (scrollTop < 110) ? '120' * 1 : document.documentElement.scrollTop + '10' * 1
+        document.querySelector('#ads-right').style.top = `${scrollTop}px`
+        document.querySelector('#ads-left').style.top = `${scrollTop}px`
+    })
+    
+    //let coffeeLength = 0;
+    //let coffeeCount = 0;
+    //let myCoffeeCheck = setInterval(()=>{
+    //    coffeeLength = document.querySelector("#ads-bottom ins").childElementCount;
+    //    coffeeCount++;
+    //
+    //    if(coffeeLength > 0){
+    //        document.getElementById('my-space-top').style.display = 'none';
+    //        console.log('커피 감사합니다.')
+    //        clearTimeout(myCoffeeCheck);
+    //        return;
+    //    }
+    //    if(coffeeCount > 50){
+    //        console.log('커피 사주세요...')
+    //        clearTimeout(myCoffeeCheck);
+    //        return;
+    //    }
+    //
+    //    document.getElementById('my-space-top').style.display = '';
+    //},100)
+</script>

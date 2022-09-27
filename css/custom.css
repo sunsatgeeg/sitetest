@@ -67,7 +67,7 @@ html{
     border-left: 0!important;
 }
 
-#ads-top, #ads-left, #ads-right, #ads-bottom{
+#ads-top, #ads-left, #ads-right, #ads-bottom, #my-space-top {
     /*      rgb(182, 182, 182);     */
     /*      transparent;            */
     background-color: transparent;
