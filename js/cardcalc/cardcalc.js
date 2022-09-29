@@ -47,7 +47,15 @@ async function loadJavascript(name){
     }
 }
 
-function wideCheck(){
+function isWantSize(element, width, height){
+    let targetScreen = element;
+    let screenWidth = targetScreen.naturalWidth;
+    let screenHeight = targetScreen.naturalHeight;
+
+    return screenWidth == width && screenHeight == height ? true : false;
+}
+
+function isWide(){
     let firstImg = document.querySelectorAll('#gallery > img')[0];
 
     let canvas = document.createElement('canvas');
@@ -68,6 +76,16 @@ function wideCheck(){
     return topPixel + botPixel == 0 ? true : false;
 }
 
+function toastAlert(txt, dura){
+    Toastify({
+        text: txt,
+        position: "center",
+        gravity: "bottom",
+        duration: dura,
+        close: false
+    }).showToast();
+}
+
 // ************************ Drag and drop ***************** //
 let dropArea = document.getElementById("drop-area");
 
@@ -86,35 +104,23 @@ dropArea.addEventListener('drop', handleDrop, false);
     }
 })
 
-function alert(txt, dura){
-    Toastify({
-        text: txt,
-        position: "center",
-        gravity: "bottom",
-        duration: dura,
-        close: false
-    }).showToast();
-}
-
 document.querySelector("#matchstart").addEventListener('click', async function(){
+    let uploadFirstImg = document.querySelectorAll('#gallery > img')[0];
     if(document.querySelectorAll('#gallery > img').length == 0){
-        alert("인식할 이미지를 선택해 주세요.", 3000);
+        toastAlert("인식할 이미지를 선택해 주세요.", 3000);
         return;
     }
-    if([1051,1411].includes(document.querySelectorAll('#gallery > img')[0].naturalHeight)){
-        alert("[창 모드] 스크린샷 이미지 입니다.\n[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
+    if([1051,1411].includes(uploadFirstImg.naturalHeight)){
+        toastAlert("[창 모드] 스크린샷 이미지 입니다.\n[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
         return;
     }
-    if(document.querySelectorAll('#gallery > img')[0].naturalHeight > 1440){
-        alert("현재 FHD(1920x1080), QHD(2560x1440)만 지원하고있습니다. 죄송합니다.",5000)
+    if(!isWantSize(uploadFirstImg, 1920, 1080)
+    && !isWantSize(uploadFirstImg, 2560, 1440)){
+        toastAlert("현재 FHD(1920x1080), QHD(2560x1440)만 지원하고있습니다. 죄송합니다.",5000)
         return;
     }
-    if(![1080,1440].includes(document.querySelectorAll('#gallery > img')[0].naturalHeight)){
-        alert("설명서를 읽고 다시 시도해주세요.", 5000)
-        return;
-    }
-    if(wideCheck()){
-        alert("21:9 비율 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
+    if(isWide()){
+        toastAlert("21:9 비율 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
         return;
     }
 
@@ -142,7 +148,7 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
 }, false)
 
 document.querySelector('#finishno').addEventListener('click', function(){
-    alert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
+    toastAlert('조건에 맞춰 다시 해주시거나 그래도 안되시면 sjssj7777@naver.com로 인식하기로 한 사진을 보내주세요')
 });
 
 let hasCardDeck = {};
@@ -166,3 +172,5 @@ if(getCookie('savecarddeck') != ''){
         cardsetcalcstart();
     })();
 }
+
+toastAlert('지원하지 않는 화면 해상도에서 인식이 시작되버리는 케이스가 있었습니다.\n체크를 하는 코드가 있었는데 빡세게 걸어놓질 않아서 그냥 시작하는 케이스가 있었네요\n코드 추가했습니다.',5000)
