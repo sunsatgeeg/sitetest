@@ -122,7 +122,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         return;
     }
     if(isWide()){
-        toastAlert("21:9 강제 설정 옵션이 설정된 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
+        toastAlert("[21:9 강제 설정] 옵션이 설정된 이미지입니다. 옵션을 끄고 다시 시도해 주세요.",5000)
         return;
     }
 
