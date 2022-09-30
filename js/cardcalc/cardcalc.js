@@ -111,7 +111,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         return;
     }
     if([1051,1411].includes(uploadFirstImg.naturalHeight)){
-        toastAlert("[창 모드] 스크린샷 이미지 입니다.\n[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
+        toastAlert("[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
         return;
     }
     if(!isWantSize(uploadFirstImg, 1920, 1080)
@@ -173,4 +173,27 @@ if(getCookie('savecarddeck') != ''){
     })();
 }
 
-toastAlert('지원하지 않는 화면 해상도에서 인식이 시작되버리는 케이스가 있었습니다.\n체크를 하는 코드가 있었는데 빡세게 걸어놓질 않아서 그냥 시작하는 케이스가 있었네요\n코드 추가했습니다.',5000)
+document.querySelector('#helpbtn').addEventListener('click', function(){
+    var helpimage = document.createElement('img');
+    helpimage.src = "img/card1.jpg";
+    helpimage.addEventListener('click', function(){window.open("img/card1.jpg");})
+    helpimage.style.cursor = "pointer"
+    helpimage.style.width = "50%";
+    document.querySelector('#modalimg').appendChild(helpimage);
+
+    helpimage = document.createElement('img');
+    helpimage.src = "img/card2.jpg";
+    helpimage.addEventListener('click', function(){window.open("img/card2.jpg");})
+    helpimage.style.cursor = "pointer"
+    helpimage.style.width = "50%";
+    document.querySelector('#modalimg').appendChild(helpimage);
+
+    helpimage = document.createElement('img');
+    helpimage.src = "img/warning.jpg";
+    helpimage.addEventListener('click', function(){window.open("img/warning.jpg");})
+    helpimage.style.cursor = "pointer"
+    helpimage.style.width = "50%";
+    document.querySelector('#modalimg2').appendChild(helpimage);
+
+    document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
+}, false);
