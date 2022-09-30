@@ -114,13 +114,15 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         toastAlert("[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
         return;
     }
-    if(!isWantSize(uploadFirstImg, 1920, 1080)
-    && !isWantSize(uploadFirstImg, 2560, 1440)){
+    if(!isWantSize(uploadFirstImg, 1920, 1080)      //FHD
+    && !isWantSize(uploadFirstImg, 2560, 1440)      //QHD
+    && !isWantSize(uploadFirstImg, 2560, 1080)      //WFHD
+    && !isWantSize(uploadFirstImg, 3440, 1440)){    //WQHD
         toastAlert("현재 FHD(1920x1080), QHD(2560x1440)만 지원하고있습니다. 죄송합니다.",5000)
         return;
     }
     if(isWide()){
-        toastAlert("21:9 비율 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
+        toastAlert("21:9 강제 설정 옵션이 설정된 이미지입니다. 16:9 비율로 바꿔 다시 시도해 주세요.",5000)
         return;
     }
 
