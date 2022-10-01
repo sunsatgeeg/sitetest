@@ -1,4 +1,4 @@
-<div id="my-space-top" class="mx-auto mb-3 py-4" style="width: 728px; background-color: lavender; display: none;">
+<div id="my-space-top" class="mx-auto py-4" style="width: 728px; background-color: lavender; display: ;">
     <span class="text-black fs-4">
         광고 대신 저에게 커피 아니면 10멸 하나만 사주십쇼
     </span>
@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col">
-        <div id="ads-top" class="mb-3">
+        <div id="ads-top">
             <div class="text-center">
                 <ins class="adsbygoogle"
                     style="display:inline-block;width:728px;height:90px"
@@ -45,24 +45,24 @@
         document.querySelector('#ads-left').style.top = `${scrollTop}px`
     })
     
-    let coffeeLength = 0;
-    let coffeeCount = 0;
-    let myCoffeeCheck = setInterval(()=>{
-        coffeeLength = document.querySelector("#ads-bottom ins").childElementCount;
-        coffeeCount++;
-    
-        if(coffeeLength > 0){
-            document.getElementById('my-space-top').style.display = 'none';
-            console.log('커피 감사합니다.')
-            clearTimeout(myCoffeeCheck);
-            return;
-        }
-        if(coffeeCount > 50){
-            console.log('커피 사주세요...')
-            clearTimeout(myCoffeeCheck);
-            return;
-        }
-        
-        document.getElementById('my-space-top').style.display = '';
-    },100)
+    //let coffeeLength = 0;
+    //let coffeeCount = 0;
+    //let myCoffeeCheck = setInterval(()=>{
+    //    coffeeLength = document.querySelector("#ads-bottom ins").childElementCount;
+    //    coffeeCount++;
+    //
+    //    if(coffeeLength > 0){
+    //        document.getElementById('my-space-top').style.display = 'none';
+    //        console.log('커피 감사합니다.')
+    //        clearTimeout(myCoffeeCheck);
+    //        return;
+    //    }
+    //    if(coffeeCount > 50){
+    //        console.log('커피 사주세요...')
+    //        clearTimeout(myCoffeeCheck);
+    //        return;
+    //    }
+    //    
+    //    document.getElementById('my-space-top').style.display = '';
+    //},100)
 </script>
