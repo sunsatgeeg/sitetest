@@ -346,8 +346,8 @@ function bonusdamagelistup(tri){
         let tmeptdname = document.createElement('td');
         let tmeptdqty = document.createElement('td');
 
-        tmeptdname.textContent = sortRecDocapack[i][0];
-        tmeptdqty.textContent = sortRecDocapack[i][1];
+        tmeptdname.textContent = `${i+1}. ${sortRecDocapack[i][0]}`;
+        tmeptdqty.textContent = `${sortRecDocapack[i][1]}장`;
 
         temptr.appendChild(tmeptdname);
         temptr.appendChild(tmeptdqty);
