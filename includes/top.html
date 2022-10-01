@@ -45,24 +45,24 @@
         document.querySelector('#ads-left').style.top = `${scrollTop}px`
     })
     
-    //let coffeeLength = 0;
-    //let coffeeCount = 0;
-    //let myCoffeeCheck = setInterval(()=>{
-    //    coffeeLength = document.querySelector("#ads-bottom ins").childElementCount;
-    //    coffeeCount++;
-    //
-    //    if(coffeeLength > 0){
-    //        document.getElementById('my-space-top').style.display = 'none';
-    //        console.log('커피 감사합니다.')
-    //        clearTimeout(myCoffeeCheck);
-    //        return;
-    //    }
-    //    if(coffeeCount > 50){
-    //        console.log('커피 사주세요...')
-    //        clearTimeout(myCoffeeCheck);
-    //        return;
-    //    }
-    //    
-    //    document.getElementById('my-space-top').style.display = '';
-    //},100)
+    let coffeeLength = 0;
+    let coffeeCount = 0;
+    let myCoffeeCheck = setInterval(()=>{
+        coffeeLength = document.querySelector("#ads-bottom ins").childElementCount;
+        coffeeCount++;
+    
+        if(coffeeLength > 0){
+            document.getElementById('my-space-top').style.display = 'none';
+            console.log('커피 감사합니다.')
+            clearTimeout(myCoffeeCheck);
+            return;
+        }
+        if(coffeeCount > 50){
+            console.log('커피 사주세요...')
+            clearTimeout(myCoffeeCheck);
+            return;
+        }
+        
+        document.getElementById('my-space-top').style.display = '';
+    },100)
 </script>
