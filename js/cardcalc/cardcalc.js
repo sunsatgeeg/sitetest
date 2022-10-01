@@ -144,7 +144,7 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
             hasCardDeck[document.querySelector(`#cardname${i}`).value] = [parseInt(document.querySelector(`#cardstar${i}`).value),parseInt(document.querySelector(`#cardqty${i}`).value)]
         }
     }
-    await loadJavascript('js/cardcalc/cardcalcul.js?v=09262015');
+    await loadJavascript('js/cardcalc/cardcalcul.js?v=10011746');
     await cardsetcalcstart();
     document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
 }, false)
@@ -170,13 +170,13 @@ if(getCookie('savecarddeck') != ''){
             hasCardDeck[Object.keys(cardgrade)[Object.keys(cObject)[i]]] = cObject[cNum];
         }
 
-        await loadJavascript('js/cardcalc/cardcalcul.js?v=09262015');
+        await loadJavascript('js/cardcalc/cardcalcul.js?v=10011746');
         cardsetcalcstart();
     })();
 }
 
 document.querySelector('#helpbtn').addEventListener('click', function(){
-    var helpimage = document.createElement('img');
+    let helpimage = document.createElement('img');
     helpimage.src = "img/card1.jpg";
     helpimage.addEventListener('click', function(){window.open("img/card1.jpg");})
     helpimage.style.cursor = "pointer"
