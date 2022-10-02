@@ -108,7 +108,10 @@ function allBonusDmg(){
             let tdTotal = document.createElement('td');
             let tdDmg = document.createElement('td');
 
-            if(cardQty == 0) trElement.style.color = 'orange';
+            if(cardQty == 0){
+                trElement.style.setProperty('color', 'orange', 'important');
+                trElement.style.setProperty('--hover-color-var', 'orange');
+            }
             trElement.style.cursor = 'pointer';
             trElement.addEventListener('click', async (e)=>{
                 let thisTr = e.target.parentElement;
@@ -131,7 +134,6 @@ function allBonusDmg(){
 
             targetTable.appendChild(trElement);
         }
-
     }
 
     let sortables = document.querySelectorAll('.sortable');
