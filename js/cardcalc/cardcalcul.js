@@ -11,15 +11,211 @@ const docapack = {
     '조화로운 바다 카드 팩':['에르제베트','칼바서스','크리스틴','고르카그로스','두키킹','브리아레오스','샐리','솔 그랑데','수신 아포라스','실험체 타르마쿰','아드린느','아비시나','에라스모','크누트','판다 푸푸','고비우스 24세','레나','루벤스타인 델 아르코','미카엘과 노메드','타냐 벤텀','표류소녀 엠마','프랭크','헨리','난민 파밀리아','네스','다람쥐 욤','벨리타','여우 사피아노','카드리'],
 };
 
+let bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
+document.querySelector('#allBonusDmg').addEventListener('click', allBonusDmg);
+function allBonusDmg(){
+    bonusDamageBtns.forEach(function(f){
+        if(f.classList.contains('active')){
+            f.classList.remove('active');
+            return false;
+        }
+    })
+    document.querySelector('#allBonusDmg').classList.add('active');
+    document.querySelector('#allBonusDmgDiv').style.display = '';
+    document.querySelector('#unitBonusDmgDiv').style.display = 'none';
+
+    let targetTable = document.querySelector('#allBonusDmgTable');
+    while (targetTable.hasChildNodes()) {
+        targetTable.removeChild(targetTable.firstChild);
+    }
+    
+    for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
+        let cardName = Object.keys(hasCardDeck)[i];
+        let cardAwake = hasCardDeck[cardName][0];
+        if(cardAwake == 5) continue;
+        
+        let finishAwakeDmg = {
+            '악마':0.00,
+            '야수':0.00,
+            '인간':0.00,
+            '불사':0.00,
+            '물질':0.00,
+            '정령':0.00,
+            '식물':0.00,
+            '기계':0.00,
+            '곤충':0.00,
+        };
+        let totalDmg = 0;
+        for (let j = 0; j < Object.keys(cardeffect).length; j++) {
+            let setName = Object.keys(cardeffect)[j];
+            let setCardList = cardeffect[setName][0];
+            let setBonusDmgTri = cardeffect[setName][3];
+            let setAwakeInfoList = cardeffect[setName][4];
+
+            if(setCardList.includes(cardName)){
+                let simulSetTotalAwake = 0;
+                let k = 0
+                for (k = 0; k < setCardList.length; k++) {
+                    try{
+                        simulSetTotalAwake += parseInt(hasCardDeck[setCardList[k]][0]);
+                    }catch{break;}
+                }
+                if(k != setCardList.length){
+                    continue;
+                }
+
+                let targetSetTotalAwake, targetSetTotalAwakeDmg = null;
+                for (let k = Object.keys(setAwakeInfoList).length-1; k >= 0; k--) {
+                    if(parseInt(Object.keys(setAwakeInfoList)[k]) <= simulSetTotalAwake){
+                        targetSetTotalAwake = parseInt(Object.keys(setAwakeInfoList)[k+1]);
+                        targetSetTotalAwakeDmg = setAwakeInfoList[targetSetTotalAwake];
+                        break;
+                    }else if(k==0){
+                        targetSetTotalAwake = parseInt(Object.keys(setAwakeInfoList)[0]);
+                        targetSetTotalAwakeDmg = setAwakeInfoList[targetSetTotalAwake];
+                    }
+                }
+
+                if((5 - cardAwake) + simulSetTotalAwake >= targetSetTotalAwake){
+                    finishAwakeDmg[setBonusDmgTri] = finishAwakeDmg[setBonusDmgTri] + parseFloat(targetSetTotalAwakeDmg);
+                    totalDmg += parseFloat(targetSetTotalAwakeDmg);
+                }
+            }
+        }
+
+        let content = "";
+        for (let j = 0; j < Object.keys(finishAwakeDmg).length; j++) {
+            let triName = Object.keys(finishAwakeDmg)[j];
+            let triDmg = finishAwakeDmg[triName];
+            if(triDmg == 0) continue;
+
+            if(content == "") content += `${triName} : ${(triDmg.toFixed(2)).padEnd(4,'0')}`;
+            else content += `<br>${triName} : ${(triDmg.toFixed(2)).padEnd(4,'0')}`;
+        }
+        
+
+        if(content != ""){
+            let needExp = 0;
+            let cardQty = hasCardDeck[cardName][1];
+            for (let j = cardAwake; j < 5; j++) {
+                needExp += cardLevelUpExp[cardgrade[cardName]][j];
+                cardQty -= j + 1;
+            }
+
+            let trElement = document.createElement('tr');
+            let tdName = document.createElement('td');
+            let tdExp = document.createElement('td');
+            let tdTotal = document.createElement('td');
+            let tdDmg = document.createElement('td');
+
+            if(cardQty == 0) trElement.style.color = 'orange';
+            trElement.style.cursor = 'pointer';
+            trElement.addEventListener('click', async (e)=>{
+                let thisTr = e.target.parentElement;
+                let thisName = thisTr.childNodes[0].textContent;
+                hasCardDeck[thisName] = [5,0];
+
+                await cardsetcalcstart();
+                allBonusDmg();
+            })
+
+            tdName.textContent = cardName;
+            tdExp.textContent = (needExp).toLocaleString();
+            tdTotal.textContent = (totalDmg.toFixed(2)).padEnd(4,'0');
+            tdDmg.innerHTML = content;
+
+            trElement.appendChild(tdName);
+            trElement.appendChild(tdExp);
+            trElement.appendChild(tdTotal);
+            trElement.appendChild(tdDmg);
+
+            targetTable.appendChild(trElement);
+        }
+
+    }
+
+    let sortables = document.querySelectorAll('.sortable');
+    sortables.forEach((t)=>{
+        t.classList.remove('asc');
+        t.classList.remove('desc');
+        t.classList.add('ascdesc');
+    });
+    multiSort(document.querySelector("#allBonusDmgDiv table th:nth-child(2)"), 'exp')
+}
+
+function multiSort(e, what){
+    let sortables = document.querySelectorAll('.sortable');
+    sortables.forEach((t)=>{
+        if(t!=e){
+            t.classList.remove('asc');
+            t.classList.remove('desc');
+            t.classList.add('ascdesc');
+        }else{
+            t.classList.add('desc');
+            t.classList.remove('ascdesc');
+        }
+    });
+
+    let sortMethodA, sortMethodB = 0;
+    if(e.classList.contains('asc')){
+        e.classList.add('desc');
+        e.classList.remove('asc');
+        sortMethodA = -1;
+        sortMethodB = 1;
+    }else{
+        e.classList.remove('desc');
+        e.classList.add('asc');
+        sortMethodA = 1;
+        sortMethodB = -1;
+    }
+
+    let targetTable = document.querySelector('#allBonusDmgTable');
+    let tagarr = Array.from(document.querySelectorAll("#allBonusDmgTable tr"));
+    while (targetTable.hasChildNodes()) {
+        targetTable.removeChild(targetTable.firstChild);
+    }
+
+    tagarr.sort(function (a, b) {
+        let exp1 = parseInt(a.querySelectorAll('td')[1].textContent.replace(',',''));
+        let exp2 = parseInt(b.querySelectorAll('td')[1].textContent.replace(',',''));
+        let dmg1 = parseFloat(a.querySelectorAll('td')[2].textContent);
+        let dmg2 = parseFloat(b.querySelectorAll('td')[2].textContent);
+        
+        if(what == 'bonus'){
+            if (dmg1 < dmg2) return sortMethodB;
+            if (dmg1 > dmg2) return sortMethodA;
+            if (exp1 < exp2) return sortMethodB;
+            if (exp1 > exp2) return sortMethodA;
+            return 0;
+        }else{
+            if (exp1 < exp2) return sortMethodB;
+            if (exp1 > exp2) return sortMethodA;
+            if (dmg1 < dmg2) return sortMethodB;
+            if (dmg1 > dmg2) return sortMethodA;
+            return 0;
+        }
+    });
+    
+
+    for (let i = 0; i < tagarr.length; i++) {
+        targetTable.append(tagarr[i])
+    }
+}
+
 bonusDamageBtns = document.querySelectorAll('#bonusdamageBtns button');
 bonusDamageBtns.forEach(function(e){
     e.addEventListener('click', function(){
+        document.querySelector('#allBonusDmg').classList.remove('active');
         bonusDamageBtns.forEach(function(f){
             if(f.classList.contains('active')){
                 f.classList.remove('active');
                 return false;
             }
         })
+
+        document.querySelector('#allBonusDmgDiv').style.display = 'none';
+        document.querySelector('#unitBonusDmgDiv').style.display = '';
+
         e.classList.add('active');
 
         bonusdamagelistup(this.innerText);

@@ -34,7 +34,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" type="text/css" href="css/custom.css?v=10011746">
+  <link rel="stylesheet" type="text/css" href="css/custom.css?v=10021505">
   <style>
     @media (max-width: 992px) {
       .w-50 {
@@ -257,6 +257,7 @@
               
 
               <div class="col-7">
+                <button type="button" class="btn btn-outline-light btn-lg mb-1" id="allBonusDmg"><pre class="mb-0">        <span>전체</span>        </pre></button>
                 <div id="bonusdamageBtns">
                   <button type="button" class="btn btn-outline-light btn-lg mb-1">악마</button>
                   <button type="button" class="btn btn-outline-light btn-lg mb-1">야수</button>
@@ -271,56 +272,75 @@
                   <button type="button" class="btn btn-outline-light btn-lg mb-1">곤충</button>
                 </div>
                 
-                <div class="row mx-0 my-3">
-                  <div class="col-3">
-                    <span>전체 각성률</span>
-                  </div>
-                  <div class="progress col-9 my-auto px-0 position-relative">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="all-exp-progress-bar">0 / 0 [0%]</div>
-                  </div>
-                  <div class="col-3">
-                    <span id="this-progress">추피 각성률</span>
-                  </div>
-                  <div class="progress col-9 my-auto px-0 position-relative">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="this-exp-progress-bar">0 / 0 [0%]</div>
-                  </div>
+                <div id="allBonusDmgDiv" style="display: none;">
+                  <br><p>※ 카드 풀각 했을 때 기준입니다.</p>
+                  <p>※ 밑에 목록에 없는 카드는 현재 기준 풀각을 해도 오르는 추피가 없어서입니다.</p>
+                  <table class="table table-dark float-end table-hover col align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-middle">카드 이름</th>
+                        <th scope="col" class="align-middle sortable ascdesc" onclick="multiSort(this,'exp');" style="cursor: pointer;">풀각 필요 카경</th>
+                        <th scope="col" class="align-middle sortable ascdesc" onclick="multiSort(this,'bonus');" style="cursor: pointer;">총 증가</th>
+                        <th scope="col" class="align-middle">/</th>
+                      </tr>
+                    </thead>
+                    <tbody id="allBonusDmgTable">
+                    </tbody>
+                  </table>
                 </div>
 
-                <div class="accordion mb-3" id="recCardAccordion">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="recCardHeading">
-                      <button class="accordion-button py-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recCardcollapse" aria-expanded="false" aria-controls="recCardcollapse">
-                        도카팩 추천 순위
-                      </button>
-                    </h2>
-                    <div id="recCardcollapse" class="accordion-collapse collapse" aria-labelledby="headingitem" data-bs-parent="#recCardAccordion">
-                      <div class="accordion-body p-0">
-                        <table class="table table-dark table-hover mb-0">
-                          <thead>
-                            <td>카드팩 이름</td>
-                            <td>유효</td>
-                          </thead>
-                          <tbody id="recCardTbody">
-                          </tbody>
-                        </table>
+                <div id="unitBonusDmgDiv">
+                  <div class="row mx-0 my-3">
+                    <div class="col-3">
+                      <span>전체 각성률</span>
+                    </div>
+                    <div class="progress col-9 my-auto px-0 position-relative">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="all-exp-progress-bar">0 / 0 [0%]</div>
+                    </div>
+                    <div class="col-3">
+                      <span id="this-progress">추피 각성률</span>
+                    </div>
+                    <div class="progress col-9 my-auto px-0 position-relative">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="this-exp-progress-bar">0 / 0 [0%]</div>
+                    </div>
+                  </div>
+
+                  <div class="accordion mb-3" id="recCardAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="recCardHeading">
+                        <button class="accordion-button py-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recCardcollapse" aria-expanded="false" aria-controls="recCardcollapse">
+                          도카팩 추천 순위
+                        </button>
+                      </h2>
+                      <div id="recCardcollapse" class="accordion-collapse collapse" aria-labelledby="headingitem" data-bs-parent="#recCardAccordion">
+                        <div class="accordion-body p-0">
+                          <table class="table table-dark table-hover mb-0">
+                            <thead>
+                              <td>카드팩 이름</td>
+                              <td>유효</td>
+                            </thead>
+                            <tbody id="recCardTbody">
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <table class="table table-dark float-end table-hover col align-middle">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="align-middle">도감 이름</th>
-                      <th scope="col" class="align-middle">필요 카드 경험치</th>
-                      <th scope="col" class="align-middle">증가<br>[0.01%당]</th>
-                    </tr>
-                  </thead>
-                  <tbody id="bookstbody">
-                  </tbody>
-                </table>
+                  <table class="table table-dark float-end table-hover col align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-middle">도감 이름</th>
+                        <th scope="col" class="align-middle">필요 카드 경험치</th>
+                        <th scope="col" class="align-middle">증가<br>[0.01%당]</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bookstbody">
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -393,7 +413,7 @@
   
   <!-- custom -->
   <script src="js/custom.js?v=09031953"></script>
-  <script src="js/cardcalc/cardcalc.js?v=10012244"></script>
+  <script src="js/cardcalc/cardcalc.js?v=10021505"></script>
 
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
