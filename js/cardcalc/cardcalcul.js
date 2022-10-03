@@ -20,6 +20,10 @@ function allBonusDmg(){
             return false;
         }
     })
+    if(tippyToggle){
+        tippyToggle.destroy();
+        tippyToggle = null;
+    }
     document.querySelector('#allBonusDmg').classList.add('active');
     document.querySelector('#allBonusDmgDiv').style.display = '';
     document.querySelector('#unitBonusDmgDiv').style.display = 'none';
@@ -214,6 +218,10 @@ bonusDamageBtns.forEach(function(e){
                 return false;
             }
         })
+        if(tippyToggle){
+            tippyToggle.destroy();
+            tippyToggle = null;
+        }
 
         document.querySelector('#allBonusDmgDiv').style.display = 'none';
         document.querySelector('#unitBonusDmgDiv').style.display = '';
