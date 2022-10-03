@@ -356,7 +356,22 @@ async function cardsetcalcstart(){
     setCookie('savecarddeck',saveCVal,365)
 };
 
+let tippyToggle = null;
+function newTippy(ele,content,toggle,trigger,zindex){
+    if(toggle == null) toggle = true;
+    if(trigger == null) trigger = 'mouseenter focus';
+    if(zindex == null) zindex = 5555;
 
+    let popup = tippy(ele, {
+        allowHTML: true, 
+        content: content,
+        theme: 'light',
+        hideOnClick: toggle,
+        trigger: trigger,
+        zIndex: zindex
+    });
+    return popup
+}
 function bonusdamagelistup(tri){
     let target = document.querySelector('#bookstbody');
     while (target.hasChildNodes()) {
@@ -572,21 +587,20 @@ function bonusdamagelistup(tri){
     for (let i = 0; i < tagarr.length; i++) {
         document.querySelector("#bookstbody").append(tagarr[i])
     }
-    
-    tippy('#bookstbody > tr > td:nth-child(2)', {
-        allowHTML: true, 
-        content(reference) {
-            return reference.getAttribute('tooltipcontent');
-        },
-        theme: 'light', 
-        placement: 'top',
-    });
 
-    document.querySelectorAll('#bookstbody > tr > td:nth-child(2)').forEach(function(e){
-        e.addEventListener('contextmenu', (event) => {
+    document.querySelectorAll('#bookstbody > tr > td:nth-child(2)').forEach((e)=>{
+        newTippy(e, `${e.getAttribute('tooltipcontent')}<FONT SIZE='2pt'>[오른쪽 클릭시 고정, 복사]</FONT>`, null, null, null)
+        e.addEventListener('contextmenu', (event)=>{
+            if(tippyToggle){
+                tippyToggle.destroy();
+                tippyToggle = null;
+            }else{
+                tippyToggle = newTippy(e, `${e.getAttribute('tooltipcontent')}<FONT SIZE='2pt'>[오른쪽 클릭시 고정 해제]</FONT>`, 'toggle', 'click', 9999);
+                tippyToggle.show()
+            }
             event.preventDefault();
             navigator.clipboard.writeText(e.getAttribute('clickcontent'));
-        })
+        });
     });
     
     document.querySelectorAll('#bookstbody > tr').forEach(function(e){
@@ -599,6 +613,11 @@ function bonusdamagelistup(tri){
                 let subQty = parseInt(Object.values(parsedata)[i][1]);
 
                 hasCardDeck[upCardName] = [parseInt(hasCardDeck[upCardName][0]) + addStar, parseInt(hasCardDeck[upCardName][1]) - subQty];
+            }
+
+            if(tippyToggle){
+                tippyToggle.destroy();
+                tippyToggle = null;
             }
 
             await cardsetcalcstart();
