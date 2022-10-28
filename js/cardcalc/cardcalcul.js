@@ -246,7 +246,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
     
-    await loadJavascript('js/cardcalc/cardeffect.js?v=09262006');
+    await loadJavascript('js/cardcalc/cardeffect.js?v=10282000');
 
     document.querySelector('#matchingment').textContent = '도감작 계산 시작';
     let myStat = {
