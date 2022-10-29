@@ -125,7 +125,6 @@ const cardgrade = {
     "Erasmo":2,
     "Garum":2,
     "Geppetto":2,
-    "Gereon":2,
     "Gherdia":2,
     "Gideon":2,
     "Gildal":2,
@@ -202,6 +201,7 @@ const cardgrade = {
     "Wavestrand Port Neria":2,
     "Wili-Wili":2,
     "Wonpho":2,
+    "Xereon":2,
 
     "Arre":1,
     "Azaran":1,
