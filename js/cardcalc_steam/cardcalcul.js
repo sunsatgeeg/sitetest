@@ -246,30 +246,30 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
-    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=10300019');
+    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=10300020');
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
     let myStat = {
-        "strength"     : 0,
-        "Vitality"   : 0,
-        "Crit"   : 0,
-        "Specialization"   : 0,
-        "Domination"   : 0,
-        "Swiftness"   : 0,
-        "Endurance"   : 0,
-        "Expertise"   : 0,
-        "Defense" : 0,
+        "Strength"          : 0,
+        "Vitality"          : 0,
+        "Crit"              : 0,
+        "Specialization"    : 0,
+        "Domination"        : 0,
+        "Swiftness"         : 0,
+        "Endurance"         : 0,
+        "Expertise"         : 0,
+        "Defense"           : 0,
     }
     let myBonusDamage = {
-        "Humanoids" : 0,
-        "Demons" : 0,
-        "Metallic" : 0,
-        "Undead" : 0,
-        "Plants" : 0,
-        "Insects" : 0,
-        "Elementals" : 0,
-        "Beasts" : 0,
-        "Machines" : 0
+        "Humanoids"     : 0,
+        "Demons"        : 0,
+        "Metallic"      : 0,
+        "Undead"        : 0,
+        "Plants"        : 0,
+        "Insects"       : 0,
+        "Elementals"    : 0,
+        "Beasts"        : 0,
+        "Machines"      : 0
     };
 
     let cardeffectlength = Object.keys(cardeffect).length;
@@ -359,6 +359,7 @@ async function cardsetcalcstart(){
 
     let saveCVal = "";
     for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
+        console.log(`${Object.keys(hasCardDeck)[i]}:${Object.values(hasCardDeck)[i][0]}`)
         saveCVal += `${Object.keys(cardgrade).indexOf(Object.keys(hasCardDeck)[i])}:[${Object.values(hasCardDeck)[i]}],`;
     }
     setCookie('savecarddeck',saveCVal,365)

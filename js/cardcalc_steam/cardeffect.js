@@ -1,5 +1,5 @@
 const cardgrade = {
-	"Akkan":4,
+    "Akkan":4,
     "Armen":4,
     "Azena and Inanna":4,
     "Balthorr":4,
@@ -213,6 +213,7 @@ const cardgrade = {
     "Dadan":1,
     "Dakudaku":1,
     "Egg of Creation":1,
+    "Executor Solas":1,
     "Favreau":1,
     "Gabrian":1,
     "Giant Worm":1,
@@ -251,7 +252,6 @@ const cardgrade = {
     "Sir Druden":1,
     "Sir Valleylead":1,
     "Sol":1,
-    "Solas":1,
     "Tanay":1,
     "Temma":1,
     "Totoiki":1,
@@ -740,7 +740,7 @@ const cardeffect = {
         [
             "Armen",
             "Seria",
-            "Solas",
+            "Executor Solas",
             "King Thirain",
             "Kharmine",
             "Delain Armen"
@@ -1843,7 +1843,7 @@ const cardeffect = {
         [
             "Armen",
             "Varut",
-            "Solas",
+            "Executor Solas",
             "Jederico",
             "Demetar"
         ],
@@ -3438,7 +3438,7 @@ const cardeffect = {
     "Solar Knights": [
         [
             "Thar",
-            "Gereon",
+            "Xereon",
             "Hatem",
             "Kiessa",
             "Luderos",
@@ -3489,7 +3489,7 @@ const cardeffect = {
     ],
     "A Sun That Rose in the South": [
         [
-            "Gereon",
+            "Xereon",
             "Luderos",
             "Hatem",
             "Kiessa"
@@ -3533,33 +3533,33 @@ const cardeffect = {
             "20": 0.07
         }
     ],
-    "Guardian's Punishment": [
-        [
-            "Kungelanium",
-            "Deskaluda",
-            "Hanumatan"
-        ],
-        "Crit",
-        2,
-        "Elementals",
-        {
-            "6": 0.1,
-            "12": 0.1,
-            "15": 0.1
-        }
-    ],
-    "Anikka's Guardian": [
-        [
-            "Hanumatan",
-            "Guardian Luen"
-        ],
-        "Specialization",
-        2,
-        "Beasts",
-        {
-            "4": 0.1,
-            "8": 0.1,
-            "10": 0.1
-        }
-    ]
+    // "Guardian's Punishment": [
+    //     [
+    //         "Kungelanium",
+    //         "Deskaluda",
+    //         "Hanumatan"
+    //     ],
+    //     "Crit",
+    //     2,
+    //     "Elementals",
+    //     {
+    //         "6": 0.1,
+    //         "12": 0.1,
+    //         "15": 0.1
+    //     }
+    // ],
+    // "Anikka's Guardian": [
+    //     [
+    //         "Hanumatan",
+    //         "Guardian Luen"
+    //     ],
+    //     "Specialization",
+    //     2,
+    //     "Beasts",
+    //     {
+    //         "4": 0.1,
+    //         "8": 0.1,
+    //         "10": 0.1
+    //     }
+    // ]
 }
