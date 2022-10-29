@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="h-100">
+  <title>Lostark Card Books Calculator :: Loachart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lostark Card Books Calculator">
+  <meta name="keywords" content="loachart,lost,ark,loa,card,book,calculator,bonuses,helper,calc,damage,humanoids,insects,metallic,machines,demons,beasts,undead,plants,elementals,awake,collect,steam,recommand"/>
+  <meta property="og:title" content="Lostark Card Books Calculator :: Loachart"/>
+  <meta property="og:description" content="Lostark Card Books Calculator"/>
+  <meta property="og:url" content="https://loachart.com/cardcalc_steam"/>
+  <meta property="og:site_name" content="Loachart"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "cardcalc_steam";</script>
+  <script src="/js/includeHTML.js?v=09231422"></script>
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css?v=10021505">
+  <style>
+    @media (max-width: 992px) {
+      .w-50 {
+        width: 100%!important;
+      }
+    }
+    body {
+      font-family: sans-serif;
+    }
+    a {
+      color: #369;
+    }
+    .note {
+      width: 500px;
+      margin: 50px auto;
+      font-size: 1.1em;
+      color: #333;
+      text-align: justify;
+    }
+    #drop-area {
+      border: 2px dashed #ccc;
+      border-radius: 20px;
+      width: 90%;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    #drop-area.highlight {
+      border-color: purple;
+    }
+    p {
+      margin-top: 0;
+    }
+    .my-form {
+      margin-bottom: 10px;
+    }
+    #gallery {
+      margin-top: 10px;
+    }
+    #gallery img {
+      width: 48%;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    #fileElem {
+      display: none;
+    }
+    
+    #bookstbody tr:hover > *, #allBonusDmgTable tr:hover > *{
+      color:var(--hover-color-var);
+    }
+
+  </style>
+  <link href="css/cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-5"><script>includeHTML('header');</script></header>
+
+    <top class="mb-5"><script>includeHTML('top');</script></top>
+
+    <main>      
+      <div>
+        <div id="matchzone">
+          <div>
+            <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">Guide</button>
+          </div>
+          <div id="notice" class="mt-2">
+            <small>
+              Welcome!
+            </small>
+            <br>
+            <br>
+            <div>
+              <a href="/cardcalc" style="color: white !important;">
+                [Go SmileGate Version]
+              </a>
+            </div>
+          </div>
+          <div id="drop-area">
+            <form class="my-form">
+              <p>Image drag & drop</p>
+              <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+              <label class="btn btn-outline-light btn-lg" for="fileElem">Upload Image</label>
+            </form>
+            <div id="gallery"></div>
+          </div>
+          <button type="button" class="btn btn-outline-light btn-lg" id="matchstart">Match Start</button>
+          <p id="searchingcardlist"></p>
+
+          <br><span id="matchstatus" style="display: none;">Status : </span><span id="matchwhich"></span><span id="matchingment"></span>
+          <br><span id="matchtime"></span></span>
+
+          <div id="matchfinish" style="display: none;">
+            <span>Is the number of cards the same as the in-game card locker?</span>
+            <br>
+            
+            <div class="w-50 mx-auto" id="cardpushzone">
+
+            </div>
+
+            <br>
+            <button type="button" class="btn btn-outline-success btn-lg" id="finishyes">Yes</button>
+            <button type="button" class="btn btn-outline-light btn-lg" id="cardpush">Card Add</button>
+            <button type="button" class="btn btn-outline-danger btn-lg" style="display: none;" id="finishno">No</button>
+          </div>
+        </div>
+
+        <div id="mycard" style="display: none;">
+          <div class="clearfix container">
+            <div class="row">
+              <div id="bookeffect" class="col-5">
+                <button class="btn btn-outline-light btn-lg" id="reconBtn">ReMatch</button>
+                <table class="table table-dark float-start table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2">Collection Bonus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tbody>
+                    <tr>
+                      <td>strength</td>
+                      <td id="strength"></td>
+                    </tr>
+                    <tr>
+                      <td>Dexterity</td>
+                      <td id="strength"></td>
+                    </tr>
+                    <tr>
+                      <td>Intelligence</td>
+                      <td id="strength"></td>
+                    </tr>
+                    <tr>
+                      <td>Vitality</td>
+                      <td id="Vitality"></td>
+                    </tr>
+                    <tr>
+                      <td>Crit</td>
+                      <td id="Crit"></td>
+                    </tr>
+                    <tr>
+                      <td>Specialization</td>
+                      <td id="Specialization"></td>
+                    </tr>
+                    <tr>
+                      <td>Domination</td>
+                      <td id="Domination"></td>
+                    </tr>
+                    <tr>
+                      <td>Swiftness</td>
+                      <td id="Swiftness"></td>
+                    </tr>
+                    <tr>
+                      <td>Endurance</td>
+                      <td id="Endurance"></td>
+                    </tr>
+                    <tr>
+                      <td>Expertise</td>
+                      <td id="Expertise"></td>
+                    </tr>
+                    <tr>
+                      <td>Phy. Defense</td>
+                      <td id="Defense"></td>
+                    </tr>
+                    <tr>
+                      <td>Mag. Defense</td>
+                      <td id="Defense"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Humanoids</td>
+                      <td id="Humanoids"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Demons</td>
+                      <td id="Demons"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Metallic</td>
+                      <td id="Metallic"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Undead</td>
+                      <td id="Undead"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Plants</td>
+                      <td id="Plants"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Insects</td>
+                      <td id="Insects"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Elementals</td>
+                      <td id="Elementals"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Beasts</td>
+                      <td id="Beasts"></td>
+                    </tr>
+                    <tr>
+                      <td>Bonus vs. Machines</td>
+                      <td id="Machines"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <small>
+                  <div>※ If you delete a card in the past,<br>the collection effect may differ from the game effect that is <br>(Even if you delete a card, the effect will increase with collection or not in the book.)</div>
+                  <br><div class="mt-2">※ Hover your cursor over each line to show how to strengthen to the next awakening step.</div>
+                  <br><div class="mt-2">※ After awakening, left-click to reflect it on the calculator.</div>
+                  <br><div class="mt-2">※ <font color="orange">Orange</font> is a book that you can awaken right now</div>
+                </small>
+              </div>
+              
+
+              <div class="col-7">
+                <button type="button" class="btn btn-outline-light btn-lg mb-1" id="allBonusDmg"><pre class="mb-0">        <span>All</span>        </pre></button>
+                <div id="bonusdamageBtns" class="mx-auto w-75">
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Demons</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Beasts</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Humanoids</button>
+                  <br>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Undead</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Metallic</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Elementals</button>
+                  <br>
+                  <button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Plants</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Machines</button><button type="button" class="btn btn-outline-light btn-lg mb-1 col-4">Insects</button>
+                </div>
+                
+                <div id="allBonusDmgDiv" style="display: none;">
+                  <br><p>※ Card full Awakening Criteria</p>
+                  <p>※ Cards that are not on the list below<br>don't have any bonus damage even if you wake up</p>
+                  <table class="table table-dark float-end table-hover col align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-middle">Card Name</th>
+                        <th scope="col" class="align-middle sortable ascdesc" onclick="multiSort(this,'exp');" style="cursor: pointer;">Req. Exp for<br>Full Awakening</th>
+                        <th scope="col" class="align-middle sortable ascdesc" onclick="multiSort(this,'bonus');" style="cursor: pointer;">Total increase </th>
+                        <th scope="col" class="align-middle">/</th>
+                      </tr>
+                    </thead>
+                    <tbody id="allBonusDmgTable">
+                    </tbody>
+                  </table>
+                </div>
+
+                <div id="unitBonusDmgDiv">
+                  <div class="row mx-0 my-3">
+                    <div class="col-4">
+                      <span>All Awakening Rate</span>
+                    </div>
+                    <div class="progress col-8 my-auto px-0 position-relative">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="all-exp-progress-bar">0 / 0 [0%]</div>
+                    </div>
+                    <div class="col-4">
+                      <span id="this-progress">Awakening Rate</span>
+                    </div>
+                    <div class="progress col-8 my-auto px-0 position-relative">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="justify-content-center d-flex position-absolute w-100 fw-bold" style="color: black;" id="this-exp-progress-bar">0 / 0 [0%]</div>
+                    </div>
+                  </div>
+
+                  <div class="accordion mb-3" id="recCardAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="recCardHeading">
+                        <button class="accordion-button py-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recCardcollapse" aria-expanded="false" aria-controls="recCardcollapse">
+                          Challenger's Card Pack Recommendation Ranking
+                        </button>
+                      </h2>
+                      <div id="recCardcollapse" class="accordion-collapse collapse" aria-labelledby="headingitem" data-bs-parent="#recCardAccordion">
+                        <div class="accordion-body p-0">
+                          <table class="table table-dark table-hover mb-0">
+                            <thead>
+                              <td>Pack Name</td>
+                              <td>Effective Number</td>
+                            </thead>
+                            <tbody id="recCardTbody">
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <table class="table table-dark float-end table-hover col align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-middle">Books Name</th>
+                        <th scope="col" class="align-middle">Req. Total Exp</th>
+                        <th scope="col" class="align-middle">Increase<br>[per 0.01%]</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bookstbody">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- 추후 안쓰게 수정 -->
+    <canvas id="unitUploadHalfCard" style="display: none;"></canvas>
+    <canvas id="uploadImage" style="display: none;"></canvas>
+
+    <!--
+    <canvas id="test" width="500" height="500"></canvas>
+    <canvas id="test1" width="500" height="500"></canvas>
+    <canvas id="test2" width="500" height="500"></canvas>
+    <div id="tempdiv"></div>
+    -->
+
+    <footer class="mt-5 text-white-50"><script>includeHTML('footer');</script></footer>
+
+  </div>
+
+  
+  <div class="modal fade bd-example-modal-lg" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black">Guide</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-black">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/5M22PhpINEM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p>If you follow the required settings and methods, the recognition will be completed in one minute.</p>
+          <h3>※ <font COLOR='#0000FF'>Set in-game required options</font> ※</h3>
+          <p>1. Resolution : 1920x1080 <b>Or</b> 2560x1440 <b>Or</b> 2560x1080 <b>Or</b> 3440x1440</p>
+          <p>2. If you checked the [Force 21:9 Aspect Ratio] option on, uncheck</p>
+          <p>3. Brigthness : 50%(recommend)</p>
+          
+          <br><h3>※ <font COLOR='orange'>How to take a picture</font> ※</h3>
+          <p>1. Pictures taken with the in-game screenshot function<br>(<kbd>PrintScreenCapture</kbd> key above the <kbd>Insert</kbd> key)
+          <p>2. No duplication for each picture (prevent misrecognition)
+            <br>Ex) If the last card "Banda" was taken in the first picture, take a picture of "Vertus", the line below it,<br>and repeat this process until the last card</p>
+          <p id="modalimg"></p>
+
+          <br><h3>※ <font COLOR='#00FF00'>How</font> ※</h3>
+          <p>1. Upload images of your card locker</p>
+          <p>2. 'Match Start' Button Click</p>
+
+          <br><h3>※ <font COLOR='#FF0000'>Warning</font> ※</h3>
+          <p>1. There should be nothing in the yellow area.(Reinforced display board X, friend online alram X)</p>
+          <p id="modalimg2"></p>
+          <p>Click on the image to see it larger.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn btn-outline-dark text-black" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- tippyJS -->
+  <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
+
+  <!-- toastify -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+  <!-- custom -->
+  <script src="js/custom.js?v=09031953"></script>
+  <script src="js/cardcalc_steam/cardcalc.js?v=10282000"></script>
+
+  <!-- google ADSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
+    crossorigin="anonymous"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+</body>
+</html>
