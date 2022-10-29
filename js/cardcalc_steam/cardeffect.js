@@ -55,7 +55,6 @@ const cardgrade = {
     "Frost Helgaia":3,
     "Gnosis":3,
     "Habeck":3,
-    "Hanumatan":3,
     "Helgaia":3,
     "Icy Legoros":3,
     "Igrexion":3,
