@@ -177,7 +177,6 @@ let Module = {
                         else if([4,5,6].includes(j)) rect = new cv.Rect(x+2, y, cardSizeX, cardSizeY);
                         else if([7,8,9].includes(j)) rect = new cv.Rect(x+3, y, cardSizeX, cardSizeY);
                     }
-                    console.log(rect)
 
                     let unitUploadCardMat = uploadImageGrayMat.roi(rect);
 
