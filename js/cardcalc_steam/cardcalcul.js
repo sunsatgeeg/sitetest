@@ -322,6 +322,7 @@ async function cardsetcalcstart(){
 
         for (let j = 0; j < Object.keys(setBonusDmgPlusList).length; j++) {
             if(Object.keys(setBonusDmgPlusList)[j] <= leveltotal){
+                console.log(setBonusDmgInfo, setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]])
                 myBonusDamage[setBonusDmgInfo] += setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
             }else{
                 nextbonusdamage = setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
