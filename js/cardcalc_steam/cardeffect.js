@@ -1,4 +1,4 @@
-const cardgrade = {
+const cardgrade = cardinfo = {
     "Akkan":4,
     "Armen":4,
     "Azena and Inanna":4,
@@ -227,7 +227,7 @@ const cardgrade = {
     "Javern":1,
     "Killian":1,
     "Lena":1,
-    "Luderos":1,
+    "Ludwig":1,
     "Lutia":1,
     "Madam Moonscent":1,
     "Mikeel and Nomed":1,
@@ -3441,7 +3441,7 @@ const cardeffect = {
             "Xereon",
             "Hatem",
             "Kiessa",
-            "Luderos",
+            "Ludwig",
             "Ternark",
             "Navegal"
         ],
@@ -3490,7 +3490,7 @@ const cardeffect = {
     "A Sun That Rose in the South": [
         [
             "Xereon",
-            "Luderos",
+            "Ludwig",
             "Hatem",
             "Kiessa"
         ],

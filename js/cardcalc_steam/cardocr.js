@@ -55,7 +55,7 @@ function isWhite(src, x, y){
 }
 function isLowWhite(src, x, y){
     // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
-    return src.ucharPtr(y, x)[0] >= 225 && src.ucharPtr(y, x)[1] >= 225 && src.ucharPtr(y, x)[2] >= 225 ? true : false;
+    return src.ucharPtr(y, x)[0] >= 205 && src.ucharPtr(y, x)[1] >= 205 && src.ucharPtr(y, x)[2] >= 205 ? true : false;
 }
 
 function tripleCheck(src,x1,y1,x2,y2,x3,y3){
@@ -73,7 +73,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=10300020');
+        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=10301902');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;
@@ -110,9 +110,9 @@ let Module = {
             sizeUpOffset = 2.4;
             sizeUpMethod = cv.INTER_CUBIC;
             starDistanceArr = [null,62,46,31,15,0];
-            plusOffsetX = 27;
+            plusOffsetX = 26;
             plusOffsetY = 6;
-            deckIconMatchX = [[55],[59]];
+            deckIconMatchX = [[55],[60]];
             deckIconMatchY = 2;
         }else if(uploadImages[0].naturalHeight==1440){
             cardRemoveMat = cv.imread(await putBaseIntoImageTag(QHDcardremovebase64));
@@ -129,9 +129,9 @@ let Module = {
             sizeUpOffset = 1.8;
             sizeUpMethod = cv.INTER_CUBIC;
             starDistanceArr = [null,82,61,41,20,0];
-            plusOffsetX = 36;
-            plusOffsetY = 8;
-            deckIconMatchX = [[72,73,74],[78,79,80]];
+            plusOffsetX = 34;
+            plusOffsetY = 9;
+            deckIconMatchX = [[72,73,74,75],[79,80,81,82]];
             deckIconMatchY = 12;
         }
 
@@ -159,31 +159,30 @@ let Module = {
             document.querySelector('#searchingcardlist').innerHTML += `<br><br>${uploadImage.getAttribute('filename')}[<span id="page${imgindex}"></span>Pcs]`;
             for (let i = 0; i < 4; i++) {
                 let y = firstCardY + (i * cardDistanceY);
-                if(uploadImageWidth == "QHD" && i==3) y = y-1;
+                if(uploadImageWidth == "QHD" && [3].includes(i)) y = y-1;
 
                 let thislinecardlist = [];
                 for (let j = 0; j < 10; j++) {
-                    if(start == null){
-                        start = new Date();
-                    }
+                    if(start == null) start = new Date();
 
                     x = firstCardX + (j * cardDistanceX);
                     let rect = null;
                     if(uploadImageWidth == "FHD"){
                         rect = new cv.Rect(x, y, cardSizeX, cardSizeY);
-                    }else if(uploadImageWidth = "QHD"){
-                        if([0].includes(j)) rect = new cv.Rect(x, y, cardSizeX, cardSizeY);
-                        else if([1,2,3].includes(j)) rect = new cv.Rect(x+1, y, cardSizeX, cardSizeY);
-                        else if([4,5,6].includes(j)) rect = new cv.Rect(x+2, y, cardSizeX, cardSizeY);
-                        else if([7,8,9].includes(j)) rect = new cv.Rect(x+3, y, cardSizeX, cardSizeY);
+                    }
+                    else if(uploadImageWidth = "QHD"){
+                        if([0,1,2,3].includes(j)) rect = new cv.Rect(x, y, cardSizeX, cardSizeY);
+                        else if([4,6].includes(j)) rect = new cv.Rect(x+1, y, cardSizeX, cardSizeY);
+                        else if([5,7,8].includes(j)) rect = new cv.Rect(x+2, y, cardSizeX, cardSizeY);
+                        else if([9].includes(j)) rect = new cv.Rect(x+3, y, cardSizeX, cardSizeY);
                     }
 
                     let unitUploadCardMat = uploadImageGrayMat.roi(rect);
 
                     // 추후 수정
                     let halfRect = new cv.Rect(0, cardSizeY/2+30, cardSizeX, cardSizeY/2-30);
-                    cv.imshow('unitUploadHalfCard', unitUploadCardMat.roi(halfRect));
-                    let unitUploadHalfCardMat = cv.imread('unitUploadHalfCard');
+                    cv.imshow(`unitUploadHalfCard0`, unitUploadCardMat.roi(halfRect));
+                    let unitUploadHalfCardMat = cv.imread(`unitUploadHalfCard0`);
                     //
 
                     let halfDst = new cv.Mat();
@@ -206,53 +205,54 @@ let Module = {
 
                             //카드 갯수
                             let thisCardQty = 0;
+                            // console.log(deckIconX,deckIconY)
                             if(deckIconY == deckIconMatchY){
                                 plusX = deckIconX + plusOffsetX;
                                 plusY = deckIconY + plusOffsetY;
-                        
+                                // console.log(plusX,plusY)
+
                                 if(deckIconMatchX[1].includes(deckIconX)){
                                     if(uploadImageWidth == "FHD"){
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
-                                            //1장
-                                            if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-4, plusX+9, plusY-5, plusX+9, plusY-4)) thisCardQty=1;
-                                            //2장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY+1, plusX+8, plusY+2, plusX+7, plusY+4)) thisCardQty=2;
-                                            //8장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY, plusX+11, plusY, plusX+9, plusY-1)) thisCardQty=8;
-                                            //5장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY-5, plusX+9, plusY-1, plusX+10, plusY-1)) thisCardQty=5;
-                                            //3장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-1, plusX+9, plusY-1, plusX+10, plusY-1)) thisCardQty=3;
-                                            //4장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY+1, plusX+11, plusY+1, plusX+10, plusY-4)) thisCardQty=4;
-                                            //6장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY-2, plusX+7, plusY-1, plusX+1, plusY-1)) thisCardQty=6;
-                                            //7장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY-5, plusX+8, plusY-5, plusX+11, plusY-5)) thisCardQty=7;
                                             //9장
-                                            else thisCardQty=9;
+                                            if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY+0, plusX+11, plusY-1, plusX+8, plusY+4)) thisCardQty=9;
+                                            //2장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+4, plusX+11, plusY+4, plusX+9, plusY+4)) thisCardQty=2;
+                                            //8장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY+0, plusX+10, plusY+0, plusX+9, plusY-5)) thisCardQty=8;
+                                            //5장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY-1, plusX+7, plusY-1, plusX+6, plusY-4)) thisCardQty=5;
+                                            //3장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY-4, plusX+11, plusY+2, plusX+6, plusY+4)) thisCardQty=3;
+                                            //4장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+1, plusX+10, plusY+2, plusX+9, plusY+2)) thisCardQty=4;
+                                            //6장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY-3, plusX+7, plusY-1, plusX+9, plusY-1)) thisCardQty=6;
+                                            //7장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY-3, plusX+8, plusY-5, plusX+9, plusY-5)) thisCardQty=7;
+                                            //1장
+                                            else thisCardQty=1;
                                         }
                                     }
                                     else if(uploadImageWidth == "QHD"){
-                                        if(deckIconX==80) plusX = plusX-1;
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
-                                            //1장
-                                            if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY-6, plusX+12, plusY-6, plusX+12, plusY-7)) thisCardQty=1;
-                                            //2장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY+6, plusX+9, plusY+6, plusX+14, plusY+6)) thisCardQty=2;
-                                            //8장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+15, plusY+1, plusX+8, plusY+4, plusX+10, plusY-2)) thisCardQty=8;
-                                            //5장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY-2, plusX+9, plusY-5, plusX+9, plusY-7)) thisCardQty=5;
-                                            //3장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY+5, plusX+14, plusY-3, plusX+15, plusY+2)) thisCardQty=3;
-                                            //4장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+2, plusX+13, plusY+2, plusX+14, plusY+2)) thisCardQty=4;
-                                            //6장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-1, plusX+8, plusY, plusX+8, plusY+3)) thisCardQty=6;
-                                            //7장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-7, plusX+15, plusY-7, plusX+14, plusY-4)) thisCardQty=7;
-                                            //9장
+                                            // 1장
+                                            if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY-6, plusX+11, plusY-6, plusX+11, plusY-7)) thisCardQty=1;
+                                            // 2장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY+5, plusX+14, plusY+5, plusX+8, plusY+4)) thisCardQty=2;
+                                            // 8장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY-1, plusX+10, plusY-1, plusX+13, plusY-2)) thisCardQty=8;
+                                            // 5장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-3, plusX+8, plusY-2, plusX+8, plusY-7)) thisCardQty=5;
+                                            // 3장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+12, plusY-2, plusX+13, plusY-1, plusX+11, plusY+5)) thisCardQty=3;
+                                            // 4장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+13, plusY+1, plusX+14, plusY+1, plusX+14, plusY+2)) thisCardQty=4;
+                                            // 6장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY+3, plusX+9, plusY+4, plusX+10, plusY+5)) thisCardQty=6;
+                                            // 7장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+14, plusY-7, plusX+15, plusY-7, plusX+14, plusY-5)) thisCardQty=7;
+                                            // 9장
                                             else thisCardQty=9;
                                         }
                                     }
@@ -260,32 +260,33 @@ let Module = {
                                     if(uploadImageWidth == "FHD"){
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
                                             //10장
-                                            if(tripleCheck(unitUploadHalfCardMat, plusX+15, plusY, plusX+15, plusY-1, plusX+15, plusY-2)) thisCardQty=10;
+                                            if(tripleCheck(unitUploadHalfCardMat, plusX+15, plusY-1, plusX+15, plusY-2, plusX+21, plusY-1)) thisCardQty=10;
                                             //11장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+17, plusY-4, plusX+18, plusY-4, plusX+18, plusY-3)) thisCardQty=11;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+17, plusY-4, plusX+18, plusY-4, plusX+18, plusY-5)) thisCardQty=11;
                                             //12장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+15, plusY+4, plusX+15, plusY+4, plusX+17, plusY+4)) thisCardQty=12;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+20, plusY-3, plusX+21, plusY+4, plusX+15, plusY+4)) thisCardQty=12;
                                             //13장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+19, plusY-2, plusX+18, plusY-1, plusX+19, plusY+4)) thisCardQty=13;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+20, plusY-2, plusX+20, plusY-4, plusX+19, plusY-1)) thisCardQty=13;
                                             //14장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+19, plusY-4, plusX+19, plusY-3, plusX+19, plusY+1)) thisCardQty=14;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+19, plusY-4, plusX+20, plusY+1, plusX+19, plusY+1)) thisCardQty=14;
                                             //15장
                                             else thisCardQty=15;
                                         }
                                     }
                                     else if(uploadImageWidth == "QHD"){
-                                        if(deckIconX==74) plusX = plusX-1;
+                                        plusX = plusX+1;
+
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
                                             //10장
-                                            if(tripleCheck(unitUploadHalfCardMat, plusX+20, plusY-4, plusX+20, plusY-3, plusX+27, plusY-4)) thisCardQty=10;
+                                            if(tripleCheck(unitUploadHalfCardMat, plusX+28, plusY-1, plusX+28, plusY-2, plusX+28, plusY-3)) thisCardQty=10;
                                             //11장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+23, plusY-6, plusX+24, plusY-6, plusX+24, plusY-7)) thisCardQty=11;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+24, plusY-1, plusX+24, plusY-2, plusX+24, plusY-3)) thisCardQty=11;
                                             //12장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+21, plusY+6, plusX+25, plusY+6, plusX+26, plusY+6)) thisCardQty=12;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+20, plusY+5, plusX+27, plusY+5, plusX+27, plusY-3)) thisCardQty=12;
                                             //13장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+22, plusY-1, plusX+23, plusY-1, plusX+25, plusY+5)) thisCardQty=13;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+25, plusY-1, plusX+25, plusY-2, plusX+26, plusY-1)) thisCardQty=13;
                                             //14장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+21, plusY+2, plusX+22, plusY+2, plusX+25, plusY+2)) thisCardQty=14;
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+26, plusY+0, plusX+26, plusY+1, plusX+26, plusY+2)) thisCardQty=14;
                                             //15장
                                             else thisCardQty=15;
                                         }
@@ -306,7 +307,7 @@ let Module = {
                             lastK=k+1;
                             hasCardDeck[cardname] = [thisStar,thisCardQty];
                             document.querySelector('#matchingment').textContent=`Matching Cards ${Object.keys(hasCardDeck).length}Pcs`;
-                            // console.log(cardname, thisStar,'각',thisCardQty,'장');
+                            console.log(cardname, thisStar,'각',thisCardQty,'장');
 
                             // 수동 카드 추가쪽
                             copycardlist.splice(copycardlist.indexOf(Object.keys(cardlist)[k]),1);

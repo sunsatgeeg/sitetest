@@ -246,7 +246,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
-    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=10300020');
+    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=10301902');
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
     let myStat = {
@@ -322,7 +322,6 @@ async function cardsetcalcstart(){
 
         for (let j = 0; j < Object.keys(setBonusDmgPlusList).length; j++) {
             if(Object.keys(setBonusDmgPlusList)[j] <= leveltotal){
-                console.log(setBonusDmgInfo, setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]])
                 myBonusDamage[setBonusDmgInfo] += setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
             }else{
                 nextbonusdamage = setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
@@ -360,7 +359,7 @@ async function cardsetcalcstart(){
 
     let saveCVal = "";
     for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
-        console.log(`${Object.keys(hasCardDeck)[i]}:${Object.values(hasCardDeck)[i][0]}`)
+        if(Object.values(hasCardDeck)[i][0] != 0) console.log(`${Object.keys(hasCardDeck)[i]} : ${Object.values(hasCardDeck)[i][0]}, ${Object.values(hasCardDeck)[i][1]}`);
         saveCVal += `${Object.keys(cardgrade).indexOf(Object.keys(hasCardDeck)[i])}:[${Object.values(hasCardDeck)[i]}],`;
     }
     setCookie('savecarddeck',saveCVal,365)
