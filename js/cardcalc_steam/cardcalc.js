@@ -154,9 +154,9 @@ document.querySelector('#finishno').addEventListener('click', function(){
 });
 
 let hasCardDeck = {};
-if(getCookie('savecarddeck') != ''){
+if(getCookie('savecarddeck_steam') != ''){
     (async ()=>{
-        getCVal = '{"' + getCookie('savecarddeck') + '}';
+        getCVal = '{"' + getCookie('savecarddeck_steam') + '}';
         getCVal = getCVal.replace(/:/gi,'":');
         getCVal = getCVal.replace(/],/gi,'],"');
         getCVal = getCVal.replace(/],"}/gi,']}');

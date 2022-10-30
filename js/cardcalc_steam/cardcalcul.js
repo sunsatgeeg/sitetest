@@ -233,7 +233,7 @@ bonusDamageBtns.forEach(function(e){
 });
 
 document.querySelector('#reconBtn').addEventListener('click', function(){
-    delCookie('savecarddeck');
+    delCookie('savecarddeck_steam');
     location.reload();
 });
 
@@ -362,7 +362,7 @@ async function cardsetcalcstart(){
         if(Object.values(hasCardDeck)[i][0] != 0) console.log(`${Object.keys(hasCardDeck)[i]} : ${Object.values(hasCardDeck)[i][0]}, ${Object.values(hasCardDeck)[i][1]}`);
         saveCVal += `${Object.keys(cardgrade).indexOf(Object.keys(hasCardDeck)[i])}:[${Object.values(hasCardDeck)[i]}],`;
     }
-    setCookie('savecarddeck',saveCVal,365)
+    setCookie('savecarddeck_steam',saveCVal,365)
 };
 
 let tippyToggle = null;
