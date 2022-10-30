@@ -133,7 +133,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
     document.querySelector('#notice').style.display = "none";
 
-    await loadJavascript('js/cardcalc/cardocr.js?v=10292241');
+    await loadJavascript('js/cardcalc/cardocr.js?v=10301154');
 });
 
 document.querySelector('#finishyes').addEventListener('click', async function(){
