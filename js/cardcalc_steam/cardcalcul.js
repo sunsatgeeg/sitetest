@@ -246,7 +246,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
-    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=11012249');
+    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=11012254');
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
     let myStat = {
