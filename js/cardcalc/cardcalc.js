@@ -144,7 +144,7 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
             hasCardDeck[document.querySelector(`#cardname${i}`).value] = [parseInt(document.querySelector(`#cardstar${i}`).value),parseInt(document.querySelector(`#cardqty${i}`).value)]
         }
     }
-    await loadJavascript('js/cardcalc/cardcalcul.js?v=10292241');
+    await loadJavascript('js/cardcalc/cardcalcul.js?v=11061057');
     await cardsetcalcstart();
     document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
 }, false)
@@ -170,7 +170,7 @@ if(getCookie('savecarddeck') != ''){
             hasCardDeck[Object.keys(cardgrade)[Object.keys(cObject)[i]]] = cObject[cNum];
         }
 
-        await loadJavascript('js/cardcalc/cardcalcul.js?v=10292241');
+        await loadJavascript('js/cardcalc/cardcalcul.js?v=11061057');
         cardsetcalcstart();
     })();
 }

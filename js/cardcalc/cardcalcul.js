@@ -310,9 +310,15 @@ async function cardsetcalcstart(){
                 nextlevels.push([unitName, cardLevelUpExp[cardgrade[unitName]][k]])
             }
         }
-        if(j != setcardlist.length){
-            continue;
+        
+        // console.log(setname, setcardlist.length)
+        // 기존에 있던 도감에 카드가 추가된 도감
+        if(
+            (setname == "트리시온" && setcardlist.length >= 6)
+        ) {
+            // Pass
         }
+        else if(j != setcardlist.length) continue;
         
         nextlevels.sort((a,b)=>{
             return a[1] - b[1];
@@ -326,8 +332,10 @@ async function cardsetcalcstart(){
             }else{
                 nextbonusdamage = setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
                 nextleveldiff = parseInt(Object.keys(setBonusDmgPlusList)[j]) - leveltotal;
+                
                 for (var k = 0; k < nextleveldiff; k++) {
-                    nextLevelExp += nextlevels[k][1];
+                    try{ nextLevelExp += nextlevels[k][1]; }
+                    catch{ };
                     nextUpSetLevel.push(nextlevels[k]);
                 }
                 break;
@@ -534,8 +542,10 @@ function bonusdamagelistup(tri){
         try{
             myCardStar = hasCardDeck[myCardName][0];
             myCardQty = hasCardDeck[myCardName][1];
-        }catch{continue;}
-
+        }catch{
+            myCardStar = 0;
+            myCardQty = 0;
+        }
         myThisTriTotalExp += cardNeedExp[cardgrade[myCardName]][myCardStar];
         
         for (let j = 0; j < Object.keys(docapack).length; j++) {
