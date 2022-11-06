@@ -55,7 +55,7 @@ function isWhite(src, x, y){
 }
 function isLowWhite(src, x, y){
     // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
-    return src.ucharPtr(y, x)[0] >= 225 && src.ucharPtr(y, x)[1] >= 225 && src.ucharPtr(y, x)[2] >= 225 ? true : false;
+    return src.ucharPtr(y, x)[0] >= 220 && src.ucharPtr(y, x)[1] >= 220 && src.ucharPtr(y, x)[2] >= 220 ? true : false;
 }
 
 function tripleCheck(src,x1,y1,x2,y2,x3,y3){
