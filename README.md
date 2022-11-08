@@ -8,11 +8,11 @@
 
 사이트 개설일 : 2022.02.25
 
-일일 방문자수 : 1천명
+일일 방문자수 : 2.9천명
 
-일일 방문횟수 : 1.3천회
+일일 방문횟수 : 4천회
 
-일일 페이지뷰 : 3.2천건
+일일 페이지뷰 : 8.5천건
 
 <div align="left"><img src="/img/readme/1.PNG"></div>
 <div align="left"><img src="/img/readme/2.PNG"></div>
