@@ -251,7 +251,10 @@
         line2 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(3) > div.col.d-grid.gap-2 > button").value);
         line3 = parseInt(document.querySelector("#simulation_zone > div:nth-child(2) > div:nth-child(4) > div.col.d-grid.gap-2 > button").value);
 
-        if(line1 >= 9 && line1 + line2 >= 16 && line3 <= 4){
+        if(
+               (line1 >= 9 && line2 >= 7  && line3 <= 4) // 9 7돌
+            || (line1 >= 6 && line2 == 10 && line3 <= 4) // 6 10돌
+        ){
           lopagorunning = false;
           document.querySelector("#simulation_zone > div:nth-child(2) > button.mx-auto.btn.btn-lg.btn-outline-light.dynamic.puse.my-2.ms-2").textContent = '로파고[97돌]';
           break;
