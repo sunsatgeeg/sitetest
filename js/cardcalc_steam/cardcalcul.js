@@ -139,7 +139,6 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 function manualEditInfo(name){
     let cardAwake;
     let cardQty;
@@ -405,6 +404,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
     await loadJavascript('js/cardcalc_steam/cardeffect.js?v=11012301');
+    autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
     let myStat = {

@@ -144,7 +144,7 @@ document.querySelector('#finishyes').addEventListener('click', async function(){
             hasCardDeck[document.querySelector(`#cardname${i}`).value] = [parseInt(document.querySelector(`#cardstar${i}`).value),parseInt(document.querySelector(`#cardqty${i}`).value)]
         }
     }
-    await loadJavascript('js/cardcalc_steam/cardcalcul.js?v=11191810');
+    await loadJavascript('js/cardcalc_steam/cardcalcul.js?v=11191841');
     await cardsetcalcstart();
     document.querySelector('#bonusdamageBtns > button:nth-child(1)').click();
 }, false)

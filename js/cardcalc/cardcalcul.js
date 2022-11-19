@@ -139,7 +139,6 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 function manualEditInfo(name){
     let cardAwake;
     let cardQty;
@@ -407,6 +406,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
     
     await loadJavascript('js/cardcalc/cardeffect.js?v=10292241');
+    autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 
     document.querySelector('#matchingment').textContent = '도감작 계산 시작';
     let myStat = {
