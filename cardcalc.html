@@ -87,6 +87,48 @@
       color:var(--hover-color-var);
     }
 
+    .autocomplete {
+      /*the container must be positioned relative:*/
+      position: relative;
+    }
+    .autocomplete input {
+      padding: 10px;
+    }
+    .autocomplete input[type=text] {
+      background-color: white;
+      width: 100%;
+    }
+    .autocomplete input[type=submit] {
+      background-color: rgb(105, 105, 105);
+      color: #fff;
+    }
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      border-bottom: none;
+      border-top: none;
+      z-index: 99;
+      /*position the autocomplete items to be the same width as the container:*/
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      color: #212529;
+      background-color: #fff;
+      border-bottom: 1px solid #d4d4d4;
+    }
+    .autocomplete-items div:hover {
+      /*when hovering an item:*/
+      background-color: #e9e9e9;
+    }
+    .autocomplete-active {
+      /*when navigating through the items using the arrow keys:*/
+      background-color: #e9e9e9 !important; 
+      color: #ffffff;
+    }
   </style>
   <link href="css/cover.css" rel="stylesheet">
 </head>
@@ -156,6 +198,7 @@
             <div class="row">
               <div id="bookeffect" class="col-5">
                 <button class="btn btn-outline-light btn-lg" id="reconBtn">처음으로</button>
+                <button class="btn btn-outline-light btn-lg" id="undoBtn" disabled>되돌리기</button>
                 <table class="table table-dark float-start table-hover">
                   <thead>
                     <tr>
@@ -250,10 +293,16 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="autocomplete input-group">
+                  <input id="manualEditNameInput" class="form-control w-50" type="text" placeholder="수동 수정">
+                  <select id="manualEditAwakeInput" class="form-select"><option value="5">5각</option><option value="4">4각</option><option value="3">3각</option><option value="2">2각</option><option value="1">1각</option><option value="0">0각</option><option value="-1" selected>없음</option></select>
+                  <select id="manualEditQtyInput" class="form-select"><option value="15">15장</option><option value="14">14장</option><option value="13">13장</option><option value="12">12장</option><option value="11">11장</option><option value="10">10장</option><option value="9">9장</option><option value="8">8장</option><option value="7">7장</option><option value="6">6장</option><option value="5">5장</option><option value="4">4장</option><option value="3">3장</option><option value="2">2장</option><option value="1">1장</option><option value="0" selected>0장</option></select>
+                </div>
+                <br>
                 <small>
                   <div>※ 과거에 카드 삭제한번이라도 했으면 수집 효과가<br>인게임 효과와 차이가 있을 수 있음<br>(카드 삭제를 해도 도감에서는<br>수집 유무로 효과가 올라가기 때문)</div>
-                  <br><div class="mt-2">※ 각 도감 수치에 커서를 올리면 다음 각성단계까지
-                    <br>강화 방법을 표시합니다.</div>
+                  <br><div class="mt-2">※ 카드 인식 개수가 안맞으면 사용법대로<br>밝기 50%, NVIDIA 필터를 꺼주시기 바랍니다.</div>
+                  <br><div class="mt-2">※ 각 도감 수치에 커서를 올리면 다음 각성단계까지<br>강화 방법을 표시합니다.</div>
                   <br><div class="mt-2">※ 도감 각성 후 왼쪽 클릭시 계산기에 반영합니다.</div>
                   <br><div class="mt-2">※ <font color="orange">주황색</font>은 바로 각성 가능한 도감입니다.</div>
                 </small>
@@ -381,7 +430,7 @@
           <h3>※ <font COLOR='#0000FF'>인게임 필수 설정</font> ※</h3>
           <p>1. 해상도 : 1920x1080 <b>또는</b> 2560x1440 <b>또는</b> 2560x1080 <b>또는</b> 3440x1440</p>
           <p>2. [21:9 강제 설정] 옵션 끄기</p>
-          <p>3. 밝기 : 50%(권장)<br>너무 밝거나 어두운 경우 카드 인식이 안되거나 틀릴 수 있습니다.<br>또한 NVDIA 필터도 영향이 있으므로 끄고 진행해 주시기 바랍니다.</p>
+          <p>3. 밝기 : 50%(권장)<br>너무 밝거나 어두운 경우 카드 인식이 안되거나 틀릴 수 있습니다.<br>또한 NVIDIA 필터의 영향도 받으니 끄고 진행해 주시기 바랍니다.</p>
           
           <br><h3>※ <font COLOR='orange'>방법</font> ※</h3>
           <p>1. 인게임 내 스크린샷 기능(<kbd>Insert</kbd>키 위에있는 <kbd>PrintScreenCapture</kbd>키)으로 찍은 사진
@@ -417,7 +466,7 @@
   
   <!-- custom -->
   <script src="js/custom.js?v=09031953"></script>
-  <script src="js/cardcalc/cardcalc.js?v=11061057"></script>
+  <script src="js/cardcalc/cardcalc.js?v=11191810"></script>
 
   <!-- google ADSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4936470262963011"
