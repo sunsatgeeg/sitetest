@@ -57,7 +57,14 @@ function isLowWhite(src, x, y){
     // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
     return src.ucharPtr(y, x)[0] >= 220 && src.ucharPtr(y, x)[1] >= 220 && src.ucharPtr(y, x)[2] >= 220 ? true : false;
 }
-
+function isBlack(src, x, y){
+    // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
+    return src.ucharPtr(y, x)[0] <= 40 && src.ucharPtr(y, x)[1] <= 40 && src.ucharPtr(y, x)[2] <= 40 ? true : false;
+}
+function isGray(src, x, y){
+    // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
+    return src.ucharPtr(y, x)[0] >= 130 && src.ucharPtr(y, x)[1] >= 130 && src.ucharPtr(y, x)[2] >= 130 ? true : false;
+}
 function tripleCheck(src,x1,y1,x2,y2,x3,y3){
     return isLowWhite(src, x1, y1) && isLowWhite(src, x2, y2) && isLowWhite(src, x3, y3) ? true : false;
 }
@@ -234,7 +241,24 @@ let Module = {
                                         }
                                     }
                                     else if(uploadImageWidth == "QHD"){
-                                        if(deckIconX==80) plusX = plusX-1;
+                                        let tempX = deckIconX+32;
+                                        let tempY = deckIconY+9;
+                                        for (let whileI = 0; whileI < 10; whileI++) {
+                                            if(isGray(unitUploadHalfCardMat, tempX, tempY)){
+                                                if(
+                                                    isBlack(unitUploadHalfCardMat, tempX-1, tempY)
+                                                    && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
+                                                    && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
+                                                    && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
+                                                ){
+                                                    plusX = tempX + 1;
+                                                    plusY = tempY - 1;
+                                                    break;
+                                                }
+                                            }else{
+                                                tempX += 1;
+                                            }
+                                        }
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
                                             //1장
                                             if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY-6, plusX+12, plusY-6, plusX+12, plusY-7)) thisCardQty=1;
@@ -274,7 +298,24 @@ let Module = {
                                         }
                                     }
                                     else if(uploadImageWidth == "QHD"){
-                                        if(deckIconX==74) plusX = plusX-1;
+                                        let tempX = deckIconX+32;
+                                        let tempY = deckIconY+9;
+                                        for (let whileI = 0; whileI < 10; whileI++) {
+                                            if(isGray(unitUploadHalfCardMat, tempX, tempY)){
+                                                if(
+                                                    isBlack(unitUploadHalfCardMat, tempX-1, tempY)
+                                                    && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
+                                                    && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
+                                                    && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
+                                                ){
+                                                    plusX = tempX + 1;
+                                                    plusY = tempY - 1;
+                                                    break;
+                                                }
+                                            }else{
+                                                tempX += 1;
+                                            }
+                                        }
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
                                             //10장
                                             if(tripleCheck(unitUploadHalfCardMat, plusX+20, plusY-4, plusX+20, plusY-3, plusX+27, plusY-4)) thisCardQty=10;
