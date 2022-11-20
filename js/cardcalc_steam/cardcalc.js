@@ -110,7 +110,10 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         toastAlert("Please upload an image to match.", 3000);
         return;
     }
-    if([1051,1411].includes(uploadFirstImg.naturalHeight)){
+    if([
+        1051,1076, //FHD
+        1411, 1426 //QHD
+    ].includes(uploadFirstImg.naturalHeight)){
         toastAlert("Please [Bordeless] Or [Full Screen] change the setting to and try again.", 5000)
         return;
     }

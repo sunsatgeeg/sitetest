@@ -110,7 +110,11 @@ document.querySelector("#matchstart").addEventListener('click', async function()
         toastAlert("인식할 이미지를 선택해 주세요.", 3000);
         return;
     }
-    if([1051,1411].includes(uploadFirstImg.naturalHeight)){
+    
+    if([
+        1051,1076, //FHD
+        1411, 1426 //QHD
+    ].includes(uploadFirstImg.naturalHeight)){
         toastAlert("[전체 창 모드] 또는 [전체 화면]으로 설정을 바꿔주시고 다시 시도해 주세요.", 5000)
         return;
     }
