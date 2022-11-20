@@ -37,9 +37,9 @@ document.querySelector('#undoBtn').addEventListener('click', async()=>{
     if(document.querySelector("#allBonusDmg").classList.contains('active')){
         allBonusDmg();
     }else{
-        await cardsetcalcstart();
+        bonusdamagelistup();
     }
-    bonusdamagelistup();
+    await cardsetcalcstart();
 
     if(myHistory.length >= 1) document.querySelector('#undoBtn').removeAttribute('disabled');
     else document.querySelector('#undoBtn').setAttribute('disabled','');
