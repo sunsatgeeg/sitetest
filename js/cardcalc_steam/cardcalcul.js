@@ -34,7 +34,11 @@ document.querySelector('#undoBtn').addEventListener('click', async()=>{
     }
     myHistory.pop();
 
-    await cardsetcalcstart();
+    if(document.querySelector("#allBonusDmg").classList.contains('active')){
+        allBonusDmg();
+    }else{
+        await cardsetcalcstart();
+    }
     bonusdamagelistup();
 
     if(myHistory.length >= 1) document.querySelector('#undoBtn').removeAttribute('disabled');
@@ -46,19 +50,19 @@ function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     let currentFocus;
-    /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function (e) {
-        let a, b, i, val = this.value;
+
+    function autocompleteEvent(e){
+        let a, b, i, val = e.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
         if (!val) { return false; }
         currentFocus = -1;
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
-        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("id", e.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a);
+        e.parentNode.appendChild(a);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
@@ -70,18 +74,21 @@ function autocomplete(inp, arr) {
                 /*insert a input field that will hold the current array item's value:*/
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function (e) {
+                b.addEventListener("click", function (f) {
                     /*insert the value for the autocomplete text field:*/
-                    inp.value = this.getElementsByTagName("input")[0].value;
+                    inp.value = f.target.getElementsByTagName("input")[0].value;
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
-                    manualEditInfo(this.getElementsByTagName("input")[0].value);
+                    manualEditInfo(f.target.getElementsByTagName("input")[0].value);
                     closeAllLists();
                 });
                 a.appendChild(b);
             }
         }
-    });
+    }
+    inp.addEventListener('click', (e)=>{autocompleteEvent(e.target)})
+    /*execute a function when someone writes in the text field:*/
+    inp.addEventListener("input", (e)=>{autocompleteEvent(e.target)});
     /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function (e) {
         let x = document.getElementById(this.id + "autocomplete-list");
@@ -104,7 +111,12 @@ function autocomplete(inp, arr) {
             if (currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
                 if (x) x[currentFocus].click();
+            }else{
+                if (x) x[0].click();
             }
+        } else if (e.keyCode == 18) {
+            // 알트 누르니까 마지막 키 입력 취소해서
+            e.preventDefault();
         }
     });
     function addActive(x) {
@@ -140,31 +152,37 @@ function autocomplete(inp, arr) {
     });
 }
 function manualEditInfo(name){
-    let cardAwake;
-    let cardQty;
+    name = name.replace(/\b[a-z]/g, char => char.toUpperCase());
 
-    try{
-        cardAwake = hasCardDeck[name][0];
-        cardQty = hasCardDeck[name][1];
-    }catch{
+    document.querySelector('#manualEditQtyInput').value = '';
+    if(cardgrade?.[name] == undefined){
+        document.querySelector('#manualEditAwakeInput').value = '';
+    }else if(hasCardDeck[name]?.[0] == undefined){
         document.querySelector('#manualEditAwakeInput').value = -1;
-        document.querySelector('#manualEditQtyInput').value = 0;
-        return;
+    }else{
+        document.querySelector('#manualEditAwakeInput').value = hasCardDeck[name][0];
+        document.querySelector('#manualEditQtyInput').value = hasCardDeck[name][1];
     }
-    
-    document.querySelector('#manualEditAwakeInput').value = cardAwake;
-    document.querySelector('#manualEditQtyInput').value = cardQty;
+
 }
 async function manualEdit(){
-    try{
-        hasCardDeck[document.querySelector('#manualEditNameInput').value][0]
-    }catch{return;}
+    let name = document.querySelector('#manualEditNameInput').value;
+    name = name.replace(/\b[a-z]/g, char => char.toUpperCase());
 
-    hasCardDeck[document.querySelector('#manualEditNameInput').value] = [parseInt(document.querySelector('#manualEditAwakeInput').value), parseInt(document.querySelector('#manualEditQtyInput').value)];
-    
+    if(cardgrade?.[name] == undefined){
+        return;
+    }
+    if(document.querySelector('#manualEditAwakeInput').value == '-1'){
+        delete hasCardDeck[name];
+        await cardsetcalcstart();
+        bonusdamagelistup();
+        return;
+    }
+    hasCardDeck[name] = [parseInt(document.querySelector('#manualEditAwakeInput').value), parseInt(document.querySelector('#manualEditQtyInput').value || 0)];
     await cardsetcalcstart();
     bonusdamagelistup();
 }
+
 document.querySelector('#manualEditNameInput').addEventListener('input', e => manualEditInfo(e.target.value));
 document.querySelector('#manualEditAwakeInput').addEventListener('change', manualEdit)
 document.querySelector('#manualEditQtyInput').addEventListener('change', manualEdit);
@@ -276,6 +294,11 @@ function allBonusDmg(){
             trElement.addEventListener('click', async (e)=>{
                 let thisTr = e.target.parentElement;
                 let thisName = thisTr.childNodes[0].textContent;
+
+                let temp = {}
+                temp[thisName] = [5-hasCardDeck[thisName][0], hasCardDeck[thisName][1]]
+                historyADD(temp)
+
                 hasCardDeck[thisName] = [5,0];
 
                 await cardsetcalcstart();
