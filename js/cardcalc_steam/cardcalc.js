@@ -136,7 +136,7 @@ document.querySelector("#matchstart").addEventListener('click', async function()
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     document.querySelector('#notice').style.display = "none";
 
-    await loadJavascript('js/cardcalc_steam/cardocr.js?v=11012301');
+    await loadJavascript('js/cardcalc_steam/cardocr.js?v=12212110');
 });
 
 document.querySelector('#finishyes').addEventListener('click', async function(){

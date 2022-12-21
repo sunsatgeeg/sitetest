@@ -80,7 +80,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/cardcalc/allCardImages.js?v=11240040');
+        await loadJavascript('js/cardcalc/allCardImages.js?v=12212110');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;
@@ -120,7 +120,7 @@ let Module = {
             plusOffsetX = 27;
             plusOffsetY = 6;
             deckIconMatchX = [[55],[59]];
-            deckIconMatchY = 2;
+            deckIconMatchY = [1,2];
         }else if(uploadImages[0].naturalHeight==1440){
             cardRemoveMat = cv.imread(await putBaseIntoImageTag(QHDcardremovebase64));
             deckIconMat = cv.imread(await putBaseIntoImageTag(QHDdeckIconbase64));
@@ -139,7 +139,7 @@ let Module = {
             plusOffsetX = 36;
             plusOffsetY = 8;
             deckIconMatchX = [[72,73,74],[78,79,80]];
-            deckIconMatchY = 12;
+            deckIconMatchY = [10,11];
         }
 
         for (let imgindex = 0; imgindex < uploadImages.length; imgindex++) {
@@ -199,6 +199,7 @@ let Module = {
                     let halfResult = cv.minMaxLoc(halfDst, halfMask);
                     let deckIconX = halfResult.maxLoc.x;
                     let deckIconY = halfResult.maxLoc.y;
+
                     
                     let im1 = new cv.Mat();
                     cv.resize(unitUploadCardMat, im1, new cv.Size(0, 0), sizeUpOffset, sizeUpOffset, sizeUpMethod);
@@ -213,7 +214,8 @@ let Module = {
 
                             //카드 갯수
                             let thisCardQty = 0;
-                            if(deckIconY == deckIconMatchY){
+                            console.log(deckIconY)
+                            if(deckIconMatchY.includes(deckIconY)){
                                 plusX = deckIconX + plusOffsetX;
                                 plusY = deckIconY + plusOffsetY;
                         
@@ -243,21 +245,25 @@ let Module = {
                                     else if(uploadImageWidth == "QHD"){
                                         let tempX = deckIconX+32;
                                         let tempY = deckIconY+9;
-                                        for (let whileI = 0; whileI < 10; whileI++) {
-                                            if(isGray(unitUploadHalfCardMat, tempX, tempY)){
-                                                if(
-                                                    isBlack(unitUploadHalfCardMat, tempX-1, tempY)
-                                                    && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
-                                                    && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
-                                                    && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
-                                                ){
-                                                    plusX = tempX + 1;
-                                                    plusY = tempY - 1;
-                                                    break;
+                                        for (let whileJ = 0; whileJ < 1; whileJ++) {
+                                            for (let whileI = 0; whileI < 10; whileI++) {
+                                                if(isGray(unitUploadHalfCardMat, tempX, tempY)){
+                                                    if(
+                                                        isBlack(unitUploadHalfCardMat, tempX-1, tempY)
+                                                        && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
+                                                        && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
+                                                        && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
+                                                    ){
+                                                        plusX = tempX + 1;
+                                                        plusY = tempY - 1;
+                                                        whileJ = 10;
+                                                        break;
+                                                    }
+                                                }else{
+                                                    tempX += 1;
                                                 }
-                                            }else{
-                                                tempX += 1;
                                             }
+                                            tempY += 1;
                                         }
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
                                             //1장
@@ -300,20 +306,23 @@ let Module = {
                                     else if(uploadImageWidth == "QHD"){
                                         let tempX = deckIconX+32;
                                         let tempY = deckIconY+9;
-                                        for (let whileI = 0; whileI < 10; whileI++) {
-                                            if(isGray(unitUploadHalfCardMat, tempX, tempY)){
-                                                if(
-                                                    isBlack(unitUploadHalfCardMat, tempX-1, tempY)
-                                                    && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
-                                                    && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
-                                                    && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
-                                                ){
-                                                    plusX = tempX + 1;
-                                                    plusY = tempY - 1;
-                                                    break;
+                                        for (let whileJ = 0; whileJ < 1; whileJ++) {
+                                            for (let whileI = 0; whileI < 10; whileI++) {
+                                                if(isGray(unitUploadHalfCardMat, tempX, tempY)){
+                                                    if(
+                                                        isBlack(unitUploadHalfCardMat, tempX-1, tempY)
+                                                        && isWhite(unitUploadHalfCardMat, tempX, tempY-1)
+                                                        && isLowWhite(unitUploadHalfCardMat, tempX+1, tempY-1)
+                                                        && isBlack(unitUploadHalfCardMat, tempX+3, tempY)
+                                                    ){
+                                                        plusX = tempX + 1;
+                                                        plusY = tempY - 1;
+                                                        whileJ = 10;
+                                                        break;
+                                                    }
+                                                }else{
+                                                    tempX += 1;
                                                 }
-                                            }else{
-                                                tempX += 1;
                                             }
                                         }
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
