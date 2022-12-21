@@ -3,8 +3,8 @@ let reward_bonus_array = [
                                 "bossname":"아르고스",
                                 "bossitem":"",
                                 "phase":3,
-                                "phaserewardgold":[700,400,500], 
-                                "phasebonusrewardgold":[0,0,500], 
+                                "phaserewardgold":[300,300,400], 
+                                "phasebonusrewardgold":[100,150,150], 
                                 "phaserewarditem":[0,0,0], 
                                 "phasebonusrewarditem":[
                                                         [],
@@ -21,8 +21,8 @@ let reward_bonus_array = [
                                 "bossname":"발탄(노말)",
                                 "bossitem":"마수의 뼈",
                                 "phase":2,
-                                "phaserewardgold":[500,2000],
-                                "phasebonusrewardgold":[500,800],
+                                "phaserewardgold":[500,700],
+                                "phasebonusrewardgold":[300,400],
                                 "phaserewarditem":[1,2],
                                 "phasebonusrewarditem":[
                                                         [
@@ -45,8 +45,8 @@ let reward_bonus_array = [
                                 "bossname":"발탄(하드)",
                                 "bossitem":"마수의 뼈",
                                 "phase":2,
-                                "phaserewardgold":[1000,3500],
-                                "phasebonusrewardgold":[900,1200],
+                                "phaserewardgold":[700,1100],
+                                "phasebonusrewardgold":[450,600],
                                 "phaserewarditem":[3,3],
                                 "phasebonusrewarditem":[
                                                         [
@@ -69,8 +69,8 @@ let reward_bonus_array = [
                                 "bossname":"비아키스(노말)",
                                 "bossitem":"욕망의 날개",
                                 "phase":3,
-                                "phaserewardgold":[500,600,1400],
-                                "phasebonusrewardgold":[400,600,800],
+                                "phaserewardgold":[400,500,700],
+                                "phasebonusrewardgold":[200,250,400],
                                 "phaserewarditem":[1,1,1],
                                 "phasebonusrewarditem":[
                                                         [
@@ -100,8 +100,8 @@ let reward_bonus_array = [
                                 "bossname":"비아키스(하드)",
                                 "bossitem":"욕망의 날개",
                                 "phase":3,
-                                "phaserewardgold":[1000,1000,2500],
-                                "phasebonusrewardgold":[700,900,1200],
+                                "phaserewardgold":[600,700,1100],
+                                "phasebonusrewardgold":[300,300,600],
                                 "phaserewarditem":[2,2,2],
                                 "phasebonusrewarditem":[
                                                         [
@@ -389,7 +389,7 @@ let reward_bonus_array = [
                                 "bossname":"일리아칸(하드)",
                                 "bossitem":"쇠락한 눈동자",
                                 "phase":3,
-                                "phaserewardgold":[1750,2000,2750],
+                                "phaserewardgold":[1750,2000,3750],
                                 "phasebonusrewardgold":[1200,1400,1900],
                                 "phaserewarditem":[7,7,8],
                                 "phasebonusrewarditem":[
