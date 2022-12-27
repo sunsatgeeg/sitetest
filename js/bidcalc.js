@@ -52,12 +52,12 @@ function calc(){
     document.querySelector('#breakpoint').setAttribute('tooltipcontent', `${price} - ${tax} = <FONT color='orange'>${price-tax}</FONT><br>${personcount-1}[인] / ${personcount}[인] = <FONT color='green'>${(personcount-1)/personcount}</FONT><br><FONT color='orange'>${price-tax}</FONT> x <FONT color='green'>${(personcount-1)/personcount}</FONT> = ${breakpoint}<br>(소수점 버림)`);
     document.querySelector('#breakpoint').style.cursor = "pointer";
 
-    var fairprice = parseInt(breakpoint*100/(110));
+    var fairprice = Math.floor(breakpoint*100/(110));
     document.querySelector('#fairprice').innerText = fairprice;
     document.querySelector('#fairprice').setAttribute('tooltipcontent', String(breakpoint) + " ÷ 1.1");
     document.querySelector('#fairprice').style.cursor = "pointer";
 
-    var giveme = parseInt(fairprice*100/(110));
+    var giveme = Math.floor(fairprice*100/(110));
     document.querySelector('#giveme').innerText = giveme;
     document.querySelector('#giveme').setAttribute('tooltipcontent', String(fairprice) + " ÷ 1.1");
     document.querySelector('#giveme').style.cursor = "pointer";
@@ -211,10 +211,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 f.classList.remove('active');
             })
             this.classList.add('active');
+            personcount = parseInt(this.getAttribute('forI'));
             if(document.querySelector('#price').value == ""){
                 return;
             }
-            personcount = parseInt(this.getAttribute('forI'));
             calc();
         });
     });
