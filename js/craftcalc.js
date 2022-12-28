@@ -62,7 +62,7 @@
     });
 
     function reloadPriceTXT(){
-      document.querySelectorAll('.pricetxt').forEach((e)=>{
+      document.querySelectorAll('#fresh-table .pricetxt').forEach((e)=>{
         e.previousSibling.textContent = e.value;
 
         e.previousSibling.style.display = 'unset';
@@ -97,7 +97,7 @@
             e.value = e.value.substr(1);
           }
 
-          temprowitemname = e.parentElement.querySelector('#itemname').getAttribute('origin');
+          temprowitemname = e.parentElement.parentElement.childNodes[1].textContent;
           if(temprowitemname.indexOf('(') != -1){
             temprowitemname = temprowitemname.substr(0, temprowitemname.indexOf('('))
           }
@@ -308,6 +308,11 @@
 
       ([...new Set(temp)].sort()).forEach(function(e){
         originE = e;
+        let showName = e;
+        if(showName.lastIndexOf('[') != -1){
+          showName = showName.substr(0, showName.lastIndexOf('['));
+        }
+
         try{
           grade = iteminfo[e][1];
           image = iteminfo[e][0];
@@ -323,11 +328,11 @@
             image = recipedata[e].key.Element_001.value.slotData.iconPath;
           }
         }
-        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${originE.substr(0,14)}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
+        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${showName}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
       });
 
       $(this).off('click');
-      $('.pricetxt').filter(function(){
+      $(this).find($('.pricetxt')).filter(function(){
         $(this).parent().find('.pricehide').text($(this).val());
         $(this).width($(this).parent().find('.pricehide').width() + 16);
 
