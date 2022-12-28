@@ -97,7 +97,7 @@
             e.value = e.value.substr(1);
           }
 
-          temprowitemname = e.parentElement.parentElement.childNodes[1].textContent;
+          temprowitemname = e.parentElement.querySelector('#itemname').getAttribute('origin');
           if(temprowitemname.indexOf('(') != -1){
             temprowitemname = temprowitemname.substr(0, temprowitemname.indexOf('('))
           }
@@ -109,6 +109,8 @@
     }
 
     function newRow(index, row, $detail){
+      if($detail.length == 0) return;
+
       tippy($detail[0].querySelectorAll('.hasTooltip'), {
         allowHTML: true, 
         onShow(instance) {
@@ -364,6 +366,8 @@
     });
 
     function detailFormatter(index, row) {
+      if(!row) return;
+
       html = "";
       html += `<table class="table" style="cursor:auto;">
   <thead>
