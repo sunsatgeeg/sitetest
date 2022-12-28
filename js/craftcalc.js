@@ -539,7 +539,7 @@
       </td>
       <td onmousewheel="createqtyperset(event,this.querySelector('.pricetxt'))">
         <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span>
-        <br>[<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산"></i>]
+        <br>[<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산<br>-------------------------------------------------------<br>영지효과 대성공이 0이면 기본 대성공 확률 5% 반영 X"></i>]
         <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">세트
       </td>
       <td>
