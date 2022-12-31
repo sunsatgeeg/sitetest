@@ -423,7 +423,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = '필요 작업 진행중...(환경에 따라 최대 30초 소요)';
     
-    await loadJavascript('js/cardcalc/cardeffect.js?v=12212110');
+    await loadJavascript('js/cardcalc/cardeffect.js?v=01010118');
     autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 
     document.querySelector('#matchingment').textContent = '도감작 계산 시작';
@@ -504,8 +504,10 @@ async function cardsetcalcstart(){
 
         myStat[setStatInfo] += setStatPlus;
 
+        // if(setBonusDmgInfo == "곤충") console.log(setname);
         for (let j = 0; j < Object.keys(setBonusDmgPlusList).length; j++) {
             if(Object.keys(setBonusDmgPlusList)[j] <= leveltotal){
+                // if(setBonusDmgInfo == "곤충") console.log(setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]])
                 myBonusDamage[setBonusDmgInfo] += setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
             }else{
                 nextbonusdamage = setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
