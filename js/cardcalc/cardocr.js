@@ -214,7 +214,6 @@ let Module = {
 
                             //카드 갯수
                             let thisCardQty = 0;
-                            console.log(deckIconY)
                             if(deckIconMatchY.includes(deckIconY)){
                                 plusX = deckIconX + plusOffsetX;
                                 plusY = deckIconY + plusOffsetY;
@@ -343,10 +342,12 @@ let Module = {
                                 }
                             }
 
+                            // if(cardname == "제레온") debugger;
                             //카드 각성 단계
                             let thisStar = 5;
                             for (let l = 5; l > 0; l--) {
-                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 150){
+                                // console.log(`${cardname} - ${unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0]}`);
+                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 230){
                                     thisStar = l;
                                     break
                                 }
