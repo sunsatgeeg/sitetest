@@ -347,7 +347,7 @@ let Module = {
                             let thisStar = 5;
                             for (let l = 5; l > 0; l--) {
                                 // console.log(`${cardname} - ${unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0]}`);
-                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 230){
+                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 167){
                                     thisStar = l;
                                     break
                                 }
