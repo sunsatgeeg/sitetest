@@ -288,12 +288,18 @@
           thisrecommend =  "구매";
         }
         
+        let profitperenergyGold = parseInt((Math.floor(10000 / es)) * thisprofit);
+        // 하루 최대 제한 있는 아이템 예외 목록
+        if(itemname == '현자의 가루'){
+          profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
+        }
+
         tabledata.push({item: itemname,
                 recommend: thisrecommend,
                 buyprice: thisbuyprice,
                 craftprice: craftprice.toFixed(2),
                 profit: thisprofit.toFixed(2),
-                profitperenergy: parseInt((Math.floor(10000 / es)) * thisprofit),
+                profitperenergy: profitperenergyGold,
                 dict: recipe,
                 es: es,
                 gsqty: gsqty
