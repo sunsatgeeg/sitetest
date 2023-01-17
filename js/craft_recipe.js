@@ -49,7 +49,7 @@ var iteminfo = {
   "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2],
   "골드":["EFUI_IconAtlas/money/money_4.png",0],
   "실링":["EFUI_IconAtlas/etc/etc_14.png",0],
-  "현자의 돌":["EFUI_IconAtlas/Use/Use_9_81.png",2], 
+  "현자의 돌":["EFUI_IconAtlas/Use/Use_9_81.png",2]
 };
 var itemunit = {
   "수줍은 들꽃":10,
@@ -3753,8 +3753,6 @@ var recipedata = {
       "type": "ItemTitle",
       "value": {
         "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 트라이포드 전승 재료</FONT></FONT>",
-        "leftStr2": "<FONT SIZE='14'>아이템 티어 3</FONT>",
-        "qualityValue": -1,
         "rightStr0": "",
         "slotData": {
           "iconGrade": 3,
