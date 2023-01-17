@@ -228,7 +228,7 @@
           }
           thisitmeqty = recipe[Object.keys(recipe)[i]];
 
-          if(thisitemname == '실링'){
+          if(thisitemname == '실링' || thisitemname == '현자의 돌'){
             calcprice = 0;
           }else if(thisitemname == "골드"){
             thissale = isEmptyValue(parseFloat($('#cc_' + type).val())) + isEmptyValue(parseFloat($('#cc_all').val()));
@@ -438,7 +438,7 @@
           thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
         }
 
-        if(thisitemname == "실링"){
+        if(thisitemname == "실링" || thisitemname == "현자의 돌"){
           html += `<p>0</p>`;
         }else if(thisitemname == "골드"){
           html += `<p>${row['dict'][Object.keys(row['dict'])[i]]}</p>`;
@@ -484,7 +484,7 @@
         if(thisitemname.lastIndexOf('(') != -1){
           thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
         }
-        if(thisitemname == "실링" || thisitemname == "골드"){
+        if(thisitemname == "실링" || thisitemname == "골드" || thisitemname == "현자의 돌"){
           qty = 1;
         }else{
          qty = row['dict'][Object.keys(row['dict'])[i]]; 
@@ -512,7 +512,7 @@
         if(thisitemname.lastIndexOf('(') != -1){
           thisitemname = thisitemname.substr(0, thisitemname.lastIndexOf('('));
         }
-        if(thisitemname == "실링"){
+        if(thisitemname == "실링" || thisitemname == "현자의 돌"){
           calcprice = 0;
         }else if(thisitemname == "골드"){
           thissale = isEmptyValue(parseFloat($('#cc_' + type).val())) + isEmptyValue(parseFloat($('#cc_all').val()));

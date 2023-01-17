@@ -48,7 +48,8 @@ var iteminfo = {
   "성스러운 부적":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png",2], 
   "진군의 깃발":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_14.png",2],
   "골드":["EFUI_IconAtlas/money/money_4.png",0],
-  "실링":["EFUI_IconAtlas/etc/etc_14.png",0]
+  "실링":["EFUI_IconAtlas/etc/etc_14.png",0],
+  "현자의 돌":["EFUI_IconAtlas/Use/Use_9_81.png",2], 
 };
 var itemunit = {
   "수줍은 들꽃":10,
@@ -3742,5 +3743,44 @@ var recipedata = {
       "type": "SingleTextBox",
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
-  },"분류":"배틀아이템","수량":2,"활동력":216,"진군의 깃발(구매)":3,"화려한 버섯":3,"골드":15}
+  },"분류":"배틀아이템","수량":2,"활동력":216,"진군의 깃발(구매)":3,"화려한 버섯":3,"골드":15},
+  "현자의 가루":{"key":{
+    "Element_000": {
+      "type": "NameTagBox",
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#ce43fc'>현자의 가루</FONT></P>"
+    },
+    "Element_001": {
+      "type": "ItemTitle",
+      "value": {
+        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#ce43fc'>영웅 트라이포드 전승 재료</FONT></FONT>",
+        "leftStr2": "<FONT SIZE='14'>아이템 티어 3</FONT>",
+        "qualityValue": -1,
+        "rightStr0": "",
+        "slotData": {
+          "iconGrade": 3,
+          "iconPath": "EFUI_IconAtlas/Use/Use_7_181.png",
+        }
+      }
+    },
+    "Element_002": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
+    },
+    "Element_003": {
+      "type": "MultiTextBox",
+      "value": "|거래가능"
+    },
+    "Element_004": {
+      "type": "SingleTextBox",
+      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>장비에서 트라이포드 효과 전승 시 사용하면 성공 확률을 상승시킬 수 있다.</FONT></FONT>"
+    },
+    "Element_005": {
+      "type": "SingleTextBox",
+      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
+    },
+    "Element_006": {
+      "type": "SingleTextBox",
+      "value": "<Font color='#5FD3F1'>[원정대 영지] 제작 공방</font>"
+    }
+  },"분류":"특수","수량":1,"활동력":288,"철광석":6,"목재":6,"현자의 돌":1,"골드":10}
 };
