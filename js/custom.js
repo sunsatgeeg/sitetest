@@ -1,4 +1,4 @@
-var nocommu = ['bidcalc','cardcalc','cardcalc_old','cardcalc_steam','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
+let nocommu = ['bidcalc','cardcalc','cardcalc_old','cardcalc_steam','/','simulation','simulation_jewel','simulation_card_legendary_dark','simulation_card_legendary',
 'simulation_card_LegendaryToEpic','simulation_card_LegendaryToRare','simulation_card_LegendaryToUncommon','simulation_card_all','simulation_stone'
 ]
 
@@ -47,7 +47,7 @@ function clickToCopy(){
     }).showToast();
 }
 
-var servererror = false;
+let servererror = false;
 if(servererror){
     document.querySelector('body').removeChild(document.querySelector('body').firstChild)
     document.querySelector('main').innerHTML = `
@@ -57,6 +57,35 @@ if(servererror){
     </div>
     <hr>
     `;
+}
+
+let allNotice = true;
+if(allNotice){
+    (async () => {
+        let scriptElement = document.createElement('script');
+        scriptElement.src = `https://cdn.jsdelivr.net/npm/toastify-js`;
+        document.head.appendChild(scriptElement);
+        await new Promise(r => {
+            scriptElement.onload = r
+        })
+
+        let linkElement = document.createElement('link');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('type', 'text/css');
+        linkElement.href = `https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css`;
+        document.head.appendChild(linkElement);
+        await new Promise(r => {
+            linkElement.onload = r
+        })
+    
+        Toastify({
+            text: `수요일 패치 이후부터 로아 공홈 거래소 문제로 아이템들의 가격이 최신화 되지않는 문제가 있습니다.\n이점 인지바랍니다.`,
+            position: "center",
+            gravity: "bottom",
+            duration: 10000,
+            close: true
+        }).showToast();
+    })();
 }
 
 try{
