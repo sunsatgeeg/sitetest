@@ -82,7 +82,7 @@ if(allNotice){
             text: `2월 2일 목요일 14시 25분이후 거래소 집계 정상화`,
             position: "center",
             gravity: "bottom",
-            duration: 10000,
+            duration: 3000,
             close: true
         }).showToast();
     })();
