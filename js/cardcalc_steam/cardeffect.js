@@ -2038,7 +2038,7 @@ const cardeffect = {
         [
             "Signatus",
             "Sol Grande",
-            "Sol"
+            "Commander Sol"
         ],
         "Vitality",
         3,
@@ -2129,7 +2129,7 @@ const cardeffect = {
     ],
     "Upgrade": [
         [
-            "Sol",
+            "Commander Sol",
             "Sol Grande"
         ],
         "Crit",
