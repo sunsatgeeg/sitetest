@@ -79,10 +79,10 @@ if(allNotice){
         })
     
         Toastify({
-            text: `수요일 패치 이후부터 로아 공홈 거래소 문제로 아이템들의 가격이 최신화 되지않는 문제가 있습니다.\n이점 인지바랍니다.`,
+            text: `2월 2일 목요일 14시 25분이후 거래소 집계 정상화`,
             position: "center",
             gravity: "bottom",
-            duration: 10000,
+            duration: 3000,
             close: true
         }).showToast();
     })();
