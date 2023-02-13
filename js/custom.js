@@ -59,7 +59,7 @@ if(servererror){
     `;
 }
 
-let allNotice = true;
+let allNotice = false;
 if(allNotice){
     (async () => {
         let scriptElement = document.createElement('script');

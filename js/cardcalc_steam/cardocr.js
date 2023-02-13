@@ -297,7 +297,7 @@ let Module = {
                             //카드 각성 단계
                             let thisStar = 5;
                             for (let l = 5; l > 0; l--) {
-                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 150){
+                                if(unitUploadHalfCardMat.ucharPtr(cardLastStarY, (cardLastStarX - starDistanceArr[l]))[0] > 167){
                                     thisStar = l;
                                     break
                                 }

@@ -707,7 +707,7 @@ function bonusdamagelistup(){
     for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
         let myCardName = Object.keys(hasCardDeck)[i];
         let myCardStar = hasCardDeck[myCardName][0];
-        console.log(myCardName)
+        // console.log(myCardName)
         myAllCardTotalExp += cardNeedExp[cardgrade[myCardName]][myCardStar];
     }
     for (let i = 0; i < thisTriCardList[tri].length; i++) {

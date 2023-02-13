@@ -102,7 +102,7 @@
             temprowitemname = temprowitemname.substr(0, temprowitemname.indexOf('('))
           }
 
-          jsonsave[temprowitemname] = parseInt(e.value);
+          marketData[temprowitemname] = parseInt(e.value);
           recipecalc();
         })
       });
@@ -154,7 +154,7 @@
       
       $detail[0].querySelectorAll('.ableEditPrice').forEach((e)=>{
         e.addEventListener('change', (ele)=>{
-          jsonsave[e.getAttribute('item')] = parseInt(e.value);
+          marketData[e.getAttribute('item')] = parseInt(e.value);
 
           var detailElement = e;
           while(true){
@@ -192,7 +192,8 @@
       document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
     }, false);
 
-    var jsonsave;
+    var marketData;
+    var tradeCountData;
     var $table = $('#fresh-table');
 
     function recipecalc(){
@@ -200,8 +201,10 @@
       temp = [];
       Object.keys(recipedata).forEach(function(item){
         itemname = item;
+        itemMarketName = item
         if(itemname.lastIndexOf('(') != -1){
           temp.push(itemname.substr(0, itemname.lastIndexOf('(')));
+          itemMarketName = itemname.substr(0, itemname.lastIndexOf('('));
         }else{
           temp.push(itemname);
         }
@@ -244,7 +247,7 @@
                 thisunit = 1;
               }
             }catch{}
-            marketprice = jsonsave[thisitemname];
+            marketprice = marketData[thisitemname];
             if(Object.keys(recipe)[i].lastIndexOf('제작)') != -1){
               for (var j = 0; j < tabledata.length; j++) {
                 if(tabledata[j]['item'] == thisitemname){
@@ -259,9 +262,9 @@
           craftprice += calcprice;
         }
 
-        thisbuyprice = jsonsave[itemname]
+        thisbuyprice = marketData[itemname]
         if(itemname.lastIndexOf('(') != -1){
-          thisbuyprice = jsonsave[itemname.substr(0, itemname.lastIndexOf('('))];
+          thisbuyprice = marketData[itemname.substr(0, itemname.lastIndexOf('('))];
         }
 
         thisgs = isEmptyValue(parseFloat($('#gs_' + type).val())) + isEmptyValue(parseFloat($('#gs_all').val())) + 5;
@@ -294,6 +297,7 @@
           profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
         }
 
+        console.log(thisitemname)
         tabledata.push({item: itemname,
                 recommend: thisrecommend,
                 buyprice: thisbuyprice,
@@ -302,7 +306,8 @@
                 profitperenergy: profitperenergyGold,
                 dict: recipe,
                 es: es,
-                gsqty: gsqty
+                gsqty: gsqty,
+                trade_count: tradeCountData[itemMarketName]
         });
       });
 
@@ -334,7 +339,7 @@
             image = recipedata[e].key.Element_001.value.slotData.iconPath;
           }
         }
-        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${showName}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${jsonsave[originE]}"></div>`);
+        $accord.append(`<div class="col-3 px-0"><div class="float-start"><img class="item-image" data-grade="${grade}" style="width:32px; height:32px;" src="https://cdn-lostark.game.onstove.com/${image}" alt=""> <span id='itemname' origin="${originE}">${showName}</span> : <span class="pricehide"></span><input class="pricetxt" type="text" value="${marketData[originE]}"></div>`);
       });
 
       $(this).off('click');
@@ -354,7 +359,7 @@
             $(this).parent().find('.pricehide').text($(this).val());
           } 
           
-          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
+          marketData[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
           recipecalc();
         });
 
@@ -369,7 +374,7 @@
           if($(this).val().indexOf('0') == 0 && $(this).val().length >= 2){
             $(this).val($(this).val().substr(1));
           }
-          jsonsave[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
+          marketData[$(this).parent().find('#itemname').attr('origin')] = parseInt($(this).val());
           recipecalc();
         })
 
@@ -459,7 +464,7 @@
               }
             }
           }else{
-            html += `<p><span class="pricehide"></span><input class="pricetxt ableEditPrice" type="text" item="${thisitemname}" value="${jsonsave[thisitemname]}"></p>`;
+            html += `<p><span class="pricehide"></span><input class="pricetxt ableEditPrice" type="text" item="${thisitemname}" value="${marketData[thisitemname]}"></p>`;
           }
         }
       }
@@ -534,7 +539,7 @@
               thisunit = 1;
             }
           }catch{}
-          marketprice = jsonsave[thisitemname];
+          marketprice = marketData[thisitemname];
           calcprice = ((marketprice / thisunit) * row['dict'][Object.keys(row['dict'])[i]]).toFixed(2)
           if(Object.keys(row['dict'])[i].lastIndexOf('제작)') != -1){
             for (var j = 0; j < tabledata.length; j++) {
@@ -618,12 +623,15 @@
 
     waringitemarr = ['신호탄','회복약'];
     function profitperenergyFormatter(value, row){
-      
       if(waringitemarr.indexOf(row['item']) != -1){
         return value + ` <i class="bi bi-exclamation-circle-fill" style="color:red;" onmouseover="tippy($(this)[0], { content: '제작 활동력이 1이라서 비상식적인 이득이 나온 것입니다. 실제론 활동력 1만 못 녹입니다.',theme: 'light', placement: 'bottom', });"></i>`;
       }else{
         return value;
       }
+    }
+
+    function tradeCountFormatter(value, row){
+      return value.toLocaleString()
     }
 
     function recomcellStyle(value, row, index) {
@@ -716,9 +724,10 @@
         type: 'POST',
         url: url + '/craftcalc',
         success: function(json) {
-          jsonsave = json;
+          marketData = json[0];
+          tradeCountData = json[1]
 
-          jsondate = String(jsonsave['date']);
+          jsondate = String(marketData['date']);
           db_year = jsondate.slice(0,4);
           db_mon = jsondate.slice(4,6);
           db_day = jsondate.slice(6,8);
