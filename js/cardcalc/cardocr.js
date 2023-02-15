@@ -80,7 +80,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/cardcalc/allCardImages.js?v=12212110');
+        await loadJavascript('js/cardcalc/allCardImages.js?v=02152003');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;
