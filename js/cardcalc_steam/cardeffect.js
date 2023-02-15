@@ -45,6 +45,7 @@ const cardgrade = cardinfo = {
     "Chromanium":3,
 	"Cirilla":3,
 	"Dandellion":3,
+	"Danika":3,
     "Dark Legoros":3,
     "Deskaluda":3,
     "Ealyn":3,
@@ -83,12 +84,14 @@ const cardgrade = cardinfo = {
     "Mari":3,
     "Mokamoka":3,
     "Mystic":3,
+    "Myun Hidaka":3,
     "Nacrasena":3,
     "Nahun":3,
     "Navinos":3,
     "Nia":3,
     "Night Fox Yoho":3,
     "Ortuus":3,
+    "Osphere":2,
     "Parkunas":3,
     "Posh Sasha Card":3,
     "Ratik":3,
@@ -116,9 +119,12 @@ const cardgrade = cardinfo = {
     "Admos":2,
     "Adrinne":2,
     "Alifer":2,
+	"Anke":2,
     "Anton":2,
     "Aporas":2,
+	"Arno":2,
     "Aven":2,
+	"Baskia":2,
     "Bergstrom":2,
     "Brealeos":2,
     "Cals":2,
@@ -144,6 +150,7 @@ const cardgrade = cardinfo = {
     "Great Castle Neria":2,
     "Haiger":2,
     "Halrock":2,
+	"Hanun":2,
     "Harzal":2,
     "Heretic High Priest":2,
     "Hiebike":2,
@@ -163,6 +170,7 @@ const cardgrade = cardinfo = {
     "Luterra Castle Neria":2,
     "Maneth":2,
     "Manpo":2,
+	"Marinna":2,
     "Meehan":2,
     "Miru":2,
     "Naber":2,
@@ -175,6 +183,7 @@ const cardgrade = cardinfo = {
     "Payla":2,
     "Phantom King":2,
     "Phantom Queen":2,
+	"Piela":2,
     "Piyer":2,
     "Plaguebringer":2,
     "Prideholme Neria":2,
@@ -197,6 +206,7 @@ const cardgrade = cardinfo = {
     "Spear of Annihilation":2,
     "Stella":2,
     "Stern Neria":2,
+	"Sylus":2,
     "Tarmakum":2,
     "Tarsila":2,
     "Thunder":2,
@@ -211,6 +221,7 @@ const cardgrade = cardinfo = {
     "Vern Zenlord":2,
     "Vrad":2,
     "Wavestrand Port Neria":2,
+	"Wilhelm":2,
     "Wili-Wili":2,
     "Wonpho":2,
     "Xereon":2,
@@ -257,6 +268,8 @@ const cardgrade = cardinfo = {
     "Phantom Rook":1,
     "Poppy":1,
     "Ramis":1,
+	"Revellos":1,
+	"Rowen Zenlord":1,
     "Rubenstein del Orazio":1,
     "Sakkul":1,
     "Satra":1,
@@ -3545,6 +3558,119 @@ const cardeffect = {
             "20": 0.07
         }
     ],
+    "The Wolves of Vengeance": [
+        [
+            "Myun Hidaka",
+            "Danika",
+            "Hanun",
+            "Marinna"
+        ],
+        "Specialization",
+        2,
+        "Machines",
+        {
+            "8": 0.06,
+            "16": 0.07,
+            "20": 0.07
+        }
+    ],
+    "Path of the Starving Wolf": [
+        [
+            "Myun Hidaka",
+            "Osphere",
+            "Danika",
+            "Wilhelm",
+            "Revellos",
+            "Hanun"
+        ],
+        "Domination",
+        2,
+        "Humanoids",
+        {
+            "12": 0.10,
+            "24": 0.10,
+            "30": 0.10
+        }
+    ],
+    "What's Left After a War": [
+        [
+            "Danika",
+            "Arno",
+            "Baskia",
+            "Anke",
+            "Piela",
+            "Rowen Zenlord"
+        ],
+        "Swiftness",
+        2,
+        "Demons",
+        {
+            "12": 0.06,
+            "24": 0.07,
+            "30": 0.07
+        }
+    ],
+    "Revenge Is Mine": [
+        [
+            "Hanun",
+            "Marinna",
+            "Revellos"
+        ],
+        "Endurance",
+        1,
+        "Metallic",
+        {
+            "6": 0.06,
+            "12": 0.07,
+            "15": 0.07
+        }
+    ],
+    "Destined Encounter I": [
+        [
+            "Armen",
+            "Thirain",
+            "Guardian Luen",
+            "Sien",
+            "Myun Hidaka",
+            "Osphere"
+        ],
+        "Strength",
+        8,
+        "Undead",
+        {
+            "12": 0.13,
+            "24": 0.13,
+            "30": 0.14
+        }
+    ],
+    "Azure Hemetic Adventurer": [
+        [
+            "Sylus",
+            "Zeira",
+            "Krissa"
+        ],
+        "Expertise",
+        1,
+        "Plants",
+        {
+            "6": 0.06,
+            "12": 0.07,
+            "15": 0.07
+        }
+    ]
+
+
+
+
+
+
+
+
+
+
+
+    
+    
     // "Guardian's Punishment": [
     //     [
     //         "Kungelanium",

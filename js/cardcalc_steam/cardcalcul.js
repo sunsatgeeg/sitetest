@@ -1,4 +1,4 @@
-const allCardTotalExp=46055900;
+const allCardTotalExp=47809900;
 const docapack = {
     'Desolate Meadow Card Pack':    ["Admos","Agaton","Anton","Bastian","Bergstrom","Celedan","Dadan","Giant Worm","Harzal","J","Krause","Lord of Evolution Krause","Mari","Mathias","Morina","Plaguebringer","Prideholme Neria","Rudric","S","Salt Giant","Sasha","Seville","Siera","Signatus","Sol","Stern Neria","Thanatos","Thunder","Ugo","Varut","Velkan","Vengeful Spirit","Zeira"],
     'Fearless Knight Card Pack':    ["Allegro","Asta","Azaran","Benard","Berhart","Bishu","Blackfang","Brinewt","Cadogan","Cals","Cassleford","Executor Solas","Gabrian","Halrock","Heretic High Priest","Hiebike","Jagan","Jahia","Kranterus","Ligheas","Luterra Castle Neria","Meehan","Mephitious","Monterque","Morpheo","Nahun","Nox","Rictus","Riwella","Rovlen","Scherrit","Seria","Thunderwings","Vanquisher","Vivian","Wavestrand Port Neria","Wili-Wili"],
@@ -405,6 +405,8 @@ bonusDamageBtns.forEach(function(e){
 
         document.querySelector('#allBonusDmgDiv').style.display = 'none';
         document.querySelector('#unitBonusDmgDiv').style.display = '';
+        
+        e.classList.add('active');
 
         tri = this.innerText;
 
@@ -426,7 +428,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
-    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=11012301');
+    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=02152003');
     autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
@@ -507,7 +509,7 @@ async function cardsetcalcstart(){
             }else{
                 nextbonusdamage = setBonusDmgPlusList[Object.keys(setBonusDmgPlusList)[j]];
                 nextleveldiff = parseInt(Object.keys(setBonusDmgPlusList)[j]) - leveltotal;
-                for (var k = 0; k < nextleveldiff; k++) {
+                for (let k = 0; k < nextleveldiff; k++) {
                     nextLevelExp += nextlevels[k][1];
                     nextUpSetLevel.push(nextlevels[k]);
                 }

@@ -73,7 +73,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=11012301');
+        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=02152003');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;
