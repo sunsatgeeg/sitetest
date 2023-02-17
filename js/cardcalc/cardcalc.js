@@ -201,6 +201,20 @@ document.querySelector('#helpbtn').addEventListener('click', function(){
     helpimage.style.cursor = "pointer"
     helpimage.style.width = "50%";
     document.querySelector('#modalimg2').appendChild(helpimage);
+    
+    helpimage = document.createElement('img');
+    helpimage.src = "img/cardNormal.jpg";
+    helpimage.addEventListener('click', function(){window.open("img/cardNormal.jpg");})
+    helpimage.style.cursor = "pointer"
+    helpimage.style.width = "33%";
+    document.querySelector('#modalimg3').appendChild(helpimage);
+    
+    helpimage = document.createElement('img');
+    helpimage.src = "img/cardError.jpg";
+    helpimage.addEventListener('click', function(){window.open("img/cardError.jpg");})
+    helpimage.style.cursor = "pointer"
+    helpimage.style.width = "33%";
+    document.querySelector('#modalimg3').appendChild(helpimage);
 
     document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
 }, false);
