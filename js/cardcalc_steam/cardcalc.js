@@ -35,8 +35,7 @@ function previewFile(file){
 
 let loadedScript = []
 async function loadJavascript(name){
-    name = name.split('?')[0];
-    if(!loadedScript.includes(name)){
+    if(!loadedScript.includes(name.split('?')[0])){
         let scriptElement = document.createElement('script');
         scriptElement.src = name;
         document.head.appendChild(scriptElement);
