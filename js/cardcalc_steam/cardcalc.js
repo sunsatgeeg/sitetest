@@ -42,7 +42,7 @@ async function loadJavascript(name){
 
         await new Promise(r => {
             scriptElement.onload = r
-            loadedScript.push(name);
+            loadedScript.push(name.split('?')[0]);
         })
     }
 }
