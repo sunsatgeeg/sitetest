@@ -98,7 +98,7 @@ const cardgrade = cardinfo = {
     "Night Fox Yoho":3,
     "Ark of Creation Ortuus":3,
     "Osphere":2,
-    "Parkunas":3,
+    "Perkunas":3,
     "Posh Sasha Card":3,
     "Ark of Wisdom Ratik":3,
     "Sasha":3,
@@ -300,7 +300,7 @@ const cardgrade = cardinfo = {
     "Chamkuri":0,
     "Chella":0,
     "Demetar":0,
-    "Hatem":0,
+    "Hartem":0,
     "Indar":0,
     "Kiessa":0,
     "Kranterus":0,
@@ -430,7 +430,7 @@ const cardeffect = {
             "Akkan",
             "Madnick",
             "Sian",
-            "Elpon",
+            "Ark of Hope Elpon",
             "Poppy"
         ],
         "Strength",
@@ -453,7 +453,7 @@ const cardeffect = {
             "Occel",
             "Totoiki",
             "Egg of Creation",
-            "Ortuus"
+            "Ark of Creation Ortuus"
         ],
         "Specialization",
         2,
@@ -1318,7 +1318,7 @@ const cardeffect = {
         [
             "Vanquisher",
             "Velcruze",
-            "Parkunas",
+            "Perkunas",
             "Spear of Annihilation",
             "Fjorgin",
             "Navinos"
@@ -2230,7 +2230,7 @@ const cardeffect = {
     ],
     "Elzowin's Choice": [
         [
-            "Ratik",
+            "Ark of Wisdom Ratik",
             "Azena and Inanna",
             "Brelshaza"
         ],
@@ -2911,7 +2911,7 @@ const cardeffect = {
         [
             "Bastian",
             "Sasha",
-            "Agaton"
+            "Ark of Prescience Agaton"
         ],
         "Domination",
         2,
@@ -2968,12 +2968,12 @@ const cardeffect = {
     ],
     "Trixion": [
         [
-            "Asta",
-            "Ortuus",
-            "Agaton",
-            "Elpon",
-            "Ratik",
-            "Karta"
+            "Ark of Trust Asta",
+            "Ark of Creation Ortuus",
+            "Ark of Prescience Agaton",
+            "Ark of Hope Elpon",
+            "Ark of Wisdom Ratik",
+            "Ark of Devotion Karta"
         ],
         "Specialization",
         2,
@@ -3470,7 +3470,7 @@ const cardeffect = {
         [
             "Thar",
             "Xereon",
-            "Hatem",
+            "Hartem",
             "Kiessa",
             "Ludwig",
             "Ternark",
@@ -3522,7 +3522,7 @@ const cardeffect = {
         [
             "Xereon",
             "Ludwig",
-            "Hatem",
+            "Hartem",
             "Kiessa"
         ],
         "Strength",

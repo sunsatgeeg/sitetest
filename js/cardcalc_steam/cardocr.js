@@ -57,6 +57,10 @@ function isLowWhite(src, x, y){
     // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
     return src.ucharPtr(y, x)[0] >= 205 && src.ucharPtr(y, x)[1] >= 205 && src.ucharPtr(y, x)[2] >= 205 ? true : false;
 }
+function isLowLowWhite(src, x, y){
+    // console.log(x, y,':',src.ucharPtr(y, x)[0], src.ucharPtr(y, x)[1], src.ucharPtr(y, x)[2])
+    return src.ucharPtr(y, x)[0] >= 180 && src.ucharPtr(y, x)[1] >= 180 && src.ucharPtr(y, x)[2] >= 180 ? true : false;
+}
 
 function tripleCheck(src,x1,y1,x2,y2,x3,y3){
     return isLowWhite(src, x1, y1) && isLowWhite(src, x2, y2) && isLowWhite(src, x3, y3) ? true : false;
@@ -73,7 +77,7 @@ let Module = {
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
         
-        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=04071510');
+        await loadJavascript('js/cardcalc_steam/allCardImages.js?v=04071939');
 
         copycardlist = Object.keys(cardlist);
         let cardAllQty = Object.keys(cardlist).length;
@@ -199,6 +203,7 @@ let Module = {
                         cardname = Object.keys(cardlist)[k];
                         cardbase = Object.values(cardlist)[k];
 
+                        // console.log(cardname, featureMatch(im1,cardbase))
                         if(await featureMatch(im1,cardbase) >= 5){
                             thislinecardlist.push(cardname)
                             thispagecardlist.push(cardname)
@@ -215,24 +220,25 @@ let Module = {
                                 if(deckIconMatchX[1].includes(deckIconX)){
                                     if(uploadImageWidth == "FHD"){
                                         if(isWhite(unitUploadHalfCardMat, plusX, plusY)){
-                                            //9장
-                                            if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY+0, plusX+11, plusY-1, plusX+7, plusY+4)) thisCardQty=9;
-                                            //2장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY+4, plusX+10, plusY+4, plusX+11, plusY+4)) thisCardQty=2;
-                                            //8장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+0, plusX+8, plusY-5, plusX+8, plusY+4)) thisCardQty=8;
-                                            //5장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY-5, plusX+8, plusY+4, plusX+9, plusY+4)) thisCardQty=5;
-                                            //6장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY+0, plusX+8, plusY+4, plusX+9, plusY+4)) thisCardQty=6;
-                                            //3장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY-1, plusX+8, plusY+4, plusX+9, plusY+4)) thisCardQty=3;
-                                            //4장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+1, plusX+10, plusY+2, plusX+9, plusY-4)) thisCardQty=4;
-                                            //7장
-                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+8, plusY-5, plusX+9, plusY-5, plusX+10, plusY-5)) thisCardQty=7;
                                             //1장
-                                            else thisCardQty=1;
+                                            if(isLowLowWhite(unitUploadHalfCardMat, plusX+8, plusY-3) && isLowWhite(unitUploadHalfCardMat, plusX+8, plusY-4)) thisCardQty=1;
+                                            //2장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY+4, plusX+10, plusY+4, plusX+11, plusY+4)) thisCardQty=2;
+                                            //4장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+9, plusY+2, plusX+10, plusY+2, plusX+10, plusY+1)) thisCardQty=4;
+                                            //5장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY-1, plusX+7, plusY+4, plusX+8, plusY+4)) thisCardQty=5;
+                                            //9장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+11, plusY+0, plusX+11, plusY-1, plusX+8, plusY+4)) thisCardQty=9;
+                                            //6장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+6, plusY+0, plusX+10, plusY-1, plusX+9, plusY-1)) thisCardQty=6;
+                                            //8장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+10, plusY+0, plusX+7, plusY-1, plusX+8, plusY+4)) thisCardQty=8;
+                                            //7장
+                                            else if(tripleCheck(unitUploadHalfCardMat, plusX+7, plusY-5, plusX+8, plusY-5, plusX+10, plusY-5)) thisCardQty=7;
+                                            //3장
+                                            else thisCardQty=3;
+                                            console.log(cardname ,thisCardQty,'장');
                                         }
                                     }
                                     else if(uploadImageWidth == "QHD"){
@@ -308,7 +314,7 @@ let Module = {
                             lastK=k+1;
                             hasCardDeck[cardname] = [thisStar,thisCardQty];
                             document.querySelector('#matchingment').textContent=`Matching Cards ${Object.keys(hasCardDeck).length}Pcs`;
-                            console.log(cardname, thisStar,'각',thisCardQty,'장');
+                            // console.log(cardname, thisStar,'각',thisCardQty,'장');
 
                             // 수동 카드 추가쪽
                             copycardlist.splice(copycardlist.indexOf(Object.keys(cardlist)[k]),1);
