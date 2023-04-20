@@ -20,7 +20,7 @@ const cardgrade = cardinfo = {
     "King Thirain":4,
     "Luterra":4,
     "Nineveh":4,
-    "Sane Kakul-Saydon":4,
+    "Weakened Kakul-Saydon":4,
     "Shandi":4,
     "Sien":4,
     "Thaemine":4,
@@ -3289,7 +3289,7 @@ const cardeffect = {
             "Nia",
             "Shana",
             "Albion",
-            "Sane Kakul-Saydon"
+            "Weakened Kakul-Saydon"
         ],
         "Strength",
         6,
@@ -3304,7 +3304,7 @@ const cardeffect = {
         [
             "Albion",
             "Argos",
-            "Sane Kakul-Saydon"
+            "Weakened Kakul-Saydon"
         ],
         "Vitality",
         6,
@@ -3663,47 +3663,34 @@ const cardeffect = {
             "12": 0.07,
             "15": 0.07
         }
+    ],    
+    "Guardian's Punishment": [
+        [
+            "Kungelanium",
+            "Deskaluda",
+            "Hanumatan"
+        ],
+        "Crit",
+        2,
+        "Elementals",
+        {
+            "6": 0.1,
+            "12": 0.1,
+            "15": 0.1
+        }
+    ],
+    "Anikka's Guardian": [
+        [
+            "Hanumatan",
+            "Guardian Luen"
+        ],
+        "Specialization",
+        2,
+        "Beasts",
+        {
+            "4": 0.1,
+            "8": 0.1,
+            "10": 0.1
+        }
     ]
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    // "Guardian's Punishment": [
-    //     [
-    //         "Kungelanium",
-    //         "Deskaluda",
-    //         "Hanumatan"
-    //     ],
-    //     "Crit",
-    //     2,
-    //     "Elementals",
-    //     {
-    //         "6": 0.1,
-    //         "12": 0.1,
-    //         "15": 0.1
-    //     }
-    // ],
-    // "Anikka's Guardian": [
-    //     [
-    //         "Hanumatan",
-    //         "Guardian Luen"
-    //     ],
-    //     "Specialization",
-    //     2,
-    //     "Beasts",
-    //     {
-    //         "4": 0.1,
-    //         "8": 0.1,
-    //         "10": 0.1
-    //     }
-    // ]
 }
