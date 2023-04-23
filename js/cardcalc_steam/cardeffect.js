@@ -1,4 +1,6 @@
 const cardgrade = cardinfo = {
+    "Hanumatan": 3,
+
 	"Balthorr Under the Starlight":3,
 	"Shandi and Zinnervale Under the Starlight":3,
 	"Thirain Under the Starlight":3,
