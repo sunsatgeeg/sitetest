@@ -293,9 +293,7 @@
         
         let profitperenergyGold = parseInt((Math.floor(10000 / es)) * thisprofit);
         // 하루 최대 제한 있는 아이템 예외 목록
-        if(itemname == '현자의 가루'){
-          profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
-        }
+        // 0628일 패치로 제한 사라짐 if(itemname == '현자의 가루') profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
 
         console.log(thisitemname)
         tabledata.push({item: itemname,

@@ -1,29 +1,27 @@
 var iteminfo = {
-  "들꽃":["EFUI_IconAtlas/Use/Use_8_46.png",0],
-  "자연산 진주":["EFUI_IconAtlas/Use/Use_8_72.png",1], 
   "투박한 버섯":["EFUI_IconAtlas/Use/Use_8_56.png",0], 
+  "들꽃":["EFUI_IconAtlas/Use/Use_8_46.png",0],
+  "수줍은 들꽃":["EFUI_IconAtlas/Use/Use_4_14.png",1], 
   "싱싱한 버섯":["EFUI_IconAtlas/All_Quest/All_Quest_02_101.png",1], 
   "화려한 버섯":["EFUI_IconAtlas/Use/Use_8_57.png",2], 
-  "묵직한 철광석":["EFUI_IconAtlas/Use/Use_3_239.png",2], 
-  "수줍은 들꽃":["EFUI_IconAtlas/Use/Use_4_14.png",1], 
   "화사한 들꽃":["EFUI_IconAtlas/Use/Use_8_47.png",2], 
+  "목재":["EFUI_IconAtlas/Use/Use_3_252.png",0], 
+  "부드러운 목재":["EFUI_IconAtlas/Use/Use_3_253.png",1], 
+  "튼튼한 목재":["EFUI_IconAtlas/Use/Use_4_4.png",2], 
+  "철광석":["EFUI_IconAtlas/Use/Use_3_243.png",0], 
+  "묵직한 철광석":["EFUI_IconAtlas/Use/Use_3_239.png",1], 
+  "단단한 철광석":["EFUI_IconAtlas/Use/Use_5_76.png",2], 
   "두툼한 생고기":["EFUI_IconAtlas/Use/Use_2_192.png",0],
-  "오레하 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_67.png",2], 
+  "다듬은 생고기":["EFUI_IconAtlas/Use/Use_2_196.png",1], 
   "질긴 가죽":["EFUI_IconAtlas/Use/Use_2_204.png",1], 
+  "오레하 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_67.png",2], 
   "생선":["EFUI_IconAtlas/Use/Use_1_142.png",0], 
+  "붉은 살 생선":["EFUI_IconAtlas/Use/Use_4_49.png",1], 
+  "자연산 진주":["EFUI_IconAtlas/Use/Use_8_72.png",1], 
   "오레하 태양 잉어":["EFUI_IconAtlas/Use/Use_8_74.png",2], 
   "고대 유물":["EFUI_IconAtlas/Use/Use_9_3.png",0], 
   "희귀한 유물":["EFUI_IconAtlas/Use/Use_9_4.png",1], 
   "오레하 유물":["EFUI_IconAtlas/Use/Use_9_11.png",2], 
-  "붉은 살 생선":["EFUI_IconAtlas/Use/Use_4_49.png",1], 
-  "다듬은 생고기":["EFUI_IconAtlas/Use/Use_2_196.png",1], 
-  "칼다르 태양 잉어":["EFUI_IconAtlas/Use/Use_8_73.png",2], 
-  "칼다르 두툼한 생고기":["EFUI_IconAtlas/Use/Use_8_66.png",2],
-  "튼튼한 목재":["EFUI_IconAtlas/Use/Use_4_4.png",2], 
-  "단단한 철광석":["EFUI_IconAtlas/Use/Use_5_76.png",2], 
-  "부드러운 목재":["EFUI_IconAtlas/Use/Use_3_253.png",1], 
-  "철광석":["EFUI_IconAtlas/Use/Use_3_243.png",0], 
-  "목재":["EFUI_IconAtlas/Use/Use_3_252.png",0], 
   "정령의 회복약":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_8.png",3], 
   "섬광 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_0.png",2], 
   "화염 수류탄":["EFUI_IconAtlas/Battle_Item/Battle_Item_01_1.png",2], 
@@ -55,14 +53,12 @@ var itemunit = {
   "수줍은 들꽃":10,
   "붉은 살 생선":10,
   "자연산 진주":10,
-  "칼다르 태양 잉어":10,
   "싱싱한 버섯":10,
   "희귀한 유물":10,
   "묵직한 철광석":10,
   "오레하 태양 잉어":10,
   "화사한 들꽃":10,
   "질긴 가죽":10,
-  "칼다르 두툼한 생고기":10,
   "다듬은 생고기":10,
   "화려한 버섯":10,
   "부드러운 목재":10,
@@ -274,124 +270,10 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"배틀아이템","수량":3,"활동력":288,"들꽃":48,"수줍은 들꽃":24,"화사한 들꽃":6,"골드":30},
-"하급 오레하 융화 재료(수렵)":{"key":{
+"오레하 융화 재료(수렵)":{"key":{
     "Element_000": {
       "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#8DF901'>하급 오레하 융화 재료</FONT></P>"
-    },
-    "Element_001": {
-      "type": "ItemTitle",
-      "value": {
-        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
-        "leftStr2": "",
-        "rightStr0": "",
-        "slotData": {
-          "iconGrade": 1,
-          "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-        }
-      }
-    },
-    "Element_002": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
-    },
-    "Element_003": {
-      "type": "MultiTextBox",
-      "value": "|거래가능"
-    },
-    "Element_004": {
-      "type": "SingleTextBox",
-      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>진귀한 재료로써 장비 재련에 사용된다.<BR><BR><FONT COLOR='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</FONT><BR><FONT COLOR='#FFFFFFAC'>거래소에서 거래 가능합니다.</FONT></FONT></FONT>"
-    },
-    "Element_005": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
-    },
-    "Element_006": {
-      "type": "SingleTextBox",
-      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
-    }
-  },"분류":"특수","수량":30,"활동력":144,"두툼한 생고기":72,"오레하 두툼한 생고기":9,"질긴 가죽":36,"골드":203},
-"하급 오레하 융화 재료(낚시)":{"key":{
-    "Element_000": {
-      "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#8DF901'>하급 오레하 융화 재료</FONT></P>"
-    },
-    "Element_001": {
-      "type": "ItemTitle",
-      "value": {
-        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
-        "leftStr2": "",
-        "rightStr0": "",
-        "slotData": {
-          "iconGrade": 1,
-          "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-        }
-      }
-    },
-    "Element_002": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
-    },
-    "Element_003": {
-      "type": "MultiTextBox",
-      "value": "|거래가능"
-    },
-    "Element_004": {
-      "type": "SingleTextBox",
-      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>진귀한 재료로써 장비 재련에 사용된다.<BR><BR><FONT COLOR='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</FONT><BR><FONT COLOR='#FFFFFFAC'>거래소에서 거래 가능합니다.</FONT></FONT></FONT>"
-    },
-    "Element_005": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
-    },
-    "Element_006": {
-      "type": "SingleTextBox",
-      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
-    }
-  },"분류":"특수","수량":30,"활동력":144,"생선":72,"오레하 태양 잉어":9,"자연산 진주":36,"골드":203},
-"하급 오레하 융화 재료(고고학)":{"key":{
-    "Element_000": {
-      "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#8DF901'>하급 오레하 융화 재료</FONT></P>"
-    },
-    "Element_001": {
-      "type": "ItemTitle",
-      "value": {
-        "leftStr0": "<FONT SIZE='12'><FONT COLOR='#8DF901'>고급 장비 재련 재료</FONT></FONT>",
-        "leftStr2": "",
-        "rightStr0": "",
-        "slotData": {
-          "iconGrade": 1,
-          "iconPath": "EFUI_IconAtlas/Use/Use_9_70.png",
-        }
-      }
-    },
-    "Element_002": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#FF0000'></FONT></FONT>"
-    },
-    "Element_003": {
-      "type": "MultiTextBox",
-      "value": "|거래가능"
-    },
-    "Element_004": {
-      "type": "SingleTextBox",
-      "value": "<FONT COLOR='#E2C87A'><FONT SIZE='12'>진귀한 재료로써 장비 재련에 사용된다.<BR><BR><FONT COLOR='#FFFFFFAC'>티어3 장비 재련에 사용하는 재료입니다.</FONT><BR><FONT COLOR='#FFFFFFAC'>거래소에서 거래 가능합니다.</FONT></FONT></FONT>"
-    },
-    "Element_005": {
-      "type": "SingleTextBox",
-      "value": "<FONT SIZE='12'><FONT COLOR='#C24B46'>분해불가</FONT></FONT>"
-    },
-    "Element_006": {
-      "type": "SingleTextBox",
-      "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
-    }
-  },"분류":"특수","수량":30,"활동력":144,"고대 유물":56,"희귀한 유물":28,"오레하 유물":7,"골드":203},
-"중급 오레하 융화 재료(수렵)":{"key":{
-    "Element_000": {
-      "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>중급 오레하 융화 재료</FONT></P>"
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>오레하 융화 재료</FONT></P>"
     },
     "Element_001": {
       "type": "ItemTitle",
@@ -426,10 +308,10 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"특수","수량":30,"활동력":216,"두툼한 생고기":80,"오레하 두툼한 생고기":10,"질긴 가죽":40,"골드":205},
-"중급 오레하 융화 재료(낚시)":{"key":{
+"오레하 융화 재료(낚시)":{"key":{
     "Element_000": {
       "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>중급 오레하 융화 재료</FONT></P>"
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>오레하 융화 재료</FONT></P>"
     },
     "Element_001": {
       "type": "ItemTitle",
@@ -464,10 +346,10 @@ var recipedata = {
       "value": "<Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font><BR><Font color='#5FD3F1'>[제작] 원정대 영지</font>"
     }
   },"분류":"특수","수량":30,"활동력":216,"생선":80,"오레하 태양 잉어":10,"자연산 진주":40,"골드":205},
-"중급 오레하 융화 재료(고고학)":{"key":{
+"오레하 융화 재료(고고학)":{"key":{
     "Element_000": {
       "type": "NameTagBox",
-      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>중급 오레하 융화 재료</FONT></P>"
+      "value": "<P ALIGN='CENTER'><FONT COLOR='#00B0FA'>오레하 융화 재료</FONT></P>"
     },
     "Element_001": {
       "type": "ItemTitle",
