@@ -67,11 +67,9 @@ html{
     border-left: 0!important;
 }
 
-#ads-top, #ads-left, #ads-right, #ads-bottom, #my-space-top {
-    /*      rgb(182, 182, 182);     */
-    /*      transparent;            */
-    background-color: transparent;
-}
+/* #ads-top ins, #ads-left ins, #ads-right ins, #ads-bottom ins, #my-space-top ins {
+    background-color: rgb(182, 182, 182);
+} */
 
 .ascdesc{
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG2YAABzjgAA+swAAIT6AAB5gQAA/RMAADBtAAASKQ0eJk4AAACgSURBVHjarNI7CoQwEIDhCIrewMIDCB7Bxs7KM6T0DBbewcZOEFZhjvnvFoZFlmSyCzvTpPgYMg/zNN+k+ZldQY4lvd4aGzjpI4yKFWGhVBgJI4IgWJIwa9gc26kDjILZIUGYyPys4+DxzoNW6fQe/mrtR7XOzzKm299milCnNbtDG402N+vYqMzNGEoWhJUqttOekyG++hRLrrA/nOVrAL+bXF6R95QBAAAAAElFTkSuQmCC);
@@ -92,9 +90,9 @@ html{
 #ads-left{
     box-sizing: border-box;
     position: absolute;
-    top: 120px;
+    top: 200px;
     left: 50%;
-    margin-left: -895px;
+    margin-left: 595px;
     width: 100%;
     max-width: 300px;
     max-height: 600px;
@@ -104,11 +102,11 @@ html{
 #ads-right{
     box-sizing: border-box;
     position: absolute;
-    top: 120px;
-    left: 50%;
-    margin-left: 595px;
-    max-width: 300px;
+    top: 200px;
+    right: 50%;
+    margin-right: 595px;
     width: 100%;
+    max-width: 300px;
     max-height: 600px;
     height: 100%;
 }
