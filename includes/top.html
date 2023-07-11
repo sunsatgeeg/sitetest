@@ -7,16 +7,19 @@
             <div style="box-sizing: border-box; position: absolute; background-image: url(/img/kakaoQRSymbol.png); background-repeat: no-repeat; width: 73px; height: 64px; top: 136px; left: 131px; background-size: 56%;"></div>
         </a>
         <div id="coffeeQR" style="height: 7.7px; width: 7.7px; box-shadow: none; transform: rotate(0.02deg);"></div>
-        <h5 style="margin-top: 300px; color:black;">10멸 아니면 안쓰는 기프티콘 후원</h5>
+        <div style="position: absolute; bottom: 0; width: 100%;">
+            <h5 style="color:black;">10멸 아니면 안쓰는 기프티콘 후원</h5>
+        </div>
     </div>
     <div id="coffee-left" style="box-sizing: border-box; position: absolute; top: 200px; right: 50%; margin-right: 595px; background-color: rgb(165, 186, 207); height: 350px; width: 300px;">
         <a href="https://discord.gg/2HmVSf8bzn" target="_blank">
             <img src="\img\discord.png" alt="Bar Chart" height="200px" style="margin-top: 50px;">
         </a>
-        <h5 style="margin-top: 50px; color:black;">에러 제보 / 패치 알림</h5>
+        <div style="position: absolute; bottom: 0; width: 100%;">
+            <h5 style="color:black;">에러 제보 / 패치 알림</h5>
+        </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col">
@@ -81,24 +84,24 @@
     
     let coffeeLength = 0;
     let coffeeCount = 0;
+    let coffeeStatus = "unfilled";
     let myCoffeeCheck = setInterval(()=>{
         try{
             coffeeLength = document.querySelector("#ads-top ins").childElementCount;
+            coffeeStatus = document.querySelector("#ads-top ins").getAttribute("data-ad-status");
         }catch{}
         coffeeCount++;
     
-        if(coffeeLength > 0){
+        if(coffeeLength > 0 && coffeeStatus === "filled"){
             document.getElementById('my-space-top').style.display = 'none';
-            console.log('커피 감사합니다.')
-            clearTimeout(myCoffeeCheck);
-            return;
-        }
-        if(coffeeCount > 50){
-            console.log('커피 사주세요...')
-            clearTimeout(myCoffeeCheck);
-            return;
+            document.getElementById('ads-top').parentElement.parentElement.style.display = '';
+            console.log('커피 감사합니다.');
+        }else{
+            document.getElementById('my-space-top').style.display = '';
+            document.getElementById('ads-top').parentElement.parentElement.style.display = 'none';
+            console.log('커피 사주세요...');
         }
         
-        document.getElementById('my-space-top').style.display = '';
-    },100)
+        if(coffeeCount >= 25) clearTimeout(myCoffeeCheck);
+    }, 100)
 </script>
