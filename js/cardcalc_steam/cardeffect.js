@@ -1,4 +1,19 @@
-const cardgrade = cardinfo = {
+const cardgrade = {
+    "Vairgrys": 4,
+	"Ark Of Eternity Kayangel": 3,
+	"Lauriel": 3,
+	"Azakiel": 2,
+	"Belomet": 2,
+	"Diogenes": 2,
+	"Dyna": 2,
+	"Euclid": 1,
+	"Great Celestial Serpent": 1,
+	"Kirke": 1,
+	"Prunya": 1,
+	"Sky Whale": 1,
+	"Tienis": 1,
+	"Cahni": 0,
+
     "Hanumatan": 3,
 
 	"Balthorr Under the Starlight":3,
@@ -33,7 +48,7 @@ const cardgrade = cardinfo = {
     "Zinnervale":4,
 
     "Achates":3,
-    "Ark of Prescience Agaton":3,
+    "Ark Of Prescience Agaton":3,
     "Alaric":3,
     "Alberhastic":3,
     "Albion":3,
@@ -41,7 +56,7 @@ const cardgrade = cardinfo = {
     "Anabel":3,
     "Argos":3,
     "Armored Nacrasena":3,
-    "Ark of Trust Asta":3,
+    "Ark Of Trust Asta":3,
     "Avele":3,
     "Banda":3,
     "Bastian":3,
@@ -57,7 +72,7 @@ const cardgrade = cardinfo = {
     "Dark Legoros":3,
     "Deskaluda":3,
     "Ealyn":3,
-    "Ark of Hope Elpon":3,
+    "Ark Of Hope Elpon":3,
     "Enviska":3,
     "Ephernia":3,
     "Ezrebet":3,
@@ -78,7 +93,7 @@ const cardgrade = cardinfo = {
     "Kaishuter":3,
     "Kaldor":3,
     "Kalmaris":3,
-    "Ark of Devotion Karta":3,
+    "Ark Of Devotion Karta":3,
     "Kaysarr":3,
     "Krause":3,
     "Krissa":3,
@@ -98,11 +113,11 @@ const cardgrade = cardinfo = {
     "Navinos":3,
     "Nia":3,
     "Night Fox Yoho":3,
-    "Ark of Creation Ortuus":3,
+    "Ark Of Creation Ortuus":3,
     "Osphere":2,
     "Perkunas":3,
     "Posh Sasha Card":3,
-    "Ark of Wisdom Ratik":3,
+    "Ark Of Wisdom Ratik":3,
     "Sasha":3,
     "Scherrit":3,
     "Shana":3,
@@ -432,7 +447,7 @@ const cardeffect = {
             "Akkan",
             "Madnick",
             "Sian",
-            "Ark of Hope Elpon",
+            "Ark Of Hope Elpon",
             "Poppy"
         ],
         "Strength",
@@ -455,7 +470,7 @@ const cardeffect = {
             "Occel",
             "Totoiki",
             "Egg of Creation",
-            "Ark of Creation Ortuus"
+            "Ark Of Creation Ortuus"
         ],
         "Specialization",
         2,
@@ -2232,7 +2247,7 @@ const cardeffect = {
     ],
     "Elzowin's Choice": [
         [
-            "Ark of Wisdom Ratik",
+            "Ark Of Wisdom Ratik",
             "Azena and Inanna",
             "Brelshaza"
         ],
@@ -2913,7 +2928,7 @@ const cardeffect = {
         [
             "Bastian",
             "Sasha",
-            "Ark of Prescience Agaton"
+            "Ark Of Prescience Agaton"
         ],
         "Domination",
         2,
@@ -2970,12 +2985,12 @@ const cardeffect = {
     ],
     "Trixion": [
         [
-            "Ark of Trust Asta",
-            "Ark of Creation Ortuus",
-            "Ark of Prescience Agaton",
-            "Ark of Hope Elpon",
-            "Ark of Wisdom Ratik",
-            "Ark of Devotion Karta"
+            "Ark Of Trust Asta",
+            "Ark Of Creation Ortuus",
+            "Ark Of Prescience Agaton",
+            "Ark Of Hope Elpon",
+            "Ark Of Wisdom Ratik",
+            "Ark Of Devotion Karta"
         ],
         "Specialization",
         2,
@@ -3694,5 +3709,119 @@ const cardeffect = {
             "8": 0.1,
             "10": 0.1
         }
-    ]
+    ],
+    "Sword of the Lazeniths": [
+		[
+			"Nineveh",
+			"Lauriel",
+			"Diogenes",
+			"Tienis",
+			"Prunya",
+			"Azakiel"
+		],
+		"Vitality",
+		6,
+		"Insects",
+		{
+			"12": 0.10,
+			"24": 0.10,
+			"30": 0.10
+		}
+	],
+	"Past, Present, and Future": [
+		[
+			"Belomet",
+			"Euclid",
+			"Kirke"
+		],
+		"Defense",
+		2,
+		"Elementals",
+		{
+			"6": 0.06,
+			"12": 0.07,
+			"15": 0.07
+		}
+	],
+	"Creatures of Light": [
+		[
+			"Dyna",
+			"Sky Whale",
+			"Great Celestial Serpent",
+			"Cahni"
+		],
+		"Domination",
+		1,
+		"Beasts",
+		{
+			"8": 0.06,
+			"16": 0.07,
+			"20": 0.07
+		}
+	],
+	"Cuckoo's Flight Home": [
+		[
+			"Vairgrys",
+			"Chaotic Chuo"
+		],
+		"Endurance",
+		2,
+		"Humanoids",
+		{
+			"4": 0.10,
+			"8": 0.10,
+			"10": 0.10
+		}
+	],
+	"Elveria's Miracle": [
+		[
+			"Vairgrys",
+			"Thar",
+			"Ealyn",
+			"Avele",
+			"Sigmund",
+			"Garum"
+		],
+		"Expertise",
+		2,
+		"Demons",
+		{
+			"12": 0.10,
+			"24": 0.10,
+			"30": 0.10
+		}
+	],
+	"The Chain War's Final Battle": [
+		[
+			"Vairgrys",
+			"Luterra",
+			"Mystic",
+			"Albion",
+			"Kadan",
+			"Nineveh"
+		],
+		"Crit",
+		3,
+		"Metallic",
+		{
+			"12": 0.13,
+			"24": 0.13,
+			"30": 0.14
+		}
+	],
+	"Platina's People": [
+		[
+			"Vairgrys",
+			"Tooki King",
+			"Chaotic Chuo"
+		],
+		"Specialization",
+		2,
+		"Undead",
+		{
+			"6": 0.10,
+			"12": 0.10,
+			"15": 0.10
+		}
+	],
 }
