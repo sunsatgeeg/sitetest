@@ -1,6 +1,6 @@
 const cardgrade = {
     "Vairgrys": 4,
-	"Ark Of Eternity Kayangel": 3,
+	"Ark of Eternity Kayangel": 3,
 	"Lauriel": 3,
 	"Azakiel": 2,
 	"Belomet": 2,
@@ -48,7 +48,7 @@ const cardgrade = {
     "Zinnervale":4,
 
     "Achates":3,
-    "Ark Of Prescience Agaton":3,
+    "Ark of Prescience Agaton":3,
     "Alaric":3,
     "Alberhastic":3,
     "Albion":3,
@@ -56,7 +56,7 @@ const cardgrade = {
     "Anabel":3,
     "Argos":3,
     "Armored Nacrasena":3,
-    "Ark Of Trust Asta":3,
+    "Ark of Trust Asta":3,
     "Avele":3,
     "Banda":3,
     "Bastian":3,
@@ -72,7 +72,7 @@ const cardgrade = {
     "Dark Legoros":3,
     "Deskaluda":3,
     "Ealyn":3,
-    "Ark Of Hope Elpon":3,
+    "Ark of Hope Elpon":3,
     "Enviska":3,
     "Ephernia":3,
     "Ezrebet":3,
@@ -93,7 +93,7 @@ const cardgrade = {
     "Kaishuter":3,
     "Kaldor":3,
     "Kalmaris":3,
-    "Ark Of Devotion Karta":3,
+    "Ark of Devotion Karta":3,
     "Kaysarr":3,
     "Krause":3,
     "Krissa":3,
@@ -113,11 +113,11 @@ const cardgrade = {
     "Navinos":3,
     "Nia":3,
     "Night Fox Yoho":3,
-    "Ark Of Creation Ortuus":3,
+    "Ark of Creation Ortuus":3,
     "Osphere":2,
     "Perkunas":3,
     "Posh Sasha Card":3,
-    "Ark Of Wisdom Ratik":3,
+    "Ark of Wisdom Ratik":3,
     "Sasha":3,
     "Scherrit":3,
     "Shana":3,
@@ -447,7 +447,7 @@ const cardeffect = {
             "Akkan",
             "Madnick",
             "Sian",
-            "Ark Of Hope Elpon",
+            "Ark of Hope Elpon",
             "Poppy"
         ],
         "Strength",
@@ -470,7 +470,7 @@ const cardeffect = {
             "Occel",
             "Totoiki",
             "Egg of Creation",
-            "Ark Of Creation Ortuus"
+            "Ark of Creation Ortuus"
         ],
         "Specialization",
         2,
@@ -2247,7 +2247,7 @@ const cardeffect = {
     ],
     "Elzowin's Choice": [
         [
-            "Ark Of Wisdom Ratik",
+            "Ark of Wisdom Ratik",
             "Azena and Inanna",
             "Brelshaza"
         ],
@@ -2928,7 +2928,7 @@ const cardeffect = {
         [
             "Bastian",
             "Sasha",
-            "Ark Of Prescience Agaton"
+            "Ark of Prescience Agaton"
         ],
         "Domination",
         2,
@@ -2985,12 +2985,13 @@ const cardeffect = {
     ],
     "Trixion": [
         [
-            "Ark Of Trust Asta",
-            "Ark Of Creation Ortuus",
-            "Ark Of Prescience Agaton",
-            "Ark Of Hope Elpon",
-            "Ark Of Wisdom Ratik",
-            "Ark Of Devotion Karta"
+            "Ark of Trust Asta",
+            "Ark of Creation Ortuus",
+            "Ark of Prescience Agaton",
+            "Ark of Hope Elpon",
+            "Ark of Wisdom Ratik",
+            "Ark of Devotion Karta",
+            "Ark of Eternity Kayangel"
         ],
         "Specialization",
         2,
@@ -2998,7 +2999,8 @@ const cardeffect = {
         {
             "12": 0.06,
             "24": 0.07,
-            "30": 0.07
+            "30": 0.07,
+			"35": 0.07
         }
     ],
     "The Ruins of Xeneela": [

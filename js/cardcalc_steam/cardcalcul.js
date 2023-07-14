@@ -153,6 +153,7 @@ function autocomplete(inp, arr) {
 }
 function manualEditInfo(name){
     name = name.replace(/\b[a-z]/g, char => char.toUpperCase());
+    name = name.replace("Of", "of");
 
     document.querySelector('#manualEditQtyInput').value = '';
     if(cardgrade?.[name] == undefined){
@@ -428,7 +429,7 @@ async function cardsetcalcstart(){
     document.querySelector('#matchstatus').style.display = '';
     document.querySelector('#matchingment').textContent = 'Required operation in progress... (up to 30 seconds depending on environment)';
     
-    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=07150308');
+    await loadJavascript('js/cardcalc_steam/cardeffect.js?v=07150335');
     autocomplete(document.getElementById("manualEditNameInput"), Object.keys(cardgrade));
 
     document.querySelector('#matchingment').textContent = 'Start books calculating';
@@ -493,9 +494,14 @@ async function cardsetcalcstart(){
                 nextlevels.push([unitName, cardLevelUpExp[cardgrade[unitName]][k]])
             }
         }
-        if(j != setcardlist.length){
-            continue;
+        // console.log(setname, setcardlist.length)
+        // 기존에 있던 도감에 카드가 추가된 도감
+        if(
+            (setname == "Trixion" && setcardlist.length >= 6)
+        ) {
+            // Pass
         }
+        else if(j != setcardlist.length) continue;
         
         nextlevels.sort((a,b)=>{
             return a[1] - b[1];
@@ -542,7 +548,7 @@ async function cardsetcalcstart(){
 
     let saveCVal = "";
     for (let i = 0; i < Object.keys(hasCardDeck).length; i++) {
-        if(Object.values(hasCardDeck)[i][0] != 0) console.log(`${Object.keys(hasCardDeck)[i]} : ${Object.values(hasCardDeck)[i][0]}, ${Object.values(hasCardDeck)[i][1]}`);
+        // if(Object.values(hasCardDeck)[i][0] != 0) console.log(`${Object.keys(hasCardDeck)[i]} : ${Object.values(hasCardDeck)[i][0]}, ${Object.values(hasCardDeck)[i][1]}`);
         saveCVal += `${Object.keys(cardgrade).indexOf(Object.keys(hasCardDeck)[i])}:[${Object.values(hasCardDeck)[i]}],`;
     }
     setCookie('savecarddeck_steam',saveCVal,365)
@@ -716,7 +722,7 @@ function bonusdamagelistup(){
         let myCardName = thisTriCardList[tri][i];
         let myCardStar, myCardQty = null;
 
-        console.log(myCardName)
+        // console.log(myCardName)
         thisTriTotalExp += cardNeedExp[cardgrade[myCardName]][5];
         try{
             myCardStar = hasCardDeck[myCardName][0];
