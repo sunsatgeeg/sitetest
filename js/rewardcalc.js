@@ -541,6 +541,7 @@ function itemMaterialTradeQty(itemname, itemqty){
 
 let content = "";
 let marketdata = {}
+let exceptItemlist = ['선명한 지혜의 기운', '빛나는 지혜의 기운'];
 function calcreward(){
     target = document.querySelector('#bossaccordion');
     while (target.hasChildNodes()) {
@@ -636,12 +637,12 @@ function calcreward(){
                 let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
                 let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
 
-                if(filteritemlist.includes(itemName)){
+                if(filterItemlist.includes(itemName) || exceptItemlist.includes(itemName)){
                     content += `<p>　</p>`;
                     continue;
                 }
                 if(boss['bossitem'] == itemName){
-                    if(filteritemlist.includes('혼돈의 돌')){
+                    if(filterItemlist.includes('혼돈의 돌')){
                         content += `<p>　</p>`;
                         continue;
                     }
@@ -692,7 +693,7 @@ function calcreward(){
     })
 }
 
-let filteritemlist = ['혼돈의 돌']
+let filterItemlist = ['혼돈의 돌'];
 document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
     e.addEventListener('click', (td)=>{
         if(td.target.className == "form-check-label" || td.target.className == "btn btn-outline-light btn-lg") return;
@@ -704,10 +705,10 @@ document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
             }
         }catch{}
 
-        filteritemlist = []
+        filterItemlist = []
         document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
             if(e.checked){
-                filteritemlist.push(e.value)
+                filterItemlist.push(e.value)
             }
         });
         calcreward();
@@ -730,10 +731,10 @@ document.querySelector('#itemaccordion').querySelectorAll('.btn-outline-light').
             });
         }
         
-        filteritemlist = []
+        filterItemlist = []
         document.querySelector('#itemaccordion').querySelectorAll('.form-check-input').forEach((e)=>{
             if(e.checked){
-                filteritemlist.push(e.value)
+                filterItemlist.push(e.value)
             }
         });
         calcreward();
