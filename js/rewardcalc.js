@@ -174,7 +174,7 @@ let reward_bonus_array = [
                                 "phase":6,
                                 "phaserewardgold":[1200,1800,700,800,1000,1500],
                                 "phasebonusrewardgold":[400,600,700,800,900,1100],
-                                "phaserewarditem":[3,4,3,4,3,5],
+                                "phaserewarditem":[2,3,2,3,2,4],
                                 "phasebonusrewarditem":[
                                                         [
                                                             ["수호강석",240],
