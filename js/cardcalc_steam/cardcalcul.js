@@ -1,4 +1,4 @@
-const allCardTotalExp=50352200;
+const allCardTotalExp=50605200;
 const docapack = {
     'Desolate Meadow Card Pack':    ["Admos","Agaton","Anton","Bastian","Bergstrom","Celedan","Dadan","Giant Worm","Harzal","J","Krause","Lord of Evolution Krause","Mari","Mathias","Morina","Plaguebringer","Prideholme Neria","Rudric","S","Salt Giant","Sasha","Seville","Siera","Signatus","Sol","Stern Neria","Thanatos","Thunder","Ugo","Varut","Velkan","Vengeful Spirit","Zeira"],
     'Fearless Knight Card Pack':    ["Allegro","Asta","Azaran","Benard","Berhart","Bishu","Blackfang","Brinewt","Cadogan","Cals","Cassleford","Executor Solas","Gabrian","Halrock","Heretic High Priest","Hiebike","Jagan","Jahia","Kranterus","Ligheas","Luterra Castle Neria","Meehan","Mephitious","Monterque","Morpheo","Mage Nahun","Nox","Rictus","Riwella","Rovlen","Scherrit","Seria","Thunderwings","Vanquisher","Vivian","Wavestrand Port Neria","Wili-Wili"],

@@ -1,4 +1,6 @@
 const cardgrade = {
+    "Sonavel":3,
+
     "Vairgrys":4,
     "Ark of Eternity Kayangel":3,
     "Lauriel":3,
@@ -3826,4 +3828,18 @@ const cardeffect = {
 			"15": 0.10
 		}
 	],
+    "Guardian's First Choice I": [
+		[
+			"Sonavel",
+			"Levanos",
+		],
+		"Strength",
+		4,
+		"Plants",
+		{
+			"4": 0.06,
+			"8": 0.07,
+			"10": 0.07
+		}
+	]
 }
