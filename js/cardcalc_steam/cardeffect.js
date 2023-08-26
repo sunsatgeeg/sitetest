@@ -231,7 +231,7 @@ const cardgrade = {
     "Spear of Annihilation":2,
     "Stella":2,
     "Stern Neria":2,
-    "Sylus":2,
+    "Experimental Tarmakum":2,
     "Experimental Tarmakum":2,
     "Tarsila":2,
     "Thunder":2,
@@ -465,11 +465,11 @@ const cardeffect = {
         [
             "Mokamoka",
             "Totoma",
-            "Eolh",
-            "Tir",
-            "Peroth",
+            "Guardian Eolh",
+            "Guardian Tir",
+            "Guardian Peroth",
             "Hybee Executioner",
-            "Occel",
+            "Ark Guardian Occel",
             "Totoiki",
             "Egg of Creation",
             "Ark of Creation Ortuus"
@@ -593,7 +593,7 @@ const cardeffect = {
     ],
     "Incredible!": [
         [
-            "Balu",
+            "Goblin Elder Balu",
             "Gobius XXIV",
             "Neth"
         ],
@@ -613,7 +613,7 @@ const cardeffect = {
             "Naber",
             "Luterra",
             "Abyssina",
-            "Nahun"
+            "Mage Nahun"
         ],
         "Specialization",
         2,
@@ -1036,7 +1036,7 @@ const cardeffect = {
     ],
     "Dancing Queen": [
         [
-            "Rekiel",
+            "Rekiel of Despair",
             "Great Castle Neria",
             "Imar",
             "Sasha"
@@ -1150,7 +1150,7 @@ const cardeffect = {
     ],
     "Luterra's Ordeal": [
         [
-            "Nahun",
+            "Mage Nahun",
             "Luterra",
             "Jagan",
             "Rictus",
@@ -1284,7 +1284,7 @@ const cardeffect = {
         [
             "Anabel",
             "Gideon",
-            "Balu",
+            "Goblin Elder Balu",
             "Gorgon",
             "Navegal"
         ],
@@ -1321,7 +1321,7 @@ const cardeffect = {
             "Phantom Knight",
             "Phantom Bishop",
             "Phantom Rook",
-            "Phantom Pon",
+            "Phantom Pawn",
             "Azena and Inanna"
         ],
         "Strength",
@@ -1406,7 +1406,7 @@ const cardeffect = {
             "Erasmo",
             "Brealeos",
             "Kagros",
-            "Aporas",
+            "Sea God Aporas",
             "Sol Grande"
         ],
         "Swiftness",
@@ -1598,7 +1598,7 @@ const cardeffect = {
     ],
     "Glacier Isle": [
         [
-            "Rubenstein del Orazio",
+            "Rubenstein del Orzo",
             "Mathias",
             "Samly"
         ],
@@ -1648,7 +1648,7 @@ const cardeffect = {
             "Javern",
             "Sian",
             "Ruave",
-            "Arre",
+            "Butcher Arre",
             "Vrad",
             "Ramis",
             "Nakshun",
@@ -1666,7 +1666,7 @@ const cardeffect = {
     ],
     "Historic Family": [
         [
-            "Nahun",
+            "Mage Nahun",
             "Monterque",
             "Bishu"
         ],
@@ -2027,7 +2027,7 @@ const cardeffect = {
             "Lutia",
             "Great Castle Neria",
             "Luterra Castle Neria",
-            "Rubenstein del Orazio",
+            "Rubenstein del Orzo",
             "Favreau",
             "Stern Neria"
         ],
@@ -2279,7 +2279,7 @@ const cardeffect = {
     "Plaguebringers": [
         [
             "Plaguebringer",
-            "Varto"
+            "Plague Legion Varto"
         ],
         "Vitality",
         3,
@@ -2437,7 +2437,7 @@ const cardeffect = {
     "Covetous Legion": [
         [
             "Vykas",
-            "Rekiel",
+            "Rekiel of Despair",
             "Kyzra"
         ],
         "Specialization",
@@ -2503,7 +2503,7 @@ const cardeffect = {
     ],
     "Not Allowed": [
         [
-            "Nahun",
+            "Mage Nahun",
             "Luterra"
         ],
         "Expertise",
@@ -2671,10 +2671,10 @@ const cardeffect = {
             "Plaguebringer",
             "Harzal",
             "Celedan",
-            "Varto",
+            "Plague Legion Varto",
             "Ruave",
             "Nakshun",
-            "Arre",
+            "Butcher Arre",
             "Nazan"
         ],
         "Crit",
@@ -2787,7 +2787,7 @@ const cardeffect = {
             "Phantom Rook",
             "Phantom Knight",
             "Phantom Bishop",
-            "Phantom Pon"
+            "Phantom Pawn"
         ],
         "Expertise",
         1,
@@ -2817,9 +2817,9 @@ const cardeffect = {
     ],
     "Forest of Giants": [
         [
-            "Caspiel",
+            "Caspiel the Giant God",
             "Mokamoka",
-            "Tir"
+            "Guardian Tir"
         ],
         "Vitality",
         3,
@@ -2957,10 +2957,10 @@ const cardeffect = {
     ],
     "Guardian of Tortoyk": [
         [
-            "Eolh",
-            "Tir",
-            "Occel",
-            "Peroth"
+            "Guardian Eolh",
+            "Guardian Tir",
+            "Ark Guardian Occel",
+            "Guardian Peroth"
         ],
         "Expertise",
         1,
@@ -3115,7 +3115,7 @@ const cardeffect = {
             "Thunder Wings",
             "Rovlen",
             "Wili-Wili",
-            "Caspiel",
+            "Caspiel the Giant God",
             "Chaotic Chuo",
             "Velkan",
             "Signatus",
@@ -3136,7 +3136,7 @@ const cardeffect = {
             "Tarsila",
             "Sol Grande",
             "Brealeos",
-            "Aporas",
+            "Sea God Aporas",
             "Kagros",
             "Adrinne"
         ],
@@ -3339,7 +3339,7 @@ const cardeffect = {
     "Don't Step on my Shadow": [
         [
             "Pamil",
-            "Balu",
+            "Goblin Elder Balu",
             "Benard",
             "Varut",
             "Thunder",
@@ -3526,7 +3526,7 @@ const cardeffect = {
     "Oh My Elder": [
         [
             "Gillock",
-            "Balu",
+            "Goblin Elder Balu",
             "Totoma",
             "Satra"
         ],
@@ -3672,7 +3672,7 @@ const cardeffect = {
     ],
     "Azure Hemetic Adventurer": [
         [
-            "Sylus",
+            "Experimental Tarmakum",
             "Zeira",
             "Krissa"
         ],
