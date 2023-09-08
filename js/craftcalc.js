@@ -221,7 +221,7 @@
           type = "lt";
         }
         qty = recipe['수량'];
-        e = recipe['활동력'];
+        requireEnerge = recipe['활동력'];
         
         craftprice = 0;
         for (var i = 4; i < Object.keys(recipe).length; i++) {
@@ -276,12 +276,19 @@
         thisprofit = ((thisbuyprice - Math.ceil(thisbuyprice * 0.05)) * gsqty - craftprice);
 
         this_e = isEmptyValue(parseFloat($('#e_' + type).val())) + isEmptyValue(parseFloat($('#e_all').val()));
-        if(this_e == 0){
-          es = e;
-        }else{
-          es = parseInt(e - (e * (this_e / 100)));
-          if(es == 0){
-            es = 1;
+        
+        // 빛나는 아이템 재료 아이템을 제작해서 만들 때 활동력 추가 계산
+        if(itemname.indexOf('빛나는 ') != -1 && itemname.indexOf('제작)') != -1){
+          baseItemName = itemname.replace("빛나는 ", "");
+          baseItemName = baseItemName.substr(0, baseItemName.indexOf("("));
+          baseItemReqireEnerge = recipedata[baseItemName]["활동력"];
+          requireEnerge = requireEnerge + baseItemReqireEnerge;
+        }
+        let discountedItemEnergy = requireEnerge;
+        if(this_e != 0){
+          discountedItemEnergy = parseInt(requireEnerge - (requireEnerge * (this_e / 100)));
+          if(discountedItemEnergy == 0){
+            discountedItemEnergy = 1;
           }
         }
 
@@ -291,11 +298,11 @@
           thisrecommend =  "구매";
         }
         
-        let profitperenergyGold = parseInt((Math.floor(10000 / es)) * thisprofit);
+        let profitperenergyGold = parseInt((Math.floor(10000 / discountedItemEnergy)) * thisprofit);
         // 하루 최대 제한 있는 아이템 예외 목록
         // 0628일 패치로 제한 사라짐 if(itemname == '현자의 가루') profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
 
-        console.log(thisitemname)
+        // console.log(thisitemname)
         tabledata.push({item: itemname,
                 recommend: thisrecommend,
                 buyprice: thisbuyprice,
@@ -303,7 +310,8 @@
                 profit: thisprofit.toFixed(2),
                 profitperenergy: profitperenergyGold,
                 dict: recipe,
-                es: es,
+                requireEnerge: requireEnerge,
+                discountedItemEnergy: discountedItemEnergy,
                 gsqty: gsqty,
                 trade_count: tradeCountData[itemMarketName]
         });
@@ -552,8 +560,8 @@
       }
       html +=`<td class="dynamic-calc" origin-value="${row['craftprice']}">${row['craftprice']}</td>
       <td>
-        <span class="dynamic-calc" origin-value="${row['dict']['활동력']}">${row['dict']['활동력']}</span>
-        <br>[<span class="dynamic-calc" origin-value="${row['es']}">${row['es']}</span>]
+        <span class="dynamic-calc" origin-value="${row['requireEnerge']}">${row['requireEnerge']}</span>
+        <br>[<span class="dynamic-calc" origin-value="${row['discountedItemEnergy']}">${row['discountedItemEnergy']}</span>]
       </td>
       <td onmousewheel="createqtyperset(event,this.querySelector('.pricetxt'))">
         <span class="dynamic-calc" origin-value="${row['dict']['수량']}">${row['dict']['수량']}</span>
