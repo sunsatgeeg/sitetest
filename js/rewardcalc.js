@@ -673,7 +673,7 @@ function calcreward(){
                     continue;
                 }
 
-                console.log(itemName);
+                // console.log(itemName);
                 let itemGold = Number.isInteger(marketdata[itemName]) ? marketdata[itemName] : marketdata[itemName].toFixedNumber(3);
                 let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]) ? itemQty / iteminfo[itemName] : (itemQty / iteminfo[itemName]).toFixedNumber(1);
                 let thiscalcgold = Number.isInteger(itemGold * itemTradeQty) ? itemGold * itemTradeQty : (itemGold * itemTradeQty).toFixedNumber(1);
