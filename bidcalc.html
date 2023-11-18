@@ -2,7 +2,7 @@
 <html lang="ko">
 <head class="h-100">
   <title>경매 계산기 :: LoaChart|로아차트</title>
-  <meta name="viewport" content="width=1200">
+  <meta name="viewport" content="width=device-width,user-scalable=0">
   <meta name="description" content="로스트아크 경매 계산기">
   <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,쌀산기"/>
   <meta property="og:title" content="로아 경매 계산기 :: LoaChart|로아차트"/>
@@ -60,120 +60,122 @@
 </head>
 
 <body>
-  <div class="vm-placement" data-id="654f128d9f8443109e9358e5" style="display:none"></div>
+  <div id="root">
+    <div class="vm-placement" data-id="654f128d9f8443109e9358e5" style="display:none"></div>
 
-  <header><script>includeHTML('header');</script></header>
-
-  <main class="py-3">
+    <header><script>includeHTML('header');</script></header>
     <top><script>includeHTML('top');</script></top>
-    <div class="container py-3 my-3 box-dark rounded-4 text-center">
-      <div class="mx-auto w-50">
-        <div class="flex-row mb-3">
-          <div class="inputmethod">
-            <div id="keypad" class="draggable" style="display: none; ">
-              <div id="top" style="padding-top:25px;"></div>
-              <div id="pinpad"> 
-                <form class="mx-auto">
-                  <input type="button" value="7" id="7" class="pinButton calc"/>
-                  <input type="button" value="8" id="8" class="pinButton calc"/>
-                  <input type="button" value="9" id="9" class="pinButton calc"/><br>
-                  <input type="button" value="4" id="4" class="pinButton calc"/>
-                  <input type="button" value="5" id="5" class="pinButton calc"/>
-                  <input type="button" value="6" id="6" class="pinButton calc"/><br>
-                  <input type="button" value="1" id="1" class="pinButton calc"/>
-                  <input type="button" value="2" id="2" class="pinButton calc"/>
-                  <input type="button" value="3" id="3" class="pinButton calc"/><br>
-                  <input type="button" value="clear" id="clear" class="pinButton clear"/>
-                  <input type="button" value="0" id="0 " class="pinButton calc"/>
-                  <input type="button" value="←" id="backspace" class="pinButton backspace"/>
-                </form>
-              </div>
-            </div>
-            <div id="slide" class="mb-3 row mx-0">
-              <div class="mb-2 px-0">
-                <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
-              </div>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
-              <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
-            </div>
-          </div>
-          <div class="input-group input-group-lg mb-3">
-            <span class="input-group-text">가격</span>
-            <input type="text" class="form-control" id="price">
-            <button class="btn btn-outline-light" type="button" id="priceclear">X</button>
-          </div>
-          <div class="btn-group w-100 row">
-            <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="4">4인
-                <input type="radio" class="btn-check" name="options-outlined" id="4" >
-              </label>
-            </div>
-            <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount active" forI="8">8인
-                <input type="radio" class="btn-check" name="options-outlined" id="8">
-              </label>
-            </div>
-            <div class="col px-0 me-2">
-              <label class="btn btn-outline-light btn-lg w-100 personcount" forI="16">16인
-                <input type="radio" class="btn-check" name="options-outlined" id="16" >
-              </label>
-            </div>
-            <div class="col px-0">
-              <div class="input-group input-group-lg w-100" style="width: 120px;">
-                <input type="number" placeholder="인원 수" id="othercount" class="form-control">
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th colspan="2" class="bg-transparent"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="fix-stroke">
-              <td scope="col" class="bg-transparent text-white">판매 수수료</td>
-              <td scope="col" class="bg-transparent text-end text-white" id="tax">0</td>
-            </tr>
-            <tr>
-              <td scope="col" class="bg-transparent text-white">분배금</td>
-              <td scope="col" class="bg-transparent text-end text-white" id="distribution">0</td>
-            </tr>
-            <tr>
-              <td scope="col" class="bg-transparent text-white">손익 분기점</td>
-              <td scope="col" class="bg-transparent text-end fw-bold" id="breakpoint" style="color: #ffaa99;">0</td>
-            </tr>
-            <tr>
-              <td scope="col" class="bg-transparent text-white">입찰 적정가</td>
-              <td scope="col" class="bg-transparent text-end fw-bold" id="fairprice" style="color: #99ff88;">0</td>
-            </tr>
-            <tr>
-              <td scope="col" class="bg-transparent text-white">그냥'줘'</td>
-              <td scope="col" class="bg-transparent text-end fw-bold" id="giveme" style="color: #88ddff;">0</td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          <div class="text-end my-2 text-white">
-            <small>숫자를 클릭하면 복사가 됩니다.<br>복붙하시면 누구보다 빠르게 입찰 할 수 있습니다.</small>
+    <main>
+      <div class="container py-3 my-3 box-dark rounded-4 text-center">
+        <div class="mx-auto w-50">
+          <div class="flex-row mb-3">
+            <div class="inputmethod">
+              <div id="keypad" class="draggable" style="display: none; ">
+                <div id="top" style="padding-top:25px;"></div>
+                <div id="pinpad"> 
+                  <form class="mx-auto">
+                    <input type="button" value="7" id="7" class="pinButton calc"/>
+                    <input type="button" value="8" id="8" class="pinButton calc"/>
+                    <input type="button" value="9" id="9" class="pinButton calc"/><br>
+                    <input type="button" value="4" id="4" class="pinButton calc"/>
+                    <input type="button" value="5" id="5" class="pinButton calc"/>
+                    <input type="button" value="6" id="6" class="pinButton calc"/><br>
+                    <input type="button" value="1" id="1" class="pinButton calc"/>
+                    <input type="button" value="2" id="2" class="pinButton calc"/>
+                    <input type="button" value="3" id="3" class="pinButton calc"/><br>
+                    <input type="button" value="clear" id="clear" class="pinButton clear"/>
+                    <input type="button" value="0" id="0 " class="pinButton calc"/>
+                    <input type="button" value="←" id="backspace" class="pinButton backspace"/>
+                  </form>
+                </div>
+              </div>
+              <div id="slide" class="mb-3 row mx-0">
+                <div class="mb-2 px-0">
+                  <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
+                </div>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
+              </div>
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">가격</span>
+              <input type="text" class="form-control" id="price">
+              <button class="btn btn-outline-light" type="button" id="priceclear">X</button>
+            </div>
+            <div class="btn-group w-100 row">
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount" forI="4">4인
+                  <input type="radio" class="btn-check" name="options-outlined" id="4" >
+                </label>
+              </div>
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount active" forI="8">8인
+                  <input type="radio" class="btn-check" name="options-outlined" id="8">
+                </label>
+              </div>
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount" forI="16">16인
+                  <input type="radio" class="btn-check" name="options-outlined" id="16" >
+                </label>
+              </div>
+              <div class="col px-0">
+                <div class="input-group input-group-lg w-100" style="width: 120px;">
+                  <input type="number" placeholder="인원 수" id="othercount" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th colspan="2" class="bg-transparent"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fix-stroke">
+                <td scope="col" class="bg-transparent text-white">판매 수수료</td>
+                <td scope="col" class="bg-transparent text-end text-white" id="tax">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">분배금</td>
+                <td scope="col" class="bg-transparent text-end text-white" id="distribution">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">손익 분기점</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="breakpoint" style="color: #ffaa99;">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">입찰 적정가</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="fairprice" style="color: #99ff88;">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">그냥'줘'</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="giveme" style="color: #88ddff;">0</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <div class="text-end my-2 text-white">
+              <small>숫자를 클릭하면 복사가 됩니다.<br>복붙하시면 누구보다 빠르게 입찰 할 수 있습니다.</small>
+            </div>
+          </div>
+          <div class="mb-3 row mx-0 btninputmethod">
+            <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2" value="keypad">키패드</button>
+            <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
+            <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
           </div>
         </div>
-        <div class="mb-3 row mx-0 btninputmethod">
-          <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2" value="keypad">키패드</button>
-          <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
-          <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
-        </div>
+      <div id="none"></div>
       </div>
-    <div id="none"></div>
-    </div>
+    </main>
+    
     <bottom><script>includeHTML('bottom');</script></bottom>
-  </main>
-
-  <footer><script>includeHTML('footer');</script></footer>
+    <footer><script>includeHTML('footer');</script></footer>
+  </div>
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

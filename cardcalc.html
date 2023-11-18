@@ -2,7 +2,7 @@
 <html lang="ko">
 <head class="h-100">
   <title>도감작 계산기 :: LoaChart|로아차트</title>
-  <meta name="viewport" content="width=1200">
+  <meta name="viewport" content="width=device-width,user-scalable=0">
   <meta name="description" content="로스트아크 도감작 계산기">
   <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하" />
   <meta property="og:title" content="로아 도감작 계산기 :: LoaChart|로아차트"/>
@@ -148,12 +148,13 @@
 </head>
 
 <body>
-  <div class="vm-placement" data-id="654f128d9f8443109e9358e5" style="display:none"></div>
+  <div id="root">
+    <div class="vm-placement" data-id="654f128d9f8443109e9358e5" style="display:none"></div>
 
     <header><script>includeHTML('header');</script></header>
-
-    <main class="py-3">
-      <top><script>includeHTML('top');</script></top>
+    <top><script>includeHTML('top');</script></top>
+    
+    <main>
       <div class="container py-3 my-3 box-dark rounded-4 text-center">     
         <div id="matchzone">
           <div>
@@ -409,9 +410,7 @@
           </div>
         </div>
       </div>
-      <bottom><script>includeHTML('bottom');</script></bottom>
     </main>
-    
     <!-- 추후 안쓰게 수정 -->
     <canvas id="unitUploadHalfCard" style="display: none;"></canvas>
     <canvas id="uploadImage" style="display: none;"></canvas>
@@ -423,10 +422,9 @@
     <div id="tempdiv"></div>
     -->
 
+    <bottom><script>includeHTML('bottom');</script></bottom>   
     <footer><script>includeHTML('footer');</script></footer>
-
   </div>
-
   
   <div class="modal fade bd-example-modal-lg text-center" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -512,5 +510,6 @@
   </script>
 
   <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+  </div>
 </body>
 </html>

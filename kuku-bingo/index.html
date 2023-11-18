@@ -18,39 +18,41 @@
     <link href="static/css/main.36ebf510.css" rel="stylesheet">
 </head>
 
-<body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <header>
-        <div class="py-3 d-flex navbar box-dark">
-            <div class="container">
-                <div>
-                    <a class="fs-3 fw-medium" href="/" style="color: white; text-decoration: none;">LoaChart</a>
-                </div>
-                <div>
-                    <nav class="nav nav-masthead ">
-                        <a class="nav-link" aria-current="page" href="/">Home</a>
-                        <a class="nav-link" aria-current="page" href="/chart">차트</a>
-                        <a class="nav-link" aria-current="page" href="/mari">마리샵</a>
-                        <a class="nav-link" aria-current="page" href="/bidcalc">경매 계산기</a>
-                        <a class="nav-link" aria-current="page" href="/craftcalc">제작 계산기</a>
-                        <a class="nav-link" aria-current="page" href="/rewardcalc">더보기 계산기</a>
-                        <a class="nav-link" aria-current="page" href="/cardcalc">도감작 계산기</a>
-                        <a class="nav-link" aria-current="page" href="/simulation">시뮬레이션</a>
-                    </nav>
+<body style="background-image: linear-gradient(to bottom, #202022 5%, #1d1e20 38%);">
+    <div style="height: 100%; display: flex;flex-direction: column;">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <header>
+            <div class="py-3 d-flex navbar box-dark">
+                <div class="container">
+                    <div>
+                        <a class="fs-3 fw-medium" href="/" style="color: white; text-decoration: none;">LoaChart</a>
+                    </div>
+                    <div>
+                        <nav class="nav nav-masthead ">
+                            <a class="nav-link" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" aria-current="page" href="/chart">차트</a>
+                            <a class="nav-link" aria-current="page" href="/mari">마리샵</a>
+                            <a class="nav-link" aria-current="page" href="/bidcalc">경매 계산기</a>
+                            <a class="nav-link" aria-current="page" href="/craftcalc">제작 계산기</a>
+                            <a class="nav-link" aria-current="page" href="/rewardcalc">더보기 계산기</a>
+                            <a class="nav-link" aria-current="page" href="/cardcalc">도감작 계산기</a>
+                            <a class="nav-link" aria-current="page" href="/simulation">시뮬레이션</a>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <main class="py-3">
-        <div class="container py-3 my-3 box-dark rounded-4">
-            <div class="text-center">
-                <small class="text-white">아래 빙파고는 <a href="https://github.com/ialy1595" target="_blank">ialy1595</a>님의 오픈소스입니다.</small>
+        </header>
+        <main>
+            <div class="container py-3 my-3 box-dark rounded-4">
+                <div class="text-center">
+                    <small class="text-white">아래 빙파고는 <a href="https://github.com/ialy1595" target="_blank">ialy1595</a>님의 오픈소스입니다.</small>
+                </div>
+                <div id="root" style="display: unset;background-image: unset;"></div> 
             </div>
-            <div id="root"></div> 
-        </div>
-    </main>
-    <div class="py-3 box-dark text-center">
-        <a href="/policy" class="text-white" style="text-decoration: none;">개인정보처리방침</a>
+        </main>
+        <footer><div class="py-3 mt-3 box-dark text-center">
+            <a href="/policy" class="text-white" style="text-decoration: none;">개인정보처리방침</a>
+        </div></footer>
     </div>
 </body>
 
