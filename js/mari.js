@@ -145,14 +145,14 @@ fetch(url + '/mari', {method: 'POST'}).then((response) => response.json()).then(
             <div class="card bg-secondary mb-3">
                 <div class="row g-0">
                     <div class="col-md-3 my-auto">
-                        <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded-start item-image" alt="이미지">
+                        <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/${itemimage}.png" data-grade="${itemgrade}" class="img-fluid rounded item-image" alt="이미지">
                     </div>
                     <div class="col-md-9">
-                        <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold">${itemtitle}</div>
+                        <div class="card-header ps-2 pe-0 py-1 item-name fs-5 text-start fw-bold text-white">${itemtitle}</div>
                             <div class="card-body px-1 py-1 text-white">
                                 <input id="itemqty" value="${itemqty}" hidden>
                                 <input id="itempackcount" value="${itempackcount}" hidden>
-                                <div class="container">
+                                <div>
                                     <div class="row g-0">
                                         <div class="col-auto me-auto px-0 text-nowrap text-start my-auto">
                                             <span class="my-auto">크리스탈(골드) :</span>

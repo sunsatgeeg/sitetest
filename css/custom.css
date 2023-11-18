@@ -4,6 +4,21 @@
 html{
     overflow-x: hidden;
 }
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+  background-image: linear-gradient(to bottom, #202022 5%, #1d1e20 38%);
+}
+.box-dark {
+  background-color: #222324;
+}
 
 @media (min-width: 1200px) {
     .container{
@@ -67,7 +82,7 @@ html{
     border-left: 0!important;
 }
 
-/* #ads-top ins, #ads-left ins, #ads-right ins, #ads-bottom ins, #my-space-top ins {
+/* #ads-top .vm-placement, #ads-left .vm-placement, #ads-right .vm-placement, #ads-bottom .vm-placement, #my-space-top .vm-placement {
     background-color: rgb(182, 182, 182);
 } */
 
