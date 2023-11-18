@@ -1,22 +1,5 @@
-<div class="row">
-    <div class="col">
-        <div id="ads-top" class="d-flex flex-column justify-content-center" style="height: 250px;">
-            <div class="vm-placement " data-id="654f12352188b029d79c6829" data-display-type="hybrid-banner"></div>
-        </div>
-        <!-- <div id="ads-left">
-            <div class="vm-placement" data-id="654b46ff96a6256ebdf129f0"></div>
-        </div>
-        <div id="ads-right">
-            <div class="vm-placement" data-id="654b46ff96a6256ebdf129f0"></div>
-        </div> -->
+<div>
+    <div id="ads-top" class="d-flex flex-column justify-content-center" style="height: 250px;">
+        <div class="vm-placement " data-id="654f12352188b029d79c6829" data-display-type="hybrid-banner"></div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('scroll', ()=>{
-        let scrollTop = parseInt(document.documentElement.scrollTop);
-        scrollTop = (scrollTop < 210) ? 200 : document.documentElement.scrollTop + 10;
-        document.querySelector('#ads-right').style.top = `${scrollTop}px`;
-        document.querySelector('#ads-left').style.top = `${scrollTop}px`;
-    })
-</script>
