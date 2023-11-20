@@ -26,6 +26,18 @@ main {
     background-color: #222324;
 }
 
+@media (max-width: 778px) {
+    #logo_t {
+        display: none;
+    }
+    #nav {
+        width: 100%;
+    }
+    #nav nav {
+        justify-content: center;
+    }
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1140px !important;
