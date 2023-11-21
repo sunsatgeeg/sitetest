@@ -739,6 +739,8 @@ function removeBookmarkItem(element) {
 }
 
 function loadBookmarkItem() {
+  if(!localStorage.getItem("craftcalc_bookmark")) localStorage.setItem("craftcalc_bookmark", "");
+
   const bookmark = localStorage.getItem("craftcalc_bookmark").split(",");
   if(bookmark == null) return;
   
