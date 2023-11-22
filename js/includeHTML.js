@@ -1,4 +1,4 @@
-function includeHTML(tagname) {
+function includeHTML(tagname, afterDOM) {
     try {
         fetch(`/includes/${tagname}.html`).then(response => {
             return response.text()
@@ -13,6 +13,13 @@ function includeHTML(tagname) {
             } else {
                 document.getElementsByTagName(tagname)[0].innerHTML = data;
             }
+        })
+        .then(()=>{
+            if(afterDOM == undefined) return;
+            
+            let dom = document.createElement('div');
+            dom.innerHTML = afterDOM;
+            document.getElementsByTagName(tagname)[0].after(dom);
         });
     }catch{
         console.error(`CUSTOM ERROR : includeHTML.js(${tagname})`)
