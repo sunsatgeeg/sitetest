@@ -1,0 +1,27 @@
+<div class="py-3 d-flex navbar box-dark" style="height: 72px">
+    <div class="container">
+        <div id="logo_t">
+            <a class="fs-3 fw-medium" href="/" style="color: white; text-decoration: none;">LoaChart</a>
+        </div>
+        <div id="nav">
+            <nav class="nav nav-masthead">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+                <a class="nav-link" aria-current="page" href="/chart">차트</a>
+                <a class="nav-link" aria-current="page" href="/mari">마리샵</a>
+                <a class="nav-link" aria-current="page" href="/bidcalc">경매 계산기</a>
+                <a class="nav-link" aria-current="page" href="/craftcalc">제작 계산기</a>
+                <a class="nav-link" aria-current="page" href="/rewardcalc">더보기 계산기</a>
+                <a class="nav-link" aria-current="page" href="/cardcalc">도감작 계산기</a>
+                <a class="nav-link" aria-current="page" href="/simulation">시뮬레이션</a>
+            </nav>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.nav-link').forEach(function(e){
+        if(e.getAttribute('href') == `/${here}`){
+            e.classList.add('active');
+            return;
+        }
+    });
+</script>

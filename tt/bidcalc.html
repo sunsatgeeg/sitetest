@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>경매 계산기 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width,user-scalable=0">
+  <meta name="description" content="로스트아크 경매 계산기">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,쌀산기"/>
+  <meta property="og:title" content="로아 경매 계산기 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 경매 계산기"/>
+  <meta property="og:url" content="https://loachart.com/bidcalc"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "bidcalc";</script>
+  <script src="/js/includeHTML.js?v=09231422"></script>
+  <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-cfasync="false" data-site-id="654b46ff96a6256ebdf129f0" data-mode="scan" async></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <link href="css/cover.css" rel="stylesheet">
+
+  <style>
+    @media (max-width: 992px) {
+      .w-50 {
+        width: 100%!important;
+      }
+    }
+    #keypad {
+      margin: 1rem 0 0 1rem;
+      background-color: #29e;
+      color: white;
+      border-radius: 0.75em;
+      touch-action: none;
+      user-select: none;
+      transform: translate(0px, 112px);
+      position: absolute;
+
+      z-index: 99;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <header><script>includeHTML('header');</script></header>
+    <div id="ad-container-1" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            placement.setAttribute("data-display-type", "hybrid-banner");
+            document.querySelector("#ad-container-1").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <div id="rich-media-placement"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f128d9f8443109e9358e5");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+
+    <main class="container py-3 mt-3 box-dark rounded-4 text-center">
+      <div>
+        <div class="mx-auto w-50">
+          <div class="flex-row mb-3">
+            <div class="inputmethod">
+              <div id="keypad" class="draggable" style="display: none; ">
+                <div id="top" style="padding-top:25px;"></div>
+                <div id="pinpad"> 
+                  <form class="mx-auto">
+                    <input type="button" value="7" id="7" class="pinButton calc"/>
+                    <input type="button" value="8" id="8" class="pinButton calc"/>
+                    <input type="button" value="9" id="9" class="pinButton calc"/><br>
+                    <input type="button" value="4" id="4" class="pinButton calc"/>
+                    <input type="button" value="5" id="5" class="pinButton calc"/>
+                    <input type="button" value="6" id="6" class="pinButton calc"/><br>
+                    <input type="button" value="1" id="1" class="pinButton calc"/>
+                    <input type="button" value="2" id="2" class="pinButton calc"/>
+                    <input type="button" value="3" id="3" class="pinButton calc"/><br>
+                    <input type="button" value="clear" id="clear" class="pinButton clear"/>
+                    <input type="button" value="0" id="0 " class="pinButton calc"/>
+                    <input type="button" value="←" id="backspace" class="pinButton backspace"/>
+                  </form>
+                </div>
+              </div>
+              <div id="slide" class="mb-3 row mx-0">
+                <div class="mb-2 px-0">
+                  <Input class="range" type="range" id="slider" value="0" min="0" max="20000"></Input>
+                </div>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">5000</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">1000</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount me-2"><span>+ </span><span id="countvalue">100</span></button>
+                <button type="button" class="btn btn-outline-light btn-lg col clickcount"><span>+ </span><span id="countvalue">10</span></button>
+              </div>
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">가격</span>
+              <input type="text" class="form-control" id="price">
+              <button class="btn btn-outline-light" type="button" id="priceclear">X</button>
+            </div>
+            <div class="btn-group w-100 row">
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount" forI="4">4인
+                  <input type="radio" class="btn-check" name="options-outlined" id="4" >
+                </label>
+              </div>
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount active" forI="8">8인
+                  <input type="radio" class="btn-check" name="options-outlined" id="8">
+                </label>
+              </div>
+              <div class="col px-0 me-2">
+                <label class="btn btn-outline-light btn-lg w-100 personcount" forI="16">16인
+                  <input type="radio" class="btn-check" name="options-outlined" id="16" >
+                </label>
+              </div>
+              <div class="col px-0">
+                <div class="input-group input-group-lg w-100" style="width: 120px;">
+                  <input type="number" placeholder="인원 수" id="othercount" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th colspan="2" class="bg-transparent"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fix-stroke">
+                <td scope="col" class="bg-transparent text-white">판매 수수료</td>
+                <td scope="col" class="bg-transparent text-end text-white" id="tax">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">분배금</td>
+                <td scope="col" class="bg-transparent text-end text-white" id="distribution">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">손익 분기점</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="breakpoint" style="color: #ffaa99;">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">입찰 적정가</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="fairprice" style="color: #99ff88;">0</td>
+              </tr>
+              <tr>
+                <td scope="col" class="bg-transparent text-white">그냥'줘'</td>
+                <td scope="col" class="bg-transparent text-end fw-bold" id="giveme" style="color: #88ddff;">0</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <div class="text-end my-2 text-white">
+              <small>숫자를 클릭하면 복사가 됩니다.<br>복붙하시면 누구보다 빠르게 입찰 할 수 있습니다.</small>
+            </div>
+          </div>
+          <div class="mb-3 row mx-0 btninputmethod">
+            <button type="button" id="btnkeypad" class="btn btn-outline-light btn-lg col me-2" value="keypad">키패드</button>
+            <button type="button" id="btnslide" class="btn btn-outline-light btn-lg col me-2" value="slide">슬라이드</button>
+            <button type="button" id="btnnone" class="btn btn-outline-light btn-lg col" value="none">없음</button>
+          </div>
+        </div>
+      <div id="none"></div>
+      </div>
+    </main>
+    
+    <div id="ad-container-2" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            document.querySelector("#ad-container-2").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <footer><script>includeHTML('footer');</script></footer>
+  </div>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  
+  <!-- custom -->
+  <script src="js/custom.js?v=02021500"></script>
+  <script src="js/bidcalc.js?v=12272139"></script>
+
+  <!-- tippyJS -->
+  <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
+
+  <!-- toastify -->
+  <script async src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+ 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+  
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>마리샵 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width,user-scalable=0">
+  <meta name="description" content="로스트아크 실시간 마리 이득 계산기">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,쌀산기"/>
+  <meta property="og:title" content="로아 마리샵 효율 계산기 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 실시간 마리샵 이득 계산기"/>
+  <meta property="og:url" content="https://loachart.com/mari"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "mari";</script>
+  <script src="/js/includeHTML.js?v=09231422"></script>
+  <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-cfasync="false" data-site-id="654b46ff96a6256ebdf129f0" data-mode="scan" async></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <link href="css/cover.css" rel="stylesheet">
+  
+  <style>
+    @media (max-width: 1400px) {
+      .col-md-3 {
+        flex-shrink: 0 !important;
+        width: 100% !important;
+      }
+      .col-md-9 {
+        width: 100% !important;
+      }
+    }
+    @media (max-width: 992px) {
+      .container, .container-md, .container-sm {
+        max-width: 978px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <header><script>includeHTML('header');</script></header>
+    <div id="ad-container-1" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            placement.setAttribute("data-display-type", "hybrid-banner");
+            document.querySelector("#ad-container-1").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <div id="rich-media-placement"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f128d9f8443109e9358e5");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+
+    <main class="container py-3 mt-3 box-dark rounded-4 text-center">
+      <div>
+        <div class="input-group w-50 mx-auto input-group-lg">
+          <span class="input-group-text">환전소 크리스탈 구매가</span>
+          <input type="number" class="form-control text-center" id="crystalprice" value="2400">
+        </div>
+        <div class="mb-3 text-white">
+          <small>마우스 휠로도 수정 가능합니다.</small>
+        </div>
+        <table class="table table-dark table-striped maritable">
+          <thead> 
+            <tr class="fs-3">
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <div id="ad-container-2" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            document.querySelector("#ad-container-2").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <footer><script>includeHTML('footer');</script></footer>
+  </div>
+  
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  <!-- custom -->
+  <script src="js/custom.js?v=02021500"></script>
+  <script src="js/mari.js?v=09281614"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+  </div>
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>제작 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width,user-scalable=0">
+  <meta name="description" content="로스트아크 실시간 제작 이득 계산기">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,쌀산기"/>
+  <meta property="og:title" content="로아 실시간 제작 이득 계산기 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 실시간 제작 이득 계산기"/>
+  <meta property="og:url" content="https://loachart.com/craftcalc"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "craftcalc";</script>
+  <script src="/js/includeHTML.js?v=09231422"></script>
+  <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-cfasync="false" data-site-id="654b46ff96a6256ebdf129f0" data-mode="scan" async></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+  <link href="css/fresh-bootstrap-table.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css?v=10011746">
+  <link href="css/cover.css" rel="stylesheet">
+  
+  <!-- tippyJS -->
+  <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
+  
+  <style>
+    @media (max-width: 1008px) {
+      .container, .container-md, .container-sm {
+        max-width: 970px !important;
+      }
+    }
+    .accordion-button{
+      background-color: #1F2224;
+      
+    }
+    .accordion-button:not(.collapsed) {
+      color: #ffffff;
+      background-color: #1F2224;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+    }
+    .accordion-button:not(.collapsed) {
+      background-image: linear-gradient(to bottom, #202022, #2D4A6E)
+    }
+    .accordion-item {
+      color: var(--bs-accordion-color);
+      background-color: unset;
+      border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+    }
+    .carousel-indicators {
+      position: unset;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      justify-content: center;
+      padding: 0;
+      margin-right: unset;
+      margin-bottom: unset;
+      margin-left: unset;
+      list-style: unset;
+    }
+    .carousel-indicators [data-bs-target] {
+      width: 50%;
+      height: unset;
+      text-indent: unset;
+      background-clip: unset;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      opacity: unset;
+      transition: unset;
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
+      flex-basis: 0;
+      display: inline-block;
+      margin: 4px;
+      padding: 6px;
+      background-color: #181c21;
+      text-align: center;
+      color: #fff;
+      text-shadow: 1px 1px #000;
+      border: 1px solid #13181b;
+      border-top-color: #283338;
+      cursor: pointer;
+      box-shadow: 1px 1px 2px 1px rgba(0,0,0,.5);
+      transition-property: background-color,border-color,box-shadow;
+      transition-timing-function: ease-in-out;
+      transition-duration: .15s;
+    }
+    .carousel-indicators button:hover {
+      transition: none;
+      background: radial-gradient(ellipse farthest-corner at 50% 150%,#495b71,transparent 60%),#182031;
+      text-shadow: 0 0 4px #9bc1de,0 0 4px #9bc1de;
+    }
+    .carousel-indicators button:hover {
+      transition: none;
+      background: radial-gradient(ellipse farthest-corner at 50% 150%,#495b71,transparent 60%),#182031;
+      text-shadow: 0 0 4px #9bc1de,0 0 4px #9bc1de;
+    }
+    .carousel-indicators .active {
+      transition: none;
+      background: radial-gradient(ellipse farthest-corner at 50% 150%,#495b71,transparent 60%),#182031;
+      text-shadow: 0 0 4px #9bc1de,0 0 4px #9bc1de;
+      border-color: #495b71;
+      box-shadow: inset 0 0 4px #495b71,0 0 2px #495b71;
+    }
+    @media (min-width: 576px){
+      .col-sm-1point2 {
+        flex: 0 0 auto;
+        width: 10%;
+      }
+    }
+    .gold {
+      background-color: #0F1114;
+      color: white;
+      box-shadow: inset 6px 6px 4px -5px #000000;
+      background-image: url('./img/gold.png');
+      background-repeat: no-repeat;
+      background-position-x: right;
+      background-position-y: center;
+    }
+    .bookmarkIcon {
+      background: url("./img/bookmark.png") no-repeat;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      filter:grayscale(1);
+    }
+    .bookmarkIcon.active {
+      filter:unset;
+    }
+    .scroll-container {
+      overflow: hidden;
+    }
+    
+    .scroll-text:hover {
+      /* animation properties */
+      -moz-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      
+      -moz-animation: my-animation var(--second) linear infinite;
+      -webkit-animation: my-animation var(--second) linear infinite;
+      animation: my-animation var(--second) linear infinite;
+    }
+    
+    /* for Firefox */
+    @-moz-keyframes my-animation {
+      from { -moz-transform: translateX(0%); }
+      to { -moz-transform: translateX(-400%); }
+    }
+    
+    /* for Chrome */
+    @-webkit-keyframes my-animation {
+      from { -webkit-transform: translateX(0%); }
+      to { -webkit-transform: translateX(-400%); }
+    }
+    
+    @keyframes my-animation {
+      from {
+        -moz-transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+      }
+      to {
+        -moz-transform: translateX(-400%);
+        -webkit-transform: translateX(-400%);
+        transform: translateX(-400%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <header><script>includeHTML('header');</script></header>
+    <div id="ad-container-1" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            placement.setAttribute("data-display-type", "hybrid-banner");
+            document.querySelector("#ad-container-1").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <div id="rich-media-placement"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f129a9f8443109e9358e7");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+
+    <main class="container py-3 mt-3 box-dark rounded-4 text-center mx-auto">
+      <div>    
+         
+        <div class="row mx-0">
+          <div class="col px-0 border border-white mb-3">
+            <div id="itemPrice" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#itemPrice" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">즐겨찾기</button>
+                <button type="button" data-bs-target="#itemPrice" data-bs-slide-to="1" aria-label="Slide 2">생활 재료</button>
+                <button type="button" data-bs-target="#itemPrice" data-bs-slide-to="2" aria-label="Slide 3">배틀 아이템</button>
+                <button type="button" data-bs-target="#itemPrice" data-bs-slide-to="3" aria-label="Slide 4">요리, 특수, ...</button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="1000000">
+                  <div class="accordion-body row mx-0 py-1 px-0" id="bookmark">
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="1000000">
+                  <div class="accordion accordion-flush" id="material">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-gathering" aria-expanded="false" aria-controls="flush-gathering">
+                          식물
+                        </button>
+                      </h2>
+                      <div id="flush-gathering" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-logging" aria-expanded="false" aria-controls="flush-logging">
+                          벌목
+                        </button>
+                      </h2>
+                      <div id="flush-logging" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-mining" aria-expanded="false" aria-controls="flush-mining">
+                          채광
+                        </button>
+                      </h2>
+                      <div id="flush-mining" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-hunting" aria-expanded="false" aria-controls="flush-hunting">
+                          수렵
+                        </button>
+                      </h2>
+                      <div id="flush-hunting" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-fishing" aria-expanded="false" aria-controls="flush-fishing">
+                          낚시
+                        </button>
+                      </h2>
+                      <div id="flush-fishing" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-excavating" aria-expanded="false" aria-controls="flush-excavating">
+                          고고학
+                        </button>
+                      </h2>
+                      <div id="flush-excavating" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="1000000">
+                  <div class="accordion accordion-flush" id="material">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-potion" aria-expanded="false" aria-controls="flush-potion">
+                          회복형 물약
+                        </button>
+                      </h2>
+                      <div id="flush-potion" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-grenade" aria-expanded="false" aria-controls="flush-grenade">
+                          수류탄
+                        </button>
+                      </h2>
+                      <div id="flush-grenade" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-bomb" aria-expanded="false" aria-controls="flush-bomb">
+                          폭탄
+                        </button>
+                      </h2>
+                      <div id="flush-bomb" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-function" aria-expanded="false" aria-controls="flush-function">
+                          기능성 물약
+                        </button>
+                      </h2>
+                      <div id="flush-function" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-buff" aria-expanded="false" aria-controls="flush-buff">
+                          버프형 물약
+                        </button>
+                      </h2>
+                      <div id="flush-buff" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-etc" aria-expanded="false" aria-controls="flush-etc">
+                          기타
+                        </button>
+                      </h2>
+                      <div id="flush-etc" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="1000000">
+                  <div class="accordion accordion-flush" id="material">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-cook" aria-expanded="false" aria-controls="flush-cook">
+                          요리
+                        </button>
+                      </h2>
+                      <div id="flush-cook" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-oreha" aria-expanded="false" aria-controls="flush-oreha">
+                          오레하
+                        </button>
+                      </h2>
+                      <div id="flush-oreha" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header mt-0">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-special" aria-expanded="false" aria-controls="flush-special">
+                          특수
+                        </button>
+                      </h2>
+                      <div id="flush-special" class="accordion-collapse collapse">
+                        <div class="accordion-body row mx-0 py-1 px-0"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-auto float-md-end px-0 ms-lg-3 mt-auto mb-3">
+            <div class="mx-auto " style="width: 410px; height: 230px;">
+              <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fresh-table full-color-custom">
+          <div class="toolbar text-start">
+            <button id="wisdomEffectEditOpenBtn" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#collapse">영지 효과</button>
+            <button id="onlyTableBookmarkBtn" class="btn btn-default" onclick="onlyTableBookmarkVisible()">즐겨찾기만 표시</button>
+            <span class="text-white d-inline-block ms-3 my-2" id="markettime"></span>
+            <div class="accordion" style="max-width: 600px;">
+              <div id="collapse" class="accor dion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion">
+                <div class="accordion-body p-0">
+                  <table class="table mt-3 table-hover mb-3 text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">전체</th>
+                        <th scope="col">배틀<br>아이템</th>
+                        <th scope="col">요리</th>
+                        <th scope="col">특수</th>
+                        <th scope="col">생활도구</th>
+                      </tr>
+                    </thead>
+                    <tbody class="align-middle" id="wisdomeffect">
+                      <tr>
+                        <td colspan="5">
+                          대성공 확률(%)
+                          <i class="bi bi-question-circle-fill" tooltipcontent="기본 대성공 <FONT COLOR=`#bd0000`>5%</FONT>에서 <FONT COLOR=`#0000ff`>영지효과</FONT> 곱연산<br><br>Ex) 추가 대성공 확률 <FONT COLOR=`#0000ff`>6%</FONT>일 경우 <FONT COLOR=`#bd0000`>5</FONT> + (<FONT COLOR=`#bd0000`>5</FONT> X <FONT COLOR=`#0000ff`>0.06</FONT>) = 5.3%"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="gs_all" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="gs_b" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="gs_c" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="gs_s" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="gs_lt" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">제작 수수료 감소율(%)</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="cc_all" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="cc_b" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="cc_c" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="cc_s" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="cc_lt" placeholder="0" step=0.5>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">활동력 감소율(%)</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="e_all" placeholder="0" step=0.5 max="100">
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="e_b" placeholder="0" step=0.5 max="100">
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="e_c" placeholder="0" step=0.5 max="100">
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="e_s" placeholder="0" step=0.5 max="100">
+                          </div>
+                        </th>
+                        <th>
+                          <div class="input-group">
+                            <input type="number" class="input_box percent" id="e_lt" placeholder="0" step=0.5 max="100">
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="text-center">
+                  <small>마우스 휠로도 수정 가능합니다.<br><br></small>
+                  <button id="wisdomeffectclear" class="btn btn-primary">초기화</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help" id="helpbtn">도움말</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table id="fresh-table" 
+                 class="table"
+                 data-detail-view="true"
+                 data-detail-view-icon="false"
+                 data-detail-view-by-click="true"
+                 data-detail-formatter="detailFormatter"
+                 data-row-attributes="rowAttributes">
+            <thead>
+              <th data-order="desc" class="text-start" data-field="item" data-sortable="true" data-formatter="item">아이템</th>
+              <th data-order="desc" data-field="recommend" data-sortable="true" data-cell-style="recomcellStyle">추천방식<br>(사용 기준)</th>
+              <th class="d-none d-lg-table-cell" data-order="desc" data-field="buyprice" data-sortable="true" data-formatter="buypriceFormatter">시세</th>
+              <th class="d-none d-lg-table-cell" data-order="desc" data-field="craftprice" data-sortable="true">제작비용</th>
+              <th data-order="desc" data-field="profit" data-sortable="true" data-cell-style="profcellStyle">판매이익<br>(판매 기준)</th>
+              <th data-order="desc" data-field="profitperenergy" data-sortable="true" data-formatter="profitperenergyFormatter">이익/활동력  <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { allowHTML: true, content: '(최대 활동력 10,000 ÷ 해당 아이템 활동력) X<br>해당 아이템 판매이익<br>-------------------------------------------------------<br>단, 일일 구매 제한이 걸려있는 아이템이 재료일 경우 그 수에 맞게 계산됨',theme: 'light', placement: 'bottom', });"></i></th>
+              <th data-order="desc" data-field="trade_count" data-sortable="true" data-formatter="tradeCountFormatter">금일 판매량</th>
+            </thead>
+            <tbody style="cursor:pointer"></tbody>
+          </table>
+        </div>
+        
+        <div class="text-end text-white">
+          <small>
+            ※ 제작하고 싶은 아이템을 클릭하면 자세한 상세내역 탭이 출력됩니다.
+            <br>※ <span class="pricehide"></span><input class="pricetxt" type="text" value="    ">으로 표시된 칸은 수정이 가능합니다.
+          </small>
+        </div>
+      </div>
+    </main>
+
+    <div id="ad-container-2" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            document.querySelector("#ad-container-2").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <footer><script>includeHTML('footer');</script></footer>
+
+  </div>
+
+  <div class="modal fade bd-example-modal-lg" id="help" tabindex="-1" aria-labelledby="helpLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black">도움말</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-black">
+          <div>
+            <p id="modalimg1"></p>
+            <p>▲ 위와 같이 제작 대성공 확률 4% 증가니까 밑에 전체에 4입력</p>
+            <p>[배틀 아이템 - 폭탄] 제작 대성공 확률 3% 증가니까 밑에 배틀아이템에 3입력</p>
+            <p>[요리] 제작 대성공 확률 1% 증가니까 밑에 요리에 1입력</p>
+            <p id="modalimg2"></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn btn-outline-dark text-black" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .fresh-table .bootstrap-table .table thead > tr > th:first-child {
+      padding-left: 0px !important;
+    }
+    .bootstrap-table .fixed-table-container .table thead th .sortable {
+      padding-right: 0.75rem !important;
+    }
+    .fresh-table .bootstrap-table .table > thead > tr > th{
+      padding: 0px !important;
+      font-size: var(--bs-body-font-size) !important;
+    }
+    .fresh-table .bootstrap-table .table tbody > tr > td {
+      padding-left: .75rem !important;
+    }
+    .fresh-table .bootstrap-table .table tbody > tr > td {
+      padding: .25rem !important;
+    }
+    .fresh-table .bootstrap-table .table tbody > tr > td:first-child {
+      padding-left: .25rem !important;
+    }
+    #fresh-table > tbody > tr > td:nth-child(1) {
+      padding: 0px !important;
+    }
+    .input-group{
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+    }
+    .input_box{
+      display: block;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      appearance: none;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    @media (min-width: 600px) {
+      .percent {
+        background-image: url("data:image/svg+xml,%3Csvg fill='%23000000' height='64px' width='64px' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 490.00 490.00' xml:space='preserve' stroke='%23000000' stroke-width='0.0049' transform='rotate(0)matrix(1, 0, 0, 1, 0, 0)'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round' stroke='%23CCCCCC' stroke-width='1.9600000000000002'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg%3E%3Cpath d='M96.383,245.798c27.77,0,51.146-10.631,70.106-31.879c18.97-21.247,28.45-51.538,28.45-90.865 c0-40.38-9.374-70.981-28.133-91.811C148.046,10.422,124.365,0,95.761,0C64.667,0,40.926,11.635,24.563,34.889 C8.188,58.15,0,86.377,0,119.568c0,42.293,9.163,73.898,27.511,94.827C45.86,235.326,68.814,245.798,96.383,245.798z M62.646,57.724c9.222-12.262,20.781-18.397,34.665-18.397c13.885,0,25.502,6.084,34.83,18.238 c9.327,12.161,13.991,33.25,13.991,63.273c0,32.564-4.617,54.974-13.839,67.236c-9.233,12.262-20.885,18.397-34.982,18.397 c-13.673,0-25.186-6.077-34.512-18.238c-9.327-12.154-13.991-33.142-13.991-62.956C48.809,92.51,53.425,69.993,62.646,57.724z'%3E%3C/path%3E%3Cpolygon points='143.947,490 392.372,0 346.981,0 97.628,490 '%3E%3C/polygon%3E%3Cpath d='M390.82,244.21c-31.305,0-55.14,11.576-71.515,34.729c-16.375,23.153-24.563,51.43-24.563,84.832 c0,42.083,9.174,73.637,27.523,94.676C340.602,479.477,363.556,490,391.126,490c27.993,0,51.464-10.624,70.423-31.871 C480.52,436.875,490,406.591,490,367.264c0-40.381-9.374-70.99-28.134-91.818C443.106,254.624,419.425,244.21,390.82,244.21z M427.354,432.277c-9.222,12.269-20.992,18.397-35.288,18.397c-13.685,0-25.186-6.127-34.513-18.397 c-9.326-12.255-13.99-33.192-13.99-62.798c0-32.766,4.605-55.283,13.838-67.546c9.221-12.263,20.874-18.398,34.971-18.398 c13.884,0,25.503,6.078,34.829,18.239c9.327,12.161,13.991,33.249,13.991,63.266C441.191,397.605,436.574,420.022,427.354,432.277z '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right calc(.375em + .1875rem) center;
+        background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+      }
+    }
+    .input_box_text{
+      display: flex;
+      align-items: center;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+    }
+    .input-group>.input_box{
+      position: relative;
+      flex: 1 1 auto;
+      width: 1%;
+      min-width: 0;
+    }
+
+    body,
+    .pricetxt,
+    .pricehide {
+      font: inherit;
+      text-align: center!important;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pricetxt {
+      border: none;
+      color: rgb(255, 255, 255);
+      background-color: #606060;
+      min-width: 10px;
+      cursor: pointer;
+    }
+
+    .pricetxt:focus-visible {
+      outline: none;
+    }
+
+    .pricehide {
+      display: none;
+      white-space: pre;
+    }
+
+    * { font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;}
+  </style>
+  
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/jquery.mousewheel.min.js"></script>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <!-- bootstrap-table -->
+  <script defer src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js"></script>
+
+  <!-- custom -->
+  <script src="js/custom.js?v=02021500"></script>
+  <script src="js/craft_recipe.js?v=11221359"></script>
+  <script src="js/craftcalc.js?v=11251805"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+</body>
+</html>

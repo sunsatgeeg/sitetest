@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head class="h-100">
+  <title>카드 시뮬레이션 :: LoaChart|로아차트</title>
+  <meta name="viewport" content="width=device-width,user-scalable=0">
+  <meta name="description" content="로스트아크 카드 시뮬레이션">
+  <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,시뮬레이션,보석,카드,갓차,갓챠,뽑기,랜덤,10렙,멸화,홍염" />
+  <meta property="og:title" content="로아 카드 시뮬레이션 :: LoaChart|로아차트"/>
+  <meta property="og:description" content="로스트아크 카드 시뮬레이션"/>
+  <meta property="og:url" content="https://loachart.com/simulation/card_legendary"/>
+  <meta property="og:site_name" content="로아차트"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://loachart.com/img/ogimage.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+  <script>var url='https://api.loachart.com';if(location.hostname==='127.0.0.1'){url='http://127.0.0.1:5000';}</script>
+  <script>var here = "simulation_card_all";</script>
+  <script src="/js/includeHTML.js?v=09231422"></script>
+  <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-cfasync="false" data-site-id="654b46ff96a6256ebdf129f0" data-mode="scan" async></script>
+  
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <!-- custom -->
+  <link rel="stylesheet" type="text/css" href="/css/custom.css">
+  <script async src="/js/custom.js?v=02021500"></script>
+  <link href="/css/cover.css" rel="stylesheet">
+  <style>
+    .dynamic, map:hover{
+      cursor: url('/img/simulation/cursor_hover.png'), auto !important;
+    }
+    .results, .allresults{
+      background: #00000099;
+      height: 80px;
+      border: 1px solid;
+      border-radius: 8px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .results::-webkit-scrollbar, .allresults::-webkit-scrollbar{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <header><script>includeHTML('header');</script></header>
+    <div id="ad-container-1" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            placement.setAttribute("data-display-type", "hybrid-banner");
+            document.querySelector("#ad-container-1").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <div id="rich-media-placement"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f128d9f8443109e9358e5");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+
+    <main class="container py-3 mt-3 box-dark rounded-4 text-center">
+      <div>     
+        <div style="cursor: url('/img/simulation/cursor.png'), auto;">
+          <div id="simulation_zone">
+            <div class="row mb-3 text-white">
+              <div class="col text-start"><span class="dynamic" style="font-size: 1.75rem;" id="back"><< 뒤로가기</span></div>
+              <div class="col text-end"><span style="font-size: 1.75rem;"><span id="challenge_count">0</span>번</span></div>
+            </div>
+            
+            <div class="allresults container justify-content-center mb-3" style="height: auto;">  
+              <div style="color: orange;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_252.png" alt="">
+                <span style="font-size: 1.75rem;">전설 카드 팩Ⅱ X <span style="font-size: 1.75rem;" id="legendary">0</span></span>
+              </div>
+              <div style="color: blueviolet;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_253.png" alt="">
+                <span style="font-size: 1.75rem;">영웅 카드 팩 X <span style="font-size: 1.75rem;" id="epic">0</span></span>
+              </div>
+              <div style="color: cornflowerblue;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_254.png" alt="">
+                <span style="font-size: 1.75rem;">희귀 카드 팩 X <span style="font-size: 1.75rem;" id="rare">0</span></span>
+              </div>
+              <div style="color: chartreuse;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_255.png" alt="">
+                <span style="font-size: 1.75rem;">고급 카드 팩 X <span style="font-size: 1.75rem;" id="uncommon">0</span></span>
+              </div>
+              <div style="color: white;">
+                <img class="my-2" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_1.png" alt="">
+                <span style="font-size: 1.75rem;">일반 카드 팩 X <span style="font-size: 1.75rem;" id="common">0</span></span>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic card_open" value="10">10개 열기</button>
+              <button type="button" class="mx-auto btn btn-lg btn-outline-light dynamic card_open" value="1">1개 열기</button>
+            </div>
+
+            <div class="results container justify-content-center text-start" style="height: 300px;"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="ad-container-2" class="mt-3" style="min-height: 250px;"></div>
+    <script>
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            document.querySelector("#ad-container-2").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    </script>
+    <footer><script>includeHTML('footer');</script></footer>
+  </div>
+
+  <script async>
+    resultselement = document.querySelector('.results');
+
+    document.querySelector('#back').addEventListener('click',()=>{
+      location = '/simulation';
+    });
+    
+    const namelist = ['전설 카드 팩 Ⅱ','영웅 카드 팩','희귀 카드 팩','고급 카드 팩','일반 카드 팩']
+    const colorlist = ['orange','blueviolet','cornflowerblue','chartreuse','white']
+    const engnamelist = ['legendary','epic','rare','uncommon','common']
+    const ratelist = [0.5,9.5,40,30,20]
+    let runcount = 0
+
+    function createresultitem(content, color){
+      tempeletment = document.createElement('div');
+      tempeletment.className = 'ms-3 result-item animate__animated animate__flash';
+      tempeletment.textContent = content;
+      tempeletment.style.color = color;
+
+      return tempeletment;
+    }
+    
+    function challenge(length){
+      runcount += length;
+      document.querySelector('#challenge_count').textContent = runcount;
+    }
+
+    document.querySelectorAll(".card_open").forEach((e)=>{
+      e.addEventListener('click', async(f)=>{
+        var opencount = parseInt(f.target.getAttribute('value'));
+        var audio = new Audio('/audio/card_open.m4a');
+        
+        audio.play();
+        
+        for (var i = 0; i < opencount; i++) {
+          for (var n = 100 * Math.random(), r = 0, o = ratelist[0], s = 0; s < namelist.length; s++) {
+            if (n >= r && n < o) {
+              resultselement.append(createresultitem(namelist[s], colorlist[s]));
+              document.querySelector(`#${engnamelist[s]}`).textContent = parseInt(document.querySelector(`#${engnamelist[s]}`).textContent) + 1;
+              document.querySelector(`#${engnamelist[s]}`).parentElement.parentElement.className += ' animate__animated animate__flash';
+              break;
+            }
+            r = o, o += ratelist[s + 1]
+          }
+        }
+        resultselement.innerHTML += '<br>';
+        challenge(opencount);
+        resultselement.scrollTop = resultselement.scrollHeight;
+
+        setTimeout(()=>{
+          document.querySelectorAll('.animate__animated').forEach(async (x)=>{
+            x.classList.remove('animate__animated', 'animate__flash');
+          })
+        }, 1000);
+      });
+    })
+  </script>
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=G-XD44D79GLY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XD44D79GLY');
+  </script>
+
+  <!-- Naver Analytics -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "11c6a9ddab2d680";
+    if(window.wcs) {
+      wcs_do();
+    }
+  </script>
+
+  <!-- Mircrosoft Clarity -->
+  <script async type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bohv5f4wfu");
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css?display=swap" type="text/css">
+  </div>
+</body>
+</html>
