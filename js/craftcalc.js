@@ -74,7 +74,7 @@ function reloadPriceTXT() {
         e.value = e.value.substring(1);
       }
 
-      temprowitemname = e.parentElement.parentElement.childNodes[1].textContent;
+      temprowitemname = e.parentElement.parentElement.getAttribute("data-itemname");
       if (temprowitemname.indexOf('(') != -1) {
         temprowitemname = temprowitemname.substring(0, temprowitemname.indexOf('('))
       }
@@ -136,15 +136,15 @@ function newRow(index, row, $detail) {
         if (detailElement.className == "detail-view") break;
         detailElement = detailElement.parentElement;
       }
-      var targetitemname = detailElement.previousSibling.childNodes[1].textContent;
+      var targetitemname = detailElement.previousSibling.getAttribute('data-itemname');
 
       itemPriceEdit(e.getAttribute('item'), e.value);
       $table.bootstrapTable('selectPage', 1)
       var pagewhilestopsign = false;
       while (true) {
-        document.querySelectorAll("#fresh-table > tbody > tr > td.text-start").forEach((e) => {
-          if (e.textContent == targetitemname) {
-            $table.bootstrapTable('toggleDetailView', parseInt(e.parentElement.getAttribute('data-index')));
+        document.querySelectorAll("#fresh-table > tbody > tr").forEach((e) => {
+          if (e.getAttribute('data-itemname') == targetitemname) {
+            $table.bootstrapTable('toggleDetailView', parseInt(e.getAttribute('data-index')));
             pagewhilestopsign = true;
           }
         })
@@ -167,13 +167,34 @@ document.querySelector('#helpbtn').addEventListener('click', function () {
   document.querySelector('#helpbtn').removeEventListener('click', arguments.callee);
 }, false);
 
+let isonlyTableBookmarkVisible = (()=>{
+  if(localStorage.getItem("craftcalc_onlyTableBookmarkVisible") && localStorage.getItem("craftcalc_onlyTableBookmarkVisible") == "true") {
+    document.querySelector("#onlyTableBookmarkBtn").style.color ="rgb(0,255,0)";
+    document.querySelector("#onlyTableBookmarkBtn").style.borderColor ="rgb(0,255,0)";
+    return true;
+  }else{
+    return false;
+  }
+})();
+function onlyTableBookmarkVisible() {
+  isonlyTableBookmarkVisible = !isonlyTableBookmarkVisible;
+  document.querySelector("#onlyTableBookmarkBtn").style.color = isonlyTableBookmarkVisible ? "rgb(0,255,0)" : "";
+  document.querySelector("#onlyTableBookmarkBtn").style.borderColor = isonlyTableBookmarkVisible ? "rgb(0,255,0)" : "";
+  localStorage.setItem("craftcalc_onlyTableBookmarkVisible", isonlyTableBookmarkVisible);
+  recipecalc();
+}
+
 var marketData;
 var tradeCountData;
 var $table = $('#fresh-table');
-
 function recipecalc() {
   tabledata = [];
+  tableDisplayData = [];
   temp = [];
+  
+  let tableBookmark;
+  if(isonlyTableBookmarkVisible) tableBookmark = localStorage.getItem("craftcalc_tableBookmark").split(",");
+
   Object.keys(recipedata).forEach(function (item) {
     itemname = item;
     itemMarketName = item
@@ -278,7 +299,24 @@ function recipecalc() {
     // 0628일 패치로 제한 사라짐 if(itemname == '현자의 가루') profitperenergyGold = parseInt((Math.floor(10000 / 1000)) * thisprofit);
 
     // console.log(thisitemname)
+
     tabledata.push({
+      item: itemname,
+      recommend: thisrecommend,
+      buyprice: thisbuyprice,
+      craftprice: craftprice.toFixed(2),
+      profit: thisprofit.toFixed(2),
+      profitperenergy: profitperenergyGold,
+      dict: recipe,
+      requireEnerge: requireEnerge,
+      discountedItemEnergy: discountedItemEnergy,
+      gsqty: gsqty,
+      trade_count: tradeCountData[itemMarketName]
+    });
+
+    if(isonlyTableBookmarkVisible && !tableBookmark.includes(item)) return;
+    
+    tableDisplayData.push({
       item: itemname,
       recommend: thisrecommend,
       buyprice: thisbuyprice,
@@ -293,7 +331,7 @@ function recipecalc() {
     });
   });
 
-  $table.bootstrapTable('load', tabledata);
+  $table.bootstrapTable('load', tableDisplayData);
 }
 
 // $('#accordionitemprice').on('click', function(){
@@ -373,14 +411,14 @@ function detailFormatter(index, row) {
     <tr>
       <th scope="col">시세</th>
       <th scope="col">수수료</th>
-      <th scope="col">제작비용<br>(개당)</th>
+      <th class="d-none d-lg-table-cell" scope="col">제작비용<br>(개당)</th>
       <th scope="col">재료</th>
       <th scope="col">시세</th>
       <th scope="col">구매<br>단위</th>
       <th scope="col">필요<br>개수</th>
       <th scope="col">합계</th>
       <th scope="col">제작비용</th>
-      <th scope="col">활동력<br>[영지효과]</th>
+      <th class="d-none d-lg-table-cell" scope="col">활동력<br>[영지효과]</th>
       <th scope="col">제작 수량<br>[영지효과]</th>
       <th scope="col">이익<br>(세트당)</th>
     </tr>
@@ -396,7 +434,7 @@ function detailFormatter(index, row) {
     <tr>
       <td><span class="pricehide"></span><input class="pricetxt ableEditPrice" item="${rowitemname}" type="text" value="${row['buyprice']}"></td>
       <td id="detail-tax">${Math.ceil(row['buyprice'] * 0.05)}</td>
-      <td id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
+      <td class="d-none d-lg-table-cell" id="detail-craftprice">${(row['craftprice'] / row['dict']['수량']).toFixed(2)}</td>
       <td>`;
   // 재료
   for (var i = 4; i < Object.keys(row['dict']).length; i++) {
@@ -536,7 +574,7 @@ function detailFormatter(index, row) {
     html += `<p class="dynamic-calc" origin-value="${calcprice}">${calcprice}</p>`;
   }
   html += `<td class="dynamic-calc" origin-value="${row['craftprice']}">${row['craftprice']}</td>
-      <td>
+      <td class="d-none d-lg-table-cell">
         <span class="dynamic-calc" origin-value="${row['requireEnerge']}">${row['requireEnerge']}</span>
         <br>[<span class="dynamic-calc" origin-value="${row['discountedItemEnergy']}">${row['discountedItemEnergy']}</span>]
       </td>
@@ -551,19 +589,6 @@ function detailFormatter(index, row) {
   </tbody>
 </table>`;
   return html;
-}
-
-function imageFormatter(index, row) {
-  if (row['item'].lastIndexOf('(') != -1) {
-    thisname = row['item'].substring(0, row['item'].lastIndexOf('('));
-  } else {
-    thisname = row['item'];
-  }
-
-  image = row.dict.key.Element_001.value.slotData.iconPath;
-  grade = row.dict.key.Element_001.value.slotData.iconGrade;
-
-  return '<img data-key="' + JSON.stringify(row.dict.key).replace(/"/gi, "&quot;") + '" class="item-image mt-1 mb-1" data-grade="' + grade + '" src="https://cdn-lostark.game.onstove.com/' + image + '" onmouseover="tooltip_item_show(this);" onmouseout="tooltip_item_hide(this);" style="width: 64px;">'
 }
 
 function buypriceFormatter(value, row) {
@@ -615,6 +640,45 @@ function profitperenergyFormatter(value, row) {
 
 function tradeCountFormatter(value, row) {
   return value.toLocaleString()
+}
+
+function rowAttributes(row, index) {
+  return {
+    'data-itemname': row.item,
+  }
+}
+
+function item(value, row, index) {
+  let formatter = '<div class="d-flex" style="width: max-content;">';
+  let itemName = row.item;
+  let itemImagePath = row.dict.key.Element_001.value.slotData.iconPath;
+  let itemGrade = row.dict.key.Element_001.value.slotData.iconGrade;
+
+  if(!localStorage.getItem("craftcalc_tableBookmark")) localStorage.setItem("craftcalc_tableBookmark", "");
+  const tableBookmark = localStorage.getItem("craftcalc_tableBookmark").split(",");
+  let isBookmark = tableBookmark.includes(row.item);
+  
+  formatter += `<div class="d-flex position-relative my-1 me-2" style="width: max-content">
+                  <img data-key="${JSON.stringify(row.dict.key).replace(/"/gi, "&quot;")}" class="item-image" data-grade="${itemGrade}" src="https://cdn-lostark.game.onstove.com/${itemImagePath}" onmouseover="tooltip_item_show(this);" onmouseout="tooltip_item_hide(this);" style="width: 64px;">
+                  <div class="bookmarkIcon bottom-0 end-0 ${isBookmark ? "active" : ""}" data-itemName="${row.item}" onclick="${isBookmark ? "removeTableBookmarkItem" : "addTableBookmarkItem"}(event, this)"></div>
+                </div>`
+
+  formatter += '<div class="align-self-center">';
+  if (itemName.includes("구매)")) {
+    formatter += `<span class="d-none d-lg-inline">${itemName.substring(0, itemName.indexOf("("))}</span>
+                  <span class="d-none d-lg-inline">${itemName.substring(itemName.indexOf("("))}</span>
+                  <span class="d-md-block d-lg-none">하위<br>구매</span>`
+  } else if (itemName.includes("제작)")) {
+    formatter += `<span class="d-none d-lg-inline">${itemName.substring(0, itemName.indexOf("("))}</span>
+                  <span class="d-none d-lg-inline">${itemName.substring(itemName.indexOf("("))}</span>
+                  <span class="d-md-block d-lg-none">하위<br>제작</span>`
+  } else {
+    formatter += `<span class="d-none d-lg-inline">${itemName}</span>`;
+  }
+  formatter += "</div>";
+
+  formatter += "</div>";
+  return formatter;
 }
 
 function recomcellStyle(value, row, index) {
@@ -687,7 +751,7 @@ function updateAllItemPrice() {
       let functionStr = `itemPriceEdit(this.getAttribute('data-itemName'), this.value)`;
       tElement.innerHTML += `<div class="col-2 col-sm-1point2 d-flex ps-1 pe-0" style="flex-direction: column;">
                                 <div class="d-flex position-relative">
-                                  <img class="mx-auto item-image" data-grade="${grade}" src="https://cdn-lostark.game.onstove.com/${image}" alt="" style="width: 100%">
+                                  <img class="mx-auto item-image" data-grade="${grade}" data-itemName="${originE}" src="https://cdn-lostark.game.onstove.com/${image}" alt="" style="width: 100%; cursor: pointer;" onclick="$table.bootstrapTable('refreshOptions', { searchText: '${originE}' });">
                                   <div class="bookmarkIcon bottom-0 end-0" data-itemName="${originE}" onclick="addBookmarkItem(this)"></div>
                                 </div>
                                 <div class="scroll-container"><div class="text-white scroll-text text-center" id="itemname" origin="${originE}"style="--second: ${animationSecond}s; --length: -400%; text-overflow: ellipsis; white-space: nowrap;">${showName}</div></div>
@@ -716,18 +780,31 @@ function addBookmarkItem(element) {
   loadBookmarkItem();
 }
 
+function addTableBookmarkItem(event, element) {
+  let name = element.getAttribute('data-itemName');
+  let tableBookmark = localStorage.getItem("craftcalc_tableBookmark").split(",");
+  
+  element.classList.add('active');
+  element.setAttribute('onclick', 'removeTableBookmarkItem(event, this)');
+
+  if(!tableBookmark.includes(name)) tableBookmark.push(name);
+  
+  localStorage.setItem("craftcalc_tableBookmark", tableBookmark);
+  event.stopPropagation();
+}
+
 function removeBookmarkItem(element) {
   let name = element.getAttribute('data-itemName');
   let bookmark = localStorage.getItem("craftcalc_bookmark").split(",");
 
-  let isFind = false;
+  let removedCount = 0;
   document.querySelectorAll(".bookmarkIcon").forEach((e)=>{
-    if(isFind) return;
+    if(removedCount >= 2) return;
 
     if(e.getAttribute("data-itemname") === name){
       e.classList.remove('active');
       e.setAttribute('onclick', 'addBookmarkItem(this)');
-      isFind = true;
+      removedCount += 1;
     }
   })
 
@@ -736,6 +813,21 @@ function removeBookmarkItem(element) {
 
   localStorage.setItem("craftcalc_bookmark", bookmark);
   loadBookmarkItem();
+}
+
+function removeTableBookmarkItem(event, element) {
+  let name = element.getAttribute('data-itemName');
+  let tableBookmark = localStorage.getItem("craftcalc_tableBookmark").split(",");
+
+  element.classList.remove('active');
+  element.setAttribute('onclick', 'addTableBookmarkItem(event, this)');
+
+  const findIndex = tableBookmark.indexOf(name);
+  if(findIndex > -1) tableBookmark.splice(findIndex, 1);
+
+  localStorage.setItem("craftcalc_tableBookmark", tableBookmark);
+  recipecalc();
+  event.stopPropagation();
 }
 
 function loadBookmarkItem() {
@@ -777,7 +869,7 @@ function loadBookmarkItem() {
       let functionStr = `itemPriceEdit(this.getAttribute('data-itemName'), this.value)`;
       tElement.innerHTML += `<div class="col-2 col-sm-1point2 d-flex ps-1 pe-0" style="flex-direction: column;">
                                 <div class="d-flex position-relative">
-                                  <img class="mx-auto item-image" data-grade="${grade}" src="https://cdn-lostark.game.onstove.com/${image}" alt="" style="width: 100%">
+                                  <img class="mx-auto item-image" data-grade="${grade}" src="https://cdn-lostark.game.onstove.com/${image}" alt="" style="width: 100%; cursor: pointer;" onclick="$table.bootstrapTable('refreshOptions', { searchText: '${originE}' });">
                                   <div class="bookmarkIcon bottom-0 end-0" data-itemName="${originE}" onclick="removeBookmarkItem(this)"></div>
                                 </div>
                                 <div class="scroll-container"><div class="text-white scroll-text text-center" id="itemname" origin="${originE}"style="--second: ${animationSecond}s; --length: -400%; text-overflow: ellipsis; white-space: nowrap;">${showName}</div></div>
@@ -786,6 +878,7 @@ function loadBookmarkItem() {
       
       document.querySelectorAll(".bookmarkIcon").forEach((e)=>{
         if(e.getAttribute("data-itemname") === originE){
+          e.setAttribute('onclick', 'removeBookmarkItem(this)');
           e.classList.add('active');
           return;
         }
@@ -804,31 +897,45 @@ $(function () {
     striped: true,
     pageSize: 10,
     pageList: [10, 25, 50, 100],
+    pageSize: localStorage.getItem("craftcalc_pageSize") ? localStorage.getItem("craftcalc_pageSize") : 10,
     onExpandRow: newRow,
     onPostBody: reloadPriceTXT,
+    sortName: localStorage.getItem("craftcalc_sortName") ? localStorage.getItem("craftcalc_sortName") : "profitperenergy",
+    sortOrder: localStorage.getItem("craftcalc_sortOrder") ? localStorage.getItem("craftcalc_sortOrder") : "desc",
 
+    onSort:(name, order)=>{
+      localStorage.setItem("craftcalc_sortName", name);
+      localStorage.setItem("craftcalc_sortOrder", order);
+    },
+    onPageChange: (number, size)=>{
+      localStorage.setItem("craftcalc_pageSize", size);
+    },
     formatShowingRows: function (pageFrom, pageTo, totalRows) {
       return ''
     },
     formatRecordsPerPage: function (pageNumber) {
-      return pageNumber + ' rows visible'
+      return pageNumber + ' 줄 표시'
     },
   })
 
   $('#wisdomeffectclear').on('click', function () {
     $('#wisdomeffect').find('input').filter(function () {
       $(this).val('');
-      setCookie($(this).attr('id'), '', 365);
+      localStorage.removeItem("craftcalc_"+$(this).attr('id'), '');
+      $("#wisdomEffectEditOpenBtn").css("border-color", "");
+      $("#wisdomEffectEditOpenBtn").css("color", "");
       recipecalc();
     });
   });
 
   $('#wisdomeffect').find('input').filter(function () {
     givemeid = $(this).attr('id');
-    if (getCookie(givemeid) == undefined || getCookie(givemeid) == '') {
+    if (localStorage.getItem("craftcalc_"+givemeid) == undefined || localStorage.getItem("craftcalc_"+givemeid) == '') {
       $(this).val('');
     } else {
-      $(this).val(getCookie(givemeid));
+      $(this).val(localStorage.getItem("craftcalc_"+givemeid));
+      $("#wisdomEffectEditOpenBtn").css("border-color", "rgb(0, 255, 0)");
+      $("#wisdomEffectEditOpenBtn").css("color", "rgb(0, 255, 0)");
     }
 
     $(this).hover(() => {
@@ -844,7 +951,10 @@ $(function () {
         thiseffectval = '';
       }
 
-      setCookie(thiseffectname, thiseffectval, 365);
+      $("#wisdomEffectEditOpenBtn").css("border-color", "rgb(0, 255, 0)");
+      $("#wisdomEffectEditOpenBtn").css("color", "rgb(0, 255, 0)");
+
+      localStorage.setItem("craftcalc_"+thiseffectname, thiseffectval);
       recipecalc();
     });
   });
