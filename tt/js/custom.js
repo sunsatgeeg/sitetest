@@ -102,3 +102,79 @@ try{
 }
 
 // 베나투스 스크립트
+if(document.querySelector("#ad-container-1")) {
+    window.top.__vm_add = window.top.__vm_add || [];
+    (function (success) {
+        if (window.document.readyState !== "loading") {
+            success();
+        } else {
+            window.document.addEventListener("DOMContentLoaded", function () {
+                success();
+            });
+        }
+    })(function () {
+        var placement = document.createElement("div");
+        placement.setAttribute("class", "vm-placement");
+        placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+        placement.setAttribute("data-display-type", "hybrid-banner");
+        document.querySelector("#ad-container-1").appendChild(placement);
+        window.top.__vm_add.push(placement);
+    });
+}
+
+if(document.querySelector("#rich-media-placement")) {
+    if(document.querySelector("#rich-media-placement").getAttribute("data-instream") === "true") {
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f129a9f8443109e9358e7");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    } else {
+        window.top.__vm_add = window.top.__vm_add || [];
+        (function (success) {
+            if (window.document.readyState !== "loading") {
+                success();
+            } else {
+                window.document.addEventListener("DOMContentLoaded", function () {
+                    success();
+                });
+            }
+        })(function () {
+            var placement = document.createElement("div");
+            placement.setAttribute("class", "vm-placement");
+            placement.setAttribute("data-id", "654f128d9f8443109e9358e5");
+            document.querySelector("#rich-media-placement").appendChild(placement);
+            window.top.__vm_add.push(placement);
+        });
+    }
+}
+
+if(document.querySelector("#ad-container-2")) {
+    window.top.__vm_add = window.top.__vm_add || [];
+    (function (success) {
+        if (window.document.readyState !== "loading") {
+            success();
+        } else {
+            window.document.addEventListener("DOMContentLoaded", function () {
+                success();
+            });
+        }
+    })(function () {
+        var placement = document.createElement("div");
+        placement.setAttribute("class", "vm-placement");
+        placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+        document.querySelector("#ad-container-2").appendChild(placement);
+        window.top.__vm_add.push(placement);
+    });
+}
