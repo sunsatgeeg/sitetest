@@ -2,7 +2,7 @@
 <html lang="ko">
 <head class="h-100">
   <title>제작 :: LoaChart|로아차트</title>
-  <meta name="viewport" content="width=device-width,user-scalable=0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="로스트아크 실시간 제작 이득 계산기">
   <meta name="keywords" content="로아차트,loachart,로차트,로스트,아크,로아,차트,마리샵,비밀,지도,카게,경매,분배금,제작,영지,더보기,도감작,악추피,인추피,야추피,계산기,전설,각인,각인서,베른,파푸,오레하,쌀산기"/>
   <meta property="og:title" content="로아 실시간 제작 이득 계산기 :: LoaChart|로아차트"/>
@@ -397,7 +397,7 @@
             </div>
           </div>
           <div class="col-lg-auto float-md-end px-0 ms-lg-3 mt-auto mb-3">
-            <div class="mx-auto" style="max-width: 410px; max-height: 230px;">
+            <div class="mx-auto" style="min-width: 350px; max-width: 410px; height: 230px;">
               <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
             </div>
           </div>
@@ -410,7 +410,7 @@
             <div class="accordion" style="max-width: 600px;">
               <div id="collapse" class="accor dion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordion">
                 <div class="accordion-body p-0">
-                  <table class="table mt-3 table-hover mb-3 text-center">
+                  <table class="table mt-3 table-hover mb-3 text-center" data-bs-theme="dark">
                     <thead>
                       <tr>
                         <th scope="col">전체</th>
@@ -531,14 +531,15 @@
                  data-detail-view-icon="false"
                  data-detail-view-by-click="true"
                  data-detail-formatter="detailFormatter"
-                 data-row-attributes="rowAttributes">
+                 data-row-attributes="rowAttributes"
+                 data-bs-theme="dark">
             <thead>
               <th data-order="desc" class="text-start" data-field="item" data-sortable="true" data-formatter="item">아이템</th>
               <th data-order="desc" data-field="recommend" data-sortable="true" data-cell-style="recomcellStyle">추천방식<br>(사용 기준)</th>
-              <th class="d-none d-lg-table-cell" data-order="desc" data-field="buyprice" data-sortable="true" data-formatter="buypriceFormatter">시세</th>
-              <th class="d-none d-lg-table-cell" data-order="desc" data-field="craftprice" data-sortable="true">제작비용</th>
+              <th class="d-none d-sm-table-cell" data-order="desc" data-field="buyprice" data-sortable="true" data-formatter="buypriceFormatter">시세</th>
+              <th class="d-none d-md-table-cell" data-order="desc" data-field="craftprice" data-sortable="true">제작비용</th>
               <th data-order="desc" data-field="profit" data-sortable="true" data-cell-style="profcellStyle">판매이익<br>(판매 기준)</th>
-              <th data-order="desc" data-field="profitperenergy" data-sortable="true" data-formatter="profitperenergyFormatter">이익/활동력  <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { allowHTML: true, content: '(최대 활동력 10,000 ÷ 해당 아이템 활동력) X<br>해당 아이템 판매이익<br>-------------------------------------------------------<br>단, 일일 구매 제한이 걸려있는 아이템이 재료일 경우 그 수에 맞게 계산됨',theme: 'light', placement: 'bottom', });"></i></th>
+              <th class="d-none d-lg-table-cell" data-order="desc" data-field="profitperenergy" data-sortable="true" data-formatter="profitperenergyFormatter">이익/활동력  <i class="bi bi-question-circle-fill" onmouseover="tippy($(this)[0], { allowHTML: true, content: '(최대 활동력 10,000 ÷ 해당 아이템 활동력) X<br>해당 아이템 판매이익<br>-------------------------------------------------------<br>단, 일일 구매 제한이 걸려있는 아이템이 재료일 경우 그 수에 맞게 계산됨',theme: 'light', placement: 'bottom', });"></i></th>
               <th data-order="desc" data-field="trade_count" data-sortable="true" data-formatter="tradeCountFormatter">금일 판매량</th>
             </thead>
             <tbody style="cursor:pointer"></tbody>
@@ -568,7 +569,7 @@
         </div>
         <div class="modal-body text-black">
           <div>
-            <p id="modalimg1"></p>
+            <div id="modalimg1" style="width: 100%; max-width: 525px;"></div>
             <p>▲ 위와 같이 제작 대성공 확률 4% 증가니까 밑에 전체에 4입력</p>
             <p>[배틀 아이템 - 폭탄] 제작 대성공 확률 3% 증가니까 밑에 배틀아이템에 3입력</p>
             <p>[요리] 제작 대성공 확률 1% 증가니까 밑에 요리에 1입력</p>
@@ -591,7 +592,7 @@
     }
     .fresh-table .bootstrap-table .table > thead > tr > th{
       padding: 0px !important;
-      font-size: var(--bs-body-font-size) !important;
+      font-size: .94rem !important;
     }
     .fresh-table .bootstrap-table .table tbody > tr > td {
       padding-left: .75rem !important;

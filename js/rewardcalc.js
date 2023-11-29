@@ -611,7 +611,7 @@ function calcreward(){
             if(Array.isArray(boss['phase'])){
                 content += '<th scope="row">' + boss['phase'][i]; + '</th>'
             }else{
-                content += '<th scope="row">' + String(i+1) + '관문'; + '</th>'
+                content += '<th scope="row">' + String(i+1) + '<span class="d-none d-lg-inline">관문</span>'; + '</th>'
             }
 
             content +=
@@ -717,7 +717,7 @@ function calcreward(){
 }
 
 let filterItemlist = ['혼돈의 돌'];
-document.querySelector('#itemaccordion').querySelectorAll('td').forEach((e)=>{
+document.querySelector('#itemaccordion').querySelectorAll('.checkBoxZone').forEach((e)=>{
     e.addEventListener('click', (td)=>{
         if(td.target.className == "form-check-label" || td.target.className == "btn btn-outline-light btn-lg") return;
         try{
