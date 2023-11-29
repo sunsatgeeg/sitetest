@@ -115,8 +115,12 @@ if(document.querySelector("#ad-container-1")) {
     })(function () {
         var placement = document.createElement("div");
         placement.setAttribute("class", "vm-placement");
-        placement.setAttribute("data-id", "654f12299f8443109e9358e1");
-        placement.setAttribute("data-display-type", "hybrid-banner");
+        if (window.innerWidth > 1000) {
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+            placement.setAttribute("data-display-type", "hybrid-banner");
+        } else {
+            placement.setAttribute("data-id", "654f12472188b029d79c682b");
+        }
         document.querySelector("#ad-container-1").appendChild(placement);
         window.top.__vm_add.push(placement);
     });
@@ -124,6 +128,7 @@ if(document.querySelector("#ad-container-1")) {
 
 if(document.querySelector("#rich-media-placement")) {
     if(document.querySelector("#rich-media-placement").getAttribute("data-instream") === "true") {
+        // 인스트림 비디오 있는 페이지
         window.top.__vm_add = window.top.__vm_add || [];
         (function (success) {
             if (window.document.readyState !== "loading") {
@@ -141,6 +146,7 @@ if(document.querySelector("#rich-media-placement")) {
             window.top.__vm_add.push(placement);
         });
     } else {
+        // 인스트림 비디오 없는 페이지
         window.top.__vm_add = window.top.__vm_add || [];
         (function (success) {
             if (window.document.readyState !== "loading") {
@@ -173,7 +179,11 @@ if(document.querySelector("#ad-container-2")) {
     })(function () {
         var placement = document.createElement("div");
         placement.setAttribute("class", "vm-placement");
-        placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+        if (window.innerWidth > 1000) {
+            placement.setAttribute("data-id", "654f12299f8443109e9358e1");
+        } else {
+            placement.setAttribute("data-id", "654f12609f8443109e9358e3");
+        }
         document.querySelector("#ad-container-2").appendChild(placement);
         window.top.__vm_add.push(placement);
     });
