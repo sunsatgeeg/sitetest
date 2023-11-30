@@ -423,7 +423,7 @@ function detailFormatter(index, row) {
       <th scope="col">합계</th>
       <th scope="col">제작비용</th>
       <th scope="col">제작 수량<br>[영지효과]</th>
-      <th scope="col">이익<br>(세트당)</th>
+      <th class="d-none d-sm-table-cell" scope="col">이익<br>(세트당)</th>
     </tr>
   </thead>
   <tbody>`;
@@ -592,7 +592,7 @@ function detailFormatter(index, row) {
         <br>[<span class="dynamic-calc" origin-value="${row['gsqty']}">${row['gsqty']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="기본 대성공 5%에서 영지효과 곱연산<br>-------------------------------------------------------<br>영지효과 대성공이 0이면 기본 대성공 확률 5% 반영 X"></i>]
         <br><span class="pricehide"></span><input class="pricetxt" style="width:31px;" onclick="javascript:if(this.value=='0') this.value='';" oninput="createqtyperset(event,this)" type="text" value="1">세트
       </td>
-      <td>
+      <td class="d-none d-sm-table-cell">
         <span class="dynamic-calc" origin-value="${row['profit']}">${row['profit']}</span> <i class="bi bi-question-circle-fill hasTooltip" tooltipcontent="((${row['buyprice']} - ${Math.ceil(row['buyprice'] * 0.05)}) X ${row['gsqty']}) - ${row['craftprice']}<br>((개당 시세 - 개당 수수료) X 제작 수량) - 제작 비용"></i></td>
     </tr>
   </tbody>
