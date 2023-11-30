@@ -293,7 +293,7 @@ let reward_bonus_array = [
                             },
                             {
                                 "bossname":"일리아칸(노말)",
-                                "bossitem":"쇠락한 눈동자",
+                                "bossitem":"쇠락의 눈동자",
                                 "phase":3,
                                 "phaserewardgold":[1500,2000,4000],
                                 "phasebonusrewardgold":[900,1100,1500],
@@ -304,27 +304,27 @@ let reward_bonus_array = [
                                                             ["정제된 파괴강석",120],
                                                             ["명예의 파편",3000],
                                                             ["찬란한 명예의 돌파석",6],
-                                                            ["쇠락한 눈동자",3]
+                                                            ["쇠락의 눈동자",3]
                                                         ],
                                                         [
                                                             ["정제된 수호강석",320],
                                                             ["정제된 파괴강석",160],
                                                             ["명예의 파편",3000],
                                                             ["찬란한 명예의 돌파석",8],
-                                                            ["쇠락한 눈동자",3]
+                                                            ["쇠락의 눈동자",3]
                                                         ],
                                                         [
                                                             ["정제된 수호강석",480],
                                                             ["정제된 파괴강석",240],
                                                             ["명예의 파편",4200],
                                                             ["찬란한 명예의 돌파석",11],
-                                                            ["쇠락한 눈동자",5]
+                                                            ["쇠락의 눈동자",5]
                                                         ],
                                                         ]
                             },
                             {
                                 "bossname":"일리아칸(하드)",
-                                "bossitem":"쇠락한 눈동자",
+                                "bossitem":"쇠락의 눈동자",
                                 "phase":3,
                                 "phaserewardgold":[1750,2500,5750],
                                 "phasebonusrewardgold":[1200,1400,1900],
@@ -335,21 +335,21 @@ let reward_bonus_array = [
                                                             ["정제된 파괴강석",200],
                                                             ["명예의 파편",4000],
                                                             ["찬란한 명예의 돌파석",9],
-                                                            ["쇠락한 눈동자",7]
+                                                            ["쇠락의 눈동자",7]
                                                         ],
                                                         [
                                                             ["정제된 수호강석",480],
                                                             ["정제된 파괴강석",240],
                                                             ["명예의 파편",4000],
                                                             ["찬란한 명예의 돌파석",12],
-                                                            ["쇠락한 눈동자",7]
+                                                            ["쇠락의 눈동자",7]
                                                         ],
                                                         [
                                                             ["정제된 수호강석",720],
                                                             ["정제된 파괴강석",360],
                                                             ["명예의 파편",5500],
                                                             ["찬란한 명예의 돌파석",18],
-                                                            ["쇠락한 눈동자",8]
+                                                            ["쇠락의 눈동자",8]
                                                         ],
                                                         ]
                             },
@@ -509,19 +509,106 @@ let reward_bonus_array = [
 
 const bossColor = {"아르고스":"#ffffff", "발탄":"#5f9ea0", "비아키스":"#ff1493", "쿠크세이튼":"#ff703b", "아브렐슈드":"#8a2be2", "카양겔":"#ffd700", "일리아칸":"#006400", "상아탑":"#00ccff", "카멘":"#0050c5"};
 const iteminfo = {
-    "명예의 파편":1,
-
-    "수호석 결정":10,
-    "파괴석 결정":10,
-    "위대한 명예의 돌파석":1,
-
-    "수호강석":10,
-    "파괴강석":10,
-    "경이로운 명예의 돌파석":1,
-    
-    "정제된 수호강석":10,
-    "정제된 파괴강석":10,
-    "찬란한 명예의 돌파석":1
+    "마수의 뼈":{
+        "unit":1,
+        "grade":5,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_3_101.png"
+    },
+    "욕망의 날개":{
+        "unit":1,
+        "grade":5,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_3_124.png"
+    },
+    "광기의 나팔":{
+        "unit":1,
+        "grade":5,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_19.png"
+    },
+    "몽환의 사념":{
+        "unit":1,
+        "grade":6,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_80.png"
+    },
+    "관조의 빛무리":{
+        "unit":1,
+        "grade":6,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_163.png"
+    },
+    "쇠락의 눈동자":{
+        "unit":1,
+        "grade":6,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_19.png"
+    },
+    "선명한 지혜의 기운":{
+        "unit":1,
+        "grade":3,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_3_111.png"
+    },
+    "빛나는 지혜의 기운":{
+        "unit":1,
+        "grade":5,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_3_67.png"
+    },
+    "어둠의 불":{
+        "unit":1,
+        "grade":5,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_239.png"
+    },
+    "마력의 샘물":{
+        "unit":1,
+        "grade":4,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_237.png"
+    },
+    "명예의 파편":{
+        "unit":1,
+        "grade":3,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_8_227.png"
+    },
+    "수호석 결정":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_6_104.png"
+    },
+    "파괴석 결정":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_6_105.png"
+    },
+    "위대한 명예의 돌파석":{
+        "unit":1,
+        "grade":2,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_7_156.png"
+    },
+    "수호강석":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_59.png"
+    },
+    "파괴강석":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_10_58.png"
+    },
+    "경이로운 명예의 돌파석":{
+        "unit":1,
+        "grade":2,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_7_157.png"
+    },
+    "정제된 수호강석":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_16.png"
+    },
+    "정제된 파괴강석":{
+        "unit":10,
+        "grade":0,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_15.png"
+    },
+    "찬란한 명예의 돌파석":{
+        "unit":1,
+        "grade":2,
+        "iconPath":"https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_11_17.png"
+    },
 };
 
 Number.prototype.toFixedNumber = function(x, base){
@@ -582,17 +669,17 @@ function calcreward(){
                 <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#bossaccordion">
                 <div class="accordion-body p-0">
                     <table class="table table-dark table-hover mb-0">
-                    <thead>
-                        <tr>
-                        <th scope="col">관문</th>
-                        <th scope="col">획득 골드</th>
-                        <th scope="col">더보기 비용</th>
-                        <th scope="col">기본 보상</th>
-                        <th scope="col">더보기 보상</th>
-                        <th scope="col">/</th>
-                        <th scope="col">이익</th>
-                        </tr>
-                    </thead>
+                        <thead>
+                            <tr>
+                            <th class="d-none d-md-table-cell" scope="col">관문</th>
+                            <th class="d-none d-md-table-cell" scope="col">획득 골드</th>
+                            <th class="d-none d-md-table-cell" scope="col">더보기 비용</th>
+                            <th scope="col">기본<br class="d-md-none"> 보상</th>
+                            <th scope="col">더보기<br class="d-md-none"> 보상</th>
+                            <th scope="col">/</th>
+                            <th scope="col">이익</th>
+                            </tr>
+                        </thead>
             `;
         let phasecount = null;
         if(Array.isArray(boss['phase'])){
@@ -603,7 +690,15 @@ function calcreward(){
 
         for (let i = 0; i < phasecount; i++) {
             content += 
-                `
+                `   <tbody class="d-md-none table-group-divider" scope="col">
+                        <tr>
+                            <td colspan="4">${String(i+1)} 관문</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">획득 골드 : <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></td>
+                            <td colspan="2">더보기 비용 : <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></td>
+                        </tr>
+                    </tbody>
                     <tbody class="align-middle">
                         <tr>
                 `;
@@ -611,24 +706,28 @@ function calcreward(){
             if(Array.isArray(boss['phase'])){
                 content += '<th scope="row">' + boss['phase'][i]; + '</th>'
             }else{
-                content += '<th scope="row">' + String(i+1) + '<span class="d-none d-lg-inline">관문</span>'; + '</th>'
+                content += '<th class="d-none d-md-table-cell" scope="row">' + String(i+1) + '관문</span>'; + '</th>'
             }
 
             content +=
                 `
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
                     </td>
                 `;
 
             if(boss['bossitem'] != "" && boss['phaserewarditem'][i] > 0){
                 content +=
-                    `
-                        <td>
-                            <span>${boss['bossitem']} </span>${boss['phaserewarditem'][i]}<span>개</span>
+                    `   <td>
+                            <div class="itemTitleMini justify-content-center">
+                                <span class="slotDataMini me-1" data-grade="${iteminfo[boss['bossitem']]["grade"]}">
+                                    <img class="w-100" src="${iteminfo[boss['bossitem']]["iconPath"]}" alt="">
+                                </span>
+                                <span id="rewarditemname"><span class="d-none d-md-inline">${boss['bossitem']} X </span> ${boss['phaserewarditem'][i]}</span>
+                            </div>
                         </td>
                     `;
             }else{
@@ -646,7 +745,12 @@ function calcreward(){
             for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
                 let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
                 let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
-                content += `<p><span id="rewarditemname">${itemName}</span> × <span id="rewarditemqty">${itemQty}</span></p>`;
+                content += `<p class="itemTitleMini justify-content-center">
+                                <span class="slotDataMini" data-grade="${iteminfo[itemName]["grade"]}">
+                                    <img class="w-100" src="${iteminfo[itemName]["iconPath"]}" alt="">
+                                </span>
+                                <span class="ms-1" id="rewarditemname"><span class="d-none d-md-inline">${itemName} × </span>${itemQty}</span>
+                            </p>`;
             }
 
             content += 
@@ -675,7 +779,7 @@ function calcreward(){
 
                 // console.log(itemName);
                 let itemGold = Number.isInteger(marketdata[itemName]) ? marketdata[itemName] : marketdata[itemName].toFixedNumber(3);
-                let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]) ? itemQty / iteminfo[itemName] : (itemQty / iteminfo[itemName]).toFixedNumber(1);
+                let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]["unit"]) ? itemQty / iteminfo[itemName]["unit"] : (itemQty / iteminfo[itemName]["unit"]).toFixedNumber(1);
                 let thiscalcgold = Number.isInteger(itemGold * itemTradeQty) ? itemGold * itemTradeQty : (itemGold * itemTradeQty).toFixedNumber(1);
 
                 content += `<p><span id="rewarditemname">${itemGold}</span> × <span id="rewarditemqty">${itemTradeQty}</span> = <span>${thiscalcgold}</span></p>`;
@@ -685,7 +789,7 @@ function calcreward(){
                 `
                     </td>
                     <td class="fw-bold">
-                        <p><span>${Number.isInteger(totalbonusrewardgold) ? totalbonusrewardgold : totalbonusrewardgold.toFixed(1)}</span><span> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
+                        <p><span>${Number.isInteger(totalbonusrewardgold) ? totalbonusrewardgold : totalbonusrewardgold.toFixed(1)}</span><span><br class="d-md-none"> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
                 `;
             let tempresult = 0;
             tempresult = totalbonusrewardgold - boss['phasebonusrewardgold'][i];

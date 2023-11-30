@@ -49,18 +49,29 @@
       height: 68px;
       padding-left: 83px;
     }
+    .itemTitleMini{
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+    }
 
-    .slotData[data-grade="0"]{
+    .slotData[data-grade="0"], .slotDataMini[data-grade="0"]{
       background: linear-gradient(135deg,#232323,#575757);
     }
-    .slotData[data-grade="2"]{
+    .slotData[data-grade="2"], .slotDataMini[data-grade="2"]{
       background: linear-gradient(135deg,#111f2c,#113d5d);
     }
-    .slotData[data-grade="3"]{
+    .slotData[data-grade="3"], .slotDataMini[data-grade="3"]{
       background: linear-gradient(135deg,#261331,#480d5d);
     }
-    .slotData[data-grade="5"]{
+    .slotData[data-grade="4"], .slotDataMini[data-grade="4"]{
+      background: linear-gradient(135deg,#362003,#9e5f04);
+    }
+    .slotData[data-grade="5"], .slotDataMini[data-grade="5"]{
       background: linear-gradient(135deg,#232323,#575757);background: linear-gradient(135deg,#341a09,#a24006);
+    }
+    .slotData[data-grade="6"], .slotDataMini[data-grade="6"]{
+      background: linear-gradient(135deg,#3d3325,#dcc999);
     }
     .slotData{
       line-height: 1.5;
@@ -76,6 +87,20 @@
       top: 0;
       width: 68px;
       height: 68px;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+    .slotDataMini{
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+      word-wrap: break-word;
+      color: #fff;
+      font-size: 14px;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
       border: 1px solid #000;
       box-sizing: border-box;
     }
