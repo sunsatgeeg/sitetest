@@ -658,9 +658,9 @@ function calcreward(){
     }
 
     reward_bonus_array.forEach(function(boss, index){
+        let totalbonusrewardgoldObject = {};
         content = 
             `
-                <div class="accordion-item">
                 <h2 class="accordion-header" id="heading${index}">
                 <button class="accordion-button collapsed fw-bold" type="button" style="color:${bossColor[boss['bossname'].substring(0, boss['bossname'].indexOf('('))]}" data-bs-target="#collapse${index}" aria-controls="collapse${index}" data-bs-toggle="collapse" aria-expanded="false">
                     ${boss['bossname']}
@@ -692,120 +692,108 @@ function calcreward(){
             content += 
                 `   <tbody class="d-md-none table-group-divider" scope="col">
                         <tr>
-                            <td colspan="4">${String(i+1)} 관문</td>
+                            <th colspan="4">${String(i+1)} 관문</th>
                         </tr>
                         <tr>
-                            <td colspan="2">획득 골드 : <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></td>
-                            <td colspan="2">더보기 비용 : <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></td>
+                            <td colspan="4">
+                                <div class="row">
+                                    <div class="col">
+                                        획득 골드 : <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                                    </div>
+                                    <div class="col">
+                                        더보기 비용 : <span id="bonusgold">- ${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                     <tbody class="align-middle">
                         <tr>
                 `;
 
-            if(Array.isArray(boss['phase'])){
-                content += '<th scope="row">' + boss['phase'][i]; + '</th>'
-            }else{
-                content += '<th class="d-none d-md-table-cell" scope="row">' + String(i+1) + '관문</span>'; + '</th>'
-            }
+            content += '<th class="d-none d-md-table-cell" rowspan="99">' + String(i+1) + '관문</span>'; + '</th>'
 
             content +=
                 `
-                    <td class="d-none d-md-table-cell">
+                    <td class="d-none d-md-table-cell" rowspan="99">
                         <span id="cleargold">${boss['phaserewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
                     </td>
-                    <td class="d-none d-md-table-cell">
+                    <td class="d-none d-md-table-cell" rowspan="99">
                         <span id="bonusgold">${boss['phasebonusrewardgold'][i]}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span>
                     </td>
                 `;
-
+            content += `<td rowspan="99">`;
             if(boss['bossitem'] != "" && boss['phaserewarditem'][i] > 0){
                 content +=
-                    `   <td>
-                            <div class="itemTitleMini justify-content-center">
+                    `       <div class="itemTitleMini justify-content-center">
                                 <span class="slotDataMini me-1" data-grade="${iteminfo[boss['bossitem']]["grade"]}">
                                     <img class="w-100" src="${iteminfo[boss['bossitem']]["iconPath"]}" alt="">
                                 </span>
+                                <span class="d-none d-lg-inline ms-1"></span>
+                                <div class="d-inline d-lg-none w-100"></div>
                                 <span id="rewarditemname"><span class="d-none d-md-inline">${boss['bossitem']} X </span> ${boss['phaserewarditem'][i]}</span>
                             </div>
-                        </td>
                     `;
-            }else{
-                content +=
-                    `
-                        <td></td>
-                    `;
-            }
-
-            content += 
-                `
-                    <td>
-                `;
-
-            for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
-                let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
-                content += `<p class="itemTitleMini justify-content-center">
-                                <span class="slotDataMini" data-grade="${iteminfo[itemName]["grade"]}">
-                                    <img class="w-100" src="${iteminfo[itemName]["iconPath"]}" alt="">
-                                </span>
-                                <span class="ms-1" id="rewarditemname"><span class="d-none d-md-inline">${itemName} × </span>${itemQty}</span>
-                            </p>`;
-            }
-
-            content += 
-                `
-                    </td>
-                    <td>
-                `;
-            let totalbonusrewardgold = 0.0;
-            for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
-                let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
-                let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
-
-                if(filterItemlist.includes(itemName) || exceptItemlist.includes(itemName)){
-                    content += `<p>　</p>`;
-                    continue;
-                }
-                if(boss['bossitem'] == itemName){
-                    if(filterItemlist.includes('혼돈의 돌')){
-                        content += `<p>　</p>`;
-                        continue;
-                    }
-                    content += `<p><span id="rewarditemname">100</span> × <span id="rewarditemqty">${itemQty}</span> = <span>${parseInt(100 * itemQty)}</span></p>`;
-                    totalbonusrewardgold += (100 * itemQty);
-                    continue;
-                }
-
-                // console.log(itemName);
-                let itemGold = Number.isInteger(marketdata[itemName]) ? marketdata[itemName] : marketdata[itemName].toFixedNumber(3);
-                let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]["unit"]) ? itemQty / iteminfo[itemName]["unit"] : (itemQty / iteminfo[itemName]["unit"]).toFixedNumber(1);
-                let thiscalcgold = Number.isInteger(itemGold * itemTradeQty) ? itemGold * itemTradeQty : (itemGold * itemTradeQty).toFixedNumber(1);
-
-                content += `<p><span id="rewarditemname">${itemGold}</span> × <span id="rewarditemqty">${itemTradeQty}</span> = <span>${thiscalcgold}</span></p>`;
-                totalbonusrewardgold += thiscalcgold;
             }
             content +=
                 `
-                    </td>
-                    <td class="fw-bold">
-                        <p><span>${Number.isInteger(totalbonusrewardgold) ? totalbonusrewardgold : totalbonusrewardgold.toFixed(1)}</span><span><br class="d-md-none"> - </span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
+                        </td>
+                    </tr>
                 `;
+
+            let totalbonusrewardgold = 0.0;
+            for (let j = 0; j < boss['phasebonusrewarditem'][i].length; j++) {
+                content += `<tr>`;
+                let itemName = itemMaterialTradeName(boss['phasebonusrewarditem'][i][j][0]);
+                let itemQty = itemMaterialTradeQty(boss['phasebonusrewarditem'][i][j][0], boss['phasebonusrewarditem'][i][j][1]);
+
+                content += 
+                    `
+                        <td class="itemTitleMini justify-content-center">
+                            <span class="slotDataMini" data-grade="${iteminfo[itemName]["grade"]}">
+                                <img class="w-100" src="${iteminfo[itemName]["iconPath"]}" alt="">
+                            </span>
+                            <span class="d-none d-lg-inline ms-1"></span>
+                            <div class="d-inline d-lg-none w-50"></div>
+                            <span id="rewarditemname"><span class="d-none d-md-inline">${itemName} × </span>${itemQty}</span>
+                        </td>
+                    `;
+                if(filterItemlist.includes(itemName) || exceptItemlist.includes(itemName)){
+                    content += `<td>　</td>`;
+                } else if(boss['bossitem'] == itemName){
+                    if(filterItemlist.includes('혼돈의 돌')){
+                        content += `<td>　</td>`;
+                    }else {
+                        content += `<td><span id="rewarditemname">100</span> × <span id="rewarditemqty">${itemQty}</span> = <span>${parseInt(100 * itemQty)}</span></td>`;
+                        totalbonusrewardgold += (100 * itemQty);
+                    }
+                }else{
+                    // console.log(itemName);
+                    let itemGold = Number.isInteger(marketdata[itemName]) ? marketdata[itemName] : marketdata[itemName].toFixedNumber(3);
+                    let itemTradeQty = Number.isInteger(itemQty / iteminfo[itemName]["unit"]) ? itemQty / iteminfo[itemName]["unit"] : (itemQty / iteminfo[itemName]["unit"]).toFixedNumber(1);
+                    let thiscalcgold = Number.isInteger(itemGold * itemTradeQty) ? itemGold * itemTradeQty : (itemGold * itemTradeQty).toFixedNumber(1);
+                    
+                    content += `<td><span id="rewarditemname">${itemGold}</span> × <span id="rewarditemqty">${itemTradeQty}</span> = <span>${thiscalcgold}</span></td>`;
+                    totalbonusrewardgold += thiscalcgold;
+                }
+                if(j == 0){
+                    content +=
+                    `
+                        <td class="fw-bold" rowspan="99" id="totalbonusrewardgold${i}">
+                        </td>
+                    `;
+                }
+            }
+            content += `</tbody>`;
+
             let tempresult = 0;
             tempresult = totalbonusrewardgold - boss['phasebonusrewardgold'][i];
             temptextcolor = "#00ff00";
-            if(tempresult <= 0){
-                temptextcolor = "#ff6b6b";
-            }
-            content +=
+            if(tempresult <= 0) temptextcolor = "#ff6b6b";
+            totalbonusrewardgoldObject[`totalbonusrewardgold${i}`] =
                 `
+                    <p><span>${Number.isInteger(totalbonusrewardgold) ? totalbonusrewardgold : totalbonusrewardgold.toFixed(1)}</span><span> - <br class="d-md-none"></span><span>${boss['phasebonusrewardgold'][i]}</span><span> = </span></span></p>
                     <p><span style="color:${temptextcolor}">${Number.isInteger(tempresult) ? tempresult : tempresult.toFixed(1)}</span><span><img src="img/gold.png" class="ms-1 img-gold"></span></p>
-                `;
-            content +=
-                `
-                            </td>
-                        </tr>
-                    </tbody>
                 `;
         }
             
@@ -814,9 +802,16 @@ function calcreward(){
                 </table>
             </div>
             </div>
-            </div>
             `;
-        document.querySelector('#bossaccordion').innerHTML += content;
+        let tempElement = document.createElement('div');
+        tempElement.className = "accordion-item";
+        tempElement.innerHTML = content;
+
+        Object.keys(totalbonusrewardgoldObject).forEach((key)=>{
+            tempElement.querySelector(`#${key}`).innerHTML = totalbonusrewardgoldObject[key];
+        })
+
+        document.querySelector('#bossaccordion').innerHTML += tempElement.outerHTML;
     })
 }
 
